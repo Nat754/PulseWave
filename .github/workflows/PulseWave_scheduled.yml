@@ -1,7 +1,7 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
 
-name: PulseWave_schedule
+name: PulseWave_scheduled
 
 on:
   schedule:
@@ -14,6 +14,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up Python 3.11
       uses: actions/setup-python@v3
       with:
@@ -30,17 +31,10 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
 
-    - name: Start X-server
+    - name: Test with pytest
       run: |
-        sudo apt-get update
-        sudo apt-get install -y xvfb
-        Xvfb :99 -screen 0 1900x1000x24 >/dev/null 2>&1 &
-        sleep 1
-
-    - name: Run Pytest
-      run: |
-        DISPLAY=:99 pytest -s -v --alluredir=allure-results
-      continue-on-error: true
+          pytest --alluredir=allure-results --ignore=oldTests
+        continue-on-error: true
 
     - name: Get Allure history
       uses: actions/checkout@v2

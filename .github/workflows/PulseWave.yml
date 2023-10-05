@@ -1,7 +1,7 @@
 #-----------------------------------
 # GitHub Action 
 #----------------------------------- 
-name: PulseWave-Actions
+name: PulseWave
   
 on:
   push:
@@ -37,7 +37,7 @@ jobs:
     - name: Run Pytest on changed files
       if: steps.changed-py-files.outputs.any_changed == 'true'
       run: |
-        pytest -s -v ${{ steps.changed-py-files.outputs.all_changed_files }}
+        pytest -s -v --alluredir=allure-results ${{ steps.changed-py-files.outputs.all_changed_files }}
     - name: Clear logs
       run: |
         rm -rf logs/*
