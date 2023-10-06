@@ -12,10 +12,16 @@ from webdriver_manager.chrome import ChromeDriverManager
 def driver():
     print('\nstart browser...')
     chrome_options = Options()
-    chrome_options.add_argument("--start-maximized")
-    # chrome_options.add_argument('--headless')
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    if 'CI' in os.environ:
+        chrome_options.add_argument('--headless')
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver.set_window_size(1382, 754)
+    else:
+        chrome_options.add_argument("--start-maximized")
+        # chrome_options.add_argument('--headless')
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=chrome_options)
     yield driver
     print('\nquit browser...')
     driver.quit()
