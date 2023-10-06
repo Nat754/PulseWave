@@ -10,3 +10,4 @@
 [![PulseWave](https://github.com/Nat754/PulseWave/actions/workflows/pulsewave.yml/badge.svg?branch=main)](https://github.com/Nat754/PulseWave/actions/workflows/pulsewave.yml)
 [![PulseWave_scheduled](https://github.com/Nat754/PulseWave/actions/workflows/pulsewave_scheduled.yml/badge.svg)](https://github.com/Nat754/PulseWave/actions/workflows/pulsewave_scheduled.yml)
 [![pages-build-deployment](https://github.com/Nat754/PulseWave/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/Nat754/PulseWave/actions/workflows/pages/pages-build-deployment)
+[![Allure Report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://nat754.github.io/PulseWave/)
