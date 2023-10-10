@@ -4,8 +4,6 @@ import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 @pytest.fixture(scope='function')
@@ -14,14 +12,12 @@ def driver():
     chrome_options = Options()
     if 'CI' in os.environ:
         chrome_options.add_argument('--headless')
-        service = Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver = webdriver.Chrome(options=chrome_options)
         # driver.set_window_size(1382, 754)
     else:
         chrome_options.add_argument("--start-maximized")
         # chrome_options.add_argument('--headless')
-        service = Service(ChromeDriverManager().install())
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        driver = webdriver.Chrome(options=chrome_options)
     yield driver
     print('\nquit browser...')
     driver.quit()
