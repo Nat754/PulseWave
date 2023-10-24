@@ -3,7 +3,7 @@ from requests import Response
 from logger.logger import get_logs
 
 
-logger = get_logs(r"src\utils\assertions")
+logger = get_logs(r"assertions")
 
 
 class Assertion:
@@ -22,4 +22,3 @@ class Assertion:
         except json.JSONDecodeError as e:
             logger.error(e)
             logger.error(f"Response is not JSON format. Response text is {response.text}")
-
