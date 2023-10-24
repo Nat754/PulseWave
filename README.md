@@ -1,5 +1,5 @@
 # PulseWave
-### Тестирование внутрикомандной платформы (трекера) для управления задачами, координации работы и отслеживания прогресса в командных проектах "PulseWave Team".
+### Тестирование внутрикомандной платформы (трекера) для управления задачами, координации работы и отслеживания прогресса в командных проектах "PulseWave".
 [![Python Version](https://img.shields.io/badge/python-3.11-blue)](https://www.python.org/doc/versions/)
 [![dependency - selenium](https://img.shields.io/badge/dependency-selenium-blue?logo=selenium&logoColor=white)](https://pypi.org/project/selenium)
 [![dependency - pytest](https://img.shields.io/badge/dependency-pytest-blue?logo=pytest&logoColor=white)](https://pypi.org/project/pytest)
