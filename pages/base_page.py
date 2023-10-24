@@ -1,3 +1,4 @@
+from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as es
 from selenium.webdriver.support.ui import WebDriverWait as Wait
 
@@ -63,10 +64,23 @@ class BasePage:
         self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     def check_number_of_windows_to_be_equal(self, number):
-        """
-        Проверка количества открытых окон в браузере (number)
-        """
+        """Проверка количества открытых окон в браузере (number)"""
         return self.wait.until(es.number_of_windows_to_be(number))
+
+    def action_move_to_element(self, element):
+        """
+        This method moves the mouse cursor to the center of the selected element, simulating a hover action.
+        It can be used to test the interactivity of an element when the mouse cursor is hovering over it.
+        """
+        action = ActionChains(self.driver)
+        action.move_to_element(element)
+        action.perform()
+
+    def check_element_css_style(self, locator, css_property):
+        """Проверяет CSS свойство элемента"""
+        element = self.element_is_visible(locator)  # Get the WebElement using locator
+        self.wait.until(self.action_move_to_element(element))  # Move to the element
+        return element.value_of_css_property(css_property)
 
 
 # class BasePage:
@@ -170,19 +184,7 @@ class BasePage:
 #         return element
 #
 #     @allure.step('Check element hover style')
-#     def check_element_hover_style(self, locator, css_property, seconds=10):
-#         """
-#         This method finds a visible element using the provided locator,
-#         simulates a hover action by moving the cursor to it,
-#         and then returns the value of the specified CSS property of the element.
-#         Locator - is used to find the element.
-#         Css_property - the name of the CSS property whose value is to be returned.
-#         """
-#         element = self.element_is_visible(locator)  # Get the WebElement using locator
-#         wait(self.driver, seconds)
-#         self.action_move_to_element(element)  # Move to the element
-#         return element.value_of_css_property(css_property)
-#
+
 #     @allure.step('Check element hover style using JavaScript')
 #     def check_element_hover_style_using_js(self, element, css_property):
 #         """
