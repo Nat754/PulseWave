@@ -93,6 +93,6 @@ class TestMainPage:
 
     @allure.title(f"Проверка года © PulseWave, {YEAR_COOPERATION} в хедере")
     @pytest.mark.smoke
-    def test_get_futer_email(self, main_page_open, driver):
+    def test_get_year_cooperation(self, main_page_open, driver):
         year = int(main_page_open.get_futer_cooperation().text[-4:])
         assert year == YEAR_COOPERATION, f"Пора поменять год {year}, уже {YEAR_COOPERATION}"
