@@ -1,7 +1,8 @@
 import allure
 import pytest
 from tests.constant import (MAIN_PAGE_HOME, LOGIN_PAGE, SIGNUP_PAGE, TEXT_SIGNUP, TEXT_LOGIN, TEXT_SIGNUP_HEADER,
-                            BUTTON_COLOR, TERMS_OF_SERVICE, LICENSE_TITLE, LICENSE_LINK, EMAIL_TEXT, YEAR_COOPERATION)
+                            BUTTON_COLOR, TERMS_OF_SERVICE, LICENSE_TITLE, LICENSE_LINK, EMAIL_TEXT, YEAR_COOPERATION,
+                            MAIN_TITLE)
 
 
 @allure.epic("Main Page")
@@ -89,10 +90,16 @@ class TestMainPage:
     def test_get_futer_email(self, main_page_open, driver):
         text = main_page_open.get_futer_email().text
         assert text == EMAIL_TEXT, f"email адрес {text} неверный"
-        # main_page_open.get_futer_email().click()
+        main_page_open.get_futer_email().click()
 
     @allure.title(f"Проверка года © PulseWave, {YEAR_COOPERATION} в хедере")
     @pytest.mark.smoke
     def test_get_year_cooperation(self, main_page_open, driver):
         year = int(main_page_open.get_futer_cooperation().text[-4:])
         assert year == YEAR_COOPERATION, f"Пора поменять год {year}, уже {YEAR_COOPERATION}"
+
+    @allure.title("Проверка текста 'PULSEWAVE' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_main_title(self, main_page_open, driver):
+        title = main_page_open.get_body_main_title().text
+        assert title == MAIN_TITLE, "Неверный текст"

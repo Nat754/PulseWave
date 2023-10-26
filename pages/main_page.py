@@ -15,6 +15,10 @@ class MainPage(BasePage):
         self._email = (By.XPATH, '(//span[@class="item__text"])[2]')
         self._cooperation = (By.XPATH, '(//span[@class="item__text"])[3]')
         self._license_title = (By.CLASS_NAME, 'privacy__title')
+        self._main_title = (By.TAG_NAME, 'h1')
+        self._main_subtitle = (By.CLASS_NAME, 'main__subtitle')
+        self._main_descr = (By.CLASS_NAME, 'main__descr')
+        #  are visible .item__icon
 
     @allure.step("Проверка видимости логотипа в хедере")
     def get_header_logo(self):
@@ -47,3 +51,7 @@ class MainPage(BasePage):
     @allure.step("Проверка видимости элемента '© PulseWave, 2023' в футере")
     def get_futer_cooperation(self):
         return self.element_is_visible(self._cooperation)
+
+    @allure.step("Проверка видимости элемента 'PULSEWAVE' на Главной странице")
+    def get_body_main_title(self):
+        return self.element_is_visible(self._main_title)

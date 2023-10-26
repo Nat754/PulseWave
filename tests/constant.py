@@ -15,6 +15,7 @@ LICENSE_TITLE = 'ЛИЦЕНЗИОННЫЙ ДОГОВОР (ОФЕРТА)'
 LICENSE_LINK = 'Условия пользования'
 YEAR_COOPERATION = datetime.datetime.now().year
 EMAIL_TEXT = 'pulsewave@gmail.com'
+MAIN_TITLE = 'PULSEWAVE'
 
 
 class ApiUrls:
