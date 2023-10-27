@@ -38,21 +38,18 @@ class TestMainPage:
         assert color == BUTTON_COLOR, f"Цвет кнопки {TEXT_LOGIN} не соответствует макету"
 
     @allure.title("Проверка перехода на страницу регистрации по кнопке 'Регистрация' в хедере")
-    @pytest.mark.xfail(reason='Нет кнопки "Регистрация" в хедере')
     @pytest.mark.smoke
     def test_get_header_auth_signup_link(self, main_page_open, driver):
         main_page_open.get_header_auth_signup().click()
         assert driver.current_url == SIGNUP_PAGE, f"Произошел переход на страницу {driver.current_url}"
 
     @allure.title("Проверка текста кнопки 'Регистрация' в хедере")
-    @pytest.mark.xfail(reason='Нет кнопки "Регистрация" в хедере')
     @pytest.mark.smoke
     def test_get_header_auth_signup_text(self, main_page_open):
         text = main_page_open.get_header_auth_signup().text
         assert text == TEXT_SIGNUP_HEADER, f"Текст кнопки {text} не соответствует макету"
 
     @allure.title("Проверка цвета кнопки 'Регистрация' в хедере")
-    @pytest.mark.xfail(reason='Нет кнопки "Регистрация" в хедере')
     @pytest.mark.smoke
     def test_get_header_auth_signup_color(self, main_page_open):
         element = main_page_open.get_header_auth_signup()
@@ -91,7 +88,7 @@ class TestMainPage:
 
     @allure.title("Проверка текста элемента 'pulsewave@gmail.com'в хедере")
     @pytest.mark.smoke
-    def test_get_futer_email(self, main_page_open, driver):
+    def test_get_futer_email(self, main_page_open):
         text = main_page_open.get_futer_email().text
         assert text == EMAIL_TEXT, f"email адрес {text} неверный"
         main_page_open.get_futer_email().click()

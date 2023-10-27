@@ -12,7 +12,7 @@ class MainPage(BasePage):
         self._auth_signup = (By.CSS_SELECTOR, 'a[href="/auth/signup"] button')
         self._signup = (By.CLASS_NAME, 'button__big')
         self._license = (By.XPATH, '(//span[@class="item__text"])[1]')
-        self._email = (By.XPATH, '(//span[@class="item__text"])[2]')
+        self._email = (By.CLASS_NAME, 'item__link-desc')
         self._cooperation = (By.XPATH, '(//span[@class="item__text"])[3]')
         self._license_title = (By.CLASS_NAME, 'privacy__title')
         self._main_title = (By.TAG_NAME, 'h1')
