@@ -8,7 +8,7 @@ class MainPage(BasePage):
         super().__init__(driver)
         self.driver = driver
         self._logo = (By.CLASS_NAME, 'header__logo')
-        self._auth_login = (By.CSS_SELECTOR, 'a[href="/auth/login"] button')
+        self._auth_login = (By.CSS_SELECTOR, '.button__small')
         self._auth_signup = (By.CSS_SELECTOR, 'a[href="/auth/signup"] button')
         self._signup = (By.CLASS_NAME, 'button__big')
         self._license = (By.XPATH, '(//span[@class="item__text"])[1]')
@@ -19,6 +19,10 @@ class MainPage(BasePage):
         self._main_subtitle = (By.CLASS_NAME, 'main__subtitle')
         self._main_descr = (By.CLASS_NAME, 'main__descr')
         #  are visible .item__icon
+        self._allow_all_cookies = (By.CSS_SELECTOR, '.cookies__body .button__small')
+        self._cookies_link = (By.CLASS_NAME, 'cookies__link')
+        self._cookies_text = (By.CLASS_NAME, 'cookies__text')
+        #
 
     @allure.step("Проверка видимости логотипа в хедере")
     def get_header_logo(self):
@@ -55,3 +59,15 @@ class MainPage(BasePage):
     @allure.step("Проверка видимости элемента 'PULSEWAVE' на Главной странице")
     def get_body_main_title(self):
         return self.element_is_visible(self._main_title)
+
+    @allure.step("Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie на Главной странице")
+    def get_allow_all_cookies(self):
+        return self.element_is_visible(self._allow_all_cookies)
+
+    @allure.step("Проверка видимости текста сообщения о принятии файлов cookie на Главной странице")
+    def get_cookies_text(self):
+        return self.element_is_visible(self._cookies_text)
+
+    @allure.step("Проверка видимости ссылки для просмотра информации о файлах cookie на Главной странице")
+    def get_cookies_link(self):
+        return self.element_is_visible(self._cookies_link)

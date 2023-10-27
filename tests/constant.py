@@ -6,6 +6,7 @@ MAIN_PAGE_TITLE = 'PulseWave'
 LOGIN_PAGE = f'{MAIN_PAGE_URL}auth/login'
 SIGNUP_PAGE = f'{MAIN_PAGE_URL}auth/signup'
 TERMS_OF_SERVICE = f'{MAIN_PAGE_URL}documents/terms-of-service'
+COOKIES = f'{MAIN_PAGE_URL}documents/cookies'
 
 TEXT_LOGIN = 'Войти'
 TEXT_SIGNUP_HEADER = 'Регистрация'
@@ -16,6 +17,9 @@ LICENSE_LINK = 'Условия пользования'
 YEAR_COOPERATION = datetime.datetime.now().year
 EMAIL_TEXT = 'pulsewave@gmail.com'
 MAIN_TITLE = 'PULSEWAVE'
+COOKIES_TEXT = ('Наш сайт использует файлы cookie, чтобы улучшить работу сайта, повысить его эффективность и удобство. '
+                'Продолжая использовать сайт, вы соглашаетесь на использование файлов cookie')
+COOKIES_BUTTON = 'Принимаю всё'
 
 
 class ApiUrls:

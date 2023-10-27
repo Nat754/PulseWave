@@ -7,4 +7,5 @@ from tests.constant import MAIN_PAGE_URL
 def main_page_open(driver):
     main_page = MainPage(driver)
     driver.get(MAIN_PAGE_URL)
+    main_page.get_allow_all_cookies().click()
     return main_page
