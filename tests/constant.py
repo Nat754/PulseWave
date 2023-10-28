@@ -1,5 +1,6 @@
 import datetime
 
+# Main page
 MAIN_PAGE_URL = 'https://pulse-wave.netlify.app/'
 MAIN_PAGE_HOME = f'{MAIN_PAGE_URL}home'
 MAIN_PAGE_TITLE = 'PulseWave'
@@ -20,6 +21,9 @@ MAIN_TITLE = 'PULSEWAVE'
 COOKIES_TEXT = ('Наш сайт использует файлы cookie, чтобы улучшить работу сайта, повысить его эффективность и удобство. '
                 'Продолжая использовать сайт, вы соглашаетесь на использование файлов cookie')
 COOKIES_BUTTON = 'Принимаю всё'
+USEFUL_INTERFACE = 'Удобный и понятный интерфейс!'
+ALL_TIME = 'Самый высокий уровень бесперебойной работы!'
+FIRST_SAFETY = 'Ваша безопасность и конфиденциальность для нас на первом месте!'
 
 
 class ApiUrls:

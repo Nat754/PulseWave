@@ -3,7 +3,8 @@ import pytest
 from pages.main_page import MainPage
 from tests.constant import (MAIN_PAGE_HOME, LOGIN_PAGE, SIGNUP_PAGE, TEXT_SIGNUP, TEXT_LOGIN, TEXT_SIGNUP_HEADER,
                             BUTTON_COLOR, TERMS_OF_SERVICE, LICENSE_TITLE, LICENSE_LINK, EMAIL_TEXT, YEAR_COOPERATION,
-                            MAIN_TITLE, COOKIES_TEXT, COOKIES, COOKIES_BUTTON, MAIN_PAGE_URL)
+                            MAIN_TITLE, COOKIES_TEXT, COOKIES, COOKIES_BUTTON, MAIN_PAGE_URL, ALL_TIME, FIRST_SAFETY,
+                            USEFUL_INTERFACE)
 
 
 @allure.epic("Main Page")
@@ -117,3 +118,21 @@ class TestMainPage:
         main_page.get_cookies_link().click()
         link = driver.current_url
         assert link == COOKIES, f"Неверный url '{link}'"
+
+    @allure.title(f"Проверка текста '{USEFUL_INTERFACE}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_useful_interface(self, main_page_open, driver):
+        text = main_page_open.get_body_useful_interface().text
+        assert text == USEFUL_INTERFACE, "Неверный текст"
+
+    @allure.title(f"Проверка текста '{ALL_TIME}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_all_time(self, main_page_open, driver):
+        title = main_page_open.get_body_all_time().text
+        assert title == ALL_TIME, "Неверный текст"
+
+    @allure.title(f"Проверка текста '{FIRST_SAFETY}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_first_safety(self, main_page_open, driver):
+        title = main_page_open.get_body_first_safety().text
+        assert title == FIRST_SAFETY, "Неверный текст"

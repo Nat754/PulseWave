@@ -1,6 +1,7 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import allure
+from tests.constant import ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE
 
 
 class MainPage(BasePage):
@@ -18,11 +19,12 @@ class MainPage(BasePage):
         self._main_title = (By.TAG_NAME, 'h1')
         self._main_subtitle = (By.CLASS_NAME, 'main__subtitle')
         self._main_descr = (By.CLASS_NAME, 'main__descr')
-        #  are visible .item__icon
         self._allow_all_cookies = (By.CSS_SELECTOR, '.cookies__body .button__small')
         self._cookies_link = (By.CLASS_NAME, 'cookies__link')
         self._cookies_text = (By.CLASS_NAME, 'cookies__text')
-        #
+        self._useful_interface = (By.XPATH, '//p[text()="Удобный и понятный интерфейс!"]')
+        self._all_time = (By.XPATH, '//p[text()="Самый высокий уровень бесперебойной работы!"]')
+        self._first_safety = (By.XPATH, '//p[contains(text(), "Ваша безопасность")]')
 
     @allure.step("Проверка видимости логотипа в хедере")
     def get_header_logo(self):
@@ -48,15 +50,15 @@ class MainPage(BasePage):
     def get_license_title(self):
         return self.element_is_visible(self._license_title)
 
-    @allure.step("Проверка видимости элемента 'pulsewave@gmail.com' в футере")
+    @allure.step("Проверка видимости надписи 'pulsewave@gmail.com' в футере")
     def get_futer_email(self):
         return self.element_is_visible(self._email)
 
-    @allure.step("Проверка видимости элемента '© PulseWave, 2023' в футере")
+    @allure.step("Проверка видимости надписи '© PulseWave, 2023' в футере")
     def get_futer_cooperation(self):
         return self.element_is_visible(self._cooperation)
 
-    @allure.step("Проверка видимости элемента 'PULSEWAVE' на Главной странице")
+    @allure.step("Проверка видимости надписи 'PULSEWAVE' на Главной странице")
     def get_body_main_title(self):
         return self.element_is_visible(self._main_title)
 
@@ -71,3 +73,15 @@ class MainPage(BasePage):
     @allure.step("Проверка видимости ссылки для просмотра информации о файлах cookie на Главной странице")
     def get_cookies_link(self):
         return self.element_is_visible(self._cookies_link)
+
+    @allure.step(f"Проверка видимости надписи '{USEFUL_INTERFACE}' на Главной странице")
+    def get_body_useful_interface(self):
+        return self.element_is_visible(self._useful_interface)
+
+    @allure.step(f"Проверка видимости надписи '{ALL_TIME}' на Главной странице")
+    def get_body_all_time(self):
+        return self.element_is_visible(self._all_time)
+
+    @allure.step(f"Проверка видимости надписи '{FIRST_SAFETY}' на Главной странице")
+    def get_body_first_safety(self):
+        return self.element_is_visible(self._first_safety)
