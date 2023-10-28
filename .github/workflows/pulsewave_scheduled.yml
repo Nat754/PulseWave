@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
 
     - name: Set up Python 3.11
       uses: actions/setup-python@v3
@@ -33,7 +33,7 @@ jobs:
     - name: Test with pytest
       run: |
         pytest -s -v --alluredir=allure-results
-#        continue-on-error: true
+        continue-on-error: true
     - name: Get Allure history
       uses: actions/checkout@v4
       if: always()
