@@ -29,21 +29,21 @@ jobs:
 #      with:
 #          files: |
 #            **/*.py
-    - name: Run Pytest
-#      if: steps.changed-py-files.outputs.any_changed == 'true'
-      run: |
-        pytest -s -v --alluredir=allure-results ${{ steps.changed-py-files.outputs.all_changed_files }}
-    - name: Clear logs
-      run: |
-        rm -rf logs/*
+#    - name: Run Pytest
+##      if: steps.changed-py-files.outputs.any_changed == 'true'
+#      run: |
+#        pytest -s -v --alluredir=allure-results ${{ steps.changed-py-files.outputs.all_changed_files }}
+#    - name: Clear logs
+#      run: |
+#        rm -rf logs/*
     - name: Test with pytest
       run: |
         pytest -s -v --alluredir=allure-results
-        continue-on-error: true
+#        continue-on-error: true
     - name: Get Allure history
       uses: actions/checkout@v4
-      if: always()
-      continue-on-error: true
+#      if: always()
+#      continue-on-error: true
       with:
         # ref -- branch (or tag in some case)
         ref: gh-pages
