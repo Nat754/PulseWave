@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Set up Python 3.11
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: "3.11"
     - name: Install dependencies
@@ -49,10 +49,10 @@ jobs:
       with:
         allure_results: allure-results
         allure_history: allure-history
-        keep_reports: 20
+        # keep_reports: 20
     - name: Commit Allure report
       if: always()
-      uses: peaceiris/actions-gh-pages@v2
+      uses: peaceiris/actions-gh-pages@v3
       env:
         PERSONAL_TOKEN: ${{ secrets.MY_TOKEN }}
         PUBLISH_BRANCH: gh-pages

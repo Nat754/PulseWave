@@ -2,15 +2,12 @@
 # GitHub Action 
 #----------------------------------- 
 name: PulseWave
-  
 on:
   push:
     branches: [ "main" ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python 3.11
@@ -24,20 +21,45 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint with flake8
       run: |
-        # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Get Pytest changed files
-      id: changed-py-files
-      uses: tj-actions/changed-files@v23
-      with:
-          files: |
-            **/*.py
-    - name: Run Pytest on changed files
-      if: steps.changed-py-files.outputs.any_changed == 'true'
+#    - name: Get Pytest changed files
+#      id: changed-py-files
+#      uses: tj-actions/changed-files@v40
+#      with:
+#          files: |
+#            **/*.py
+    - name: Run Pytest
+#      if: steps.changed-py-files.outputs.any_changed == 'true'
       run: |
         pytest -s -v --alluredir=allure-results ${{ steps.changed-py-files.outputs.all_changed_files }}
     - name: Clear logs
       run: |
         rm -rf logs/*
+    - name: Test with pytest
+      run: |
+        pytest -s -v --alluredir=allure-results
+        continue-on-error: true
+    - name: Get Allure history
+      uses: actions/checkout@v4
+      if: always()
+      continue-on-error: true
+      with:
+        # ref -- branch (or tag in some case)
+        ref: gh-pages
+        # local path on a virtual machine
+        path: gh-pages
+    - name: Allure Report action
+      uses: simple-elf/allure-report-action@master
+#      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+        # keep_reports: 20
+    - name: Commit Allure report
+#      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      env:
+        PERSONAL_TOKEN: ${{ secrets.MY_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history
