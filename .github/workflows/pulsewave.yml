@@ -1,10 +1,6 @@
-#-----------------------------------
-# GitHub Action 
-#----------------------------------- 
 name: PulseWave
 on:
   push:
-    branches: [ "main" ]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,31 +19,13 @@ jobs:
       run: |
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-#    - name: Get Pytest changed files
-#      id: changed-py-files
-#      uses: tj-actions/changed-files@v40
-#      with:
-#          files: |
-#            **/*.py
-#    - name: Run Pytest
-##      if: steps.changed-py-files.outputs.any_changed == 'true'
-#      run: |
-#        pytest -s -v --alluredir=allure-results ${{ steps.changed-py-files.outputs.all_changed_files }}
-#    - name: Clear logs
-#      run: |
-#        rm -rf logs/*
     - name: Run Pytest
       run: |
         pytest -s -v --alluredir=allure-results
-#        continue-on-error: true
     - name: Get Allure history
       uses: actions/checkout@v4
-#      if: always()
-#      continue-on-error: true
       with:
-        # ref -- branch (or tag in some case)
         ref: gh-pages
-        # local path on a virtual machine
         path: gh-pages
     - name: Allure Report action
       uses: simple-elf/allure-report-action@v1.6
@@ -59,9 +37,6 @@ jobs:
     - name: Commit Allure report
       if: always()
       uses: peaceiris/actions-gh-pages@v2
-#      with:
-#        github_token: ${{ secrets.GITHUB_TOKEN }}
-#        publish_dir: ./public
       env:
         PERSONAL_TOKEN: ${{ secrets.MY_TOKEN }}
         PUBLISH_BRANCH: gh-pages
