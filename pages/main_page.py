@@ -14,6 +14,7 @@ class MainPage(BasePage):
         self._signup = (By.CLASS_NAME, 'button__big')
         self._license = (By.XPATH, '(//span[@class="item__text"])[1]')
         self._email = (By.CLASS_NAME, 'item__link-desc')
+        self._email_hover = (By. XPATH, '//a[contains(@href, "mailto")]')
         self._cooperation = (By.XPATH, '(//span[@class="item__text"])[3]')
         self._license_title = (By.CLASS_NAME, 'privacy__title')
         self._main_title = (By.TAG_NAME, 'h1')
@@ -53,6 +54,10 @@ class MainPage(BasePage):
     @allure.step("Проверка видимости надписи 'pulsewave@gmail.com' в футере")
     def get_futer_email(self):
         return self.element_is_visible(self._email)
+
+    @allure.step("Проверка видимости надписи 'pulsewave@gmail.com' в футере")
+    def get_futer_email_hover(self):
+        return self.element_is_visible(self._email_hover)
 
     @allure.step("Проверка видимости надписи '© PulseWave, 2023' в футере")
     def get_futer_cooperation(self):

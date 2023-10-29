@@ -1,10 +1,11 @@
 import datetime
 
-# Main page
+# Главная страница
+
 MAIN_PAGE_URL = 'https://pulse-wave.netlify.app/'
 MAIN_PAGE_HOME = f'{MAIN_PAGE_URL}home'
 MAIN_PAGE_TITLE = 'PulseWave'
-LOGIN_PAGE = f'{MAIN_PAGE_URL}auth/login'
+LOGIN_PAGE_URL = f'{MAIN_PAGE_URL}auth/login'
 SIGNUP_PAGE = f'{MAIN_PAGE_URL}auth/signup'
 TERMS_OF_SERVICE = f'{MAIN_PAGE_URL}documents/terms-of-service'
 COOKIES = f'{MAIN_PAGE_URL}documents/cookies'
@@ -24,7 +25,13 @@ COOKIES_BUTTON = 'Принимаю всё'
 USEFUL_INTERFACE = 'Удобный и понятный интерфейс!'
 ALL_TIME = 'Самый высокий уровень бесперебойной работы!'
 FIRST_SAFETY = 'Ваша безопасность и конфиденциальность для нас на первом месте!'
+EMAIL_TEXT_HOVER = 'mailto:pulsewave@gmail.com'
 
+
+# Страница 'Войти'
+LOGIN_PAGE_TITLE = 'Вход'
+
+# Страница 'Регистрация'
 
 class ApiUrls:
     BASE_URL = "https://api.pwave.pnpl.tech/api/schema/swagger-ui/#/"
