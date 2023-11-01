@@ -1,0 +1,188 @@
+{
+  "uid" : "e442d17f01c91ab5",
+  "name" : "Проверка размера '2023' на Главной странице",
+  "fullName" : "tests.test_main_page.TestMainPage#test_get_futer_cooperation_size",
+  "historyId" : "67b7dba335e4125fe83fdf8a8b4edf86",
+  "time" : {
+    "start" : 1698858250700,
+    "stop" : 1698858250759,
+    "duration" : 59
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL ОР шрифт 16, ФР шрифт 14\n\nAssertionError: Размер не соответствует\nassert '14px' == '16px'\n  - 16px\n  ?  ^\n  + 14px\n  ?  ^",
+  "statusTrace" : "self = <tests.test_main_page.TestMainPage object at 0x7f592a7434d0>\nmain_page_open = <pages.main_page.MainPage object at 0x7f592a9a88d0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"e4b7e5e897ba5d4725fc558e1be192e9\")>\n\n    @allure.title(f\"Проверка размера '{YEAR_COOPERATION}' на Главной странице\")\n    @pytest.mark.xfail(reason=\"ОР шрифт 16, ФР шрифт 14\")\n    @pytest.mark.smoke\n    def test_get_futer_cooperation_size(self, main_page_open, driver):\n        element = main_page_open.get_futer_cooperation()\n>       assert element.value_of_css_property(\"font-size\") == TEXT_SIZE, \"Размер не соответствует\"\nE       AssertionError: Размер не соответствует\nE       assert '14px' == '16px'\nE         - 16px\nE         ?  ^\nE         + 14px\nE         ?  ^\n\ntests/test_main_page.py:240: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1698858191461,
+      "stop" : 1698858191461,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1698858249273,
+      "stop" : 1698858250013,
+      "duration" : 740
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1698858250013,
+      "stop" : 1698858250699,
+      "duration" : 686
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie на Главной странице",
+      "time" : {
+        "start" : 1698858250604,
+        "stop" : 1698858250654,
+        "duration" : 50
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1698858191365,
+      "stop" : 1698858191460,
+      "duration" : 95
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL ОР шрифт 16, ФР шрифт 14\n\nAssertionError: Размер не соответствует\nassert '14px' == '16px'\n  - 16px\n  ?  ^\n  + 14px\n  ?  ^",
+    "statusTrace" : "self = <tests.test_main_page.TestMainPage object at 0x7f592a7434d0>\nmain_page_open = <pages.main_page.MainPage object at 0x7f592a9a88d0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"e4b7e5e897ba5d4725fc558e1be192e9\")>\n\n    @allure.title(f\"Проверка размера '{YEAR_COOPERATION}' на Главной странице\")\n    @pytest.mark.xfail(reason=\"ОР шрифт 16, ФР шрифт 14\")\n    @pytest.mark.smoke\n    def test_get_futer_cooperation_size(self, main_page_open, driver):\n        element = main_page_open.get_futer_cooperation()\n>       assert element.value_of_css_property(\"font-size\") == TEXT_SIZE, \"Размер не соответствует\"\nE       AssertionError: Размер не соответствует\nE       assert '14px' == '16px'\nE         - 16px\nE         ?  ^\nE         + 14px\nE         ?  ^\n\ntests/test_main_page.py:240: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости надписи '© PulseWave, 2023' в футере",
+      "time" : {
+        "start" : 1698858250700,
+        "stop" : 1698858250747,
+        "duration" : 47
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1698858250855,
+      "stop" : 1698858250916,
+      "duration" : 61
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(reason='ОР шрифт 16, ФР шрифт 14')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_main_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMainPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az301-416"
+  }, {
+    "name" : "thread",
+    "value" : "2292-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_main_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.xfail(reason='ОР шрифт 16, ФР шрифт 14')", "smoke" ]
+  },
+  "source" : "e442d17f01c91ab5.json",
+  "parameterValues" : [ ]
+}

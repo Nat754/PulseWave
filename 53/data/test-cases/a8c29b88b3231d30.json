@@ -1,0 +1,188 @@
+{
+  "uid" : "a8c29b88b3231d30",
+  "name" : "Проверка цвета '2023' на Главной странице",
+  "fullName" : "tests.test_main_page.TestMainPage#test_get_futer_cooperation_color",
+  "historyId" : "829d1375ffd172f8e8981cfa697ede21",
+  "time" : {
+    "start" : 1698858249061,
+    "stop" : 1698858249126,
+    "duration" : 65
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет не соответствует\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+  "statusTrace" : "self = <tests.test_main_page.TestMainPage object at 0x7f592a742f90>\nmain_page_open = <pages.main_page.MainPage object at 0x7f592b50c950>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"4836cacfc5236ffa0486489607485f11\")>\n\n    @allure.title(f\"Проверка цвета '{YEAR_COOPERATION}' на Главной странице\")\n    @pytest.mark.xfail(reason=\"ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\")\n    @pytest.mark.smoke\n    def test_get_futer_cooperation_color(self, main_page_open, driver):\n        element = main_page_open.get_futer_cooperation()\n>       assert element.value_of_css_property(\"color\") == TEXT_COLOR, \"Цвет не соответствует\"\nE       AssertionError: Цвет не соответствует\nE       assert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\nE         - rgba(16, 16, 18, 1)\nE         ?      ^   ^   ^^\nE         + rgba(66, 66, 66, 1)\nE         ?      ^   ^   ^^\n\ntests/test_main_page.py:233: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1698858191461,
+      "stop" : 1698858191461,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1698858247713,
+      "stop" : 1698858248453,
+      "duration" : 740
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1698858191365,
+      "stop" : 1698858191460,
+      "duration" : 95
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1698858248453,
+      "stop" : 1698858249061,
+      "duration" : 608
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie на Главной странице",
+      "time" : {
+        "start" : 1698858248968,
+        "stop" : 1698858249013,
+        "duration" : 45
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет не соответствует\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+    "statusTrace" : "self = <tests.test_main_page.TestMainPage object at 0x7f592a742f90>\nmain_page_open = <pages.main_page.MainPage object at 0x7f592b50c950>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"4836cacfc5236ffa0486489607485f11\")>\n\n    @allure.title(f\"Проверка цвета '{YEAR_COOPERATION}' на Главной странице\")\n    @pytest.mark.xfail(reason=\"ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\")\n    @pytest.mark.smoke\n    def test_get_futer_cooperation_color(self, main_page_open, driver):\n        element = main_page_open.get_futer_cooperation()\n>       assert element.value_of_css_property(\"color\") == TEXT_COLOR, \"Цвет не соответствует\"\nE       AssertionError: Цвет не соответствует\nE       assert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\nE         - rgba(16, 16, 18, 1)\nE         ?      ^   ^   ^^\nE         + rgba(66, 66, 66, 1)\nE         ?      ^   ^   ^^\n\ntests/test_main_page.py:233: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости надписи '© PulseWave, 2023' в футере",
+      "time" : {
+        "start" : 1698858249061,
+        "stop" : 1698858249114,
+        "duration" : 53
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1698858249215,
+      "stop" : 1698858249271,
+      "duration" : 56
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(reason='ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_main_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMainPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az301-416"
+  }, {
+    "name" : "thread",
+    "value" : "2292-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_main_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ "smoke", "@pytest.mark.xfail(reason='ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'')" ]
+  },
+  "source" : "a8c29b88b3231d30.json",
+  "parameterValues" : [ ]
+}
