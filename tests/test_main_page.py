@@ -196,3 +196,45 @@ class TestMainPage:
         element = main_page_open.get_body_main_title()
         assert element.value_of_css_property("color") == PULSEWAVE_COLOR, "Цвет не соответствует"
         assert element.value_of_css_property("font-size") == PULSEWAVE_SIZE, "Размер не соответствует"
+
+    @allure.title(f"Проверка цвета '{LICENSE_LINK}' на Главной странице")
+    @pytest.mark.xfail(reason="ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'")
+    @pytest.mark.smoke
+    def test_get_futer_license_color(self, main_page_open, driver):
+        element = main_page_open.get_futer_license()
+        assert element.value_of_css_property("color") == TEXT_COLOR, "Цвет не соответствует"
+
+    @allure.title(f"Проверка размера '{LICENSE_LINK}' на Главной странице")
+    @pytest.mark.xfail(reason="ОР шрифт 16, ФР шрифт 14")
+    @pytest.mark.smoke
+    def test_get_futer_license_size(self, main_page_open, driver):
+        element = main_page_open.get_futer_license()
+        assert element.value_of_css_property("font-size") == TEXT_SIZE, "Размер не соответствует"
+
+    @allure.title(f"Проверка цвета '{EMAIL_TEXT}' на Главной странице")
+    @pytest.mark.xfail(reason="ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'")
+    @pytest.mark.smoke
+    def test_get_body_futer_email_color(self, main_page_open, driver):
+        element = main_page_open.get_futer_email()
+        assert element.value_of_css_property("color") == TEXT_COLOR, "Цвет не соответствует"
+
+    @allure.title(f"Проверка размера '{EMAIL_TEXT}' на Главной странице")
+    @pytest.mark.xfail(reason="ОР шрифт 16, ФР шрифт 14")
+    @pytest.mark.smoke
+    def test_get_body_futer_email_size(self, main_page_open, driver):
+        element = main_page_open.get_futer_email()
+        assert element.value_of_css_property("font-size") == TEXT_SIZE, "Размер не соответствует"
+
+    @allure.title(f"Проверка цвета '{YEAR_COOPERATION}' на Главной странице")
+    @pytest.mark.xfail(reason="ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'")
+    @pytest.mark.smoke
+    def test_get_futer_cooperation_color(self, main_page_open, driver):
+        element = main_page_open.get_futer_cooperation()
+        assert element.value_of_css_property("color") == TEXT_COLOR, "Цвет не соответствует"
+
+    @allure.title(f"Проверка размера '{YEAR_COOPERATION}' на Главной странице")
+    @pytest.mark.xfail(reason="ОР шрифт 16, ФР шрифт 14")
+    @pytest.mark.smoke
+    def test_get_futer_cooperation_size(self, main_page_open, driver):
+        element = main_page_open.get_futer_cooperation()
+        assert element.value_of_css_property("font-size") == TEXT_SIZE, "Размер не соответствует"
