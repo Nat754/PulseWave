@@ -1,0 +1,209 @@
+{
+  "uid" : "5223acfd36787ec9",
+  "name" : "Проверка цвета 'Условия пользования' на Главной странице",
+  "fullName" : "tests.test_main_page.TestMainPage#test_get_futer_license_color",
+  "historyId" : "8bad1ffdb3a6ae965650c764e4e6fc4f",
+  "time" : {
+    "start" : 1698868170044,
+    "stop" : 1698868170124,
+    "duration" : 80
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет текста элемента 'Условия пользования' не соответствует макету\nassert False == 'rgba(16, 16, 18, 1)'",
+  "statusTrace" : "self = <tests.test_main_page.TestMainPage object at 0x7f535596dc10>\nmain_page_open = <pages.main_page.MainPage object at 0x7f5355e8f610>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"056fd7b41bda0ab5de72e0385ff50dec\")>\n\n    @allure.title(f\"Проверка цвета '{LICENSE_LINK}' на Главной странице\")\n    @pytest.mark.xfail(reason=\"ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\")\n    @pytest.mark.smoke\n    def test_get_futer_license_color(self, main_page_open, driver):\n        element = main_page_open.get_futer_license()\n        color = element.value_of_css_property(\"color\") == TEXT_COLOR\n>       assert color == TEXT_COLOR, f\"Цвет текста элемента '{LICENSE_LINK}' не соответствует макету\"\nE       AssertionError: Цвет текста элемента 'Условия пользования' не соответствует макету\nE       assert False == 'rgba(16, 16, 18, 1)'\n\ntests/test_main_page.py:291: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1698868168939,
+      "stop" : 1698868169706,
+      "duration" : 767
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1698868107015,
+      "stop" : 1698868107098,
+      "duration" : 83
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1698868107099,
+      "stop" : 1698868107099,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1698868169706,
+      "stop" : 1698868170043,
+      "duration" : 337
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie на Главной странице",
+      "time" : {
+        "start" : 1698868169939,
+        "stop" : 1698868169999,
+        "duration" : 60
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет текста элемента 'Условия пользования' не соответствует макету\nassert False == 'rgba(16, 16, 18, 1)'",
+    "statusTrace" : "self = <tests.test_main_page.TestMainPage object at 0x7f535596dc10>\nmain_page_open = <pages.main_page.MainPage object at 0x7f5355e8f610>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"056fd7b41bda0ab5de72e0385ff50dec\")>\n\n    @allure.title(f\"Проверка цвета '{LICENSE_LINK}' на Главной странице\")\n    @pytest.mark.xfail(reason=\"ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\")\n    @pytest.mark.smoke\n    def test_get_futer_license_color(self, main_page_open, driver):\n        element = main_page_open.get_futer_license()\n        color = element.value_of_css_property(\"color\") == TEXT_COLOR\n>       assert color == TEXT_COLOR, f\"Цвет текста элемента '{LICENSE_LINK}' не соответствует макету\"\nE       AssertionError: Цвет текста элемента 'Условия пользования' не соответствует макету\nE       assert False == 'rgba(16, 16, 18, 1)'\n\ntests/test_main_page.py:291: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости ссылки 'Условия пользования' в футере",
+      "time" : {
+        "start" : 1698868170044,
+        "stop" : 1698868170110,
+        "duration" : 66
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1698868170209,
+      "stop" : 1698868170266,
+      "duration" : 57
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(reason='ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_main_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMainPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1131-744"
+  }, {
+    "name" : "thread",
+    "value" : "2211-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_main_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 2,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "7d827d33fabc466b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/53//#testresult/7d827d33fabc466b",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет не соответствует\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+        "time" : {
+          "start" : 1698858242620,
+          "stop" : 1698858242680,
+          "duration" : 60
+        }
+      } ]
+    },
+    "tags" : [ "smoke", "@pytest.mark.xfail(reason='ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'')" ]
+  },
+  "source" : "5223acfd36787ec9.json",
+  "parameterValues" : [ ]
+}
