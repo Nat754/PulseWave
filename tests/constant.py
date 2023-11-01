@@ -14,6 +14,8 @@ TEXT_LOGIN = 'Войти'
 TEXT_SIGNUP_HEADER = 'Регистрация'
 TEXT_SIGNUP = 'Зарегистрироваться'
 BUTTON_COLOR = 'rgba(252, 224, 88, 1)'  # #FCE058
+TEXT_COLOR = 'rgba(16, 16, 18, 1)'  # #101012
+TEXT_SIZE = '16px'
 LICENSE_TITLE = 'ЛИЦЕНЗИОННЫЙ ДОГОВОР (ОФЕРТА)'
 LICENSE_LINK = 'Условия пользования'
 YEAR_COOPERATION = datetime.datetime.now().year
@@ -32,6 +34,7 @@ EMAIL_TEXT_HOVER = 'mailto:pulsewave@gmail.com'
 LOGIN_PAGE_TITLE = 'Вход'
 
 # Страница 'Регистрация'
+
 
 class ApiUrls:
     BASE_URL = "https://api.pwave.pnpl.tech/api/schema/swagger-ui/#/"

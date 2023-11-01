@@ -4,10 +4,10 @@ from pages.main_page import MainPage
 from tests.constant import (MAIN_PAGE_HOME, LOGIN_PAGE_URL, SIGNUP_PAGE, TEXT_SIGNUP, TEXT_LOGIN, TEXT_SIGNUP_HEADER,
                             BUTTON_COLOR, TERMS_OF_SERVICE, LICENSE_TITLE, LICENSE_LINK, EMAIL_TEXT, YEAR_COOPERATION,
                             MAIN_TITLE, COOKIES_TEXT, COOKIES, COOKIES_BUTTON, MAIN_PAGE_URL, ALL_TIME, FIRST_SAFETY,
-                            USEFUL_INTERFACE, EMAIL_TEXT_HOVER)
+                            USEFUL_INTERFACE, EMAIL_TEXT_HOVER, TEXT_SIZE, TEXT_COLOR)
 
 
-@allure.epic("Main Page")
+@allure.epic("Тестирование Главной страницы")
 class TestMainPage:
 
     @allure.title("Проверка некликабельности логотипа на главной странице")
@@ -137,3 +137,10 @@ class TestMainPage:
     def test_get_body_first_safety(self, main_page_open, driver):
         title = main_page_open.get_body_first_safety().text
         assert title == FIRST_SAFETY, "Неверный текст"
+
+    @allure.title(f"Проверка цвета и размера '{FIRST_SAFETY}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_first_safety_size_and_color(self, main_page_open, driver):
+        element = main_page_open.get_body_first_safety()
+        assert element.value_of_css_property("color") == TEXT_COLOR, "Цвет не соответствует"
+        assert element.value_of_css_property("font-size") == TEXT_SIZE, "Размер не соответствует"
