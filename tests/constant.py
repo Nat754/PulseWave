@@ -13,12 +13,6 @@ COOKIES = f'{MAIN_PAGE_URL}documents/cookies'
 TEXT_LOGIN = 'Войти'
 TEXT_SIGNUP_HEADER = 'Регистрация'
 TEXT_SIGNUP = 'Зарегистрироваться'
-BUTTON_COLOR = 'rgba(252, 224, 88, 1)'  # #FCE058
-TEXT_COLOR = 'rgba(16, 16, 18, 1)'  # #101012
-PULSEWAVE_SIZE = '80px'
-PULSEWAVE_COLOR = 'rgba(66, 66, 66, 1)'
-
-TEXT_SIZE = '16px'
 LICENSE_TITLE = 'ЛИЦЕНЗИОННЫЙ ДОГОВОР (ОФЕРТА)'
 LICENSE_LINK = 'Условия пользования'
 YEAR_COOPERATION = datetime.datetime.now().year
@@ -34,6 +28,16 @@ EMAIL_TEXT_HOVER = 'mailto:pulsewave@gmail.com'
 FULL_FUNCTIONALITY = ('Неограниченный функционал, понятный интерфейс и большое количество возможностей помогут Вам '
                       'улучшить рабочий процесс.')
 ONE_APP = 'Одно приложениe для решения всех Ваших задач!'
+
+BUTTON_COLOR = 'rgba(252, 224, 88, 1)'
+TEXT_COLOR = 'rgba(16, 16, 18, 1)'
+PULSEWAVE_COLOR = 'rgba(66, 66, 66, 1)'
+
+PULSEWAVE_SIZE = '80px'
+BUTTON_TEXT_SIZE = '18px'
+TEXT_SIZE = '16px'
+
+
 
 
 # Страница 'Войти'
