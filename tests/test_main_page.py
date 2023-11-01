@@ -4,7 +4,8 @@ from pages.main_page import MainPage
 from tests.constant import (MAIN_PAGE_HOME, LOGIN_PAGE_URL, SIGNUP_PAGE, TEXT_SIGNUP, TEXT_LOGIN, TEXT_SIGNUP_HEADER,
                             BUTTON_COLOR, TERMS_OF_SERVICE, LICENSE_TITLE, LICENSE_LINK, EMAIL_TEXT, YEAR_COOPERATION,
                             MAIN_TITLE, COOKIES_TEXT, COOKIES, COOKIES_BUTTON, MAIN_PAGE_URL, ALL_TIME, FIRST_SAFETY,
-                            USEFUL_INTERFACE, EMAIL_TEXT_HOVER, TEXT_SIZE, TEXT_COLOR)
+                            USEFUL_INTERFACE, EMAIL_TEXT_HOVER, TEXT_SIZE, TEXT_COLOR, FULL_FUNCTIONALITY, ONE_APP,
+                            PULSEWAVE_SIZE, PULSEWAVE_COLOR, MAIN_PAGE_TITLE)
 
 
 @allure.epic("Тестирование Главной страницы")
@@ -138,9 +139,60 @@ class TestMainPage:
         title = main_page_open.get_body_first_safety().text
         assert title == FIRST_SAFETY, "Неверный текст"
 
+    @pytest.mark.xfail(reason="ОР шрифт 16, ФР шрифт 14")
     @allure.title(f"Проверка цвета и размера '{FIRST_SAFETY}' на Главной странице")
     @pytest.mark.smoke
     def test_get_body_first_safety_size_and_color(self, main_page_open, driver):
         element = main_page_open.get_body_first_safety()
         assert element.value_of_css_property("color") == TEXT_COLOR, "Цвет не соответствует"
         assert element.value_of_css_property("font-size") == TEXT_SIZE, "Размер не соответствует"
+
+    @pytest.mark.xfail(reason="ОР шрифт 16, ФР шрифт 14")
+    @allure.title(f"Проверка цвета и размера '{ALL_TIME}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_first_all_time_size_and_color(self, main_page_open, driver):
+        element = main_page_open.get_body_all_time()
+        assert element.value_of_css_property("color") == TEXT_COLOR, "Цвет не соответствует"
+        assert element.value_of_css_property("font-size") == TEXT_SIZE, "Размер не соответствует"
+
+    @pytest.mark.xfail(reason="ОР шрифт 16, ФР шрифт 14")
+    @allure.title(f"Проверка цвета и размера '{USEFUL_INTERFACE}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_useful_interface_size_and_color(self, main_page_open, driver):
+        element = main_page_open.get_body_useful_interface()
+        assert element.value_of_css_property("color") == TEXT_COLOR, "Цвет не соответствует"
+        assert element.value_of_css_property("font-size") == TEXT_SIZE, "Размер не соответствует"
+
+    @allure.title(f"Проверка текста '{FULL_FUNCTIONALITY}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_main_descr(self, main_page_open, driver):
+        title = main_page_open.get_body_main_descr().text
+        assert title == FULL_FUNCTIONALITY, "Неверный текст"
+
+    @pytest.mark.xfail(reason="ОР шрифт 16, ФР шрифт 14")
+    @allure.title(f"Проверка цвета и размера '{FULL_FUNCTIONALITY}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_main_descr_size_and_color(self, main_page_open, driver):
+        element = main_page_open.get_body_main_descr()
+        assert element.value_of_css_property("color") == TEXT_COLOR, "Цвет не соответствует"
+        assert element.value_of_css_property("font-size") == TEXT_SIZE, "Размер не соответствует"
+
+    @allure.title(f"Проверка текста '{ONE_APP}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_main_subtitle(self, main_page_open, driver):
+        title = main_page_open.get_body_main_subtitle().text
+        assert title == ONE_APP, "Неверный текст"
+
+    @allure.title(f"Проверка цвета и размера '{ONE_APP}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_main_subtitle_size_and_color(self, main_page_open, driver):
+        element = main_page_open.get_body_main_subtitle()
+        assert element.value_of_css_property("color") == TEXT_COLOR, "Цвет не соответствует"
+        assert element.value_of_css_property("font-size") == TEXT_SIZE, "Размер не соответствует"
+
+    @allure.title(f"Проверка цвета и размера '{MAIN_PAGE_TITLE}' на Главной странице")
+    @pytest.mark.smoke
+    def test_get_body_main_title_size_and_color(self, main_page_open):
+        element = main_page_open.get_body_main_title()
+        assert element.value_of_css_property("color") == PULSEWAVE_COLOR, "Цвет не соответствует"
+        assert element.value_of_css_property("font-size") == PULSEWAVE_SIZE, "Размер не соответствует"

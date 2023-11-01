@@ -1,7 +1,7 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import allure
-from tests.constant import ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE
+from tests.constant import ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE, FULL_FUNCTIONALITY, ONE_APP
 
 
 class MainPage(BasePage):
@@ -90,3 +90,11 @@ class MainPage(BasePage):
     @allure.step(f"Проверка видимости надписи '{FIRST_SAFETY}' на Главной странице")
     def get_body_first_safety(self):
         return self.element_is_visible(self._first_safety)
+
+    @allure.step(f"Проверка видимости надписи '{FULL_FUNCTIONALITY}' на Главной странице")
+    def get_body_main_descr(self):
+        return self.element_is_visible(self._main_descr)
+
+    @allure.step(f"Проверка видимости надписи '{ONE_APP}' на Главной странице")
+    def get_body_main_subtitle(self):
+        return self.element_is_visible(self._main_subtitle)
