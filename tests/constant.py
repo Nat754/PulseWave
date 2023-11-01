@@ -16,6 +16,7 @@ TEXT_SIGNUP = 'Зарегистрироваться'
 LICENSE_TITLE = 'ЛИЦЕНЗИОННЫЙ ДОГОВОР (ОФЕРТА)'
 LICENSE_LINK = 'Условия пользования'
 YEAR_COOPERATION = datetime.datetime.now().year
+TEXT_COOPERATION = '© PulseWave, 2023'
 EMAIL_TEXT = 'pulsewave@gmail.com'
 MAIN_TITLE = 'PULSEWAVE'
 COOKIES_TEXT = ('Наш сайт использует файлы cookie, чтобы улучшить работу сайта, повысить его эффективность и удобство. '
@@ -36,8 +37,6 @@ PULSEWAVE_COLOR = 'rgba(66, 66, 66, 1)'
 PULSEWAVE_SIZE = '80px'
 BUTTON_TEXT_SIZE = '18px'
 TEXT_SIZE = '16px'
-
-
 
 
 # Страница 'Войти'

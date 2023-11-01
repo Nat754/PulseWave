@@ -1,7 +1,9 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import allure
-from tests.constant import ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE, FULL_FUNCTIONALITY, ONE_APP
+from tests.constant import ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE, FULL_FUNCTIONALITY, ONE_APP, TEXT_LOGIN, \
+    TEXT_SIGNUP_HEADER, TEXT_SIGNUP, LICENSE_LINK, LICENSE_TITLE, EMAIL_TEXT, EMAIL_TEXT_HOVER, TEXT_COOPERATION, \
+    MAIN_TITLE, COOKIES_BUTTON
 
 
 class MainPage(BasePage):
@@ -31,43 +33,43 @@ class MainPage(BasePage):
     def get_header_logo(self):
         return self.element_is_visible(self._logo)
 
-    @allure.step("Проверка видимости ссылки 'Войти' в хэдере")
+    @allure.step(f"Проверка видимости ссылки '{TEXT_LOGIN}' в хэдере")
     def get_header_auth_login(self):
         return self.element_is_visible(self._auth_login)
 
-    @allure.step("Проверка видимости ссылки 'Регистрация' в хэдере")
+    @allure.step(f"Проверка видимости ссылки '{TEXT_SIGNUP_HEADER}' в хэдере")
     def get_header_auth_signup(self):
         return self.element_is_visible(self._auth_signup)
 
-    @allure.step("Проверка видимости ссылки 'Зарегистрироваться' на главной странице")
+    @allure.step(f"Проверка видимости ссылки '{TEXT_SIGNUP}' на главной странице")
     def get_body_auth_signup(self):
         return self.element_is_visible(self._signup)
 
-    @allure.step("Проверка видимости ссылки 'Условия пользования' в футере")
+    @allure.step(f"Проверка видимости ссылки '{LICENSE_LINK}' в футере")
     def get_futer_license(self):
         return self.element_is_visible(self._license)
 
-    @allure.step("Проверка видимости заголовка 'ЛИЦЕНЗИОННЫЙ ДОГОВОР (ОФЕРТА)'")
+    @allure.step(f"Проверка видимости заголовка '{LICENSE_TITLE}'")
     def get_license_title(self):
         return self.element_is_visible(self._license_title)
 
-    @allure.step("Проверка видимости надписи 'pulsewave@gmail.com' в футере")
+    @allure.step(f"Проверка видимости надписи '{EMAIL_TEXT}' в футере")
     def get_futer_email(self):
         return self.element_is_visible(self._email)
 
-    @allure.step("Проверка видимости надписи 'pulsewave@gmail.com' в футере")
+    @allure.step(f"Проверка видимости перенаправления '{EMAIL_TEXT_HOVER}' в футере")
     def get_futer_email_hover(self):
         return self.element_is_visible(self._email_hover)
 
-    @allure.step("Проверка видимости надписи '© PulseWave, 2023' в футере")
+    @allure.step(f"Проверка видимости надписи '{TEXT_COOPERATION}' в футере")
     def get_futer_cooperation(self):
         return self.element_is_visible(self._cooperation)
 
-    @allure.step("Проверка видимости надписи 'PULSEWAVE' на Главной странице")
+    @allure.step(f"Проверка видимости надписи '{MAIN_TITLE}' на Главной странице")
     def get_body_main_title(self):
         return self.element_is_visible(self._main_title)
 
-    @allure.step("Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie на Главной странице")
+    @allure.step(f"Проверка видимости кнопки '{COOKIES_BUTTON}' в сообщении о принятии файлов cookie на Главной странице")
     def get_allow_all_cookies(self):
         return self.element_is_visible(self._allow_all_cookies)
 
