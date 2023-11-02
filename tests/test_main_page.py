@@ -5,7 +5,7 @@ from tests.constant import MAIN_PAGE_HOME, LOGIN_PAGE_URL, SIGNUP_PAGE, TEXT_SIG
     BUTTON_COLOR, TERMS_OF_SERVICE, LICENSE_TITLE, LICENSE_LINK, EMAIL_TEXT, YEAR_COOPERATION, MAIN_TITLE, \
     COOKIES_TEXT, COOKIES, COOKIES_BUTTON, MAIN_PAGE_URL, ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE, EMAIL_TEXT_HOVER, \
     TEXT_SIZE, TEXT_COLOR, FULL_FUNCTIONALITY, ONE_APP, PULSEWAVE_SIZE, PULSEWAVE_COLOR, MAIN_PAGE_TITLE, \
-    BUTTON_TEXT_SIZE
+    BUTTON_TEXT_SIZE, BUTTONS
 
 
 @allure.epic("Тестирование Главной страницы")
@@ -58,23 +58,36 @@ class TestMainPage:
         year = int(main_page_open.get_futer_cooperation().text[-4:])
         assert year == YEAR_COOPERATION, f"Пора поменять год '{year}', уже '{YEAR_COOPERATION}'"
 
-    @allure.title(f"Проверка перехода на страницу {LOGIN_PAGE_URL} по кнопке '{TEXT_LOGIN}' в хедере")
+    @pytest.mark.parametrize('url, button', BUTTONS)
     @pytest.mark.smoke
-    def test_get_header_auth_login_link(self, main_page_open, driver):
-        main_page_open.get_header_auth_login().click()
-        assert driver.current_url == LOGIN_PAGE_URL, f"Произошел переход на страницу '{driver.current_url}'"
+    def test_get_button(self, main_page_open, driver, url, button):
+        allure.dynamic.title(f"Проверка перехода на страницу {url} по кнопке '{button}' в хедере")
+        if button == TEXT_LOGIN:
+            main_page_open.get_header_auth_login().click()
+        if button == TEXT_SIGNUP_HEADER:
+            main_page_open.get_header_auth_signup().click()
+        if button == TEXT_SIGNUP:
+            main_page_open.get_body_auth_signup().click()
+        assert driver.current_url == url, f"Произошел переход на страницу '{driver.current_url}'"
 
-    @allure.title(f"Проверка перехода на страницу {SIGNUP_PAGE} по кнопке '{TEXT_SIGNUP_HEADER}' в хедере")
-    @pytest.mark.smoke
-    def test_get_header_auth_signup_link(self, main_page_open, driver):
-        main_page_open.get_header_auth_signup().click()
-        assert driver.current_url == SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
-    @allure.title(f"Проверка перехода на страницу {SIGNUP_PAGE} по кнопке '{TEXT_SIGNUP}' на странице")
-    @pytest.mark.smoke
-    def test_get_body_auth_signup_link(self, main_page_open, driver):
-        main_page_open.get_body_auth_signup().click()
-        assert driver.current_url == SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
+    # @allure.title(f"Проверка перехода на страницу {LOGIN_PAGE_URL} по кнопке '{TEXT_LOGIN}' в хедере")
+    # @pytest.mark.smoke
+    # def test_get_header_auth_login_link(self, main_page_open, driver):
+    #     main_page_open.get_header_auth_login().click()
+    #     assert driver.current_url == LOGIN_PAGE_URL, f"Произошел переход на страницу '{driver.current_url}'"
+    #
+    # @allure.title(f"Проверка перехода на страницу {SIGNUP_PAGE} по кнопке '{TEXT_SIGNUP_HEADER}' в хедере")
+    # @pytest.mark.smoke
+    # def test_get_header_auth_signup_link(self, main_page_open, driver):
+    #     main_page_open.get_header_auth_signup().click()
+    #     assert driver.current_url == SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
+    #
+    # @allure.title(f"Проверка перехода на страницу {SIGNUP_PAGE} по кнопке '{TEXT_SIGNUP}' на странице")
+    # @pytest.mark.smoke
+    # def test_get_body_auth_signup_link(self, main_page_open, driver):
+    #     main_page_open.get_body_auth_signup().click()
+    #     assert driver.current_url == SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
     @allure.title(f"Проверка текста кнопки '{TEXT_LOGIN}' в хедере")
     @pytest.mark.smoke
