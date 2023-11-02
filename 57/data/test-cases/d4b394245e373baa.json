@@ -1,0 +1,239 @@
+{
+  "uid" : "d4b394245e373baa",
+  "name" : "Проверка цвета элемента '2023' на Главной странице",
+  "fullName" : "tests.test_main_page.TestMainPage#test_get_futer_cooperation_color",
+  "historyId" : "829d1375ffd172f8e8981cfa697ede21",
+  "time" : {
+    "start" : 1698939852620,
+    "stop" : 1698939852670,
+    "duration" : 50
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет текста элемента '2023' не соответствует макету\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+  "statusTrace" : "self = <tests.test_main_page.TestMainPage object at 0x7f1f894c0a10>\nmain_page_open = <pages.main_page.MainPage object at 0x7f1f88940c90>\n\n    @allure.title(f\"Проверка цвета элемента '{YEAR_COOPERATION}' на Главной странице\")\n    @pytest.mark.xfail(reason=\"ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\")\n    @pytest.mark.smoke\n    def test_get_futer_cooperation_color(self, main_page_open):\n        element = main_page_open.get_futer_cooperation()\n        color = element.value_of_css_property(\"color\")\n>       assert color == TEXT_COLOR, f\"Цвет текста элемента '{YEAR_COOPERATION}' не соответствует макету\"\nE       AssertionError: Цвет текста элемента '2023' не соответствует макету\nE       assert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\nE         - rgba(16, 16, 18, 1)\nE         ?      ^   ^   ^^\nE         + rgba(66, 66, 66, 1)\nE         ?      ^   ^   ^^\n\ntests/test_main_page.py:285: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1698939798453,
+      "stop" : 1698939798453,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1698939798381,
+      "stop" : 1698939798453,
+      "duration" : 72
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1698939852231,
+      "stop" : 1698939852619,
+      "duration" : 388
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю всё' в сообщении о принятии файлов cookie на Главной странице",
+      "time" : {
+        "start" : 1698939852541,
+        "stop" : 1698939852582,
+        "duration" : 41
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1698939851523,
+      "stop" : 1698939852231,
+      "duration" : 708
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет текста элемента '2023' не соответствует макету\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+    "statusTrace" : "self = <tests.test_main_page.TestMainPage object at 0x7f1f894c0a10>\nmain_page_open = <pages.main_page.MainPage object at 0x7f1f88940c90>\n\n    @allure.title(f\"Проверка цвета элемента '{YEAR_COOPERATION}' на Главной странице\")\n    @pytest.mark.xfail(reason=\"ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\")\n    @pytest.mark.smoke\n    def test_get_futer_cooperation_color(self, main_page_open):\n        element = main_page_open.get_futer_cooperation()\n        color = element.value_of_css_property(\"color\")\n>       assert color == TEXT_COLOR, f\"Цвет текста элемента '{YEAR_COOPERATION}' не соответствует макету\"\nE       AssertionError: Цвет текста элемента '2023' не соответствует макету\nE       assert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\nE         - rgba(16, 16, 18, 1)\nE         ?      ^   ^   ^^\nE         + rgba(66, 66, 66, 1)\nE         ?      ^   ^   ^^\n\ntests/test_main_page.py:285: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости надписи '© PulseWave, 2023' в футере",
+      "time" : {
+        "start" : 1698939852620,
+        "stop" : 1698939852660,
+        "duration" : 40
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1698939852748,
+      "stop" : 1698939852805,
+      "duration" : 57
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(reason='ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_main_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMainPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az485-70"
+  }, {
+    "name" : "thread",
+    "value" : "2303-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_main_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 5,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 5
+      },
+      "items" : [ {
+        "uid" : "c456c5859b2c5551",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/56//#testresult/c456c5859b2c5551",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет текста элемента '2023' не соответствует макету\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+        "time" : {
+          "start" : 1698937650808,
+          "stop" : 1698937650851,
+          "duration" : 43
+        }
+      }, {
+        "uid" : "a8435f45a380b64b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/55//#testresult/a8435f45a380b64b",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет текста элемента '2023' не соответствует макету\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+        "time" : {
+          "start" : 1698872323709,
+          "stop" : 1698872323763,
+          "duration" : 54
+        }
+      }, {
+        "uid" : "fd9234a31ca4aac7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/54//#testresult/fd9234a31ca4aac7",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет текста элемента '2023' не соответствует макету\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+        "time" : {
+          "start" : 1698868175666,
+          "stop" : 1698868175725,
+          "duration" : 59
+        }
+      }, {
+        "uid" : "a8c29b88b3231d30",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/53//#testresult/a8c29b88b3231d30",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'\n\nAssertionError: Цвет не соответствует\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+        "time" : {
+          "start" : 1698858249061,
+          "stop" : 1698858249126,
+          "duration" : 65
+        }
+      } ]
+    },
+    "tags" : [ "smoke", "@pytest.mark.xfail(reason='ОР 'rgba(16, 16, 18, 1)', ФР 'rgba(66, 66, 66, 1)'')" ]
+  },
+  "source" : "d4b394245e373baa.json",
+  "parameterValues" : [ ]
+}
