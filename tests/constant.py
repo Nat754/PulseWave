@@ -26,7 +26,7 @@ USEFUL_INTERFACE = 'Удобный и понятный интерфейс!'
 ALL_TIME = 'Самый высокий уровень бесперебойной работы!'
 FIRST_SAFETY = 'Ваша безопасность и конфиденциальность для нас на первом месте!'
 EMAIL_TEXT_HOVER = 'mailto:pulsewave@gmail.com'
-FULL_FUNCTIONALITY = ('Неограниченный функционал, понятный интерфейс и большое количество возможностей помогут Вам '
+FULL_FUNCTIONALITY = (f'Неограниченный функционал, понятный интерфейс и большое количество возможностей\nпомогут Вам '
                       'улучшить рабочий процесс.')
 ONE_APP = 'Одно приложениe для решения всех Ваших задач!'
 
@@ -38,12 +38,17 @@ PULSEWAVE_SIZE = '80px'
 BUTTON_TEXT_SIZE = '18px'
 TEXT_SIZE = '16px'
 
-BUTTONS = [
+BUTTONS_URL = [
     (LOGIN_PAGE_URL, TEXT_LOGIN),
     (SIGNUP_PAGE, TEXT_SIGNUP_HEADER),
     (SIGNUP_PAGE, TEXT_SIGNUP)
 ]
-BUTTONS_TEXT = [TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP]
+BUTTONS = [TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP]
+ITEMS = [TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP, MAIN_TITLE, USEFUL_INTERFACE, ALL_TIME, FIRST_SAFETY,
+         FULL_FUNCTIONALITY, ONE_APP]
+ITEMS_PULSEWAVE_COLOR = [TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP, MAIN_PAGE_TITLE]
+ITEMS_TEXT = [USEFUL_INTERFACE, ALL_TIME, FIRST_SAFETY, FULL_FUNCTIONALITY, ONE_APP, LICENSE_LINK, EMAIL_TEXT,
+              YEAR_COOPERATION]
 
 # Страница 'Войти'
 LOGIN_PAGE_TITLE = 'Вход'
