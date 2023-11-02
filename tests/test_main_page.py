@@ -5,7 +5,7 @@ from tests.constant import MAIN_PAGE_HOME, LOGIN_PAGE_URL, SIGNUP_PAGE, TEXT_SIG
     BUTTON_COLOR, TERMS_OF_SERVICE, LICENSE_TITLE, LICENSE_LINK, EMAIL_TEXT, YEAR_COOPERATION, MAIN_TITLE, \
     COOKIES_TEXT, COOKIES, COOKIES_BUTTON, MAIN_PAGE_URL, ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE, EMAIL_TEXT_HOVER, \
     TEXT_SIZE, TEXT_COLOR, FULL_FUNCTIONALITY, ONE_APP, PULSEWAVE_SIZE, PULSEWAVE_COLOR, MAIN_PAGE_TITLE, \
-    BUTTON_TEXT_SIZE, BUTTONS
+    BUTTON_TEXT_SIZE, BUTTONS, BUTTONS_TEXT
 
 
 @allure.epic("Тестирование Главной страницы")
@@ -70,7 +70,6 @@ class TestMainPage:
             main_page_open.get_body_auth_signup().click()
         assert driver.current_url == url, f"Произошел переход на страницу '{driver.current_url}'"
 
-
     # @allure.title(f"Проверка перехода на страницу {LOGIN_PAGE_URL} по кнопке '{TEXT_LOGIN}' в хедере")
     # @pytest.mark.smoke
     # def test_get_header_auth_login_link(self, main_page_open, driver):
@@ -89,23 +88,35 @@ class TestMainPage:
     #     main_page_open.get_body_auth_signup().click()
     #     assert driver.current_url == SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
-    @allure.title(f"Проверка текста кнопки '{TEXT_LOGIN}' в хедере")
+    @pytest.mark.parametrize('text_button', BUTTONS_TEXT)
     @pytest.mark.smoke
-    def test_get_header_auth_login_text(self, main_page_open):
-        text = main_page_open.get_header_auth_login().text
-        assert text == TEXT_LOGIN, f"Текст кнопки '{text}' не соответствует макету"
+    def test_get_button_text(self, main_page_open, driver, text_button):
+        allure.dynamic.title(f"Проверка текста кнопки '{text_button}' в хедере")
+        if text_button == TEXT_LOGIN:
+            text = main_page_open.get_header_auth_login().text
+        if text_button == TEXT_SIGNUP_HEADER:
+            text = main_page_open.get_header_auth_signup().text
+        if text_button == TEXT_SIGNUP:
+            text = main_page_open.get_body_auth_signup().text
+        assert text == text_button, f"Текст кнопки '{text}' не соответствует макету"
 
-    @allure.title(f"Проверка текста кнопки '{TEXT_SIGNUP_HEADER}' в хедере")
-    @pytest.mark.smoke
-    def test_get_header_auth_signup_text(self, main_page_open):
-        text = main_page_open.get_header_auth_signup().text
-        assert text == TEXT_SIGNUP_HEADER, f"Текст кнопки '{text}' не соответствует макету"
-
-    @allure.title(f"Проверка текста кнопки '{TEXT_SIGNUP}' в хедере")
-    @pytest.mark.smoke
-    def test_get_body_auth_signup_text(self, main_page_open):
-        text = main_page_open.get_body_auth_signup().text
-        assert text == TEXT_SIGNUP, f"Текст кнопки '{text}' не соответствует макету"
+    # @allure.title(f"Проверка текста кнопки '{TEXT_LOGIN}' в хедере")
+    # @pytest.mark.smoke
+    # def test_get_header_auth_login_text(self, main_page_open):
+    #     text = main_page_open.get_header_auth_login().text
+    #     assert text == TEXT_LOGIN, f"Текст кнопки '{text}' не соответствует макету"
+    #
+    # @allure.title(f"Проверка текста кнопки '{TEXT_SIGNUP_HEADER}' в хедере")
+    # @pytest.mark.smoke
+    # def test_get_header_auth_signup_text(self, main_page_open):
+    #     text = main_page_open.get_header_auth_signup().text
+    #     assert text == TEXT_SIGNUP_HEADER, f"Текст кнопки '{text}' не соответствует макету"
+    #
+    # @allure.title(f"Проверка текста кнопки '{TEXT_SIGNUP}' в хедере")
+    # @pytest.mark.smoke
+    # def test_get_body_auth_signup_text(self, main_page_open):
+    #     text = main_page_open.get_body_auth_signup().text
+    #     assert text == TEXT_SIGNUP, f"Текст кнопки '{text}' не соответствует макету"
 
     @allure.title(f"Проверка цвета кнопки '{TEXT_LOGIN}' в хедере")
     @pytest.mark.smoke
