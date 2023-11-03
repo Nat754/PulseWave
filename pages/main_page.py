@@ -47,6 +47,7 @@ class MainPage(BasePage):
 
     @allure.step(f"Проверка видимости ссылки '{LICENSE_LINK}' в футере")
     def get_futer_license(self):
+        # self.go_to_element(self.element_is_clickable(self._license))
         return self.element_is_visible(self._license)
 
     @allure.step(f"Проверка видимости заголовка '{LICENSE_TITLE}'")

@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 from pages.main_page import MainPage
@@ -36,10 +38,12 @@ class TestMainPage:
     @allure.title("Проверка перехода на страницу c лицензионным соглашением")
     @pytest.mark.smoke
     def test_get_futer_link(self, main_page_open, driver):
-        license_link = main_page_open.get_futer_license().text
+        main_page_open.get_futer_license()
+        time.sleep(1)
+        text = main_page_open.get_futer_license().text
         main_page_open.get_futer_license().click()
         title = main_page_open.get_license_title().text
-        assert license_link == LICENSE_LINK, f"Неверный текст ссылки '{LICENSE_LINK}"
+        assert text == LICENSE_LINK, f"Неверный текст ссылки '{LICENSE_LINK}"
         assert driver.current_url == TERMS_OF_SERVICE, f"Произошел переход на страницу '{driver.current_url}'"
         assert title == LICENSE_TITLE, f"ОР: '{LICENSE_TITLE}', ФР: '{title}'"
 

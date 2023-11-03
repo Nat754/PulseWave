@@ -1,8 +1,5 @@
-import time
-
 import allure
 import pytest
-from pages.login_page import LoginPage
 from tests.constant import TEXT_LOGIN, LOGIN_PAGE_TITLE
 
 

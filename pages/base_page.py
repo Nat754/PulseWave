@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait as Wait
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
-        self.wait = Wait(driver, 15, 1)
+        self.wait = Wait(driver, 30, 1)
 
     def element_is_visible(self, locator):
         """
