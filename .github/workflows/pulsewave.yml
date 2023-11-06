@@ -17,6 +17,7 @@ jobs:
 #          sudo docker run -v $PWD/allure_result:/app/allure_result stroyrem \
 #            pytest -s -v --alluredir=allure_result tests/
     - uses: actions/checkout@v3
+    - name: Pass credentials
       run: |
         sudo echo "${{ secrets.CREDENTIALS }}" > data.py
     - name: Set up Python 3.11
