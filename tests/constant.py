@@ -1,5 +1,7 @@
 import datetime
 
+from data import email, password
+
 # Главная страница
 
 MAIN_PAGE_URL = 'https://pulse-wave.netlify.app/'
@@ -56,5 +58,28 @@ LOGIN_PAGE_TITLE = 'Вход'
 # Страница 'Регистрация'
 
 
-class ApiUrls:
-    BASE_URL = "https://api.pwave.pnpl.tech/api/schema/swagger-ui/#/"
+# Тестирование API
+BASE_URL = "https://api.pwave.pnpl.tech/"
+
+# Статус-коды
+STATUS_OK = 200
+STATUS_CREATED = 201
+STATUS_IS = 400
+
+# Данные пользователя
+CREATE_USER = {
+  "subscriber": "true",
+  "email": email,
+  "password": password,
+  "re_password": password
+}
+
+CREATE_JWT = {
+  "email": email,
+  "password": password
+}
+
+TOKENS = {
+        "uid": "MTEy",
+        "token": "bx56iv-9f8268d5fc946064e13f86c49ceb1d63"
+}

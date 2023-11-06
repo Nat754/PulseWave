@@ -1,5 +1,5 @@
 import requests
-from tests.constant import ApiUrls
+from tests.constant import BASE_URL
 from logger.another_logger import Logger
 from logger.logger import get_logs
 
@@ -25,7 +25,7 @@ class MyRequests:
 
     @staticmethod
     def _send(url: str, data: dict, headers: dict, cookies: dict, method: str):
-        url = f"{ApiUrls.BASE_URL}{url}"
+        url = f"{BASE_URL}{url}"
 
         if headers is None:
             headers = {"Content-Type": "application/json"}
