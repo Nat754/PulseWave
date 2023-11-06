@@ -4,7 +4,7 @@ import allure
 from tests.constant import BASE_URL, STATUS_OK, CREATE_USER, CREATE_JWT, TOKENS, STATUS_IS
 
 
-@allure.epic("Test for pet")
+@allure.epic("Тестирование API")
 class TestAPI:
 
     @allure.title("Создать пользователя")
