@@ -43,3 +43,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
+
+    @allure.title("Получить ссылку на email")
+    def test_get_token_on_email(self, get_email_tokens):
+        pass

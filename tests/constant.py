@@ -1,6 +1,6 @@
 import datetime
 
-from data import email, password
+from data import e_mail, password
 
 # Главная страница
 
@@ -60,6 +60,7 @@ LOGIN_PAGE_TITLE = 'Вход'
 
 # Тестирование API
 BASE_URL = "https://api.pwave.pnpl.tech/"
+MAIL_URL = 'https://mail.ru/'
 
 # Статус-коды
 STATUS_OK = 200
@@ -69,13 +70,13 @@ STATUS_IS = 400
 # Данные пользователя
 CREATE_USER = {
   "subscriber": "true",
-  "email": email,
+  "email": e_mail,
   "password": password,
   "re_password": password
 }
 
 CREATE_JWT = {
-  "email": email,
+  "email": e_mail,
   "password": password
 }
 

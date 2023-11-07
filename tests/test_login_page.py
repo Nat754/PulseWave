@@ -3,7 +3,7 @@ import pytest
 from tests.constant import TEXT_LOGIN, LOGIN_PAGE_TITLE
 
 
-@allure.epic(f"Тестирование страницы Авторизации")
+@allure.epic("Тестирование страницы авторизации")
 class TestLoginPage:
 
     @allure.title(f"Проверка текста заголовка '{TEXT_LOGIN}'")
