@@ -41,36 +41,14 @@ def create_jwt():
 
 @pytest.fixture(scope='function')
 def get_email_tokens(driver):
-    # mail_pass = password_mail
-    # username = e_mail
-    # imap_server = "imap.mail.ru"
-    # imap = imaplib.IMAP4_SSL(imap_server)
-    # imap.login(username, mail_pass)
-    # status, select_data = (imap.select("INBOX"))
-    # message_ids = data[0].split()
-
-    # Подключение к серверу почты
     mail = imaplib.IMAP4_SSL('imap.mail.ru')
-
-    # Авторизация
-    username = e_mail
-    password = password_mail
-    mail.login(username, password)
-
-    # Выбор почтового ящика
+    mail.login(e_mail, password_mail)
     mail.select('INBOX')
-
-    # Поиск сообщений
-    result, data = mail.search(None, 'ALL')
-
-    # Получение списка ID сообщений
-    message_ids = data[0].split()
-
-    # Чтение сообщений
-    for message_id in message_ids:
-        result, data = mail.fetch(message_id, '(RFC822)')
-        raw_email = data[0][1]
-        print(raw_email)  # или обработайте сообщение по своему усмотрению
-
-    # Закрытие соединения
+    result, data_id = mail.search(None, 'ALL')
+    message_ids = data_id[0].split()
+    result, data_id = mail.fetch(message_ids[0], '(RFC822)')
+    raw_email = str(data_id[0][1])
+    print(raw_email)
+    link = re.match("href=.{10,}\"", raw_email)
+    print(link)
     mail.logout()
