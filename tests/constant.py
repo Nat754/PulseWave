@@ -81,6 +81,7 @@ CREATE_JWT = {
 }
 
 TOKENS = {
-        "uid": "MTEy",
-        "token": "bx56iv-9f8268d5fc946064e13f86c49ceb1d63"
+        "uid": "",
+        "token": ""
 }
+nata = {'name': 'Nata'}

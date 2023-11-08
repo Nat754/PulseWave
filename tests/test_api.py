@@ -1,7 +1,7 @@
 import requests
 import allure
 
-from tests.constant import BASE_URL, STATUS_OK, CREATE_USER, CREATE_JWT, TOKENS, STATUS_IS
+from tests.constant import BASE_URL, STATUS_OK, CREATE_USER, CREATE_JWT, TOKENS, STATUS_IS, nata
 
 
 @allure.epic("Тестирование API")
@@ -47,3 +47,20 @@ class TestAPI:
     @allure.title("Получить ссылку на email")
     def test_get_token_on_email(self, get_email_tokens):
         pass
+
+    @allure.title("Получить данные авторизованного пользователя")
+    def test_get_auth_user_me(self, create_jwt):
+        jwt = create_jwt
+        url = f'{BASE_URL}auth/users/me/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        assert response.status_code == STATUS_OK, \
+            f"Expected status {STATUS_OK}, actual status {response.status_code}"
+
+    @allure.title("Обновить все данные авторизованного пользователя")
+    def test_put_auth_user_me(self, create_jwt):
+        jwt = create_jwt
+        url = f'{BASE_URL}auth/users/me/'
+        response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, json=nata)
+        # print(response.text)
+        assert response.status_code == STATUS_OK, \
+            f"Expected status {STATUS_OK}, actual status {response.status_code}"
