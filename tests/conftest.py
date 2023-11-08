@@ -9,7 +9,7 @@ import re
 import pytest
 import requests
 
-from data import email_mail, password_mail, e_mail
+from data import password_mail, e_mail
 from pages.login_page import LoginPage
 from pages.main_page import MainPage
 from tests.constant import MAIN_PAGE_URL, LOGIN_PAGE_URL, BASE_URL, CREATE_JWT

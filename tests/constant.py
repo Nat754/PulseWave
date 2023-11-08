@@ -1,6 +1,6 @@
 import datetime
 
-from data import e_mail, password
+from data import e_mail, password, email_new
 
 # Главная страница
 
@@ -65,6 +65,7 @@ MAIL_URL = 'https://mail.ru/'
 # Статус-коды
 STATUS_OK = 200
 STATUS_CREATED = 201
+STATUS_CHANGE = 204
 STATUS_IS = 400
 
 # Данные пользователя
@@ -85,3 +86,8 @@ TOKENS = {
         "token": ""
 }
 nata = {'name': 'Nata'}
+
+NEW = {
+  "new_email": email_new,
+  "password": password
+}

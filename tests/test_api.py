@@ -1,7 +1,7 @@
 import requests
 import allure
 
-from tests.constant import BASE_URL, STATUS_OK, CREATE_USER, CREATE_JWT, TOKENS, STATUS_IS, nata
+from tests.constant import BASE_URL, STATUS_OK, CREATE_USER, CREATE_JWT, TOKENS, STATUS_IS, NEW, STATUS_CHANGE
 
 
 @allure.epic("Тестирование API")
@@ -60,7 +60,16 @@ class TestAPI:
     def test_put_auth_user_me(self, create_jwt):
         jwt = create_jwt
         url = f'{BASE_URL}auth/users/me/'
-        response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, json=nata)
-        # print(response.text)
+        response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        print(response.text)
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
+
+    @allure.title("Запрос на смену почты. Пользователю будет отправлена ссылка для подтверждения на указанную почту.")
+    def test_put_auth_change_email(self, create_jwt):
+        jwt = create_jwt
+        url = f'{BASE_URL}auth/change_email/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, json=NEW)
+        print(response.text)
+        assert response.status_code == STATUS_CHANGE, \
+            f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
