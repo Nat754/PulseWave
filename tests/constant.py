@@ -87,7 +87,11 @@ TOKENS = {
 }
 nata = {'name': 'Nata'}
 
-NEW = {
+NEW_EMAIL = {
   "new_email": email_new,
   "password": password
+}
+
+RESET_PASSWRD = {
+    "email": e_mail
 }

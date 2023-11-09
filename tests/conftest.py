@@ -1,11 +1,4 @@
-import os
 import imaplib
-import hashlib
-import email
-import email.message
-import os.path
-import subprocess
-import re
 import pytest
 import requests
 
@@ -40,7 +33,7 @@ def create_jwt():
 
 
 @pytest.fixture(scope='function')
-def get_email_tokens(driver):
+def get_email_tokens():
     mail = imaplib.IMAP4_SSL('imap.mail.ru')
     mail.login(e_mail, password_mail)
     mail.select('INBOX')
@@ -48,9 +41,6 @@ def get_email_tokens(driver):
     message_ids = data_id[0].split()
     result, data_id = mail.fetch(message_ids[0], '(RFC822)')
     raw_email = str(data_id[0][1])
-    # print(raw_email)
-    # link = re.match("href=.{10,}\"", raw_email)
-    # print(link)
     mail.logout()
     first = raw_email.find('href')
     link = raw_email[first + 5:first + 110]
