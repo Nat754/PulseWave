@@ -1,4 +1,3 @@
-import pytest
 import requests
 import allure
 
@@ -27,17 +26,16 @@ class TestAPI:
     def test_post_create_jwt(self):
         url = f'{BASE_URL}auth/jwt/create/'
         response = requests.post(url, json=CREATE_JWT)
+        print(response.json())
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
-    @pytest.mark.xfail("401")
     @allure.title("Обновление JWT access_token")
-    def test_post_refresh_jwt(self, create_jwt):
-        jwt = create_jwt
+    def test_post_refresh_jwt(self, create_refresh):
+        refresh = create_refresh
         url = f'{BASE_URL}auth/jwt/refresh/'
-        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-                                 json={"refresh": "test_pulsewave@mail.ru"})
-        print(response.text)
+        response = requests.post(url, json={"refresh": refresh})
+        print(response.json())
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 

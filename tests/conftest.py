@@ -33,6 +33,14 @@ def create_jwt():
 
 
 @pytest.fixture(scope='function')
+def create_refresh():
+    url = f'{BASE_URL}auth/jwt/create/'
+    response = requests.post(url, json=CREATE_JWT)
+    refresh = f"{response.json()['refresh']}"
+    return refresh
+
+
+@pytest.fixture(scope='function')
 def get_email_tokens():
     mail = imaplib.IMAP4_SSL('imap.mail.ru')
     mail.login(e_mail, password_mail)
