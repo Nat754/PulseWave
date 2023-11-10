@@ -35,7 +35,6 @@ class TestAPI:
         refresh = create_refresh
         url = f'{BASE_URL}auth/jwt/refresh/'
         response = requests.post(url, json={"refresh": refresh})
-        print(response.json())
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
@@ -89,7 +88,6 @@ class TestAPI:
         jwt = create_jwt
         url = f'{BASE_URL}auth/users/me/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.text)
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
@@ -98,7 +96,6 @@ class TestAPI:
         jwt = create_jwt
         url = f'{BASE_URL}auth/change_email/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, json=NEW_EMAIL)
-        print(response.text)
         assert response.status_code == STATUS_CHANGE, \
             f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
 
@@ -109,6 +106,5 @@ class TestAPI:
         url = f'{BASE_URL}auth/users/reset_password/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=RESET_PASSWRD)
-        print(response.text)
         assert response.status_code == STATUS_CHANGE, \
             f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
