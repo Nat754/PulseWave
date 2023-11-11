@@ -129,7 +129,7 @@ class MainPage(BasePage):
 
     @pytest.mark.parametrize('item', ITEMS_TEXT)
     def get_font_size(self, item, element=None):
-        allure.dynamic.title(f"Проверка видимости элемента '{item}'")
+        """Проверка видимости элемента '{item}'"""
         if item == FIRST_SAFETY:
             element = self.get_body_first_safety()
         elif item == ALL_TIME:
@@ -150,7 +150,7 @@ class MainPage(BasePage):
 
     @pytest.mark.parametrize('button', BUTTONS)
     def get_button_text_size(self, button, element=None):
-        allure.dynamic.title(f"Проверка видимости текста кнопки '{button}' в хедере")
+        """Проверка видимости текста кнопки в хедере"""
         if button == TEXT_LOGIN:
             element = self.get_header_auth_login()
         elif button == TEXT_SIGNUP_HEADER:
