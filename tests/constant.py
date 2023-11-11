@@ -34,11 +34,13 @@ ONE_APP = 'Одно приложениe для решения всех Ваши�
 
 BUTTON_COLOR = 'rgba(252, 224, 88, 1)'
 TEXT_COLOR = 'rgba(16, 16, 18, 1)'
-PULSEWAVE_COLOR = 'rgba(66, 66, 66, 1)'
+TITLE_COLOR = 'rgba(66, 66, 66, 1)'
 
 PULSEWAVE_SIZE = '80px'
 BUTTON_TEXT_SIZE = '18px'
 TEXT_SIZE = '16px'
+
+TITLE_FONT_FAMILY = 'Mulish, sans-serif'
 
 BUTTONS_URL = [
     (LOGIN_PAGE_URL, TEXT_LOGIN),
