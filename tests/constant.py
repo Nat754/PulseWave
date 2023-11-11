@@ -97,3 +97,5 @@ NEW_EMAIL = {
 RESET_PASSWRD = {
     "email": e_mail
 }
+
+token = {"token": "string"}

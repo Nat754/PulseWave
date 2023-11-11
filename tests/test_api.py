@@ -2,7 +2,7 @@ import requests
 import allure
 
 from tests.constant import BASE_URL, STATUS_OK, CREATE_USER, CREATE_JWT, TOKENS, STATUS_IS, NEW_EMAIL, STATUS_CHANGE, \
-    RESET_PASSWRD
+    RESET_PASSWRD, token
 
 
 @allure.epic("Тестирование API")
@@ -26,7 +26,6 @@ class TestAPI:
     def test_post_create_jwt(self):
         url = f'{BASE_URL}auth/jwt/create/'
         response = requests.post(url, json=CREATE_JWT)
-        print(response.json())
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
@@ -98,6 +97,13 @@ class TestAPI:
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, json=NEW_EMAIL)
         assert response.status_code == STATUS_CHANGE, \
             f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
+
+    @allure.title("Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.")
+    def test_post_auth_change_email_confirm(self, create_jwt):
+        jwt = create_jwt
+        url = f'{BASE_URL}auth/change_email_confirm/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, json=token)
+        print(response.json())
 
     @allure.title("Сброс пароля. Используется на экране входа, если пользователь забыл свой пароль. \
     Пользователю отправится письмо с ссылкой подтверждения.")
