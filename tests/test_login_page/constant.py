@@ -1,7 +1,5 @@
 import datetime
 
-from data import e_mail, password, email_new
-
 # Главная страница
 
 MAIN_PAGE_URL = 'https://pulse-wave.netlify.app/'
@@ -58,44 +56,3 @@ ITEMS_TEXT = [USEFUL_INTERFACE, ALL_TIME, FIRST_SAFETY, FULL_FUNCTIONALITY, ONE_
 LOGIN_PAGE_TITLE = 'Вход'
 
 # Страница 'Регистрация'
-
-
-# Тестирование API
-BASE_URL = "https://api.pwave.pnpl.tech/"
-MAIL_URL = 'https://mail.ru/'
-
-# Статус-коды
-STATUS_OK = 200
-STATUS_CREATED = 201
-STATUS_CHANGE = 204
-STATUS_IS = 400
-
-# Данные пользователя
-CREATE_USER = {
-  "subscriber": "true",
-  "email": e_mail,
-  "password": password,
-  "re_password": password
-}
-
-CREATE_JWT = {
-  "email": e_mail,
-  "password": password
-}
-
-TOKENS = {
-        "uid": "",
-        "token": ""
-}
-nata = {'name': 'Nata'}
-
-NEW_EMAIL = {
-  "new_email": email_new,
-  "password": password
-}
-
-RESET_PASSWRD = {
-    "email": e_mail
-}
-
-token = {"token": "string"}

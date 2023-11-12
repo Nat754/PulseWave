@@ -3,9 +3,9 @@ import pytest
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import allure
-from tests.constant import ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE, FULL_FUNCTIONALITY, ONE_APP, TEXT_LOGIN, \
-    TEXT_SIGNUP_HEADER, TEXT_SIGNUP, LICENSE_LINK, LICENSE_TITLE, EMAIL_TEXT, EMAIL_TEXT_HOVER, TEXT_COOPERATION, \
-    MAIN_TITLE, COOKIES_BUTTON, ITEMS, ITEMS_TEXT, YEAR_COOPERATION, BUTTONS, BUTTONS_URL
+from tests.test_main_page.constant import ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE, FULL_FUNCTIONALITY, ONE_APP, \
+    TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP, LICENSE_LINK, LICENSE_TITLE, EMAIL_TEXT, EMAIL_TEXT_HOVER, \
+    TEXT_COOPERATION, MAIN_TITLE, COOKIES_BUTTON, ITEMS, ITEMS_TEXT, YEAR_COOPERATION, BUTTONS
 
 
 class MainPage(BasePage):
@@ -71,7 +71,8 @@ class MainPage(BasePage):
     def get_body_main_title(self):
         return self.element_is_visible(self._main_title)
 
-    @allure.step(f"Проверка видимости кнопки '{COOKIES_BUTTON}' в сообщении о принятии файлов cookie на Главной странице")
+    @allure.step(f"Проверка видимости кнопки '{COOKIES_BUTTON}' "
+                 f"в сообщении о принятии файлов cookie на Главной странице")
     def get_allow_all_cookies(self):
         return self.element_is_visible(self._allow_all_cookies)
 

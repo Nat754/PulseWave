@@ -1,5 +1,5 @@
 import requests
-from tests.constant import BASE_URL
+from tests.test_api.constant import BASE_URL
 from logger.another_logger import Logger
 from logger.logger import get_logs
 

@@ -1,6 +1,6 @@
 import allure
 import pytest
-from tests.constant import TEXT_LOGIN, LOGIN_PAGE_TITLE, BUTTON_TEXT_SIZE, TITLE_COLOR, TITLE_FONT_FAMILY
+from tests.test_login_page.constant import TEXT_LOGIN, LOGIN_PAGE_TITLE, BUTTON_TEXT_SIZE, TITLE_COLOR, TITLE_FONT_FAMILY
 
 
 @allure.epic("Тестирование страницы авторизации")
