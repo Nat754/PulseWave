@@ -1,11 +1,8 @@
 import time
-
 import requests
 import allure
-
-from data import email1, password0, email2, password1, password00
-from tests.test_api.constant import BASE_URL, STATUS_OK, CREATE_USER, TOKENS, STATUS_IS, NEW_EMAIL, \
-    STATUS_CHANGE, RESET_PASSWRD, TOKEN, STATUS_CREATED
+from data import email1, password0, email2, password3
+from tests.test_api.constant import BASE_URL, STATUS_OK, CREATE_USER, NEW_EMAIL, STATUS_CHANGE, STATUS_CREATED
 
 
 @allure.epic("Тестирование API")
@@ -68,7 +65,7 @@ class TestAPI:
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
-    @allure.title("Обновить все данные авторизованного пользователя")
+    @allure.title("Обновить все данные авторизованного пользователя по id")
     def test_put_auth_user_id(self, create_jwt, get_user_id):
         jwt = create_jwt
         user_id = get_user_id
@@ -100,46 +97,46 @@ class TestAPI:
         jwt = create_jwt
         url = f'{BASE_URL}auth/change_email/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, json=NEW_EMAIL)
+        time.sleep(10)
         assert response.status_code == STATUS_CHANGE, \
             f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
 
-    # @allure.title("Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.")
-    # def test_post_auth_change_email_confirm(self, create_jwt2, get_activate_token2):
-    #     jwt = create_jwt2
-    #     print(jwt)
-    #     #
-    #     url = f'{BASE_URL}auth/change_email_confirm/'
-    #     response = requests.post(url, json={"token": get_activate_token2, "email": email2, "password": password0})
-    #     print(response.json())
-    #     assert response.status_code == STATUS_CHANGE, \
-    #         f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
+    @allure.title("Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.")
+    def test_post_auth_change_email_confirm(self, create_jwt, change_email_confirm_token):
+        jwt = create_jwt
+        url = f'{BASE_URL}auth/change_email_confirm/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json={"token": change_email_confirm_token, "email": email2, "password": password0})
+        assert response.status_code == STATUS_CHANGE, \
+            f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
 
-    # @allure.title("Сброс пароля. Используется на экране входа, если пользователь забыл свой пароль. \
-    # Пользователю отправится письмо с ссылкой подтверждения.")
-    # def test_post_auth_users_reset_password(self, create_jwt2):
-    #     jwt = create_jwt2
-    #     url = f'{BASE_URL}auth/users/reset_password/'
-    #     response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-    #                              json=RESET_PASSWRD)
-    #     assert response.status_code == STATUS_CHANGE, \
-    #         f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
+    @allure.title("Сброс пароля. Используется на экране входа, если пользователь забыл свой пароль. \
+    Пользователю отправится письмо с ссылкой подтверждения.")
+    def test_post_auth_users_reset_password(self, create_jwt2):
+        jwt = create_jwt2
+        url = f'{BASE_URL}auth/users/reset_password/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json={"email": email2})
+        time.sleep(10)
+        assert response.status_code == STATUS_CHANGE, \
+            f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
 
-    # @allure.title("Подтверждение сброса пароля. Когда пользователь переходит по ссылке \
-    # auth/password/reset/confirm/{uid}/{token}")
-    # def test_post_auth_users_reset_password(self, create_jwt2, get_email_tokens2):
-    #     jwt = create_jwt2
-    #     url = f'{BASE_URL}auth/password/reset/confirm/'
-    #     response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-    #                              json={"uid": get_email_tokens2[0], "token": get_email_tokens2[1],
-    #                              "new_password": password00, "re_new_password": password00})
-    #     assert response.status_code == STATUS_CHANGE, \
-    #         f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
+    @allure.title("Подтверждение сброса пароля. Когда пользователь переходит по ссылке \
+    auth/password/reset/confirm/{uid}/{token}")
+    def test_post_auth_users_reset_password_confirm(self, create_jwt2, get_email_tokens2):
+        jwt = create_jwt2
+        url = f'{BASE_URL}auth/users/reset_password_confirm/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json={"uid": get_email_tokens2[0], "token": get_email_tokens2[1],
+                                 "new_password": password3, "re_new_password": password3})
+        assert response.status_code == STATUS_CHANGE, \
+            f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
 
     @allure.title("Удалить авторизованного пользователя")
-    def test_delete_auth_users_me(self, create_jwt):
-        jwt = create_jwt
+    def test_delete_auth_users_me(self, create_jwt3):
+        jwt = create_jwt3
         url = f'{BASE_URL}auth/users/me/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-                                   json={"current_password": password0})
+                                   json={"current_password": password3})
         assert response.status_code == STATUS_CHANGE, \
             f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"

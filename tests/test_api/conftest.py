@@ -2,7 +2,7 @@ import imaplib
 import pytest
 import requests
 
-from data import password1, email1, password0, email2, password2
+from data import password1, email1, password0, email2, password2, password3
 from tests.test_api.constant import BASE_URL
 
 
@@ -39,20 +39,17 @@ def get_email_tokens():
 
 
 @pytest.fixture(scope='function')
-def get_activate_token2():
+def change_email_confirm_token():
     mail = imaplib.IMAP4_SSL('imap.mail.ru')
     mail.login(email2, password2)
     mail.select('INBOX')
-    result, data_id = mail.search(None, 'ALL')
+    result, data_id = mail.search(None, 'UNSEEN')
     message_ids = data_id[0].split()
     result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
     raw_email = str(data_id[0][1])
-    print(raw_email)
     first = raw_email.find('token=')
     token = raw_email[first + 6:first + 253]
     mail.logout()
-    print()
-    print(token)
     return token
 
 
@@ -69,6 +66,14 @@ def get_user_id(create_jwt):
 def create_jwt2():
     url = f'{BASE_URL}auth/jwt/create/'
     response = requests.post(url, json={"email": email2, "password": password0})
+    jwt = f"JWT {response.json()['access']}"
+    return jwt
+
+
+@pytest.fixture(scope='function')
+def create_jwt3():
+    url = f'{BASE_URL}auth/jwt/create/'
+    response = requests.post(url, json={"email": email2, "password": password3})
     jwt = f"JWT {response.json()['access']}"
     return jwt
 
