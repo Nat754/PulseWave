@@ -1,6 +1,7 @@
 import allure
 import pytest
-from tests.test_login_page.constant import TEXT_LOGIN, LOGIN_PAGE_TITLE, BUTTON_TEXT_SIZE, TITLE_COLOR, TITLE_FONT_FAMILY
+from tests.test_login_page.constant import TEXT_LOGIN, LOGIN_PAGE_TITLE, BUTTON_TEXT_SIZE, TITLE_COLOR, \
+    TITLE_FONT_FAMILY, CHECK_TITLE
 
 
 @allure.epic("Тестирование страницы авторизации")
@@ -12,23 +13,9 @@ class TestLoginPage:
         title = login_page_open.get_title_login().text
         assert title == LOGIN_PAGE_TITLE, f'Неверный заголовок "{title}"'
 
-    @allure.title(f"Проверка размера шрифта заголовка '{TEXT_LOGIN}'")
+    @pytest.mark.parametrize('css_property, mean', CHECK_TITLE)
     @pytest.mark.regress
-    def test_get_size_login(self, login_page_open):
+    def test_get_size_login(self, login_page_open, css_property, mean):
         element = login_page_open.get_title_login()
-        size = element.value_of_css_property("font-size")
-        assert size == BUTTON_TEXT_SIZE, f"Размер текста кнопки '{TEXT_LOGIN}' не соответствует макету"
-
-    @allure.title(f"Проверка цвета шрифта заголовка '{TEXT_LOGIN}'")
-    @pytest.mark.regress
-    def test_get_color_login(self, login_page_open):
-        element = login_page_open.get_title_login()
-        color = element.value_of_css_property("color")
-        assert color == TITLE_COLOR, f"Цвет текста кнопки '{TEXT_LOGIN}' не соответствует макету"
-
-    @allure.title(f"Проверка шрифта заголовка '{TEXT_LOGIN}'")
-    @pytest.mark.regress
-    def test_get_font_family_login(self, login_page_open):
-        element = login_page_open.get_title_login()
-        font = element.value_of_css_property("font-family")
-        assert font == TITLE_FONT_FAMILY, f"Цвет шрифт заголовка '{TEXT_LOGIN}' не соответствует макету"
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == mean, f"Свойство {mean_css} элемента не соответствует макету"

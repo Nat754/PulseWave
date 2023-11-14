@@ -55,4 +55,4 @@ ITEMS_TEXT = [USEFUL_INTERFACE, ALL_TIME, FIRST_SAFETY, FULL_FUNCTIONALITY, ONE_
 # Страница 'Войти'
 LOGIN_PAGE_TITLE = 'Вход'
 
-# Страница 'Регистрация'
+CHECK_TITLE = [("font-size", BUTTON_TEXT_SIZE), ("color", TITLE_COLOR), ("font-family", TITLE_FONT_FAMILY)]
