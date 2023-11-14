@@ -16,6 +16,7 @@ class TestLoginPage:
     @pytest.mark.parametrize('css_property, mean', CHECK_TITLE)
     @pytest.mark.regress
     def test_get_size_login(self, login_page_open, css_property, mean):
+        allure.dynamic.feature(f"Проверка {mean} свойства заголовка '{TEXT_LOGIN}'")
         element = login_page_open.get_title_login()
         mean_css = element.value_of_css_property(css_property)
-        assert mean_css == mean, f"Свойство {mean_css} элемента не соответствует макету"
+        assert mean_css == mean, f"Свойство {mean_css} заголовка не соответствует макету"
