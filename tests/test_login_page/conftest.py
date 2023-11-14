@@ -1,6 +1,6 @@
 import pytest
 from pages.login_page import LoginPage
-from tests.test_login_page.constant import LOGIN_PAGE_URL
+from tests.constant import LOGIN_PAGE_URL
 
 
 @pytest.fixture(scope='function')

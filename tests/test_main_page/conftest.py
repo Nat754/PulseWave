@@ -1,6 +1,6 @@
 import pytest
 from pages.main_page import MainPage
-from tests.test_main_page.constant import MAIN_PAGE_URL
+from tests.constant import MAIN_PAGE_URL
 
 
 @pytest.fixture(scope='function')

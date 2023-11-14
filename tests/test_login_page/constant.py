@@ -1,5 +1,6 @@
 # Страница 'Войти'
 
+
 LOGIN_PAGE_TITLE = 'Вход'
 
 CHECK_TITLE = [
