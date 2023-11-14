@@ -1,7 +1,7 @@
 import allure
 import pytest
-from tests.test_login_page.constant import TEXT_LOGIN, LOGIN_PAGE_TITLE, BUTTON_TEXT_SIZE, TITLE_COLOR, \
-    TITLE_FONT_FAMILY, CHECK_TITLE
+from tests.test_main_page.constant import TEXT_LOGIN
+from tests.test_login_page.constant import LOGIN_PAGE_TITLE, CHECK_TITLE
 
 
 @allure.epic("Тестирование страницы авторизации")
@@ -15,8 +15,8 @@ class TestLoginPage:
 
     @pytest.mark.parametrize('css_property, mean', CHECK_TITLE)
     @pytest.mark.regress
-    def test_get_size_login(self, login_page_open, css_property, mean):
-        allure.dynamic.feature(f"Проверка {mean} свойства заголовка '{TEXT_LOGIN}'")
+    def test_get_css_property(self, login_page_open, css_property, mean):
+        allure.dynamic.title(f"Проверка {mean} свойства заголовка '{TEXT_LOGIN}'")
         element = login_page_open.get_title_login()
         mean_css = element.value_of_css_property(css_property)
         assert mean_css == mean, f"Свойство {mean_css} заголовка не соответствует макету"
