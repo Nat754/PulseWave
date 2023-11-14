@@ -54,7 +54,6 @@ class TestAPI:
         user_id = response.json()['id']
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
-        return user_id
 
     @allure.title("Данные пользователя по id")
     def test_get_auth_user_id(self, create_jwt, get_user_id):
