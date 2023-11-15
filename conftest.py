@@ -13,10 +13,10 @@ def driver():
     if 'CI' in os.environ:
         chrome_options.add_argument('--headless')
         driver = webdriver.Chrome(options=chrome_options)
-        # driver.set_window_size(1382, 754)
+        # driver.set_window_size(1920, 1080)
     else:
-        chrome_options.add_argument("--start-maximized")
-        # chrome_options.add_argument('--headless')
+        # chrome_options.add_argument("--start-maximized")
+        chrome_options.add_argument('--headless')
         driver = webdriver.Chrome(options=chrome_options)
     yield driver
     print('\nquit browser...')

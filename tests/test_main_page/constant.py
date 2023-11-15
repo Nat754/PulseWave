@@ -1,9 +1,7 @@
 import datetime
-from tests.constant import SIGNUP_PAGE, LOGIN_PAGE_URL
-
+from tests.constant import SIGNUP_PAGE, LOGIN_PAGE
 
 # Главная страница
-
 MAIN_PAGE_TITLE = 'PulseWave'
 TEXT_LOGIN = 'Войти'
 TEXT_SIGNUP_HEADER = 'Регистрация'
@@ -25,24 +23,20 @@ FULL_FUNCTIONALITY = (f'Неограниченный функционал, по�
                       'улучшить рабочий процесс.')
 ONE_APP = 'Одно приложениe для решения всех Ваших задач!'
 
-BUTTON_COLOR = 'rgba(252, 224, 88, 1)'
-TEXT_COLOR = 'rgba(16, 16, 18, 1)'
-TITLE_COLOR = 'rgba(66, 66, 66, 1)'
 
-PULSEWAVE_SIZE = '80px'
-BUTTON_TEXT_SIZE = '18px'
-TEXT_SIZE = '16px'
-
-TITLE_FONT_FAMILY = 'Mulish, sans-serif'
-
-BUTTONS_URL = [
-    (LOGIN_PAGE_URL, TEXT_LOGIN),
-    (SIGNUP_PAGE, TEXT_SIGNUP_HEADER),
-    (SIGNUP_PAGE, TEXT_SIGNUP)
+CHECK_BUTTON = [
+    ('font-size', '18px', 'размера шрифта'),
+    ('color', 'rgba(66, 66, 66, 1)', 'цвета шрифта'),
+    ('font-family', 'Mulish, sans-serif', 'шрифта'),
+    ('background-color', 'rgba(252, 224, 88, 1)', 'цвета кнопки')
 ]
-BUTTONS = [TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP]
-ITEMS = [TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP, MAIN_TITLE, USEFUL_INTERFACE, ALL_TIME, FIRST_SAFETY,
-         FULL_FUNCTIONALITY, ONE_APP]
-ITEMS_PULSEWAVE_COLOR = [TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP, MAIN_PAGE_TITLE]
-ITEMS_TEXT = [USEFUL_INTERFACE, ALL_TIME, FIRST_SAFETY, FULL_FUNCTIONALITY, ONE_APP, LICENSE_LINK, EMAIL_TEXT,
-              YEAR_COOPERATION]
+CHECK_TEXT = [
+    ('font-size', '16px', 'размера шрифта'),
+    ('color', 'rgba(16, 16, 18, 1)', 'цвета шрифта'),
+    ('font-family', 'Mulish, sans-serif', 'шрифта')
+]
+CHECK_TITLE = [
+    ('font-size', '80px', 'размера шрифта'),
+    ('color', 'rgba(66, 66, 66, 1)', 'цвета шрифта'),
+    ('font-family', 'Mulish, sans-serif', 'шрифта')
+]

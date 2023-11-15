@@ -2,11 +2,10 @@ import time
 import allure
 import pytest
 from pages.main_page import MainPage
-from tests.constant import MAIN_PAGE_HOME, MAIN_PAGE_URL, COOKIES, TERMS_OF_SERVICE
-from tests.test_main_page.constant import TEXT_SIGNUP, TEXT_LOGIN, TEXT_SIGNUP_HEADER, BUTTON_COLOR, LICENSE_TITLE, \
-    LICENSE_LINK, EMAIL_TEXT, YEAR_COOPERATION, COOKIES_TEXT, COOKIES_BUTTON, TEXT_COLOR, ALL_TIME, FIRST_SAFETY, \
-    USEFUL_INTERFACE, EMAIL_TEXT_HOVER, TEXT_SIZE, FULL_FUNCTIONALITY, ONE_APP, PULSEWAVE_SIZE, TITLE_COLOR, \
-    MAIN_PAGE_TITLE, BUTTON_TEXT_SIZE, BUTTONS_URL, BUTTONS, ITEMS, ITEMS_PULSEWAVE_COLOR, ITEMS_TEXT
+from tests.constant import MAIN_PAGE_HOME, MAIN_PAGE, COOKIES, TERMS_OF_SERVICE, LOGIN_PAGE, SIGNUP_PAGE
+from tests.test_main_page.constant import TEXT_SIGNUP, TEXT_LOGIN, TEXT_SIGNUP_HEADER, LICENSE_TITLE, LICENSE_LINK, \
+    EMAIL_TEXT, YEAR_COOPERATION, COOKIES_TEXT, COOKIES_BUTTON, ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE, \
+    EMAIL_TEXT_HOVER, FULL_FUNCTIONALITY, ONE_APP, CHECK_BUTTON, CHECK_TEXT, TEXT_COOPERATION, MAIN_TITLE, CHECK_TITLE
 
 
 @allure.epic("Тестирование Главной страницы")
@@ -16,7 +15,7 @@ class TestMainPage:
     @pytest.mark.smoke
     def test_get_all_cookies(self, driver):
         main_page = MainPage(driver)
-        driver.get(MAIN_PAGE_URL)
+        driver.get(MAIN_PAGE)
         text = main_page.get_cookies_text().text
         assert text == COOKIES_TEXT, f"Неверный текст '{text}'"
         button_text = main_page.get_allow_all_cookies().text
@@ -61,84 +60,170 @@ class TestMainPage:
         year = int(main_page_open.get_footer_cooperation().text[-4:])
         assert year == YEAR_COOPERATION, f"Пора поменять год '{year}', уже '{YEAR_COOPERATION}'"
 
-    @pytest.mark.parametrize('url, button', BUTTONS_URL)
+    @allure.title(f"Проверка перехода на страницу '{LOGIN_PAGE}' по кнопке '{TEXT_LOGIN}'")
     @pytest.mark.smoke
-    def test_get_button(self, main_page_open, driver, url, button):
-        allure.dynamic.title(f"Проверка перехода на страницу {url} по кнопке '{button}'")
-        main_page_open.get_button_is_visible(button).click()
-        assert driver.current_url == url, f"Произошел переход на страницу '{driver.current_url}'"
+    def test_get_header_auth_login(self, main_page_open, driver):
+        main_page_open.get_header_auth_login().click()
+        assert driver.current_url == LOGIN_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
-    @pytest.mark.parametrize('item', ITEMS)
-    @pytest.mark.regress
-    def test_get_element_text(self, main_page_open, item):
-        allure.dynamic.title(f"Проверка текста элемента '{item}'")
-        text = main_page_open.get_element_text(item).text
-        assert text == item, f"Текст элемента '{item}' не соответствует макету"
+    @allure.title(f"Проверка перехода на страницу '{SIGNUP_PAGE}' по кнопке '{TEXT_SIGNUP_HEADER}'")
+    @pytest.mark.smoke
+    def test_get_header_auth_signup(self, main_page_open, driver):
+        main_page_open.get_header_auth_signup().click()
+        assert driver.current_url == SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
-    @pytest.mark.parametrize('button', BUTTONS)
-    @pytest.mark.regress
-    def test_get_button_color(self, main_page_open, driver, button):
-        allure.dynamic.title(f"Проверка цвета кнопки '{button}'")
-        element = main_page_open.get_button_is_visible(button)
-        color = element.value_of_css_property("background-color")
-        assert color == BUTTON_COLOR, f"Цвет кнопки '{button}' не соответствует макету"
+    @allure.title(f"Проверка перехода на страницу {SIGNUP_PAGE} по кнопке '{TEXT_SIGNUP}'")
+    @pytest.mark.smoke
+    def test_get_body_auth_signup(self, main_page_open, driver):
+        main_page_open.get_body_auth_signup().click()
+        assert driver.current_url == SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
-    @pytest.mark.parametrize('item', ITEMS_PULSEWAVE_COLOR)
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_TITLE)
     @pytest.mark.regress
-    def test_get_item_text_color(self, main_page_open, item, element=None):
-        allure.dynamic.title(f"Проверка цвета текста элемента '{item}'")
-        if item == TEXT_LOGIN:
-            element = main_page_open.get_header_auth_login()
-        elif item == TEXT_SIGNUP_HEADER:
-            element = main_page_open.get_header_auth_signup()
-        elif item == TEXT_SIGNUP:
-            element = main_page_open.get_body_auth_signup()
-        elif item == MAIN_PAGE_TITLE:
-            element = main_page_open.get_body_main_title()
-        color = element.value_of_css_property("color")
-        assert color == TITLE_COLOR, f"Цвет текста элемента '{item}' не соответствует макету"
-
-    @pytest.mark.parametrize('item', ITEMS_TEXT)
-    @pytest.mark.regress
-    def test_get_item_text_color2(self, main_page_open, item, element=None):
-        allure.dynamic.title(f"Проверка цвета текста элемента '{item}'")
-        if item == FIRST_SAFETY:
-            element = main_page_open.get_body_first_safety()
-        elif item == ALL_TIME:
-            element = main_page_open.get_body_all_time()
-        elif item == USEFUL_INTERFACE:
-            element = main_page_open.get_body_useful_interface()
-        elif item == FULL_FUNCTIONALITY:
-            element = main_page_open.get_body_main_descr()
-        elif item == ONE_APP:
-            element = main_page_open.get_body_main_subtitle()
-        elif item == LICENSE_LINK:
-            element = main_page_open.get_footer_license()
-        elif item == EMAIL_TEXT:
-            element = main_page_open.get_footer_email()
-        elif item == YEAR_COOPERATION:
-            element = main_page_open.get_footer_cooperation()
-        color = element.value_of_css_property("color")
-        assert color == TEXT_COLOR, f"Цвет текста элемента '{item}' не соответствует макету"
-
-    @pytest.mark.parametrize('button', BUTTONS)
-    @pytest.mark.regress
-    def test_get_button_text_size(self, main_page_open, button):
-        allure.dynamic.title(f"Проверка размера текста кнопки '{button}' в хедере")
-        size = main_page_open.get_button_is_visible(button).value_of_css_property("font-size")
-        assert size == BUTTON_TEXT_SIZE, f"Размер текста кнопки '{button}' не соответствует макету"
-
-    @pytest.mark.parametrize('item', ITEMS_TEXT)
-    @pytest.mark.regress
-    def test_get_body_first_safety_size(self, main_page_open, item):
-        allure.dynamic.title(f"Проверка размера шрифта элемента '{item}'")
-        element = main_page_open.get_font_size(item)
-        size = element.value_of_css_property("font-size")
-        assert size == TEXT_SIZE, f"Размер шрифта элемента '{item}' не соответствует макету"
-
-    @allure.title(f"Проверка размера шрифта элемента '{MAIN_PAGE_TITLE}' на Главной странице")
-    @pytest.mark.regress
-    def test_get_body_main_title_size(self, main_page_open):
+    def test_get_body_main_title_size(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} элемента '{MAIN_TITLE}'")
         element = main_page_open.get_body_main_title()
-        size = element.value_of_css_property("font-size")
-        assert size == PULSEWAVE_SIZE, f"Размер шрифта элемента '{MAIN_PAGE_TITLE}' не соответствует макету"
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} кнопки '{MAIN_TITLE}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_BUTTON)
+    @pytest.mark.regress
+    def test_get_css_property_header_auth_login(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} кнопки '{TEXT_LOGIN}'")
+        element = main_page_open.get_header_auth_login()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} кнопки '{TEXT_LOGIN}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_BUTTON)
+    @pytest.mark.regress
+    def test_get_css_property_header_auth_signup(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} кнопки '{TEXT_SIGNUP_HEADER}'")
+        element = main_page_open.get_header_auth_login()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} кнопки '{TEXT_SIGNUP_HEADER}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_BUTTON)
+    @pytest.mark.regress
+    def test_get_css_property_body_auth_signup(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} кнопки '{TEXT_SIGNUP}'")
+        element = main_page_open.get_body_auth_signup()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} кнопки '{TEXT_SIGNUP}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)
+    @pytest.mark.regress
+    def test_get_css_property_footer_license(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} ссылки '{LICENSE_LINK}' в футере")
+        element = main_page_open.get_footer_license()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} ссылки '{LICENSE_LINK}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)
+    @pytest.mark.regress
+    def test_get_css_property_footer_email(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} надписи '{EMAIL_TEXT}' в футере")
+        element = main_page_open.get_footer_email()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} надписи '{EMAIL_TEXT}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)
+    @pytest.mark.regress
+    def test_get_css_property_footer_cooperation(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} надписи '{TEXT_COOPERATION}' в футере")
+        element = main_page_open.get_footer_cooperation()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} надписи '{TEXT_COOPERATION}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)
+    @pytest.mark.regress
+    def test_get_css_property_body_useful_interface(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} элемента '{USEFUL_INTERFACE}' в футере")
+        element = main_page_open.get_body_useful_interface()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} элемента '{USEFUL_INTERFACE}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)
+    @pytest.mark.regress
+    def test_get_css_property_body_all_time(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} элемента '{ALL_TIME}' в футере")
+        element = main_page_open.get_body_all_time()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} элемента '{ALL_TIME}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)
+    @pytest.mark.regress
+    def test_get_css_property_body_first_safety(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} элемента '{FIRST_SAFETY}' в футере")
+        element = main_page_open.get_body_first_safety()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} элемента '{FIRST_SAFETY}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)
+    @pytest.mark.regress
+    def test_get_css_property_body_main_descr(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} элемента '{FULL_FUNCTIONALITY}' в футере")
+        element = main_page_open.get_body_main_descr()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} элемента '{FULL_FUNCTIONALITY}' макету"
+
+    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)
+    @pytest.mark.regress
+    def test_get_css_property_body_main_subtitle(self, main_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} элемента '{ONE_APP}' в футере")
+        element = main_page_open.get_body_main_subtitle()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} элемента '{ONE_APP}' макету"
+
+    @allure.title(f"Проверка текста кнопки '{TEXT_LOGIN}'")
+    @pytest.mark.regress
+    def test_get_text_header_auth_login(self, main_page_open):
+        text = main_page_open.get_header_auth_login().text
+        assert text == TEXT_LOGIN, f"Текст кнопки '{TEXT_LOGIN}' не соответствует макету"
+
+    @allure.title(f"Проверка текста кнопки '{TEXT_SIGNUP_HEADER}'")
+    @pytest.mark.regress
+    def test_get_text_header_auth_signup(self, main_page_open):
+        text = main_page_open.get_header_auth_signup().text
+        assert text == TEXT_SIGNUP_HEADER, f"Текст кнопки '{TEXT_SIGNUP_HEADER}' не соответствует макету"
+
+    @allure.title(f"Проверка текста кнопки '{TEXT_SIGNUP}'")
+    @pytest.mark.regress
+    def test_get_text_body_auth_signup(self, main_page_open):
+        text = main_page_open.get_body_auth_signup().text
+        assert text == TEXT_SIGNUP, f"Текст кнопки '{TEXT_SIGNUP}' не соответствует макету"
+
+    @allure.title(f"Проверка текста элемента '{MAIN_TITLE}'")
+    @pytest.mark.regress
+    def test_get_text_body_main_title(self, main_page_open):
+        text = main_page_open.get_body_main_title().text
+        assert text == MAIN_TITLE, f"Текст элемента '{MAIN_TITLE}' не соответствует макету"
+
+    @allure.title(f"Проверка текста элемента '{USEFUL_INTERFACE}'")
+    @pytest.mark.regress
+    def test_get_text_body_useful_interface(self, main_page_open):
+        text = main_page_open.get_body_useful_interface().text
+        assert text == USEFUL_INTERFACE, f"Текст элемента '{USEFUL_INTERFACE}' не соответствует макету"
+
+    @allure.title(f"Проверка текста элемента '{ALL_TIME}'")
+    @pytest.mark.regress
+    def test_get_text_body_all_time(self, main_page_open):
+        text = main_page_open.get_body_all_time().text
+        assert text == ALL_TIME, f"Текст элемента '{ALL_TIME}' не соответствует макету"
+
+    @allure.title(f"Проверка текста элемента '{FIRST_SAFETY}'")
+    @pytest.mark.regress
+    def test_get_text_body_first_safety(self, main_page_open):
+        text = main_page_open.get_body_first_safety().text
+        assert text == FIRST_SAFETY, f"Текст элемента '{FIRST_SAFETY}' не соответствует макету"
+
+    @allure.title(f"Проверка текста элемента '{FULL_FUNCTIONALITY}'")
+    @pytest.mark.regress
+    def test_get_text_body_main_descr(self, main_page_open):
+        text = main_page_open.get_body_main_descr().text
+        assert text == FULL_FUNCTIONALITY, f"Текст элемента '{FULL_FUNCTIONALITY}' не соответствует макету"
+
+    @allure.title(f"Проверка текста элемента '{ONE_APP}'")
+    @pytest.mark.regress
+    def test_get_text_body_main_subtitle(self, main_page_open):
+        text = main_page_open.get_body_main_subtitle().text
+        assert text == ONE_APP, f"Текст элемента '{ONE_APP}' не соответствует макету"

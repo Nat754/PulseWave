@@ -2,6 +2,7 @@
 
 
 LOGIN_PAGE_TITLE = 'Вход'
+TEXT_LOGIN = 'Войти'
 
 CHECK_TITLE = [
     ("font-size", '18px', 'размера шрифта'),
