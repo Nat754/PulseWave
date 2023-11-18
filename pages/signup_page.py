@@ -11,6 +11,7 @@ class SignupPage(BasePage):
         self.driver = driver
         self._title_signup = (By.TAG_NAME, 'h1')
         self._allow_all_cookies = (By.CSS_SELECTOR, '.cookies__body .button__small')
+        self._logo = (By.CLASS_NAME, 'header__logo')
 
     @allure.step(f"Проверка видимости заголовка {TEXT_SIGNUP}")
     def get_title_login(self):
@@ -19,3 +20,7 @@ class SignupPage(BasePage):
     @allure.step("Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie")
     def get_allow_all_cookies(self):
         return self.element_is_visible(self._allow_all_cookies)
+
+    @allure.step("Проверка видимости логотипа в хедере")
+    def get_header_logo_signup(self):
+        return self.element_is_visible(self._logo)
