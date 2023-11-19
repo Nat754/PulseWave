@@ -1,0 +1,200 @@
+{
+  "uid" : "e7fc6e16c66678bf",
+  "name" : "Проверка цвета шрифта ссылки 'Условия пользования' в футере",
+  "fullName" : "tests.test_footer.test_footer.TestFooter#test_get_css_property_footer_license",
+  "historyId" : "66dddec18f21817bf98c4f59f75fa3e2",
+  "time" : {
+    "start" : 1700425431070,
+    "stop" : 1700425431102,
+    "duration" : 32
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL Неверный цвет текста ссылки \"Условия пользования\" в футере\n\nAssertionError: Не прошла проверка соответствия цвета шрифта ссылки 'Условия пользования' макету\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+  "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f1266ae9910>\nfooter_open = <pages.footer.Footer object at 0x7f12672d4c90>\ncss_property = 'color', figma = 'rgba(16, 16, 18, 1)', name = 'цвета шрифта'\nurl = 'https://pulse-wave.netlify.app/auth/login'\n\n    @pytest.mark.parametrize('url', PAGES)\n    @pytest.mark.xfail(reason='Неверный цвет текста ссылки \"Условия пользования\" в футере')\n    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)\n    @pytest.mark.regress\n    def test_get_css_property_footer_license(self, footer_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"Проверка {name} ссылки '{LICENSE_LINK}' в футере\")\n        element = footer_open.get_footer_license()\n        mean_css = element.value_of_css_property(css_property)\n>       assert mean_css == figma, f\"Не прошла проверка соответствия {name} ссылки '{LICENSE_LINK}' макету\"\nE       AssertionError: Не прошла проверка соответствия цвета шрифта ссылки 'Условия пользования' макету\nE       assert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\nE         - rgba(16, 16, 18, 1)\nE         ?      ^   ^   ^^\nE         + rgba(66, 66, 66, 1)\nE         ?      ^   ^   ^^\n\ntests/test_footer/test_footer.py:62: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1700425355566,
+      "stop" : 1700425355566,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1700425355507,
+      "stop" : 1700425355566,
+      "duration" : 59
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "footer_open",
+    "time" : {
+      "start" : 1700425430857,
+      "stop" : 1700425431069,
+      "duration" : 212
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости ссылки для просмотра информации о файлах cookie на Главной странице",
+      "time" : {
+        "start" : 1700425431008,
+        "stop" : 1700425431037,
+        "duration" : 29
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1700425430191,
+      "stop" : 1700425430856,
+      "duration" : 665
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL Неверный цвет текста ссылки \"Условия пользования\" в футере\n\nAssertionError: Не прошла проверка соответствия цвета шрифта ссылки 'Условия пользования' макету\nassert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\n  - rgba(16, 16, 18, 1)\n  ?      ^   ^   ^^\n  + rgba(66, 66, 66, 1)\n  ?      ^   ^   ^^",
+    "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f1266ae9910>\nfooter_open = <pages.footer.Footer object at 0x7f12672d4c90>\ncss_property = 'color', figma = 'rgba(16, 16, 18, 1)', name = 'цвета шрифта'\nurl = 'https://pulse-wave.netlify.app/auth/login'\n\n    @pytest.mark.parametrize('url', PAGES)\n    @pytest.mark.xfail(reason='Неверный цвет текста ссылки \"Условия пользования\" в футере')\n    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)\n    @pytest.mark.regress\n    def test_get_css_property_footer_license(self, footer_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"Проверка {name} ссылки '{LICENSE_LINK}' в футере\")\n        element = footer_open.get_footer_license()\n        mean_css = element.value_of_css_property(css_property)\n>       assert mean_css == figma, f\"Не прошла проверка соответствия {name} ссылки '{LICENSE_LINK}' макету\"\nE       AssertionError: Не прошла проверка соответствия цвета шрифта ссылки 'Условия пользования' макету\nE       assert 'rgba(66, 66, 66, 1)' == 'rgba(16, 16, 18, 1)'\nE         - rgba(16, 16, 18, 1)\nE         ?      ^   ^   ^^\nE         + rgba(66, 66, 66, 1)\nE         ?      ^   ^   ^^\n\ntests/test_footer/test_footer.py:62: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости ссылки 'Условия пользования' в футере",
+      "time" : {
+        "start" : 1700425431070,
+        "stop" : 1700425431095,
+        "duration" : 25
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1700425431160,
+      "stop" : 1700425431217,
+      "duration" : 57
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(reason='Неверный цвет текста ссылки \"Условия пользования\" в футере')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_footer"
+  }, {
+    "name" : "suite",
+    "value" : "test_footer"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestFooter"
+  }, {
+    "name" : "host",
+    "value" : "fv-az774-18"
+  }, {
+    "name" : "thread",
+    "value" : "2312-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_footer.test_footer"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "css_property",
+    "value" : "'color'"
+  }, {
+    "name" : "figma",
+    "value" : "'rgba(16, 16, 18, 1)'"
+  }, {
+    "name" : "name",
+    "value" : "'цвета шрифта'"
+  }, {
+    "name" : "url",
+    "value" : "'https://pulse-wave.netlify.app/auth/login'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ "regress", "@pytest.mark.xfail(reason='Неверный цвет текста ссылки \"Условия пользования\" в футере')" ]
+  },
+  "source" : "e7fc6e16c66678bf.json",
+  "parameterValues" : [ "'color'", "'rgba(16, 16, 18, 1)'", "'цвета шрифта'", "'https://pulse-wave.netlify.app/auth/login'" ]
+}
