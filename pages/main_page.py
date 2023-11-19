@@ -1,9 +1,10 @@
 from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import allure
+
+from tests.test_footer.constant import COOKIES_BUTTON
 from tests.test_main_page.constant import ALL_TIME, FIRST_SAFETY, USEFUL_INTERFACE, FULL_FUNCTIONALITY, ONE_APP, \
-    TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP, LICENSE_LINK, LICENSE_TITLE, EMAIL_TEXT, EMAIL_TEXT_HOVER, \
-    TEXT_COOPERATION, MAIN_TITLE, COOKIES_BUTTON
+    TEXT_LOGIN, TEXT_SIGNUP_HEADER, TEXT_SIGNUP, MAIN_TITLE
 
 
 class MainPage(BasePage):
@@ -44,26 +45,6 @@ class MainPage(BasePage):
     @allure.step(f"Проверка видимости кнопки '{TEXT_SIGNUP}' на главной странице")
     def get_body_auth_signup(self):
         return self.element_is_visible(self._signup)
-
-    @allure.step(f"Проверка видимости ссылки '{LICENSE_LINK}' в футере")
-    def get_footer_license(self):
-        return self.element_is_visible(self._license)
-
-    @allure.step(f"Проверка видимости заголовка '{LICENSE_TITLE}'")
-    def get_license_title(self):
-        return self.element_is_visible(self._license_title)
-
-    @allure.step(f"Проверка видимости надписи '{EMAIL_TEXT}' в футере")
-    def get_footer_email(self):
-        return self.element_is_visible(self._email)
-
-    @allure.step(f"Проверка видимости перенаправления '{EMAIL_TEXT_HOVER}' в футере")
-    def get_footer_email_hover(self):
-        return self.element_is_visible(self._email_hover)
-
-    @allure.step(f"Проверка видимости надписи '{TEXT_COOPERATION}' в футере")
-    def get_footer_cooperation(self):
-        return self.element_is_visible(self._cooperation)
 
     @allure.step(f"Проверка видимости надписи '{MAIN_TITLE}' на Главной странице")
     def get_body_main_title(self):
