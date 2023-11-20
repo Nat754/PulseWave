@@ -1,0 +1,203 @@
+{
+  "uid" : "c86ceae6c4ffcecd",
+  "name" : "Проверка цвета шрифта ссылки 'Условия пользования' в футере",
+  "fullName" : "tests.test_footer.test_footer.TestFooter#test_get_css_property_footer_license",
+  "historyId" : "0c711179fa6cbc19212b56a001428611",
+  "time" : {
+    "start" : 1700479674257,
+    "stop" : 1700479674274,
+    "duration" : 17
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.InvalidSelectorException: Message: invalid selector: An invalid or illegal selector was specified\n  (Session info: headless chrome=118.0.5993.117); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception\nStacktrace:\n#0 0x55b1378aafb3 <unknown>\n#1 0x55b13757e4a7 <unknown>\n#2 0x55b137583509 <unknown>\n#3 0x55b137585120 <unknown>\n#4 0x55b1375851dc <unknown>\n#5 0x55b1375c5b06 <unknown>\n#6 0x55b1375c5ec1 <unknown>\n#7 0x55b137603354 <unknown>\n#8 0x55b1375e796d <unknown>\n#9 0x55b137600c02 <unknown>\n#10 0x55b1375e7713 <unknown>\n#11 0x55b1375ba18b <unknown>\n#12 0x55b1375baf7e <unknown>\n#13 0x55b1378708d8 <unknown>\n#14 0x55b137874800 <unknown>\n#15 0x55b13787ecfc <unknown>\n#16 0x55b137875418 <unknown>\n#17 0x55b13784242f <unknown>\n#18 0x55b1378994e8 <unknown>\n#19 0x55b1378996b4 <unknown>\n#20 0x55b1378aa143 <unknown>\n#21 0x7f4b6d494ac3 <unknown>",
+  "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f68d3254950>\nfooter_open = <pages.footer.Footer object at 0x7f68d3b22f10>\ncss_property = 'color', figma = 'rgba(16, 16, 18, 1)', name = 'цвета шрифта'\nurl = 'https://front.pwave.pnpl.tech/'\n\n    @pytest.mark.parametrize('url', PAGES)\n    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)\n    @pytest.mark.regress\n    def test_get_css_property_footer_license(self, footer_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"Проверка {name} ссылки '{LICENSE_LINK}' в футере\")\n>       element = footer_open.get_footer_license()\n\ntests/test_footer/test_footer.py:59: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/footer.py:24: in get_footer_license\n    return self.element_is_visible(self._license)\npages/base_page.py:17: in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\npages/base_page.py:33: in element_is_present\n    return self.wait.until(es.presence_of_element_located(locator))\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/support/wait.py:86: in until\n    value = method(self._driver)\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/support/expected_conditions.py:81: in _predicate\n    return driver.find_element(*locator)\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py:738: in find_element\n    return self.execute(Command.FIND_ELEMENT, {\"using\": by, \"value\": value})[\"value\"]\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py:344: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7f68d3b20e50>\nresponse = {'status': 400, 'value': '{\"value\":{\"error\":\"invalid selector\",\"message\":\"invalid selector: An invalid or illegal sele...\\\\n#19 0x55b1378996b4 \\\\u003Cunknown>\\\\n#20 0x55b1378aa143 \\\\u003Cunknown>\\\\n#21 0x7f4b6d494ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.InvalidSelectorException: Message: invalid selector: An invalid or illegal selector was specified\nE         (Session info: headless chrome=118.0.5993.117); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception\nE       Stacktrace:\nE       #0 0x55b1378aafb3 <unknown>\nE       #1 0x55b13757e4a7 <unknown>\nE       #2 0x55b137583509 <unknown>\nE       #3 0x55b137585120 <unknown>\nE       #4 0x55b1375851dc <unknown>\nE       #5 0x55b1375c5b06 <unknown>\nE       #6 0x55b1375c5ec1 <unknown>\nE       #7 0x55b137603354 <unknown>\nE       #8 0x55b1375e796d <unknown>\nE       #9 0x55b137600c02 <unknown>\nE       #10 0x55b1375e7713 <unknown>\nE       #11 0x55b1375ba18b <unknown>\nE       #12 0x55b1375baf7e <unknown>\nE       #13 0x55b1378708d8 <unknown>\nE       #14 0x55b137874800 <unknown>\nE       #15 0x55b13787ecfc <unknown>\nE       #16 0x55b137875418 <unknown>\nE       #17 0x55b13784242f <unknown>\nE       #18 0x55b1378994e8 <unknown>\nE       #19 0x55b1378996b4 <unknown>\nE       #20 0x55b1378aa143 <unknown>\nE       #21 0x7f4b6d494ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py:229: InvalidSelectorException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1700479574538,
+      "stop" : 1700479574538,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1700479672258,
+      "stop" : 1700479672922,
+      "duration" : 664
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "footer_open",
+    "time" : {
+      "start" : 1700479672922,
+      "stop" : 1700479674256,
+      "duration" : 1334
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости ссылки для просмотра информации о файлах cookie на Главной странице",
+      "time" : {
+        "start" : 1700479674195,
+        "stop" : 1700479674223,
+        "duration" : 28
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1700479574477,
+      "stop" : 1700479574538,
+      "duration" : 61
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.InvalidSelectorException: Message: invalid selector: An invalid or illegal selector was specified\n  (Session info: headless chrome=118.0.5993.117); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception\nStacktrace:\n#0 0x55b1378aafb3 <unknown>\n#1 0x55b13757e4a7 <unknown>\n#2 0x55b137583509 <unknown>\n#3 0x55b137585120 <unknown>\n#4 0x55b1375851dc <unknown>\n#5 0x55b1375c5b06 <unknown>\n#6 0x55b1375c5ec1 <unknown>\n#7 0x55b137603354 <unknown>\n#8 0x55b1375e796d <unknown>\n#9 0x55b137600c02 <unknown>\n#10 0x55b1375e7713 <unknown>\n#11 0x55b1375ba18b <unknown>\n#12 0x55b1375baf7e <unknown>\n#13 0x55b1378708d8 <unknown>\n#14 0x55b137874800 <unknown>\n#15 0x55b13787ecfc <unknown>\n#16 0x55b137875418 <unknown>\n#17 0x55b13784242f <unknown>\n#18 0x55b1378994e8 <unknown>\n#19 0x55b1378996b4 <unknown>\n#20 0x55b1378aa143 <unknown>\n#21 0x7f4b6d494ac3 <unknown>",
+    "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f68d3254950>\nfooter_open = <pages.footer.Footer object at 0x7f68d3b22f10>\ncss_property = 'color', figma = 'rgba(16, 16, 18, 1)', name = 'цвета шрифта'\nurl = 'https://front.pwave.pnpl.tech/'\n\n    @pytest.mark.parametrize('url', PAGES)\n    @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)\n    @pytest.mark.regress\n    def test_get_css_property_footer_license(self, footer_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"Проверка {name} ссылки '{LICENSE_LINK}' в футере\")\n>       element = footer_open.get_footer_license()\n\ntests/test_footer/test_footer.py:59: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/footer.py:24: in get_footer_license\n    return self.element_is_visible(self._license)\npages/base_page.py:17: in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\npages/base_page.py:33: in element_is_present\n    return self.wait.until(es.presence_of_element_located(locator))\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/support/wait.py:86: in until\n    value = method(self._driver)\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/support/expected_conditions.py:81: in _predicate\n    return driver.find_element(*locator)\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py:738: in find_element\n    return self.execute(Command.FIND_ELEMENT, {\"using\": by, \"value\": value})[\"value\"]\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py:344: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7f68d3b20e50>\nresponse = {'status': 400, 'value': '{\"value\":{\"error\":\"invalid selector\",\"message\":\"invalid selector: An invalid or illegal sele...\\\\n#19 0x55b1378996b4 \\\\u003Cunknown>\\\\n#20 0x55b1378aa143 \\\\u003Cunknown>\\\\n#21 0x7f4b6d494ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.InvalidSelectorException: Message: invalid selector: An invalid or illegal selector was specified\nE         (Session info: headless chrome=118.0.5993.117); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception\nE       Stacktrace:\nE       #0 0x55b1378aafb3 <unknown>\nE       #1 0x55b13757e4a7 <unknown>\nE       #2 0x55b137583509 <unknown>\nE       #3 0x55b137585120 <unknown>\nE       #4 0x55b1375851dc <unknown>\nE       #5 0x55b1375c5b06 <unknown>\nE       #6 0x55b1375c5ec1 <unknown>\nE       #7 0x55b137603354 <unknown>\nE       #8 0x55b1375e796d <unknown>\nE       #9 0x55b137600c02 <unknown>\nE       #10 0x55b1375e7713 <unknown>\nE       #11 0x55b1375ba18b <unknown>\nE       #12 0x55b1375baf7e <unknown>\nE       #13 0x55b1378708d8 <unknown>\nE       #14 0x55b137874800 <unknown>\nE       #15 0x55b13787ecfc <unknown>\nE       #16 0x55b137875418 <unknown>\nE       #17 0x55b13784242f <unknown>\nE       #18 0x55b1378994e8 <unknown>\nE       #19 0x55b1378996b4 <unknown>\nE       #20 0x55b1378aa143 <unknown>\nE       #21 0x7f4b6d494ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py:229: InvalidSelectorException",
+    "steps" : [ {
+      "name" : "Проверка видимости ссылки 'Условия пользования' в футере",
+      "time" : {
+        "start" : 1700479674257,
+        "stop" : 1700479674274,
+        "duration" : 17
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.InvalidSelectorException: Message: invalid selector: An invalid or illegal selector was specified\n  (Session info: headless chrome=118.0.5993.117); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalid-selector-exception\nStacktrace:\n#0 0x55b1378aafb3 <unknown>\n#1 0x55b13757e4a7 <unknown>\n#2 0x55b137583509 <unknown>\n#3 0x55b137585120 <unknown>\n#4 0x55b1375851dc <unknown>\n#5 0x55b1375c5b06 <unknown>\n#6 0x55b1375c5ec1 <unknown>\n#7 0x55b137603354 <unknown>\n#8 0x55b1375e796d <unknown>\n#9 0x55b137600c02 <unknown>\n#10 0x55b1375e7713 <unknown>\n#11 0x55b1375ba18b <unknown>\n#12 0x55b1375baf7e <unknown>\n#13 0x55b1378708d8 <unknown>\n#14 0x55b137874800 <unknown>\n#15 0x55b13787ecfc <unknown>\n#16 0x55b137875418 <unknown>\n#17 0x55b13784242f <unknown>\n#18 0x55b1378994e8 <unknown>\n#19 0x55b1378996b4 <unknown>\n#20 0x55b1378aa143 <unknown>\n#21 0x7f4b6d494ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/footer.py\", line 24, in get_footer_license\n    return self.element_is_visible(self._license)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 17, in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 33, in element_is_present\n    return self.wait.until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/support/wait.py\", line 86, in until\n    value = method(self._driver)\n            ^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/support/expected_conditions.py\", line 81, in _predicate\n    return driver.find_element(*locator)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py\", line 738, in find_element\n    return self.execute(Command.FIND_ELEMENT, {\"using\": by, \"value\": value})[\"value\"]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/remote/webdriver.py\", line 344, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.11.6/x64/lib/python3.11/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1700479674360,
+      "stop" : 1700479674416,
+      "duration" : 56
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_footer"
+  }, {
+    "name" : "suite",
+    "value" : "test_footer"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestFooter"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1538-777"
+  }, {
+    "name" : "thread",
+    "value" : "2321-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_footer.test_footer"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "css_property",
+    "value" : "'color'"
+  }, {
+    "name" : "figma",
+    "value" : "'rgba(16, 16, 18, 1)'"
+  }, {
+    "name" : "name",
+    "value" : "'цвета шрифта'"
+  }, {
+    "name" : "url",
+    "value" : "'https://front.pwave.pnpl.tech/'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "regress" ]
+  },
+  "source" : "c86ceae6c4ffcecd.json",
+  "parameterValues" : [ "'color'", "'rgba(16, 16, 18, 1)'", "'цвета шрифта'", "'https://front.pwave.pnpl.tech/'" ]
+}
