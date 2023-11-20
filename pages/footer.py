@@ -10,7 +10,7 @@ class Footer(BasePage):
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
-        self._license = (By.CSS_SELECTOR, 'a.link.item__link')
+        self._license = (By.CSS_SELECTOR, '(//span[@class="item__text"])[1]')
         self._email = (By.CLASS_NAME, 'item__link-desc')
         self._email_hover = (By. XPATH, '//a[contains(@href, "mailto")]')
         self._cooperation = (By.XPATH, '(//span[@class="item__text"])[3]')

@@ -52,7 +52,6 @@ class TestFooter:
         assert year == YEAR_COOPERATION, f"Пора поменять год '{year}', уже '{YEAR_COOPERATION}'"
 
     @pytest.mark.parametrize('url', PAGES)
-    @pytest.mark.xfail(reason='Неверный цвет текста ссылки "Условия пользования" в футере')
     @pytest.mark.parametrize('css_property, figma, name', CHECK_TEXT)
     @pytest.mark.regress
     def test_get_css_property_footer_license(self, footer_open, css_property, figma, name, url):
