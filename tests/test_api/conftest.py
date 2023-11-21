@@ -53,13 +53,13 @@ def change_email_confirm_token():
     return token
 
 
-@pytest.fixture(scope='function')
-def get_user_id(create_jwt):
-    jwt = create_jwt
-    url = f'{BASE_URL}auth/users/me/'
-    response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-    user_id = response.json()['id']
-    return user_id
+# @pytest.fixture(scope='function')
+# def get_user_id(create_jwt):
+#     jwt = create_jwt
+#     url = f'{BASE_URL}auth/users/me/'
+#     response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+#     user_id = response.json()['id']
+#     return user_id
 
 
 @pytest.fixture(scope='function')

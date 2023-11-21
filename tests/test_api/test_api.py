@@ -54,29 +54,30 @@ class TestAPI:
         user_id = response.json()['id']
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
+        return user_id
 
     @allure.title("Данные пользователя по id")
-    def test_get_auth_user_id(self, create_jwt, get_user_id):
+    def test_get_auth_user_id(self, create_jwt):
         jwt = create_jwt
-        user_id = get_user_id
+        user_id = self.test_get_auth_user_me(create_jwt)
         url = f'{BASE_URL}auth/users/{user_id}'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
     @allure.title("Обновить все данные авторизованного пользователя по id")
-    def test_put_auth_user_id(self, create_jwt, get_user_id):
+    def test_put_auth_user_id(self, create_jwt):
         jwt = create_jwt
-        user_id = get_user_id
+        user_id = self.test_get_auth_user_me(create_jwt)
         url = f'{BASE_URL}auth/users/{user_id}'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
     @allure.title("Частично обновить данные авторизованного пользователя")
-    def test_patch_auth_user_id(self, create_jwt, get_user_id):
+    def test_patch_auth_user_id(self, create_jwt):
         jwt = create_jwt
-        user_id = get_user_id
+        user_id = self.test_get_auth_user_me(create_jwt)
         url = f'{BASE_URL}auth/users/{user_id}'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}",
                                                 'name': 'Nata'})
