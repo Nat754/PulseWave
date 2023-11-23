@@ -52,7 +52,6 @@ class TestAPI:
         jwt = use_api_page.create_jwt(email1, password0)
         url = f'{BASE_URL}auth/users/me/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        user_id = response.json()['id']
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 

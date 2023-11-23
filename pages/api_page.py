@@ -1,8 +1,6 @@
 import imaplib
 import os
-
 import requests
-
 from data import email1, password0
 from tests.test_api.constant import BASE_URL
 
