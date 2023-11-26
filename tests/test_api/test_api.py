@@ -36,7 +36,7 @@ class TestAPI:
         jwt = use_api_page.create_jwt(email1, password0)
         url = f'{BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.text)
+        # print(response.text)
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
@@ -46,7 +46,7 @@ class TestAPI:
         jwt = use_api_page.create_jwt(email1, password0)
         url = f'{BASE_URL}api/boards/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.text)
+        # print(response.text)
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
@@ -123,9 +123,9 @@ class TestAPI:
     def test_post_auth_change_email_confirm(self, use_api_page):
         jwt = use_api_page.create_jwt(email1, password0)
         url = f'{BASE_URL}auth/change_email_confirm/'
+        token_email = use_api_page.change_email_confirm_token(email2, password2)
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-                                 json={"token": use_api_page.change_email_confirm_token(email2, password2),
-                                       "email": email2, "password": password0})
+                                 json={"token": token_email, "email": email2, "password": password0})
         assert response.status_code == STATUS_CHANGE, \
             f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
 

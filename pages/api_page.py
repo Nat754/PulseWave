@@ -84,7 +84,7 @@ class ApiPage:
         result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
         raw_email = str(data_id[0][1])
         first = raw_email.find('token=')
-        token = raw_email[first + 6:first + 253]
+        token = raw_email[first + 6:first + 254]
         mail.logout()
         return token
 
