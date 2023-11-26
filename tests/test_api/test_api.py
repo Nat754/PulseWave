@@ -31,6 +31,25 @@ class TestAPI:
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
+    @allure.title("Список всех Рабочих пространств авторизованного пользователя")
+    def test_get_api_workspace(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        url = f'{BASE_URL}api/workspace/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        print(response.text)
+        assert response.status_code == STATUS_OK, \
+            f"Expected status {STATUS_OK}, actual status {response.status_code}"
+
+    @allure.title("Список всех досок этого пользователя. Для получения досок конкретного РП нужно передать query "
+                  "'space_id': /api/board/?space_id=4")
+    def test_get_api_boards(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        url = f'{BASE_URL}api/boards/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        print(response.text)
+        assert response.status_code == STATUS_OK, \
+            f"Expected status {STATUS_OK}, actual status {response.status_code}"
+
     @allure.title("Обновление JWT access_token")
     def test_post_refresh_jwt(self, use_api_page):
         refresh = use_api_page.create_refresh(email1, password0)
@@ -59,7 +78,7 @@ class TestAPI:
     def test_get_auth_user_id(self, use_api_page):
         jwt = use_api_page.create_jwt(email1, password0)
         user_id = use_api_page.get_auth_user_id()
-        url = f'{BASE_URL}auth/users/{user_id}'
+        url = f'{BASE_URL}auth/users/{user_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
@@ -68,7 +87,7 @@ class TestAPI:
     def test_put_auth_user_id(self, use_api_page):
         jwt = use_api_page.create_jwt(email1, password0)
         user_id = use_api_page.get_auth_user_id()
-        url = f'{BASE_URL}auth/users/{user_id}'
+        url = f'{BASE_URL}auth/users/{user_id}/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
@@ -77,7 +96,7 @@ class TestAPI:
     def test_patch_auth_user_id(self, use_api_page):
         jwt = use_api_page.create_jwt(email1, password0)
         user_id = use_api_page.get_auth_user_id()
-        url = f'{BASE_URL}auth/users/{user_id}'
+        url = f'{BASE_URL}auth/users/{user_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}",
                                                 'name': 'Nata'})
         assert response.status_code == STATUS_OK, \
@@ -141,3 +160,4 @@ class TestAPI:
                                    json={"current_password": password3})
         assert response.status_code == STATUS_CHANGE, \
             f"Expected status {STATUS_CHANGE}, actual status {response.status_code}"
+
