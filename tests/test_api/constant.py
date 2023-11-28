@@ -1,4 +1,4 @@
-from data import email1, password1, email2, password2, password0
+from data import email1, email2, password0
 
 # Тестирование API
 BASE_URL = "https://api.pwave.pnpl.tech/"
@@ -26,4 +26,8 @@ NEW_EMAIL = {
 
 RESET_PASSWRD = {
     "email": email2
+}
+
+WORKSPACE = {
+  "name": "My workspace"
 }

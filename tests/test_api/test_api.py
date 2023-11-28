@@ -3,7 +3,8 @@ import requests
 import allure
 from data import email1, password0, email2, password3, password1, password2
 from pages.api_page import ApiPage
-from tests.test_api.constant import BASE_URL, STATUS_OK, CREATE_USER, NEW_EMAIL, STATUS_CHANGE, STATUS_CREATED
+from tests.test_api.constant import BASE_URL, STATUS_OK, CREATE_USER, NEW_EMAIL, STATUS_CHANGE, STATUS_CREATED, \
+    WORKSPACE
 
 
 @allure.epic("Тестирование API")
@@ -49,6 +50,15 @@ class TestAPI:
         # print(response.text)
         assert response.status_code == STATUS_OK, \
             f"Expected status {STATUS_OK}, actual status {response.status_code}"
+
+    @allure.title("Создать Рабочее пространство")
+    def test_post_api_workspace(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        url = f'{BASE_URL}api/workspace/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, json=WORKSPACE)
+        # print(response.text)
+        assert response.status_code == STATUS_CREATED, \
+            f"Expected status {STATUS_CREATED}, actual status {response.status_code}"
 
     @allure.title("Обновление JWT access_token")
     def test_post_refresh_jwt(self, use_api_page):
