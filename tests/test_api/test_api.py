@@ -56,9 +56,18 @@ class TestAPI:
         jwt = use_api_page.create_jwt(email1, password0)
         url = f'{BASE_URL}api/workspace/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, json=WORKSPACE)
-        # print(response.text)
+        print(response.text)
         assert response.status_code == STATUS_CREATED, \
             f"Expected status {STATUS_CREATED}, actual status {response.status_code}"
+
+    @allure.title("Список всех пользователей для поиска")
+    def test_get_api_user_list(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        url = f'{BASE_URL}api/user_list/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        print(response.text)
+        assert response.status_code == STATUS_OK, \
+            f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
     @allure.title("Обновление JWT access_token")
     def test_post_refresh_jwt(self, use_api_page):
