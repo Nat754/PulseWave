@@ -48,8 +48,7 @@ class TestAPI:
         url = f'{BASE_URL}api/boards/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         # print(response.text)
-        assert response.status_code == STATUS_OK, \
-            f"Expected status {STATUS_OK}, actual status {response.status_code}"
+        assert response.status_code == STATUS_OK, f"Expected status {STATUS_OK}, actual status {response.status_code}"
 
     @allure.title("Создать Рабочее пространство")
     def test_post_api_workspace(self, use_api_page):
