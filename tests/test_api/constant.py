@@ -5,10 +5,11 @@ BASE_URL = "https://api.pwave.pnpl.tech/"
 MAIL_URL = 'https://mail.ru/'
 
 # Статус-коды
-STATUS_OK = 200
-STATUS_CREATED = 201
-STATUS_CHANGE = 204
-STATUS_IS = 400
+STATUS_200 = 200
+STATUS_201 = 201
+STATUS_204 = 204
+STATUS_400 = 400
+STATUS_404 = 404
 
 # Данные пользователя
 CREATE_USER = {
@@ -18,6 +19,26 @@ CREATE_USER = {
   "re_password": password0
 }
 
+CREATE_USER_NO_SUBSCRIBER = {
+  "subscriber": "false",
+  "email": email1,
+  "password": password0,
+  "re_password": password0
+}
+
+CREATE_USER_NO_EMAIL = {
+  "subscriber": "true",
+  "email": "",
+  "password": password0,
+  "re_password": password0
+}
+
+CREATE_USER_NO_PASSWORD = {
+  "subscriber": "true",
+  "email": email1,
+  "password": "",
+  "re_password": ""
+}
 
 NEW_EMAIL = {
   "new_email": email2,
@@ -31,3 +52,5 @@ RESET_PASSWRD = {
 WORKSPACE = {
   "name": "My workspace"
 }
+
+NO_DATA = ['Это поле не может быть пустым.']
