@@ -15,7 +15,8 @@ class TestMainPage:
             with allure.step("Кликнуть на логотип на Главной странице"):
                 main_page_open.get_header_logo.click()
         except AttributeError:
-            pass
+            with allure.step("Логотип некликабельный на Главной странице"):
+                pass
         assert driver.current_url == MAIN_PAGE_HOME, 'Произошел переход на другую страницу при клике на лого'
 
     @allure.title(f"Проверка перехода на страницу '{LOGIN_PAGE}' по кнопке '{TEXT_LOGIN}'")
@@ -39,10 +40,10 @@ class TestMainPage:
     @pytest.mark.parametrize('css_property, figma, name', CHECK_TITLE)
     @pytest.mark.regress
     def test_get_body_main_title_size(self, main_page_open, css_property, figma, name):
-        with allure.step(f"Проверка {name} элемента '{MAIN_TITLE}'"):
-            element = main_page_open.get_body_main_title()
-            mean_css = element.value_of_css_property(css_property)
-            assert mean_css == figma, f"Не прошла проверка соответствия {name} кнопки '{MAIN_TITLE}' макету"
+        allure.dynamic.title(f"Проверка {name} элемента '{MAIN_TITLE}'")
+        element = main_page_open.get_body_main_title()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, f"Не прошла проверка соответствия {name} кнопки '{MAIN_TITLE}' макету"
 
     @pytest.mark.parametrize('css_property, figma, name', CHECK_BUTTON)
     @pytest.mark.regress
