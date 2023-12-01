@@ -22,8 +22,10 @@ class TestMainPage:
     @allure.title(f"Проверка перехода на страницу '{LOGIN_PAGE}' по кнопке '{TEXT_LOGIN}'")
     @pytest.mark.smoke
     def test_get_header_auth_login(self, main_page_open, driver):
-        main_page_open.get_header_auth_login().click()
-        assert driver.current_url == LOGIN_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
+        with allure.step(f"Нажать кнопку '{TEXT_LOGIN}'"):
+            main_page_open.get_header_auth_login().click()
+        with allure.step(f"Проверить переход на страницу '{LOGIN_PAGE}'"):
+            assert driver.current_url == LOGIN_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
     @allure.title(f"Проверка перехода на страницу '{SIGNUP_PAGE}' по кнопке '{TEXT_SIGNUP_HEADER}'")
     @pytest.mark.smoke
