@@ -1,5 +1,5 @@
 import requests
-from tests.test_api.constant import BASE_URL
+from tests.test_api.api_constant import ApiConstant
 from logger.another_logger import Logger
 from logger.logger import get_logs
 
@@ -7,6 +7,7 @@ logger = get_logs(r"src\utils\http_methods.py")
 
 
 class MyRequests:
+
     @staticmethod
     def post(url: str, data: dict = None, headers: dict = None, cookies: dict = None):
         return MyRequests._send(url, data, headers, cookies, "POST")
@@ -25,7 +26,7 @@ class MyRequests:
 
     @staticmethod
     def _send(url: str, data: dict, headers: dict, cookies: dict, method: str):
-        url = f"{BASE_URL}{url}"
+        url = f"{ApiConstant.BASE_URL}{url}"
 
         if headers is None:
             headers = {"Content-Type": "application/json"}

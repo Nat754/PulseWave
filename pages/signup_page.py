@@ -2,10 +2,12 @@ from pages.base_page import BasePage
 from selenium.webdriver.common.by import By
 import allure
 
-from tests.test_signup_page.constant import TEXT_SIGNUP
+from tests.test_signup_page.constant import SignUpConstants
 
 
 class SignupPage(BasePage):
+    signup = SignUpConstants()
+
     def __init__(self, driver):
         super().__init__(driver)
         self.driver = driver
@@ -13,7 +15,7 @@ class SignupPage(BasePage):
         self._allow_all_cookies = (By.CSS_SELECTOR, '.cookies__body .button__small')
         self._logo = (By.CLASS_NAME, 'header__logo')
 
-    @allure.step(f"Проверка видимости заголовка {TEXT_SIGNUP}")
+    @allure.step(f"Проверка видимости заголовка {signup.TEXT_SIGNUP}")
     def get_title_login(self):
         return self.element_is_visible(self._title_signup)
 

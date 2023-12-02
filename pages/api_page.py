@@ -2,7 +2,7 @@ import imaplib
 import os
 import requests
 from data import email1, password0
-from tests.test_api.constant import BASE_URL
+from tests.test_api.api_constant import ApiConstant
 
 
 class ApiPage:
@@ -64,13 +64,13 @@ class ApiPage:
         return tokens
 
     def create_jwt(self, e_mail, passwrd):
-        url = f'{BASE_URL}auth/jwt/create/'
+        url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
         response = requests.post(url, json={"email": e_mail, "password": passwrd})
         jwt = f"JWT {response.json()['access']}"
         return jwt
 
     def create_refresh(self, e_mail, passwrd):
-        url = f'{BASE_URL}auth/jwt/create/'
+        url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
         response = requests.post(url, json={"email": e_mail, "password": passwrd})
         refresh = f"{response.json()['refresh']}"
         return refresh
@@ -90,7 +90,7 @@ class ApiPage:
 
     def get_auth_user_id(self):
         jwt = self.create_jwt(email1, password0)
-        url = f'{BASE_URL}auth/users/me/'
+        url = f'{ApiConstant.BASE_URL}auth/users/me/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         user_id = response.json()['id']
         return user_id
