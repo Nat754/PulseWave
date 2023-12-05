@@ -5,8 +5,8 @@ from tests.test_footer.constant import FooterConstant
 
 
 class FooterPage(BasePage):
-    footer = FooterConstant()
-    locator = FooterLocators()
+    footer = FooterConstant
+    locator = FooterLocators
 
     @allure.step(f"Проверка видимости ссылки '{footer.LICENSE_LINK}' в футере")
     def get_footer_license(self):

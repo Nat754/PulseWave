@@ -1,28 +1,21 @@
+from locators.signup_locators import SignUpLocators
 from pages.base_page import BasePage
-from selenium.webdriver.common.by import By
 import allure
-
 from tests.test_signup_page.constant import SignUpConstants
 
 
-class SignupPage(BasePage):
-    signup = SignUpConstants()
-
-    def __init__(self, driver):
-        super().__init__(driver)
-        self.driver = driver
-        self._title_signup = (By.TAG_NAME, 'h1')
-        self._allow_all_cookies = (By.CSS_SELECTOR, '.cookies__body .button__small')
-        self._logo = (By.CLASS_NAME, 'header__logo')
+class SignUpPage(BasePage):
+    signup = SignUpConstants
+    locator = SignUpLocators
 
     @allure.step(f"Проверка видимости заголовка {signup.TEXT_SIGNUP}")
     def get_title_login(self):
-        return self.element_is_visible(self._title_signup)
+        return self.element_is_visible(self.locator.TITLE_SIGNUP)
 
     @allure.step("Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie")
     def get_allow_all_cookies(self):
-        return self.element_is_visible(self._allow_all_cookies)
+        return self.element_is_visible(self.locator.ALLOW_ALL_COOKIES)
 
     @allure.step("Проверка видимости логотипа в хедере")
     def get_header_logo_signup(self):
-        return self.element_is_visible(self._logo)
+        return self.element_is_visible(self.locator.LOGO)
