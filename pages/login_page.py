@@ -1,6 +1,6 @@
+from data import email_auth, password0
 from locators.login_locators import LoginPageLocators
 from pages.base_page import BasePage
-from selenium.webdriver.common.by import By
 import allure
 
 from tests.test_login_page.login_constant import LoginConstant
@@ -21,3 +21,15 @@ class LoginPage(BasePage):
     @allure.step("Проверка видимости логотипа в хедере")
     def get_header_logo_login(self):
         return self.element_is_visible(self.locator.LOGO)
+
+    @allure.title("Ввести в поле e-mail данные")
+    def input_e_mail(self):
+        return self.element_is_visible(self.locator.EMAIL).send_keys(email_auth)
+
+    @allure.title("Ввести в поле пароль данные")
+    def input_password(self):
+        return self.element_is_visible(self.locator.PASSWORD).send_keys(password0)
+
+    @allure.title(f"Нажать кнопку '{login.TEXT_LOGIN}")
+    def click_submit(self):
+        return self.element_is_clickable(self.locator.SUBMIT).click()

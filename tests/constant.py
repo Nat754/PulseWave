@@ -6,3 +6,4 @@ class Constant:
     LOGIN_PAGE = f'{MAIN_PAGE}auth/login'
     SIGNUP_PAGE = f'{MAIN_PAGE}auth/signup'
     TERMS_OF_SERVICE = f'{MAIN_PAGE}documents/terms-of-service'
+    WORKSPACE = f'{MAIN_PAGE}workspaces'

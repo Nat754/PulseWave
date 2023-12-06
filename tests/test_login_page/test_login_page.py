@@ -1,6 +1,6 @@
+import time
 import allure
 import pytest
-
 from tests.constant import Constant
 from tests.test_login_page.login_constant import LoginConstant
 
@@ -30,3 +30,12 @@ class TestLoginPage:
         login_page_open.get_header_logo_login().click()
         assert driver.current_url == self.const.MAIN_PAGE_HOME, \
             'Не произошел переход на главную страницу при клике на лого'
+
+    @allure.title("Авторизация с корректными данными")
+    @pytest.mark.smoke
+    def test_login(self, login_page_open, driver):
+        login_page_open.input_e_mail()
+        login_page_open.input_password()
+        login_page_open.click_submit()
+        time.sleep(1)
+        assert driver.current_url == self.const.WORKSPACE, 'Не прошла авторизация с корректными данными'
