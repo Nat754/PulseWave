@@ -22,14 +22,14 @@ class LoginPage(BasePage):
     def get_header_logo_login(self):
         return self.element_is_visible(self.locator.LOGO)
 
-    @allure.title("Ввести в поле e-mail данные")
+    @allure.step("Ввести в поле e-mail данные")
     def input_e_mail(self):
         return self.element_is_visible(self.locator.EMAIL).send_keys(email_auth)
 
-    @allure.title("Ввести в поле пароль данные")
+    @allure.step("Ввести в поле пароль данные")
     def input_password(self):
         return self.element_is_visible(self.locator.PASSWORD).send_keys(password0)
 
-    @allure.title(f"Нажать кнопку '{login.TEXT_LOGIN}")
+    @allure.step(f"Нажать кнопку '{login.TEXT_LOGIN}")
     def click_submit(self):
         return self.element_is_clickable(self.locator.SUBMIT).click()

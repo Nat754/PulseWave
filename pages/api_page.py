@@ -1,5 +1,7 @@
 import imaplib
 import os
+
+import allure
 import requests
 from data import email1, password0
 from tests.test_api.api_constant import ApiConstant
@@ -35,6 +37,7 @@ class ApiPage:
                 os.remove(file_to_delete)
                 print(f"Удален файл: {file_to_delete}")
 
+    @allure.step('Получить токен активации пользователя на емайл')
     def get_activate_email_tokens(self, e_mail, passwrd):
         mail = imaplib.IMAP4_SSL('imap.mail.ru')
         mail.login(e_mail, passwrd)
@@ -49,6 +52,7 @@ class ApiPage:
         tokens = {"uid": link[0], "token": link[1]}
         return tokens
 
+    @allure.step('Получить токен подтверждения пользователя на емайл')
     def get_confirm_email_tokens(self, e_mail, passwrd):
         mail = imaplib.IMAP4_SSL('imap.mail.ru')
         mail.login(e_mail, passwrd)
@@ -63,18 +67,21 @@ class ApiPage:
         tokens = {"uid": link[0], "token": link[1]}
         return tokens
 
+    @allure.step('Получить access токен пользователя на емайл')
     def create_jwt(self, e_mail, passwrd):
         url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
         response = requests.post(url, json={"email": e_mail, "password": passwrd})
         jwt = f"JWT {response.json()['access']}"
         return jwt
 
+    @allure.step('Получить refresh токен пользователя на емайл')
     def create_refresh(self, e_mail, passwrd):
         url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
         response = requests.post(url, json={"email": e_mail, "password": passwrd})
         refresh = f"{response.json()['refresh']}"
         return refresh
 
+    @allure.step("Получить подтверждение смены почты пользователя на емайл")
     def change_email_confirm_token(self, e_mail, passwrd):
         mail = imaplib.IMAP4_SSL('imap.mail.ru')
         mail.login(e_mail, passwrd)
@@ -88,6 +95,7 @@ class ApiPage:
         mail.logout()
         return token
 
+    @allure.step("Получить id авторизованного пользователя")
     def get_auth_user_id(self):
         jwt = self.create_jwt(email1, password0)
         url = f'{ApiConstant.BASE_URL}auth/users/me/'
