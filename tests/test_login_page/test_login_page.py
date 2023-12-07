@@ -37,5 +37,5 @@ class TestLoginPage:
         login_page_open.input_e_mail()
         login_page_open.input_password()
         login_page_open.click_submit()
-        time.sleep(1)
+        time.sleep(3)
         assert driver.current_url == self.const.WORKSPACE, 'Не прошла авторизация с корректными данными'
