@@ -37,68 +37,68 @@ class ApiPage:
                 os.remove(file_to_delete)
                 print(f"Удален файл: {file_to_delete}")
 
-    @allure.step('Получить токен активации пользователя на емайл')
     def get_activate_email_tokens(self, e_mail, passwrd):
-        mail = imaplib.IMAP4_SSL('imap.mail.ru')
-        mail.login(e_mail, passwrd)
-        mail.select('INBOX')
-        result, data_id = mail.search(None, 'UNSEEN')
-        message_ids = data_id[0].split()
-        result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-        raw_email = str(data_id[0][1])
-        mail.logout()
-        first = raw_email.find('activate')
-        link = raw_email[first + 9:first + 53].split('/')
-        tokens = {"uid": link[0], "token": link[1]}
-        return tokens
+        with allure.step('Получить токен активации пользователя на емайл'):
+            mail = imaplib.IMAP4_SSL('imap.mail.ru')
+            mail.login(e_mail, passwrd)
+            mail.select('INBOX')
+            result, data_id = mail.search(None, 'UNSEEN')
+            message_ids = data_id[0].split()
+            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
+            raw_email = str(data_id[0][1])
+            mail.logout()
+            first = raw_email.find('activate')
+            link = raw_email[first + 9:first + 53].split('/')
+            tokens = {"uid": link[0], "token": link[1]}
+            return tokens
 
-    @allure.step('Получить токен подтверждения пользователя на емайл')
     def get_confirm_email_tokens(self, e_mail, passwrd):
-        mail = imaplib.IMAP4_SSL('imap.mail.ru')
-        mail.login(e_mail, passwrd)
-        mail.select('INBOX')
-        result, data_id = mail.search(None, 'ALL')
-        message_ids = data_id[0].split()
-        result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-        raw_email = str(data_id[0][1])
-        mail.logout()
-        first = raw_email.find('confirm')
-        link = raw_email[first + 8:first + 52].split('/')
-        tokens = {"uid": link[0], "token": link[1]}
-        return tokens
+        with allure.step('Получить токен подтверждения пользователя на емайл'):
+            mail = imaplib.IMAP4_SSL('imap.mail.ru')
+            mail.login(e_mail, passwrd)
+            mail.select('INBOX')
+            result, data_id = mail.search(None, 'ALL')
+            message_ids = data_id[0].split()
+            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
+            raw_email = str(data_id[0][1])
+            mail.logout()
+            first = raw_email.find('confirm')
+            link = raw_email[first + 8:first + 52].split('/')
+            tokens = {"uid": link[0], "token": link[1]}
+            return tokens
 
-    @allure.step('Получить access токен пользователя на емайл')
     def create_jwt(self, e_mail, passwrd):
-        url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
-        response = requests.post(url, json={"email": e_mail, "password": passwrd})
-        jwt = f"JWT {response.json()['access']}"
-        return jwt
+        with allure.step('Получить access токен пользователя на емайл'):
+            url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
+            response = requests.post(url, json={"email": e_mail, "password": passwrd})
+            jwt = f"JWT {response.json()['access']}"
+            return jwt
 
-    @allure.step('Получить refresh токен пользователя на емайл')
     def create_refresh(self, e_mail, passwrd):
-        url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
-        response = requests.post(url, json={"email": e_mail, "password": passwrd})
-        refresh = f"{response.json()['refresh']}"
-        return refresh
+        with allure.step('Получить refresh токен пользователя на емайл'):
+            url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
+            response = requests.post(url, json={"email": e_mail, "password": passwrd})
+            refresh = f"{response.json()['refresh']}"
+            return refresh
 
-    @allure.step("Получить подтверждение смены почты пользователя на емайл")
     def change_email_confirm_token(self, e_mail, passwrd):
-        mail = imaplib.IMAP4_SSL('imap.mail.ru')
-        mail.login(e_mail, passwrd)
-        mail.select('INBOX')
-        result, data_id = mail.search(None, 'UNSEEN')
-        message_ids = data_id[0].split()
-        result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-        raw_email = str(data_id[0][1])
-        first = raw_email.find('token=')
-        token = raw_email[first + 6:first + 254]
-        mail.logout()
-        return token
+        with allure.step("Получить подтверждение смены почты пользователя на емайл"):
+            mail = imaplib.IMAP4_SSL('imap.mail.ru')
+            mail.login(e_mail, passwrd)
+            mail.select('INBOX')
+            result, data_id = mail.search(None, 'UNSEEN')
+            message_ids = data_id[0].split()
+            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
+            raw_email = str(data_id[0][1])
+            first = raw_email.find('token=')
+            token = raw_email[first + 6:first + 254]
+            mail.logout()
+            return token
 
-    @allure.step("Получить id авторизованного пользователя")
     def get_auth_user_id(self):
-        jwt = self.create_jwt(email1, password0)
-        url = f'{ApiConstant.BASE_URL}auth/users/me/'
-        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        user_id = response.json()['id']
-        return user_id
+        with allure.step("Получить id авторизованного пользователя"):
+            jwt = self.create_jwt(email1, password0)
+            url = f'{ApiConstant.BASE_URL}auth/users/me/'
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+            user_id = response.json()['id']
+            return user_id
