@@ -1,0 +1,64 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Expected status 201, actual status 400\nassert 400 == 201\n +  where 400 = <Response [400]>.status_code\n +  and   201 = <tests.test_api.api_constant.StatusCode object at 0x7fa5d48760d0>.STATUS_201\n +    where <tests.test_api.api_constant.StatusCode object at 0x7fa5d48760d0> = <tests.test_api.test_api.TestAPI object at 0x7fa5d5596090>.code",
+      "children" : [ {
+        "name" : "POST Создать пользователя с корректными данными",
+        "uid" : "5d8acc4efeb8fe9c",
+        "parentUid" : "65fb1e8dbcdfef7dbca76c1fae404895",
+        "status" : "failed",
+        "time" : {
+          "start" : 1701979927561,
+          "stop" : 1701979933365,
+          "duration" : 5804
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "65fb1e8dbcdfef7dbca76c1fae404895"
+    }, {
+      "name" : "AssertionError: Не прошла авторизация с корректными данными\nassert 'https://fron...ch/auth/login' == 'https://fron...ch/workspaces'\n  - https://front.pwave.pnpl.tech/workspaces\n  ?                               ^ ^^^^^^^^\n  + https://front.pwave.pnpl.tech/auth/login\n  ?                               ^^^^^^ ^^^",
+      "children" : [ {
+        "name" : "Авторизация с корректными данными",
+        "uid" : "e69630eb1479c947",
+        "parentUid" : "d9a12023ef0c7cc58d917d93aa04b481",
+        "status" : "failed",
+        "time" : {
+          "start" : 1701980118732,
+          "stop" : 1701980119919,
+          "duration" : 1187
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "d9a12023ef0c7cc58d917d93aa04b481"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "IndexError: list index out of range",
+      "children" : [ {
+        "name" : "POST Активация пользователя с корректными данными",
+        "uid" : "b1ac0867dac2ffd9",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1701979933402,
+          "stop" : 1701979935747,
+          "duration" : 2345
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "cbf21ee610ffd376e0ce643a364ade80"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}

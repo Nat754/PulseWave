@@ -1,0 +1,219 @@
+{
+  "uid" : "e69630eb1479c947",
+  "name" : "Авторизация с корректными данными",
+  "fullName" : "tests.test_login_page.test_login_page.TestLoginPage#test_login",
+  "historyId" : "9795f22718f7c5fdb1f239f4e181504a",
+  "time" : {
+    "start" : 1701980118732,
+    "stop" : 1701980119919,
+    "duration" : 1187
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Не прошла авторизация с корректными данными\nassert 'https://fron...ch/auth/login' == 'https://fron...ch/workspaces'\n  - https://front.pwave.pnpl.tech/workspaces\n  ?                               ^ ^^^^^^^^\n  + https://front.pwave.pnpl.tech/auth/login\n  ?                               ^^^^^^ ^^^",
+  "statusTrace" : "self = <tests.test_login_page.test_login_page.TestLoginPage object at 0x7fa5d4647a50>\nlogin_page_open = <pages.login_page.LoginPage object at 0x7fa5d4db08d0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"b785690e24c0f332f14ec999645dbd9d\")>\n\n    @allure.title(\"Авторизация с корректными данными\")\n    @pytest.mark.smoke\n    def test_login(self, login_page_open, driver):\n        login_page_open.input_e_mail()\n        login_page_open.input_password()\n        login_page_open.click_submit()\n        time.sleep(1)\n>       assert driver.current_url == self.const.WORKSPACE, 'Не прошла авторизация с корректными данными'\nE       AssertionError: Не прошла авторизация с корректными данными\nE       assert 'https://fron...ch/auth/login' == 'https://fron...ch/workspaces'\nE         - https://front.pwave.pnpl.tech/workspaces\nE         ?                               ^ ^^^^^^^^\nE         + https://front.pwave.pnpl.tech/auth/login\nE         ?                               ^^^^^^ ^^^\n\ntests/test_login_page/test_login_page.py:41: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1701980116126,
+      "stop" : 1701980116791,
+      "duration" : 665
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "login_page_open",
+    "time" : {
+      "start" : 1701980116791,
+      "stop" : 1701980118732,
+      "duration" : 1941
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie",
+      "time" : {
+        "start" : 1701980118679,
+        "stop" : 1701980118705,
+        "duration" : 26
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 1
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1701979927561,
+      "stop" : 1701979927561,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1701979927490,
+      "stop" : 1701979927561,
+      "duration" : 71
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Не прошла авторизация с корректными данными\nassert 'https://fron...ch/auth/login' == 'https://fron...ch/workspaces'\n  - https://front.pwave.pnpl.tech/workspaces\n  ?                               ^ ^^^^^^^^\n  + https://front.pwave.pnpl.tech/auth/login\n  ?                               ^^^^^^ ^^^",
+    "statusTrace" : "self = <tests.test_login_page.test_login_page.TestLoginPage object at 0x7fa5d4647a50>\nlogin_page_open = <pages.login_page.LoginPage object at 0x7fa5d4db08d0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"b785690e24c0f332f14ec999645dbd9d\")>\n\n    @allure.title(\"Авторизация с корректными данными\")\n    @pytest.mark.smoke\n    def test_login(self, login_page_open, driver):\n        login_page_open.input_e_mail()\n        login_page_open.input_password()\n        login_page_open.click_submit()\n        time.sleep(1)\n>       assert driver.current_url == self.const.WORKSPACE, 'Не прошла авторизация с корректными данными'\nE       AssertionError: Не прошла авторизация с корректными данными\nE       assert 'https://fron...ch/auth/login' == 'https://fron...ch/workspaces'\nE         - https://front.pwave.pnpl.tech/workspaces\nE         ?                               ^ ^^^^^^^^\nE         + https://front.pwave.pnpl.tech/auth/login\nE         ?                               ^^^^^^ ^^^\n\ntests/test_login_page/test_login_page.py:41: AssertionError",
+    "steps" : [ {
+      "name" : "Ввести в поле e-mail данные",
+      "time" : {
+        "start" : 1701980118733,
+        "stop" : 1701980118814,
+        "duration" : 81
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Ввести в поле пароль данные",
+      "time" : {
+        "start" : 1701980118814,
+        "stop" : 1701980118871,
+        "duration" : 57
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Нажать кнопку 'Войти",
+      "time" : {
+        "start" : 1701980118871,
+        "stop" : 1701980118915,
+        "duration" : 44
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 3
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1701980119999,
+      "stop" : 1701980120056,
+      "duration" : 57
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование страницы авторизации"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_login_page"
+  }, {
+    "name" : "suite",
+    "value" : "test_login_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLoginPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az698-253"
+  }, {
+    "name" : "thread",
+    "value" : "2449-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_login_page.test_login_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "smoke" ]
+  },
+  "source" : "e69630eb1479c947.json",
+  "parameterValues" : [ ]
+}
