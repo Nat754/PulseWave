@@ -48,6 +48,10 @@ class ApiConstant:
 
     NO_DATA = ['Это поле не может быть пустым.']
 
+    BOARD_WITHOUT_WS = {
+        "name": "MyBoard"
+    }
+
 
 class StatusCode:
     STATUS_200 = 200

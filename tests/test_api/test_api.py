@@ -54,15 +54,16 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
 
-    @allure.title("GET Получить список всех досок авторизованного пользователя")
-    def test_get_api_boards(self, use_api_page):
-        """Для получения досок конкретного РП нужно передать query 'space_id': /api/board/?space_id=4"""
+    @allure.title("POST Создать доску без указания РП")
+    def test_post_api_board_create(self, use_api_page):
+        """Создание доски без указания РП, будет создано дефолтное РП для этой доски"""
         jwt = use_api_page.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/boards/'
-        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        url = f'{self.constant.BASE_URL}api/board_create/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                json=self.constant.BOARD_WITHOUT_WS)
         # print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+        with allure.step(f"Expected status {self.code.STATUS_201}"):
+            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
         actual status {response.status_code}"
 
     @allure.title("POST Создать Рабочее пространство")
