@@ -59,9 +59,8 @@ class TestAPI:
         """Создание доски без указания РП, будет создано дефолтное РП для этой доски"""
         jwt = use_api_page.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/board_create/'
-        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-                                json=self.constant.BOARD_WITHOUT_WS)
-        # print(response.text)
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, \
+                                 json=self.constant.BOARD_WITHOUT_WS)
         with allure.step(f"Expected status {self.code.STATUS_201}"):
             assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
         actual status {response.status_code}"
