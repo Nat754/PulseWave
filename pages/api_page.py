@@ -102,3 +102,19 @@ class ApiPage:
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             user_id = response.json()['id']
             return user_id
+
+    def get_board_id(self):
+        with allure.step("Получить id авторизованного пользователя"):
+            jwt = self.create_jwt(email1, password0)
+            url = f'{ApiConstant.BASE_URL}api/workspace/'
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+            board_id = response.json()[0]['boards'][0]['id']
+            return board_id
+
+    def get_board_column_id(self):
+        jwt = self.create_jwt(email1, password0)
+        board_id = self.get_board_id()
+        url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        column_id = response.json()[0]['id']
+        return column_id

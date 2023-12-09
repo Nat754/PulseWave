@@ -49,7 +49,6 @@ class TestAPI:
         jwt = use_api_page.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        # print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
@@ -59,11 +58,55 @@ class TestAPI:
         """Создание доски без указания РП, будет создано дефолтное РП для этой доски"""
         jwt = use_api_page.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/board_create/'
-        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"}, \
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.BOARD_WITHOUT_WS)
         with allure.step(f"Expected status {self.code.STATUS_201}"):
             assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
         actual status {response.status_code}"
+
+    @allure.title("GET Список всех колонок доски")
+    def test_get_api_board_column(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        board_id = use_api_page.get_board_id()
+        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                actual status {response.status_code}"
+
+    @allure.title("POST Создать колонку на доске")
+    def test_post_api_board_column_create(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        board_id = use_api_page.get_board_id()
+        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                 json=self.constant.BOARD_WITHOUT_WS)
+        with allure.step(f"Expected status {self.code.STATUS_201}"):
+            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
+            actual status {response.status_code}"
+
+    @allure.title("GET Информация о конкретной колонке")
+    def test_get_api_board_column_info(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        board_id = use_api_page.get_board_id()
+        column_id = use_api_page.get_board_column_id()
+        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                actual status {response.status_code}"
+
+    # @allure.title("PUT Обновить колонку (название и порядковый номер)")
+    # def test_put_board_column_update(self, use_api_page):
+    #     jwt = use_api_page.create_jwt(email1, password0)
+    #     board_id = use_api_page.get_board_id()
+    #     column_id = use_api_page.get_board_column_id()
+    #     url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
+    #     response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+    #                             json=self.constant.PUT_COLUMN)
+    #     with allure.step(f"Expected status {self.code.STATUS_200}"):
+    #         assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+    #                 actual status {response.status_code}"
 
     @allure.title("POST Создать Рабочее пространство")
     def test_post_api_workspace(self, use_api_page):
@@ -71,7 +114,6 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.WORKSPACE)
-        # print(response.text)
         with allure.step(f"Expected status {self.code.STATUS_201}"):
             assert response.status_code == self.code.STATUS_201, \
                 f"Expected status {self.code.STATUS_201}, actual status {response.status_code}"
@@ -81,7 +123,6 @@ class TestAPI:
         jwt = use_api_page.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/user_list/?users=tes'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        # print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
@@ -221,7 +262,7 @@ class TestAPI:
                 f'Expected status {self.code.STATUS_400}, actual status {response.status_code}'
 
     @allure.title("POST Регистрация пользователя без пароля")
-    def test_post_create_user_no_email(self):
+    def test_post_create_user_no_passwrd(self):
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER_NO_PASSWORD)
         with allure.step(f"Expected message: {self.constant.NO_DATA}"):
