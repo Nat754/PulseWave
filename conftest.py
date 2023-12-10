@@ -30,8 +30,8 @@ def pytest_runtest_makereport(item, call):
         if call.excinfo is not None:
             try:
                 driver = item.funcargs['driver']
-                driver.save_screenshot('allure_result/screenshot.png')
-                allure.attach.file('allure_result/screenshot.png', name='Screenshot',
+                driver.save_screenshot('allure_results/screenshot.png')
+                allure.attach.file('allure_results/screenshot.png', name='Screenshot',
                                    attachment_type=allure.attachment_type.PNG)
                 allure.attach(driver.page_source, name="HTML source", attachment_type=allure.attachment_type.HTML)
             except Exception as e:
@@ -40,7 +40,7 @@ def pytest_runtest_makereport(item, call):
 
 @pytest.fixture(scope="session", autouse=True)
 def clear_allure_results_folder():
-    allure_report_dir = "allure_result"
+    allure_report_dir = "allure_results"
     if os.path.exists(allure_report_dir):
         for file_name in os.listdir(allure_report_dir):
             file_path = os.path.join(allure_report_dir, file_name)
