@@ -1,14 +1,15 @@
 import time
 import allure
 import pytest
-from tests.constant import Constant
+from tests.constant import Constant, Errors
 from tests.test_login_page.login_constant import LoginConstant
 
 
 @allure.epic("Тестирование страницы авторизации")
 class TestLoginPage:
-    const = Constant()
-    login = LoginConstant()
+    const = Constant
+    login = LoginConstant
+    error = Errors
 
     @allure.title(f"Проверка текста заголовка '{login.TEXT_LOGIN}'")
     @pytest.mark.regress
@@ -39,3 +40,11 @@ class TestLoginPage:
         login_page_open.click_submit()
         time.sleep(3)
         assert driver.current_url == self.const.WORKSPACE, 'Не прошла авторизация с корректными данными'
+
+    @allure.title("Авторизация с некорректным паролем")
+    @pytest.mark.smoke
+    def test_login_wrong_password(self, login_page_open, driver):
+        login_page_open.input_e_mail()
+        login_page_open.input_wrong_password()
+        login_page_open.click_submit()
+        assert login_page_open.check_wrong_password_message, f'Нет сообщения: "{self.error.WRONG_PASSWORD}"'
