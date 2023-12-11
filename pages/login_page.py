@@ -1,3 +1,5 @@
+import pytest
+
 from data import email_auth, password0
 from locators.login_locators import LoginPageLocators
 from pages.base_page import BasePage
@@ -42,3 +44,8 @@ class LoginPage(BasePage):
     @allure.step(f"Высветилась ошибка: '{error.WRONG_PASSWORD}'")
     def check_wrong_password_message(self):
         return self.element_is_visible(self.locator.WRONG_PASSWRD_MSG)
+
+    @allure.step(f'Проверить css_property элемента')
+    def check_css_property(self, css_property):
+        css = self.check_wrong_password_message().value_of_css_property(css_property)
+        return css

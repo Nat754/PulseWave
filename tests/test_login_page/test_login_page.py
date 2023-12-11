@@ -48,3 +48,9 @@ class TestLoginPage:
         login_page_open.input_wrong_password()
         login_page_open.click_submit()
         assert login_page_open.check_wrong_password_message, f'Нет сообщения: "{self.error.WRONG_PASSWORD}"'
+        assert login_page_open.check_css_property('color') == self.login.WRONG_PASSWORD['color'], \
+            'Цвет сообщения о неверном пароле не соответствует макету'
+        assert login_page_open.check_css_property('font-size') == self.login.WRONG_PASSWORD['font-size'], \
+            'Размер шрифта сообщения о неверном пароле не соответствует макету'
+        assert login_page_open.check_css_property('font-family') == self.login.WRONG_PASSWORD['font-family'], \
+            'Шрифт сообщения о неверном пароле не соответствует макету'
