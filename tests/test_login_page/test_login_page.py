@@ -48,22 +48,30 @@ class TestLoginPage:
         login_page_open.input_wrong_password()
         login_page_open.click_submit()
         element = login_page_open.check_wrong_password_message()
-        assert element, f'Нет сообщения: "{self.message.WRONG_PASSWORD_MSG}"'
-        assert element.value_of_css_property('color') == self.login.WRONG_PASSWORD_CSS['color'], \
-            'Цвет сообщения о неверном пароле не соответствует макету'
-        assert element.value_of_css_property('font-size') == self.login.WRONG_PASSWORD_CSS['font-size'], \
-            'Размер шрифта сообщения о неверном пароле не соответствует макету'
-        assert element.value_of_css_property('font-family') == self.login.WRONG_PASSWORD_CSS['font-family'], \
-            'Шрифт сообщения о неверном пароле не соответствует макету'
+        with allure.step(f'Проверить текст сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
+            assert element, f'Нет сообщения: "{self.message.WRONG_PASSWORD_MSG}"'
+        with allure.step(f'Проверить цвет шрифта сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
+            assert element.value_of_css_property('color') == self.login.WRONG_PASSWORD_CSS['color'], \
+                f'Цвет сообщения {self.message.WRONG_PASSWORD_MSG} не соответствует макету'
+        with allure.step(f'Проверить размер шрифта сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
+            assert element.value_of_css_property('font-size') == self.login.WRONG_PASSWORD_CSS['font-size'], \
+                'Размер шрифта сообщения о неверном пароле не соответствует макету'
+        with allure.step(f'Проверить шрифт сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
+            assert element.value_of_css_property('font-family') == self.login.WRONG_PASSWORD_CSS['font-family'], \
+                'Шрифт сообщения о неверном пароле не соответствует макету'
 
     @allure.title(f"Окно авторизации сообщение '{message.FORGOT_PASSWORD_MSG}'")
     @pytest.mark.smoke
     def test_login_message_forgot_password(self, login_page_open):
         element = login_page_open.check_forgot_password_message()
-        assert element, f'Нет сообщения: "{self.message.FORGOT_PASSWORD_MSG}"'
-        assert element.value_of_css_property('color') == self.login.FORGOT_PASSWORD_CSS['color'], \
-            'Цвет сообщения о неверном пароле не соответствует макету'
-        assert element.value_of_css_property('font-size') == self.login.FORGOT_PASSWORD_CSS['font-size'], \
-            'Размер шрифта сообщения о неверном пароле не соответствует макету'
-        assert element.value_of_css_property('font-family') == self.login.FORGOT_PASSWORD_CSS['font-family'], \
-            'Шрифт сообщения о неверном пароле не соответствует макету'
+        with allure.step(f'Проверить текст сообщения: "{self.message.FORGOT_PASSWORD_MSG}"'):
+            assert element, f'Нет сообщения: "{self.message.FORGOT_PASSWORD_MSG}"'
+        with allure.step(f'Проверить цвет шрифта сообщения: "{self.message.FORGOT_PASSWORD_MSG}"'):
+            assert element.value_of_css_property('color') == self.login.FORGOT_PASSWORD_CSS['color'], \
+                'Цвет шрифта сообщения о неверном пароле не соответствует макету'
+        with allure.step(f'Проверить размер шрифта сообщения: "{self.message.FORGOT_PASSWORD_MSG}"'):
+            assert element.value_of_css_property('font-size') == self.login.FORGOT_PASSWORD_CSS['font-size'], \
+                'Размер шрифта сообщения о неверном пароле не соответствует макету'
+        with allure.step(f'Проверить шрифт сообщения: "{self.message.FORGOT_PASSWORD_MSG}"'):
+            assert element.value_of_css_property('font-family') == self.login.FORGOT_PASSWORD_CSS['font-family'], \
+                'Шрифт сообщения о неверном пароле не соответствует макету'
