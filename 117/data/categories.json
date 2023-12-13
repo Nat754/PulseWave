@@ -1,120 +1,47 @@
 {
   "uid" : "4b4757e66a1912dae1a509f688f20b0f",
   "children" : [ {
-    "name" : "Test defects",
+    "name" : "Product defects",
     "children" : [ {
-      "name" : "requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+      "name" : "AssertionError: Expected status 201, actual status 400\nassert 400 == 201\n +  where 400 = <Response [400]>.status_code\n +  and   201 = <tests.test_api.api_constant.StatusCode object at 0x7f50d135ed50>.STATUS_201\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f50d135ed50> = <tests.test_api.test_api.TestAPI object at 0x7f50d115c1d0>.code",
       "children" : [ {
-        "name" : "POST Запрос на смену почты",
-        "uid" : "ccb2e2512ecc51f2",
-        "parentUid" : "0deff55915d4c9ebc746eac29285817c",
-        "status" : "broken",
+        "name" : "POST Создать пользователя с корректными данными",
+        "uid" : "33d1ae22719441b7",
+        "parentUid" : "8227d4bf8c77c3379c8eb2c09542663d",
+        "status" : "failed",
         "time" : {
-          "start" : 1702502247906,
-          "stop" : 1702502248483,
-          "duration" : 577
+          "start" : 1702502789055,
+          "stop" : 1702502794888,
+          "duration" : 5833
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       } ],
-      "uid" : "0deff55915d4c9ebc746eac29285817c"
-    }, {
+      "uid" : "8227d4bf8c77c3379c8eb2c09542663d"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
       "name" : "IndexError: list index out of range",
       "children" : [ {
-        "name" : "POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.",
-        "uid" : "b44738b3d4ac8121",
+        "name" : "POST Активация пользователя с корректными данными",
+        "uid" : "c2f9ab19af0223d3",
         "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
         "status" : "broken",
         "time" : {
-          "start" : 1702502248543,
-          "stop" : 1702502251693,
-          "duration" : 3150
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ ]
-      }, {
-        "name" : "DELETE Активировать и удалить авторизованного пользователя",
-        "uid" : "d20bcb50a6979092",
-        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
-        "status" : "broken",
-        "time" : {
-          "start" : 1702502260282,
-          "stop" : 1702502262879,
-          "duration" : 2597
+          "start" : 1702502794926,
+          "stop" : 1702502797159,
+          "duration" : 2233
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       } ],
       "uid" : "cbf21ee610ffd376e0ce643a364ade80"
-    }, {
-      "name" : "KeyError: 'access'",
-      "children" : [ {
-        "name" : "POST Сброс пароля",
-        "uid" : "443dda1fd0858cc0",
-        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
-        "status" : "broken",
-        "time" : {
-          "start" : 1702502251703,
-          "stop" : 1702502252290,
-          "duration" : 587
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ ]
-      }, {
-        "name" : "POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке     auth/password/reset/confirm/{uid}/{token}",
-        "uid" : "9f35542f0cbbbc4",
-        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
-        "status" : "broken",
-        "time" : {
-          "start" : 1702502252301,
-          "stop" : 1702502252886,
-          "duration" : 585
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ ]
-      }, {
-        "name" : "DELETE Удалить авторизованного пользователя",
-        "uid" : "8349a68fd3039b33",
-        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
-        "status" : "broken",
-        "time" : {
-          "start" : 1702502252897,
-          "stop" : 1702502253483,
-          "duration" : 586
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ ]
-      } ],
-      "uid" : "c0db57c4a80d04e81137955fc8cd39c0"
     } ],
     "uid" : "bdbf199525818fae7a8651db9eafe741"
-  }, {
-    "name" : "Product defects",
-    "children" : [ {
-      "name" : "AssertionError: Expected status 201, actual status 400\nassert 400 == 201\n +  where 400 = <Response [400]>.status_code\n +  and   201 = <tests.test_api.api_constant.StatusCode object at 0x7fced4aff4d0>.STATUS_201\n +    where <tests.test_api.api_constant.StatusCode object at 0x7fced4aff4d0> = <tests.test_api.test_api.TestAPI object at 0x7fced39f3110>.code",
-      "children" : [ {
-        "name" : "POST Регистрация пользователя без подтверждения подписки",
-        "uid" : "9a39ea133aa12133",
-        "parentUid" : "6ac94856fc520ec4ecc204950dc8f1dc",
-        "status" : "failed",
-        "time" : {
-          "start" : 1702502254681,
-          "stop" : 1702502260271,
-          "duration" : 5590
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ ]
-      } ],
-      "uid" : "6ac94856fc520ec4ecc204950dc8f1dc"
-    } ],
-    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
   } ],
   "name" : "categories"
 }
