@@ -2,11 +2,13 @@ from locators.signup_locators import SignUpLocators
 from pages.base_page import BasePage
 import allure
 from tests.test_signup_page.constant import SignUpConstants
+from tests.constant import Messages
 
 
 class SignUpPage(BasePage):
     signup = SignUpConstants
     locator = SignUpLocators
+    message = Messages
 
     @allure.step(f"Проверка видимости заголовка {signup.TEXT_SIGNUP}")
     def get_title_login(self):
@@ -19,3 +21,7 @@ class SignUpPage(BasePage):
     @allure.step("Проверка видимости логотипа в хедере")
     def get_header_logo_signup(self):
         return self.element_is_visible(self.locator.LOGO)
+
+    @allure.step(f"Видимость подсказки: '{message.PASSWORD_RULES_MSG}'")
+    def check_password_rules_message(self):
+        return self.element_is_visible(self.locator.PASSWORD_RULES)

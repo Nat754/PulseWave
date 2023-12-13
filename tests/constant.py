@@ -11,5 +11,7 @@ class Constant:
 
 class Messages:
 
-    WRONG_PASSWORD = 'Некорректный e-mail или пароль.'
-    FORGOT_PASSWORD = 'Забыли пароль?'
+    WRONG_PASSWORD_MSG = 'Некорректный e-mail или пароль.'
+    FORGOT_PASSWORD_MSG = 'Забыли пароль?'
+    PASSWORD_RULES_MSG = ('Пароль должен содержать не менее 8 символов, включая минимум 1 цифру, '
+                          '1 строчную и 1 заглавную буквы, 1 спецсимвол.')

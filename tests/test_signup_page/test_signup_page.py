@@ -1,14 +1,15 @@
 import allure
 import pytest
 
-from tests.constant import Constant
+from tests.constant import Constant, Messages
 from tests.test_signup_page.constant import SignUpConstants
 
 
 @allure.epic("Тестирование страницы авторизации")
 class TestSignupPage:
-    const = Constant()
-    signup = SignUpConstants()
+    const = Constant
+    signup = SignUpConstants
+    message = Messages
 
     @allure.title(f"Проверка текста заголовка '{signup.TEXT_SIGNUP}'")
     @pytest.mark.regress
@@ -30,3 +31,15 @@ class TestSignupPage:
         signup_page_open.get_header_logo_signup().click()
         assert driver.current_url == self.const.MAIN_PAGE_HOME, \
             'Не произошел переход на главную страницу при клике на лого'
+
+    @allure.title(f"Окно регистрации сообщение '{message.PASSWORD_RULES_MSG}'")
+    @pytest.mark.smoke
+    def test_signup_message_password_rules(self, signup_page_open):
+        element = signup_page_open.check_password_rules_message()
+        assert element, f'Нет сообщения: "{self.message.PASSWORD_RULES_MSG}"'
+        assert element.value_of_css_property('color') == self.signup.PASSWORD_RULES_CSS['color'], \
+            'Цвет сообщения о неверном пароле не соответствует макету'
+        assert element.value_of_css_property('font-size') == self.signup.PASSWORD_RULES_CSS['font-size'], \
+            'Размер шрифта сообщения о неверном пароле не соответствует макету'
+        assert element.value_of_css_property('font-family') == self.signup.PASSWORD_RULES_CSS['font-family'], \
+            'Шрифт сообщения о неверном пароле не соответствует макету'
