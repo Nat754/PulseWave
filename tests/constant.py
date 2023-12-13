@@ -9,6 +9,7 @@ class Constant:
     WORKSPACE = f'{MAIN_PAGE}workspaces'
 
 
-class Errors:
+class Messages:
 
     WRONG_PASSWORD = 'Некорректный e-mail или пароль.'
+    FORGOT_PASSWORD = 'Забыли пароль?'

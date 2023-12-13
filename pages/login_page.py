@@ -5,13 +5,13 @@ from locators.login_locators import LoginPageLocators
 from pages.base_page import BasePage
 import allure
 from tests.test_login_page.login_constant import LoginConstant
-from tests.constant import Errors
+from tests.constant import Messages
 
 
 class LoginPage(BasePage):
     login = LoginConstant
     locator = LoginPageLocators
-    error = Errors
+    message = Messages
 
     @allure.step(f"Проверка видимости заголовка {login.TEXT_LOGIN}")
     def get_title_login(self):
@@ -41,11 +41,15 @@ class LoginPage(BasePage):
     def input_wrong_password(self):
         return self.element_is_visible(self.locator.PASSWORD).send_keys('password')
 
-    @allure.step(f"Высветилась ошибка: '{error.WRONG_PASSWORD}'")
+    @allure.step(f"Высветилась ошибка: '{message.WRONG_PASSWORD}'")
     def check_wrong_password_message(self):
-        return self.element_is_visible(self.locator.WRONG_PASSWRD_MSG)
+        return self.element_is_visible(self.locator.WRONG_PASSWORD_MSG)
 
     @allure.step(f'Проверить css_property элемента')
-    def check_css_property(self, css_property):
-        css = self.check_wrong_password_message().value_of_css_property(css_property)
+    def check_css_property(self, css_property, element):
+        css = element.value_of_css_property(css_property)
         return css
+
+    @allure.step(f"Видимость подсказки: '{message.FORGOT_PASSWORD}'")
+    def check_forgot_password_message(self):
+        return self.element_is_visible(self.locator.FORGOT_PASSWORD_MSG)

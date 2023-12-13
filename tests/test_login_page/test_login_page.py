@@ -1,7 +1,7 @@
 import time
 import allure
 import pytest
-from tests.constant import Constant, Errors
+from tests.constant import Constant, Messages
 from tests.test_login_page.login_constant import LoginConstant
 
 
@@ -9,7 +9,7 @@ from tests.test_login_page.login_constant import LoginConstant
 class TestLoginPage:
     const = Constant
     login = LoginConstant
-    error = Errors
+    message = Messages
 
     @allure.title(f"Проверка текста заголовка '{login.TEXT_LOGIN}'")
     @pytest.mark.regress
@@ -43,14 +43,27 @@ class TestLoginPage:
 
     @allure.title("Авторизация с некорректным паролем")
     @pytest.mark.smoke
-    def test_login_wrong_password(self, login_page_open, driver):
+    def test_login_wrong_password(self, login_page_open):
         login_page_open.input_e_mail()
         login_page_open.input_wrong_password()
         login_page_open.click_submit()
-        assert login_page_open.check_wrong_password_message, f'Нет сообщения: "{self.error.WRONG_PASSWORD}"'
-        assert login_page_open.check_css_property('color') == self.login.WRONG_PASSWORD['color'], \
+        element = login_page_open.check_wrong_password_message()
+        assert element, f'Нет сообщения: "{self.message.WRONG_PASSWORD}"'
+        assert element.value_of_css_property('color') == self.login.WRONG_PASSWORD['color'], \
             'Цвет сообщения о неверном пароле не соответствует макету'
-        assert login_page_open.check_css_property('font-size') == self.login.WRONG_PASSWORD['font-size'], \
+        assert element.value_of_css_property('font-size') == self.login.WRONG_PASSWORD['font-size'], \
             'Размер шрифта сообщения о неверном пароле не соответствует макету'
-        assert login_page_open.check_css_property('font-family') == self.login.WRONG_PASSWORD['font-family'], \
+        assert element.value_of_css_property('font-family') == self.login.WRONG_PASSWORD['font-family'], \
+            'Шрифт сообщения о неверном пароле не соответствует макету'
+
+    @allure.title(f"Окно авторизации сообщение '{message.FORGOT_PASSWORD}'")
+    @pytest.mark.smoke
+    def test_login_message_forgot_password(self, login_page_open):
+        element = login_page_open.check_forgot_password_message()
+        assert element, f'Нет сообщения: "{self.message.FORGOT_PASSWORD}"'
+        assert element.value_of_css_property('color') == self.login.FORGOT_PASSWORD['color'], \
+            'Цвет сообщения о неверном пароле не соответствует макету'
+        assert element.value_of_css_property('font-size') == self.login.FORGOT_PASSWORD['font-size'], \
+            'Размер шрифта сообщения о неверном пароле не соответствует макету'
+        assert element.value_of_css_property('font-family') == self.login.FORGOT_PASSWORD['font-family'], \
             'Шрифт сообщения о неверном пароле не соответствует макету'

@@ -9,4 +9,5 @@ class LoginPageLocators:
     EMAIL = (By.XPATH, '//input[@type="email"]')
     PASSWORD = (By.XPATH, '//input[@type="password"]')
     SUBMIT =(By.XPATH, '//button[@type="submit"]')
-    WRONG_PASSWRD_MSG = (By.XPATH, '//span[text()="Некорректный e-mail или пароль."]')
+    WRONG_PASSWORD_MSG = (By.XPATH, '//span[text()="Некорректный e-mail или пароль."]')
+    FORGOT_PASSWORD_MSG = (By.XPATH, '//span[text()="Забыли пароль?"]')
