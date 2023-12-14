@@ -29,3 +29,7 @@ class SignUpPage(BasePage):
     @allure.step(f"Видимость сообщения: '{message.PULSEWAVE_POLICY_MSG}'")
     def check_pulsewave_policy_message(self):
         return self.element_is_visible(self.locator.PULSEWAVE_POLICY)
+
+    @allure.step(f"Видимость сообщения: '{message.AGREEMENT_MSG}'")
+    def check_agreement_message(self):
+        return self.element_is_visible(self.locator.AGREEMENT_MSG)

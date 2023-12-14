@@ -63,3 +63,19 @@ class TestSignupPage:
         with allure.step(f'Проверить шрифт сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'):
             assert element.value_of_css_property('font-family') == self.signup.PULSEWAVE_POLICY_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
+
+    @allure.title(f"Окно регистрации сообщение '{message.AGREEMENT_MSG}'")
+    @pytest.mark.smoke
+    def test_signup_message_agreement(self, signup_page_open):
+        element = signup_page_open.check_agreement_message()
+        with allure.step(f'Проверить текст сообщения: "{self.message.AGREEMENT_MSG}"'):
+            assert element, f'Нет сообщения: "{self.message.AGREEMENT_MSG}"'
+        with allure.step(f'Проверить цвет шрифта сообщения: "{self.message.AGREEMENT_MSG}"'):
+            assert element.value_of_css_property('color') == self.signup.AGREEMENT_CSS['color'], \
+                'Цвет сообщения о неверном пароле не соответствует макету'
+        with allure.step(f'Проверить размер шрифта сообщения: "{self.message.AGREEMENT_MSG}"'):
+            assert element.value_of_css_property('font-size') == self.signup.AGREEMENT_CSS['font-size'], \
+                'Размер шрифта сообщения о неверном пароле не соответствует макету'
+        with allure.step(f'Проверить шрифт сообщения: "{self.message.AGREEMENT_MSG}"'):
+            assert element.value_of_css_property('font-family') == self.signup.AGREEMENT_CSS['font-family'], \
+                'Шрифт сообщения о неверном пароле не соответствует макету'

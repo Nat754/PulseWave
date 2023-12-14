@@ -8,3 +8,6 @@ class SignUpLocators:
     LOGO = (By.CLASS_NAME, 'header__logo')
     PASSWORD_RULES = (By.CLASS_NAME, 'explanation')
     PULSEWAVE_POLICY = (By.CLASS_NAME, 'styled-checkbox')
+    AGREEMENT_MSG = (By.CLASS_NAME, 'agreement')
+    SUBMIT_BUTTON = (By.XPATH, '//button[@type="submit"]')
+
