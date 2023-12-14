@@ -5,7 +5,7 @@ from tests.constant import Constant, Messages
 from tests.test_signup_page.constant import SignUpConstants
 
 
-@allure.epic("Тестирование страницы авторизации")
+@allure.epic(f"Тестирование страницы '{SignUpConstants.TEXT_SIGNUP}'")
 class TestSignupPage:
     const = Constant
     signup = SignUpConstants
@@ -46,4 +46,20 @@ class TestSignupPage:
                 'Размер шрифта сообщения о неверном пароле не соответствует макету'
         with allure.step(f'Проверить шрифт сообщения: "{self.message.PASSWORD_RULES_MSG}"'):
             assert element.value_of_css_property('font-family') == self.signup.PASSWORD_RULES_CSS['font-family'], \
+                'Шрифт сообщения о неверном пароле не соответствует макету'
+
+    @allure.title(f"Окно регистрации сообщение '{message.PULSEWAVE_POLICY_MSG}'")
+    @pytest.mark.smoke
+    def test_signup_message_pulsewave_policy(self, signup_page_open):
+        element = signup_page_open.check_pulsewave_policy_message()
+        with allure.step(f'Проверить текст сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'):
+            assert element, f'Нет сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'
+        with allure.step(f'Проверить цвет шрифта сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'):
+            assert element.value_of_css_property('color') == self.signup.PULSEWAVE_POLICY_CSS['color'], \
+                'Цвет сообщения о неверном пароле не соответствует макету'
+        with allure.step(f'Проверить размер шрифта сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'):
+            assert element.value_of_css_property('font-size') == self.signup.PULSEWAVE_POLICY_CSS['font-size'], \
+                'Размер шрифта сообщения о неверном пароле не соответствует макету'
+        with allure.step(f'Проверить шрифт сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'):
+            assert element.value_of_css_property('font-family') == self.signup.PULSEWAVE_POLICY_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'

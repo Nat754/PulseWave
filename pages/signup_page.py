@@ -25,3 +25,7 @@ class SignUpPage(BasePage):
     @allure.step(f"Видимость подсказки: '{message.PASSWORD_RULES_MSG}'")
     def check_password_rules_message(self):
         return self.element_is_visible(self.locator.PASSWORD_RULES)
+
+    @allure.step(f"Видимость сообщения: '{message.PULSEWAVE_POLICY_MSG}'")
+    def check_pulsewave_policy_message(self):
+        return self.element_is_visible(self.locator.PULSEWAVE_POLICY)

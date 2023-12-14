@@ -7,3 +7,4 @@ class SignUpLocators:
     ALLOW_ALL_COOKIES = (By.CSS_SELECTOR, '.cookies__body .button__small')
     LOGO = (By.CLASS_NAME, 'header__logo')
     PASSWORD_RULES = (By.CLASS_NAME, 'explanation')
+    PULSEWAVE_POLICY = (By.CLASS_NAME, 'styled-checkbox')

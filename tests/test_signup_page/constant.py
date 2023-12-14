@@ -19,3 +19,9 @@ class SignUpConstants:
         'font-size': '12px',
         'font-family': 'Mulish, sans-serif'
     }
+
+    PULSEWAVE_POLICY_CSS = {
+        'color': 'rgba(66, 66, 66, 1)',
+        'font-size': '12px',
+        'font-family': 'Mulish, sans-serif'
+    }

@@ -5,7 +5,7 @@ from tests.constant import Constant
 from tests.test_footer.constant import FooterConstant
 
 
-@allure.epic("Тестирование Главной страницы")
+@allure.epic("Тестирование Футера")
 class TestFooter:
     footer = FooterConstant()
     const = Constant()
