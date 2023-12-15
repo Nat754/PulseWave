@@ -45,4 +45,3 @@ class SignUpPage(BasePage):
         self.element_is_visible(self.locator.POLICY_SERVICE).click()
         url = self.driver.current_url
         return url
-

@@ -36,8 +36,9 @@ class TestSignupPage:
     @pytest.mark.smoke
     def test_signup_message_password_rules(self, signup_page_open):
         element = signup_page_open.check_password_rules_message()
-        with allure.step(f'Проверить текст сообщения: "{self.message.PASSWORD_RULES_MSG}"'):
-            assert element == self.message.PASSWORD_RULES_MSG, f'Нет сообщения: "{self.message.PASSWORD_RULES_MSG}"'
+        with (allure.step(f'Проверить текст сообщения: "{self.message.PASSWORD_RULES_MSG}"')):
+            assert element.text == self.message.PASSWORD_RULES_MSG, \
+                f'Нет сообщения: "{self.message.PASSWORD_RULES_MSG}"'
         with allure.step(f'Проверить цвет шрифта сообщения: "{self.message.PASSWORD_RULES_MSG}"'):
             assert element.value_of_css_property('color') == self.signup.PASSWORD_RULES_CSS['color'], \
                 'Цвет сообщения о неверном пароле не соответствует макету'
@@ -52,8 +53,9 @@ class TestSignupPage:
     @pytest.mark.smoke
     def test_signup_message_pulsewave_policy(self, signup_page_open):
         element = signup_page_open.check_pulsewave_policy_message()
-        with allure.step(f'Проверить текст сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'):
-            assert element == self.message.PULSEWAVE_POLICY_MSG, f'Нет сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'
+        with (allure.step(f'Проверить текст сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"')):
+            assert element.text == self.message.PULSEWAVE_POLICY_MSG, \
+                f'Нет сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'
         with allure.step(f'Проверить цвет шрифта сообщения: "{self.message.PULSEWAVE_POLICY_MSG}"'):
             assert element.value_of_css_property('color') == self.signup.PULSEWAVE_POLICY_CSS['color'], \
                 'Цвет сообщения о неверном пароле не соответствует макету'
