@@ -10,4 +10,5 @@ class SignUpLocators:
     PULSEWAVE_POLICY = (By.CLASS_NAME, 'styled-checkbox')
     AGREEMENT_MSG = (By.CLASS_NAME, 'agreement')
     SUBMIT_BUTTON = (By.XPATH, '//button[@type="submit"]')
-
+    TERMS_OF_SERVICE = (By.XPATH, '(//a[@class="agreement__link"])[1]')
+    POLICY_SERVICE = (By.XPATH, '(//a[@class="agreement__link"])[2]')

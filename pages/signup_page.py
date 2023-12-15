@@ -33,3 +33,16 @@ class SignUpPage(BasePage):
     @allure.step(f"Видимость сообщения: '{message.AGREEMENT_MSG}'")
     def check_agreement_message(self):
         return self.element_is_visible(self.locator.AGREEMENT_MSG)
+
+    @allure.step(f"Проверка перехода по ссылке: '{message.AGREEMENT_MSG[30:51]}")
+    def check_agreement_message_terms_of_service(self):
+        self.element_is_visible(self.locator.TERMS_OF_SERVICE).click()
+        url = self.driver.current_url
+        return url
+
+    @allure.step(f"Проверка перехода по ссылке: '{message.AGREEMENT_MSG[54:83]}'")
+    def check_agreement_message_policy_service(self):
+        self.element_is_visible(self.locator.POLICY_SERVICE).click()
+        url = self.driver.current_url
+        return url
+

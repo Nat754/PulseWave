@@ -5,7 +5,7 @@ from tests.constant import Constant, Messages
 from tests.test_login_page.login_constant import LoginConstant
 
 
-@allure.epic(f"Тестирование страницы {LoginConstant.TEXT_LOGIN}")
+@allure.epic(f"Тестирование страницы '{LoginConstant.TEXT_LOGIN}'")
 class TestLoginPage:
     const = Constant
     login = LoginConstant

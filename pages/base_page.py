@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as es
 from selenium.webdriver.support.ui import WebDriverWait as Wait
@@ -79,3 +80,7 @@ class BasePage:
         element = self.element_is_visible(locator)  # Get the WebElement using locator
         Wait(self.driver, self.timeout).until(self.action_move_to_element(element))  # Move to the element
         return element.value_of_css_property(css_property)
+
+    def check_text_element(self, element):
+        with allure.step(f'Проверить текст элемента'):
+            return self.element_is_visible(element).text

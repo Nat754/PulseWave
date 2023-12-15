@@ -7,6 +7,7 @@ class Constant:
     SIGNUP_PAGE = f'{MAIN_PAGE}auth/signup'
     TERMS_OF_SERVICE = f'{MAIN_PAGE}documents/terms-of-service'
     WORKSPACE = f'{MAIN_PAGE}workspaces'
+    PULSEWAVE_PRIVACY = f'{MAIN_PAGE}documents/privacy'
 
 
 class Messages:
