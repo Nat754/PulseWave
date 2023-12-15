@@ -1,14 +1,16 @@
+from data import email_auth
 from locators.signup_locators import SignUpLocators
 from pages.base_page import BasePage
 import allure
 from tests.test_signup_page.constant import SignUpConstants
-from tests.constant import Messages
+from tests.constant import Messages, Constant
 
 
 class SignUpPage(BasePage):
     signup = SignUpConstants
     locator = SignUpLocators
     message = Messages
+    const = Constant
 
     @allure.step(f"Проверка видимости заголовка {signup.TEXT_SIGNUP}")
     def get_title_login(self):
@@ -45,3 +47,23 @@ class SignUpPage(BasePage):
         self.element_is_visible(self.locator.POLICY_SERVICE).click()
         url = self.driver.current_url
         return url
+
+    @allure.step("Заполнить поле email корректными данными")
+    def put_data_to_email_field(self):
+        return self.element_is_visible(self.locator.EMAIL_FIELD).send_keys(email_auth)
+
+    @allure.step("Заполнить поле пароль слабым паролем")
+    def put_data_to_password_field(self):
+        return self.element_is_visible(self.locator.PASSWORD_FIELD).send_keys('password')
+
+    @allure.step("Заполнить поле подтверждение пароля слабым паролем")
+    def put_data_to_confirm_password_field(self):
+        return self.element_is_visible(self.locator.CONFIRM_PASSWORD_FIELD).send_keys('password')
+
+    @allure.step(f"Нажать на кнопку '{signup.TEXT_SIGNUP}'")
+    def put_button_registration(self):
+        return self.element_is_visible(self.locator.SUBMIT_BUTTON).click()
+
+    @allure.step("Проверка сообщения о слабом пароле")
+    def get_invalid_password_message(self):
+        return self.element_is_visible(self.locator.WEAK_PASSWORD).text
