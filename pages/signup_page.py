@@ -48,22 +48,22 @@ class SignUpPage(BasePage):
         url = self.driver.current_url
         return url
 
-    @allure.step("Заполнить поле email корректными данными")
-    def put_data_to_email_field(self):
-        return self.element_is_visible(self.locator.EMAIL_FIELD).send_keys(email_auth)
+    @allure.step("Заполнить поле email")
+    def put_data_to_email_field(self, data_email):
+        return self.element_is_visible(self.locator.EMAIL_FIELD).send_keys(data_email)
 
-    @allure.step("Заполнить поле пароль слабым паролем")
-    def put_data_to_password_field(self):
-        return self.element_is_visible(self.locator.PASSWORD_FIELD).send_keys('password')
+    @allure.step("Заполнить поле пароль")
+    def put_data_to_password_field(self, data_password):
+        return self.element_is_visible(self.locator.PASSWORD_FIELD).send_keys(data_password)
 
-    @allure.step("Заполнить поле подтверждение пароля слабым паролем")
-    def put_data_to_confirm_password_field(self):
-        return self.element_is_visible(self.locator.CONFIRM_PASSWORD_FIELD).send_keys('password')
+    @allure.step("Заполнить поле подтверждение пароля")
+    def put_data_to_confirm_password_field(self, data_confirm_password):
+        return self.element_is_visible(self.locator.CONFIRM_PASSWORD_FIELD).send_keys(data_confirm_password)
 
     @allure.step(f"Нажать на кнопку '{signup.TEXT_SIGNUP}'")
     def put_button_registration(self):
         return self.element_is_visible(self.locator.SUBMIT_BUTTON).click()
 
-    @allure.step("Проверка сообщения о слабом пароле")
-    def get_invalid_password_message(self):
-        return self.element_is_visible(self.locator.WEAK_PASSWORD).text
+    @allure.step("Проверка сообщения")
+    def get_error_message(self):
+        return self.element_is_visible(self.locator.WEAK_PASSWORD)

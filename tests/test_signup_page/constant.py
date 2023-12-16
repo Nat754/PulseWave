@@ -31,3 +31,6 @@ class SignUpConstants:
         'font-size': '12px',
         'font-family': 'Mulish, sans-serif'
     }
+
+    INCORRECT_EMAIL = ['test@test', 'test.test']
+    WEAK_PASSWORD = ['!1password', '!Password', '1Password', '!1PASSWORD']
