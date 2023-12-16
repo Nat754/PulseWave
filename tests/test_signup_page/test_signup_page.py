@@ -106,30 +106,42 @@ class TestSignupPage:
     @allure.title("Регистрация с корректным email и слабым паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_weak_password(self, signup_page_open, data_password):
-        signup_page_open.put_data_to_email_field(email1)
-        signup_page_open.put_data_to_password_field(data_password)
-        signup_page_open.put_data_to_confirm_password_field(data_password)
-        signup_page_open.put_button_registration()
+        with allure.step(f'Заполнить поле email корректными данными'):
+            signup_page_open.put_data_to_email_field(email1)
+        with allure.step(f'Заполнить поле пароль слабым паролем'):
+            signup_page_open.put_data_to_password_field(data_password)
+        with allure.step(f'Заполнить поле подтверждение пароля слабым паролем'):
+            signup_page_open.put_data_to_confirm_password_field(data_password)
+        signup_page_open.click_button_registration()
         element = signup_page_open.get_error_message()
-        assert element.text == self.msg.INVALID_PASSWORD_MSG, 'Нет сообщения о слабом пароле'
+        with allure.step(f'Получено сообщение об ошибке: "{self.msg.INVALID_PASSWORD_MSG}"'):
+            assert element.text == self.msg.INVALID_PASSWORD_MSG, 'Нет сообщения о слабом пароле'
 
     @pytest.mark.parametrize('data_email', signup.INCORRECT_EMAIL)
     @allure.title("Регистрация с некорректным email и сильным паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_incorrect_email_and_strong_password(self, signup_page_open, data_email):
-        signup_page_open.put_data_to_email_field(data_email)
-        signup_page_open.put_data_to_password_field(password0)
-        signup_page_open.put_data_to_confirm_password_field(password0)
-        signup_page_open.put_button_registration()
+        with allure.step(f'Заполнить поле email некорректными данными'):
+            signup_page_open.put_data_to_email_field(data_email)
+        with allure.step(f'Заполнить поле пароль сильным паролем'):
+            signup_page_open.put_data_to_password_field(password0)
+        with allure.step(f'Заполнить поле подтверждение пароля сильным паролем'):
+            signup_page_open.put_data_to_confirm_password_field(password0)
+        signup_page_open.click_button_registration()
         element = signup_page_open.get_error_message()
-        assert element.text == self.msg.INVALID_EMAIL_MSG, 'Нет сообщения об ошибке'
+        with allure.step(f'Получено сообщение об ошибке: "{self.msg.INVALID_EMAIL_MSG}"'):
+            assert element.text == self.msg.INVALID_EMAIL_MSG, 'Нет сообщения об ошибке'
 
     @allure.title("Регистрация с корректным email и не совпадающими паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_correct_email_and_passwords_not_equal(self, signup_page_open):
-        signup_page_open.put_data_to_email_field(email1)
-        signup_page_open.put_data_to_password_field(password0)
-        signup_page_open.put_data_to_confirm_password_field(password3)
-        signup_page_open.put_button_registration()
+        with allure.step(f'Заполнить поле email корректными данными'):
+            signup_page_open.put_data_to_email_field(email1)
+        with allure.step(f'Заполнить поле пароль сильным паролем'):
+            signup_page_open.put_data_to_password_field(password0)
+        with allure.step(f'Заполнить поле подтверждение пароля паролем отличным от предыдущего шага'):
+            signup_page_open.put_data_to_confirm_password_field(password3)
+        signup_page_open.click_button_registration()
         element = signup_page_open.get_error_message()
-        assert element.text == self.msg.PASSWORDS_NOT_EQUAL_MSG, 'Нет сообщения об ошибке'
+        with allure.step(f'Получено сообщение об ошибке: "{self.msg.PASSWORDS_NOT_EQUAL_MSG}"'):
+            assert element.text == self.msg.PASSWORDS_NOT_EQUAL_MSG, 'Нет сообщения об ошибке'

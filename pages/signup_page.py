@@ -48,20 +48,20 @@ class SignUpPage(BasePage):
         url = self.driver.current_url
         return url
 
-    @allure.step("Заполнить поле email")
     def put_data_to_email_field(self, data_email):
+        """Put data to email field"""
         return self.element_is_visible(self.locator.EMAIL_FIELD).send_keys(data_email)
 
-    @allure.step("Заполнить поле пароль")
     def put_data_to_password_field(self, data_password):
+        """Put data to password field"""
         return self.element_is_visible(self.locator.PASSWORD_FIELD).send_keys(data_password)
 
-    @allure.step("Заполнить поле подтверждение пароля")
     def put_data_to_confirm_password_field(self, data_confirm_password):
+        """Put data to confirm password field"""
         return self.element_is_visible(self.locator.CONFIRM_PASSWORD_FIELD).send_keys(data_confirm_password)
 
-    @allure.step(f"Нажать на кнопку '{signup.TEXT_SIGNUP}'")
-    def put_button_registration(self):
+    @allure.step(f"Нажать кнопку '{signup.TEXT_SIGNUP}'")
+    def click_button_registration(self):
         return self.element_is_visible(self.locator.SUBMIT_BUTTON).click()
 
     @allure.step("Проверка сообщения")
