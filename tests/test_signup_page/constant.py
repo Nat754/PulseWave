@@ -1,3 +1,6 @@
+from data import email1
+
+
 class SignUpConstants:
     SIGNUP_PAGE_TITLE = 'Регистрация'
     TEXT_SIGNUP = 'Регистрация'
@@ -34,3 +37,8 @@ class SignUpConstants:
 
     INCORRECT_EMAIL = ['test@test', 'test.test']
     WEAK_PASSWORD = ['!1password', '!Password', '1Password', '!1PASSWORD']
+
+    INVITE_MSG = f'Регистрация\nМы отправили вам письмо на {email1}.\nДля подтверждения регистрации и \
+активации учётной записи пройдите по ссылке в письме.\nПисьмо не пришло?\nПроверьте папку Спам и нажмите кнопку \
+«Отправить повторно».'
+    DELETE_USER_MSG = 'Ваша учетная запись удалена.'

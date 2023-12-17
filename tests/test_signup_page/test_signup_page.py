@@ -6,6 +6,7 @@ from pages.base_page import BasePage
 from data import *
 from tests.constant import Constant, Messages
 from tests.test_signup_page.constant import SignUpConstants
+from pages.signup_page import get_confirm_signup_to_email
 
 
 @allure.epic(f"Тестирование страницы '{SignUpConstants.TEXT_SIGNUP}'")
@@ -145,3 +146,27 @@ class TestSignupPage:
         element = signup_page_open.get_error_message()
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.PASSWORDS_NOT_EQUAL_MSG}"'):
             assert element.text == self.msg.PASSWORDS_NOT_EQUAL_MSG, 'Нет сообщения об ошибке'
+
+    @allure.title("Регистрация с корректными email и паролем")
+    @pytest.mark.smoke
+    def test_signup_with_correct_email_and_password(self, signup_page_open,driver):
+        with allure.step(f'Заполнить поле email корректными данными'):
+            signup_page_open.put_data_to_email_field(email1)
+        with allure.step(f'Заполнить поле пароль сильным паролем'):
+            signup_page_open.put_data_to_password_field(password0)
+        with allure.step(f'Заполнить поле подтверждение пароля сильным паролем'):
+            signup_page_open.put_data_to_confirm_password_field(password0)
+        signup_page_open.click_button_registration()
+        element = signup_page_open.get_send_invite_message()
+        with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
+            assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'
+        time.sleep(2)
+        link = get_confirm_signup_to_email(email1, password1)
+        driver.get(link)
+        signup_page_open.get_welcome_to_workspace_message()
+        signup_page_open.click_button_avatar()
+        signup_page_open.click_button_settings()
+        signup_page_open.click_delete_profile()
+        signup_page_open.send_field_email()
+        text = signup_page_open.delete_user_profile_confirmation().text
+        assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"

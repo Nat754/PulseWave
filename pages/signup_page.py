@@ -1,9 +1,28 @@
-from data import email_auth
+import imaplib
+
+from selenium.webdriver import Keys
+
+from data import password0
 from locators.signup_locators import SignUpLocators
 from pages.base_page import BasePage
 import allure
 from tests.test_signup_page.constant import SignUpConstants
 from tests.constant import Messages, Constant
+
+
+def get_confirm_signup_to_email(e_mail, passwrd):
+    with allure.step('Получить ссылку подтверждения регистрации пользователя на емайл'):
+        mail = imaplib.IMAP4_SSL('imap.mail.ru')
+        mail.login(e_mail, passwrd)
+        mail.select('INBOX')
+        result, data_id = mail.search(None, 'ALL')
+        message_ids = data_id[0].split()
+        result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
+        raw_email = str(data_id[0][1])
+        mail.logout()
+        first = raw_email.find('https://front.pwave.pnpl.tech')
+        link = raw_email[first:first + 88]
+        return link
 
 
 class SignUpPage(BasePage):
@@ -67,3 +86,38 @@ class SignUpPage(BasePage):
     @allure.step("Проверка сообщения")
     def get_error_message(self):
         return self.element_is_visible(self.locator.WEAK_PASSWORD)
+
+    @allure.step("Получено сообщения о подтверждении регистрации")
+    def get_send_invite_message(self):
+        return self.element_is_visible(self.locator.SEND_INVITE_EMAIL)
+
+    @allure.step("Согласиться с приглашением войти в рабочее пространство")
+    def get_welcome_to_workspace_message(self):
+        return self.element_is_visible(self.locator.WELCOME_TO_WORKSPACE).click()
+
+    @allure.step("Нажать на иконку аватара")
+    def click_button_avatar(self):
+        return self.element_is_visible(self.locator.BUTTON_AVATAR).click()
+
+    @allure.step("Перейти в настройки")
+    def click_button_settings(self):
+        return self.element_is_visible(self.locator.PROFILE_SETTINGS).click()
+
+    @allure.step("Нажать ссылку 'Удалить профиль'")
+    def click_delete_profile(self):
+        return self.element_is_visible(self.locator.DELETE_PROFILE).click()
+
+    @allure.step("Ввести пароль для подтверждения удаления профиля")
+    def send_field_email(self):
+        self.go_to_element(self.element_is_present(self.locator.CONFIRM_PASSWORD))
+        self.element_is_visible(self.locator.CONFIRM_PASSWORD).send_keys(password0)
+        self.element_is_visible(self.locator.CONFIRM_PASSWORD).send_keys(Keys.ENTER)
+
+
+    @allure.step("Удалить учетную запись")
+    def delete_user_profile(self):
+        return self.element_is_visible(self.locator.DELETE_BUTTON).click()
+
+    @allure.step("Получено сообщение об успешном удалении пользователя")
+    def delete_user_profile_confirmation(self):
+        return self.element_is_visible(self.locator.DELETE_MESSAGE)
