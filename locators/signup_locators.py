@@ -26,3 +26,4 @@ class SignUpLocators:
     CONFIRM_PASSWORD = (By.XPATH, '(//input[@type="password"])[1]')
     DELETE_BUTTON = (By.CSS_SELECTOR, 'button[type="submit"]')
     DELETE_MESSAGE = (By.XPATH, '//p[@class="text"]')
+    AGREE_RADIO_BUTTON = (By.CSS_SELECTOR, 'for="myCheckbox"')

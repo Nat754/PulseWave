@@ -1,7 +1,5 @@
 import imaplib
-
 from selenium.webdriver import Keys
-
 from data import password0
 from locators.signup_locators import SignUpLocators
 from pages.base_page import BasePage
@@ -112,7 +110,6 @@ class SignUpPage(BasePage):
         self.go_to_element(self.element_is_present(self.locator.CONFIRM_PASSWORD))
         self.element_is_visible(self.locator.CONFIRM_PASSWORD).send_keys(password0)
         self.element_is_visible(self.locator.CONFIRM_PASSWORD).send_keys(Keys.ENTER)
-
 
     @allure.step("Удалить учетную запись")
     def delete_user_profile(self):
