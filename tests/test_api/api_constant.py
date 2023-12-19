@@ -53,9 +53,10 @@ class ApiConstant:
     }
 
     PUT_COLUMN = {
-      "name": "MyColumn",
+      "name": "My_Column",
       "index": 2147483647
     }
+
 
 class StatusCode:
     STATUS_200 = 200

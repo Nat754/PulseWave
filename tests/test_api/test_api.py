@@ -96,17 +96,26 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                 actual status {response.status_code}"
 
-    # @allure.title("PUT Обновить колонку (название и порядковый номер)")
-    # def test_put_board_column_update(self, use_api_page):
-    #     jwt = use_api_page.create_jwt(email1, password0)
-    #     board_id = use_api_page.get_board_id()
-    #     column_id = use_api_page.get_board_column_id()
-    #     url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
-    #     response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
-    #                             json=self.constant.PUT_COLUMN)
-    #     with allure.step(f"Expected status {self.code.STATUS_200}"):
-    #         assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-    #                 actual status {response.status_code}"
+    @allure.title("GET Список всех задач колонки")
+    def test_get_column_task_id(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        column_id = use_api_page.get_board_column_id()
+        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                    actual status {response.status_code}"
+
+    @allure.title("DELETE Удалить колонку")
+    def test_delete_api_board_column_id(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        board_id = use_api_page.get_board_id()
+        column_id = use_api_page.get_board_column_id()
+        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
+        response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_204}"):
+            assert response.status_code == self.code.STATUS_204, f"Expected status {self.code.STATUS_204}, \
+                    actual status {response.status_code}"
 
     @allure.title("POST Создать Рабочее пространство")
     def test_post_api_workspace(self, use_api_page):
