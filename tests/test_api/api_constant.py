@@ -53,8 +53,7 @@ class ApiConstant:
     }
 
     PUT_COLUMN = {
-      "name": "My_Column",
-      "index": 2147483647
+      "name": "My_Column"
     }
 
 

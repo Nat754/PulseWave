@@ -85,6 +85,28 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
             actual status {response.status_code}"
 
+    @allure.title("PUT Обновить колонку (название и порядковый номер)")
+    def test_put_api_boards_id_column_id(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        board_id = use_api_page.get_board_id()
+        column_id = use_api_page.get_board_column_id()
+        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                        actual status {response.status_code}"
+
+    @allure.title("PATCH Частично обновить колонку (название/порядковый номер)")
+    def test_patch_api_boards_id_column_id(self, use_api_page):
+        jwt = use_api_page.create_jwt(email1, password0)
+        board_id = use_api_page.get_board_id()
+        column_id = use_api_page.get_board_column_id()
+        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
+        response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                            actual status {response.status_code}"
+
     @allure.title("GET Информация о конкретной колонке")
     def test_get_api_board_column_info(self, use_api_page):
         jwt = use_api_page.create_jwt(email1, password0)
