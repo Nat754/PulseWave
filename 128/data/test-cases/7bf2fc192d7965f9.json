@@ -1,0 +1,198 @@
+{
+  "uid" : "7bf2fc192d7965f9",
+  "name" : "Проверка размера шрифта элемента 'PULSEWAVE'",
+  "fullName" : "tests.test_main_page.test_main_page.TestMainPage#test_get_body_main_title_size",
+  "historyId" : "17315c9cfc671602fc07330b1a3ac965",
+  "time" : {
+    "start" : 1703187482510,
+    "stop" : 1703187482542,
+    "duration" : 32
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Не прошла проверка соответствия размера шрифта кнопки 'PULSEWAVE' макету\nassert '18px' == '80px'\n  - 80px\n  ?  -\n  + 18px\n  ? +",
+  "statusTrace" : "self = <tests.test_main_page.test_main_page.TestMainPage object at 0x7f4f7d2fb610>\nmain_page_open = <pages.main_page.MainPage object at 0x7f4f7bd42c10>\ncss_property = 'font-size', figma = '80px', name = 'размера шрифта'\n\n    @pytest.mark.parametrize('css_property, figma, name', main.CHECK_TITLE)\n    @pytest.mark.regress\n    def test_get_body_main_title_size(self, main_page_open, css_property, figma, name):\n        allure.dynamic.title(f\"Проверка {name} элемента '{self.main.MAIN_TITLE}'\")\n        element = main_page_open.get_body_main_title()\n        mean_css = element.value_of_css_property(css_property)\n>       assert mean_css == figma, f\"Не прошла проверка соответствия {name} кнопки '{self.main.MAIN_TITLE}' макету\"\nE       AssertionError: Не прошла проверка соответствия размера шрифта кнопки 'PULSEWAVE' макету\nE       assert '18px' == '80px'\nE         - 80px\nE         ?  -\nE         + 18px\nE         ? +\n\ntests/test_main_page/test_main_page.py:49: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1703187213409,
+      "stop" : 1703187213483,
+      "duration" : 74
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1703187479911,
+      "stop" : 1703187480574,
+      "duration" : 663
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1703187480575,
+      "stop" : 1703187482510,
+      "duration" : 1935
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю всё' в сообщении о принятии файлов cookie на Главной странице",
+      "time" : {
+        "start" : 1703187482456,
+        "stop" : 1703187482483,
+        "duration" : 27
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1703187213483,
+      "stop" : 1703187213483,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Не прошла проверка соответствия размера шрифта кнопки 'PULSEWAVE' макету\nassert '18px' == '80px'\n  - 80px\n  ?  -\n  + 18px\n  ? +",
+    "statusTrace" : "self = <tests.test_main_page.test_main_page.TestMainPage object at 0x7f4f7d2fb610>\nmain_page_open = <pages.main_page.MainPage object at 0x7f4f7bd42c10>\ncss_property = 'font-size', figma = '80px', name = 'размера шрифта'\n\n    @pytest.mark.parametrize('css_property, figma, name', main.CHECK_TITLE)\n    @pytest.mark.regress\n    def test_get_body_main_title_size(self, main_page_open, css_property, figma, name):\n        allure.dynamic.title(f\"Проверка {name} элемента '{self.main.MAIN_TITLE}'\")\n        element = main_page_open.get_body_main_title()\n        mean_css = element.value_of_css_property(css_property)\n>       assert mean_css == figma, f\"Не прошла проверка соответствия {name} кнопки '{self.main.MAIN_TITLE}' макету\"\nE       AssertionError: Не прошла проверка соответствия размера шрифта кнопки 'PULSEWAVE' макету\nE       assert '18px' == '80px'\nE         - 80px\nE         ?  -\nE         + 18px\nE         ? +\n\ntests/test_main_page/test_main_page.py:49: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости надписи 'PULSEWAVE' на Главной странице",
+      "time" : {
+        "start" : 1703187482511,
+        "stop" : 1703187482535,
+        "duration" : 24
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1703187482582,
+      "stop" : 1703187482639,
+      "duration" : 57
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_main_page"
+  }, {
+    "name" : "suite",
+    "value" : "test_main_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMainPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1429-131"
+  }, {
+    "name" : "thread",
+    "value" : "2194-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_main_page.test_main_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "css_property",
+    "value" : "'font-size'"
+  }, {
+    "name" : "figma",
+    "value" : "'80px'"
+  }, {
+    "name" : "name",
+    "value" : "'размера шрифта'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "regress" ]
+  },
+  "source" : "7bf2fc192d7965f9.json",
+  "parameterValues" : [ "'font-size'", "'80px'", "'размера шрифта'" ]
+}
