@@ -4,8 +4,8 @@ from selenium.webdriver.common.by import By
 class MainPageLocators:
 
     LOGO = (By.CLASS_NAME, 'header__logo')
-    AUTH_LOGIN = (By.CSS_SELECTOR, '.button__small')
-    AUTH_SIGNUP = (By.CSS_SELECTOR, 'a[href="/auth/signup"] button')
+    AUTH_LOGIN = (By.XPATH, '(//button[@class="button button__small"])[1]')
+    AUTH_SIGNUP = (By.XPATH, '(//button[@class="button button__small"])[2]')
     SIGNUP = (By.CLASS_NAME, 'button__big')
     LICENSE = (By.XPATH, '(//span[@class="item__text"])[1]')
     EMAIL = (By.CLASS_NAME, 'item__link-desc')
