@@ -128,6 +128,25 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                     actual status {response.status_code}"
 
+    @allure.title("POST Создать задачу")
+    def test_post_column_task_create(self, use_api_page):
+        """
+        responsible: Список ответсвенны пользователей. Передается массивом из id,например {"responsible": [1,2,3]}
+        deadline: Срок выполнения задачи
+        description: Описание
+        priority: Приоритет, число от 0 до 3, где 0 - высочайший приоритет
+        color_mark: Цвет метки
+        name_mark: Название метки
+        """
+        jwt = use_api_page.create_jwt(email1, password0)
+        column_id = use_api_page.get_board_column_id()
+        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                json=self.constant.CREATE_TASK)
+        with allure.step(f"Expected status {self.code.STATUS_201}"):
+            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
+                        actual status {response.status_code}"
+
     @allure.title("DELETE Удалить колонку")
     def test_delete_api_board_column_id(self, use_api_page):
         jwt = use_api_page.create_jwt(email1, password0)

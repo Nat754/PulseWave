@@ -56,6 +56,15 @@ class ApiConstant:
       "name": "My_Column"
     }
 
+    CREATE_TASK = {
+        "name": "string",
+        "deadline": "2023-12-22",
+        "description": "string",
+        "priority": 0,
+        "color_mark": "string",
+        "name_mark": "string"
+    }
+
 
 class StatusCode:
     STATUS_200 = 200
