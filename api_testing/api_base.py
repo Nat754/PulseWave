@@ -7,7 +7,7 @@ from data import email1, password0
 from tests.test_api.api_constant import ApiConstant
 
 
-class ApiPage:
+class ApiBase:
 
     def get_root_path(self):
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -118,3 +118,11 @@ class ApiPage:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         column_id = response.json()[0]['id']
         return column_id
+
+    def get_column_task_id(self):
+        jwt = self.create_jwt(email1, password0)
+        column_id = self.get_board_column_id()
+        url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        task_id = response.json()[0]['id']
+        return task_id

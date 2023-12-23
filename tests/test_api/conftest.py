@@ -1,8 +1,8 @@
 import pytest
-from pages.api_page import ApiPage
+from api_testing.api_base import ApiBase
 
 
 @pytest.fixture(scope='function')
-def use_api_page():
-    page = ApiPage()
+def use_api_base():
+    page = ApiBase()
     return page

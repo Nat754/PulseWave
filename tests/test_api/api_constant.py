@@ -64,6 +64,30 @@ class ApiConstant:
         "color_mark": "string",
         "name_mark": "string"
     }
+    MOVE_TASK = {
+      "name": "string",
+      "index": 2147483647,
+      "column": 0,
+      "responsible": [
+        0
+      ],
+      "deadline": "2023-12-23",
+      "description": "string",
+      "priority": 0,
+      "color_mark": "string",
+      "name_mark": "string"
+    }
+    PATCH_TASK = {
+        "name": "string",
+        "index": 2147483647,
+        "column": 0,
+        "responsible": [0],
+        "deadline": "2023-12-23",
+        "description": "string",
+        "priority": 0,
+        "color_mark": "string",
+        "name_mark": "string"
+    }
 
 
 class StatusCode:
