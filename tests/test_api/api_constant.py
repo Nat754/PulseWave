@@ -1,6 +1,14 @@
 from data import email1, email2, password0
 
 
+class StatusCode:
+    STATUS_200 = 200
+    STATUS_201 = 201
+    STATUS_204 = 204
+    STATUS_400 = 400
+    STATUS_404 = 404
+
+
 class ApiConstant:
 
     BASE_URL = "https://api.pwave.pnpl.tech/"
@@ -64,6 +72,7 @@ class ApiConstant:
         "color_mark": "string",
         "name_mark": "string"
     }
+
     MOVE_TASK = {
       "name": "string",
       "index": 2147483647,
@@ -77,6 +86,7 @@ class ApiConstant:
       "color_mark": "string",
       "name_mark": "string"
     }
+
     PATCH_TASK = {
         "name": "string",
         "index": 2147483647,
@@ -89,10 +99,4 @@ class ApiConstant:
         "name_mark": "string"
     }
 
-
-class StatusCode:
-    STATUS_200 = 200
-    STATUS_201 = 201
-    STATUS_204 = 204
-    STATUS_400 = 400
-    STATUS_404 = 404
+    INVITE_USER = {"email": "user@example.com"}

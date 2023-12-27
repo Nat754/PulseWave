@@ -126,3 +126,10 @@ class ApiBase:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         task_id = response.json()[0]['id']
         return task_id
+
+    def get_workspace_id(self):
+        jwt = self.create_jwt(email1, password0)
+        url = f'{ApiConstant.BASE_URL}api/workspace/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        workspace_id = response.json()[0]['id']
+        return workspace_id

@@ -44,11 +44,23 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
 
-    @allure.title("POST Получить список всех Рабочих пространств авторизованного пользователя")
+    @allure.title("GET Получить список всех Рабочих пространств авторизованного пользователя")
     def test_get_api_workspace(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, \
+                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+
+    @allure.title("POST Пригласить пользователя по email")
+    def test_post_api_workspace_invite_user(self, use_api_base):
+        """Пользователи добавляются по одному. Если пользователя не существует, он будет создан"""
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json=self.constant.INVITE_USER)
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
