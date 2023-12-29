@@ -104,7 +104,7 @@ class ApiBase:
             return user_id
 
     def get_board_id(self):
-        with allure.step("Получить id авторизованного пользователя"):
+        with allure.step("Получить id доски"):
             jwt = self.create_jwt(email1, password0)
             url = f'{ApiConstant.BASE_URL}api/workspace/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
@@ -112,24 +112,35 @@ class ApiBase:
             return board_id
 
     def get_board_column_id(self):
-        jwt = self.create_jwt(email1, password0)
-        board_id = self.get_board_id()
-        url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
-        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        column_id = response.json()[0]['id']
-        return column_id
+        with allure.step("Получить id колонки"):
+            jwt = self.create_jwt(email1, password0)
+            board_id = self.get_board_id()
+            url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+            column_id = response.json()[0]['id']
+            return column_id
 
     def get_column_task_id(self):
-        jwt = self.create_jwt(email1, password0)
-        column_id = self.get_board_column_id()
-        url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
-        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        task_id = response.json()[0]['id']
-        return task_id
+        with allure.step("Получить id задачи"):
+            jwt = self.create_jwt(email1, password0)
+            column_id = self.get_board_column_id()
+            url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+            task_id = response.json()[0]['id']
+            return task_id
 
     def get_workspace_id(self):
-        jwt = self.create_jwt(email1, password0)
-        url = f'{ApiConstant.BASE_URL}api/workspace/'
-        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        workspace_id = response.json()[0]['id']
-        return workspace_id
+        with allure.step("Получить id рабочего пространства"):
+            jwt = self.create_jwt(email1, password0)
+            url = f'{ApiConstant.BASE_URL}api/workspace/'
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+            workspace_id = response.json()[0]['id']
+            return workspace_id
+
+    def get_invite_user_id(self):
+        with allure.step("Получить id приглашенного пользователя"):
+            jwt = self.create_jwt(email1, password0)
+            url = f'{ApiConstant.BASE_URL}api/workspace/'
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+            invite_user_id = response.json()[0]['invited'][0]['id']
+            return invite_user_id

@@ -65,6 +65,32 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
 
+    @allure.title("POST Повторная отправка ссылки с приглашением пользователя")
+    def test_post_api_workspace_resend_invite(self, use_api_base):
+        """Удаление как из участников так и из приглашенных"""
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        invite_user_id = use_api_base.get_invite_user_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/resend_invite/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json={"user_id": invite_user_id} | self.constant.INVITE_USER)
+        with allure.step(f"Expected status {self.code.STATUS_204}"):
+            assert response.status_code == self.code.STATUS_204, \
+                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+
+    @allure.title("POST Удаление приглашенного пользователей из РП")
+    def test_post_api_workspace_kick_user(self, use_api_base):
+        """Удаление как из участников так и из приглашенных"""
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        invite_user_id = use_api_base.get_invite_user_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/kick_user/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json={"user_id": invite_user_id} | self.constant.INVITE_USER)
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, \
+                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+
     @allure.title("POST Создать доску без указания РП")
     def test_post_api_board_create(self, use_api_base):
         """Создание доски без указания РП, будет создано дефолтное РП для этой доски"""
