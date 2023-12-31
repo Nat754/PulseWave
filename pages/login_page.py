@@ -1,4 +1,4 @@
-from data import email_auth, password0
+from data import email_auth, password0, incorrect_email, email2
 from locators.login_locators import LoginPageLocators
 from pages.base_page import BasePage
 import allure
@@ -26,6 +26,10 @@ class LoginPage(BasePage):
     @allure.step("Ввести в поле e-mail корректные данные")
     def input_e_mail(self):
         return self.element_is_visible(self.locator.EMAIL).send_keys(email_auth)
+
+    @allure.step("Ввести в поле e-mail некорректные данные")
+    def input_not_auth_email(self):
+        return self.element_is_visible(self.locator.EMAIL).send_keys(email2)
 
     @allure.step("Ввести в поле пароль сильный пароль")
     def input_password(self):

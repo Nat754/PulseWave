@@ -75,3 +75,13 @@ class TestLoginPage:
         with allure.step(f'Проверить шрифт сообщения: "{self.message.FORGOT_PASSWORD_MSG}"'):
             assert element.value_of_css_property('font-family') == self.login.FORGOT_PASSWORD_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
+
+    @allure.title("Авторизация с некорректным емайл")
+    @pytest.mark.smoke
+    def test_login_not_auth_email(self, login_page_open):
+        login_page_open.input_not_auth_email()
+        login_page_open.input_password()
+        login_page_open.click_submit()
+        element = login_page_open.check_wrong_password_message()
+        with allure.step(f'Проверить текст сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
+            assert element, f'Нет сообщения: "{self.message.WRONG_PASSWORD_MSG}"'
