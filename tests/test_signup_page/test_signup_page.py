@@ -1,5 +1,4 @@
 import time
-
 import allure
 import pytest
 from pages.base_page import BasePage
@@ -107,11 +106,11 @@ class TestSignupPage:
     @allure.title("Регистрация с корректным email и слабым паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_weak_password(self, signup_page_open, data_password):
-        with allure.step(f'Заполнить поле email корректными данными'):
+        with allure.step('Заполнить поле email корректными данными'):
             signup_page_open.put_data_to_email_field(email1)
-        with allure.step(f'Заполнить поле пароль слабым паролем'):
+        with allure.step('Заполнить поле пароль слабым паролем'):
             signup_page_open.put_data_to_password_field(data_password)
-        with allure.step(f'Заполнить поле подтверждение пароля слабым паролем'):
+        with allure.step('Заполнить поле подтверждение пароля слабым паролем'):
             signup_page_open.put_data_to_confirm_password_field(data_password)
         signup_page_open.click_button_registration()
         element = signup_page_open.get_error_message()
@@ -122,11 +121,11 @@ class TestSignupPage:
     @allure.title("Регистрация с некорректным email и сильным паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_incorrect_email_and_strong_password(self, signup_page_open, data_email):
-        with allure.step(f'Заполнить поле email некорректными данными'):
+        with allure.step('Заполнить поле email некорректными данными'):
             signup_page_open.put_data_to_email_field(data_email)
-        with allure.step(f'Заполнить поле пароль сильным паролем'):
+        with allure.step('Заполнить поле пароль сильным паролем'):
             signup_page_open.put_data_to_password_field(password0)
-        with allure.step(f'Заполнить поле подтверждение пароля сильным паролем'):
+        with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
         signup_page_open.click_button_registration()
         element = signup_page_open.get_error_message()
@@ -136,11 +135,11 @@ class TestSignupPage:
     @allure.title("Регистрация с корректным email и не совпадающими паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_correct_email_and_passwords_not_equal(self, signup_page_open):
-        with allure.step(f'Заполнить поле email корректными данными'):
+        with allure.step('Заполнить поле email корректными данными'):
             signup_page_open.put_data_to_email_field(email1)
-        with allure.step(f'Заполнить поле пароль сильным паролем'):
+        with allure.step('Заполнить поле пароль сильным паролем'):
             signup_page_open.put_data_to_password_field(password0)
-        with allure.step(f'Заполнить поле подтверждение пароля паролем отличным от предыдущего шага'):
+        with allure.step('Заполнить поле подтверждение пароля паролем отличным от предыдущего шага'):
             signup_page_open.put_data_to_confirm_password_field(password3)
         signup_page_open.click_button_registration()
         element = signup_page_open.get_error_message()
@@ -150,11 +149,11 @@ class TestSignupPage:
     @allure.title("Регистрация с корректными email и паролем без согласия на подписку")
     @pytest.mark.smoke
     def test_signup_with_correct_email_and_password(self, signup_page_open, driver):
-        with allure.step(f'Заполнить поле email корректными данными'):
+        with allure.step('Заполнить поле email корректными данными'):
             signup_page_open.put_data_to_email_field(email1)
-        with allure.step(f'Заполнить поле пароль сильным паролем'):
+        with allure.step('Заполнить поле пароль сильным паролем'):
             signup_page_open.put_data_to_password_field(password0)
-        with allure.step(f'Заполнить поле подтверждение пароля сильным паролем'):
+        with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
         signup_page_open.click_button_registration()
         element = signup_page_open.get_send_invite_message()
@@ -174,11 +173,11 @@ class TestSignupPage:
     @allure.title("Регистрация с корректными email и паролем и с согласием на подписку")
     @pytest.mark.smoke
     def test_signup_with_correct_data_and_agree(self, signup_page_open, driver):
-        with allure.step(f'Заполнить поле email корректными данными'):
+        with allure.step('Заполнить поле email корректными данными'):
             signup_page_open.put_data_to_email_field(email1)
-        with allure.step(f'Заполнить поле пароль сильным паролем'):
+        with allure.step('Заполнить поле пароль сильным паролем'):
             signup_page_open.put_data_to_password_field(password0)
-        with allure.step(f'Заполнить поле подтверждение пароля сильным паролем'):
+        with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
         signup_page_open.check_pulsewave_policy_message().click()
         signup_page_open.click_button_registration()
@@ -195,3 +194,39 @@ class TestSignupPage:
         signup_page_open.send_field_email()
         text = signup_page_open.delete_user_profile_confirmation().text
         assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
+
+    @allure.title("Регистрация с корректным email и паролем и пустым подтверждением пароля")
+    @pytest.mark.smoke
+    def test_signup_with_correct_email_and_password_without_confirm_password(self, signup_page_open):
+        with allure.step('Заполнить поле email корректными данными'):
+            signup_page_open.put_data_to_email_field(email1)
+        with allure.step('Заполнить поле пароль сильным паролем'):
+            signup_page_open.put_data_to_password_field(password0)
+        with allure.step('Оставить поле подтверждение пароля пустым'):
+            signup_page_open.put_data_to_confirm_password_field("")
+        assert signup_page_open.button_registration_not_active, \
+            'Нет проверки на заполнение обязательного поля подтверждение пароля'
+
+    @allure.title("Регистрация с корректным email и подтверждением пароля и пустым паролем")
+    @pytest.mark.smoke
+    def test_signup_with_correct_email_and_confirm_password_without_password(self, signup_page_open):
+        with allure.step('Заполнить поле email корректными данными'):
+            signup_page_open.put_data_to_email_field(email1)
+        with allure.step('Оставить поле пароль пустым'):
+            signup_page_open.put_data_to_password_field("")
+        with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
+            signup_page_open.put_data_to_confirm_password_field(password0)
+        assert signup_page_open.button_registration_not_active, \
+            'Нет проверки на заполнение обязательного поля пароль'
+
+    @allure.title("Регистрация с пустым email и сильным паролем и подтверждением пароля")
+    @pytest.mark.smoke
+    def test_signup_without_email_and_strong_passwords(self, signup_page_open):
+        with allure.step('Оставить поле email пустым'):
+            signup_page_open.put_data_to_email_field(email1)
+        with allure.step('Заполнить поле пароль сильным паролем'):
+            signup_page_open.put_data_to_password_field(password0)
+        with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
+            signup_page_open.put_data_to_confirm_password_field(password0)
+        assert signup_page_open.button_registration_not_active, \
+            'Нет проверки на заполнение обязательного поля пароль'

@@ -1,4 +1,5 @@
 import allure
+from selenium.common import TimeoutException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support import expected_conditions as es
 from selenium.webdriver.support.ui import WebDriverWait as Wait
@@ -8,7 +9,6 @@ class BasePage:
     def __init__(self, driver):
         self.driver = driver
         self.timeout = 20
-        # self.wait = Wait(driver, 30, 1)
 
     def element_is_visible(self, locator):
         """
@@ -84,3 +84,13 @@ class BasePage:
     def check_text_element(self, element):
         with allure.step(f'Проверить текст элемента'):
             return self.element_is_visible(element).text
+
+    def element_is_not_clickable(self, locator):
+        """
+        Проверка того, что элемент виден, отображается на странице, но некликабелен.
+        Элемент присутствует в DOM-дереве. Локатор - используется для поиска элемента.
+        """
+        try:
+            Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))
+        except TimeoutException:
+            return True
