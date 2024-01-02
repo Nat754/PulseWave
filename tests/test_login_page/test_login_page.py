@@ -85,3 +85,17 @@ class TestLoginPage:
         element = login_page_open.check_wrong_password_message()
         with allure.step(f'Проверить текст сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
             assert element, f'Нет сообщения: "{self.message.WRONG_PASSWORD_MSG}"'
+
+    @allure.title("Авторизация с пустым емайл")
+    @pytest.mark.smoke
+    def test_login_without_email(self, login_page_open):
+        login_page_open.empty_email()
+        login_page_open.input_password()
+        assert login_page_open.button_login_not_active(), 'Нет проверки на заполнение обязательного поля емайл'
+
+    @allure.title("Авторизация с пустым паролем")
+    @pytest.mark.smoke
+    def test_login_without_password(self, login_page_open):
+        login_page_open.input_e_mail()
+        login_page_open.empty_password()
+        assert login_page_open.button_login_not_active(), 'Нет проверки на заполнение обязательного поля пароль'

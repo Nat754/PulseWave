@@ -31,11 +31,19 @@ class LoginPage(BasePage):
     def input_not_auth_email(self):
         return self.element_is_visible(self.locator.EMAIL).send_keys(email2)
 
+    @allure.step("Оставить поле e-mail пустым")
+    def empty_email(self):
+        return self.element_is_visible(self.locator.EMAIL).send_keys('')
+
     @allure.step("Ввести в поле пароль сильный пароль")
     def input_password(self):
         return self.element_is_visible(self.locator.PASSWORD).send_keys(password0)
 
-    @allure.step(f"Нажать кнопку '{login.TEXT_LOGIN}")
+    @allure.step("Оставить поле пароль пустым")
+    def empty_password(self):
+        return self.element_is_visible(self.locator.PASSWORD).send_keys('')
+
+    @allure.step(f"Нажать кнопку '{login.TEXT_LOGIN}'")
     def click_submit(self):
         return self.element_is_clickable(self.locator.SUBMIT).click()
 
@@ -50,3 +58,7 @@ class LoginPage(BasePage):
     @allure.step(f"Видимость подсказки: '{message.FORGOT_PASSWORD_MSG}'")
     def check_forgot_password_message(self):
         return self.element_is_visible(self.locator.FORGOT_PASSWORD)
+
+    @allure.step(f"Проверка неактивности кнопки '{login.TEXT_LOGIN}'")
+    def button_login_not_active(self):
+        return self.element_is_not_clickable(self.locator.SUBMIT, )

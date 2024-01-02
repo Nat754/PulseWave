@@ -204,7 +204,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Оставить поле подтверждение пароля пустым'):
             signup_page_open.put_data_to_confirm_password_field("")
-        assert signup_page_open.button_registration_not_active, \
+        assert signup_page_open.button_registration_not_active(), \
             'Нет проверки на заполнение обязательного поля подтверждение пароля'
 
     @allure.title("Регистрация с корректным email и подтверждением пароля и пустым паролем")
@@ -216,7 +216,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field("")
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
-        assert signup_page_open.button_registration_not_active, \
+        assert signup_page_open.button_registration_not_active(), \
             'Нет проверки на заполнение обязательного поля пароль'
 
     @allure.title("Регистрация с пустым email и сильным паролем и подтверждением пароля")
@@ -228,5 +228,5 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
-        assert signup_page_open.button_registration_not_active, \
+        assert signup_page_open.button_registration_not_active(), \
             'Нет проверки на заполнение обязательного поля пароль'

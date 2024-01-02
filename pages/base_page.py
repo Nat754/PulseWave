@@ -85,14 +85,19 @@ class BasePage:
         with allure.step(f'Проверить текст элемента'):
             return self.element_is_visible(element).text
 
+    def wait_changed_url(self, url):
+        with allure.step(f'Wait until url: {url} will be changed.'):
+            return Wait(self.driver, self.timeout).until(es.url_changes(url),
+                                                         message=f"Url: {url} has not been changed!!!")
+
     def element_is_not_clickable(self, locator):
         """
         Проверка того, что элемент виден, отображается на странице, но некликабелен.
         Элемент присутствует в DOM-дереве. Локатор - используется для поиска элемента.
         """
-        self.go_to_element(self.element_is_present(locator))
-        Wait(self.driver, self.timeout).until(es.visibility_of_element_located(locator))
+        self.timeout = 2
         try:
             Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))
+            return False
         except TimeoutException:
             return True
