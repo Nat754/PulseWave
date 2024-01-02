@@ -90,6 +90,8 @@ class BasePage:
         Проверка того, что элемент виден, отображается на странице, но некликабелен.
         Элемент присутствует в DOM-дереве. Локатор - используется для поиска элемента.
         """
+        self.go_to_element(self.element_is_present(locator))
+        Wait(self.driver, self.timeout).until(es.visibility_of_element_located(locator))
         try:
             Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))
         except TimeoutException:
