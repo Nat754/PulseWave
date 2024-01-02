@@ -223,7 +223,7 @@ class TestSignupPage:
     @pytest.mark.smoke
     def test_signup_without_email_and_strong_passwords(self, signup_page_open):
         with allure.step('Оставить поле email пустым'):
-            signup_page_open.put_data_to_email_field(email1)
+            signup_page_open.put_data_to_email_field('')
         with allure.step('Заполнить поле пароль сильным паролем'):
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
