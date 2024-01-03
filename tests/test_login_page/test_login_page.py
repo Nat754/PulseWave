@@ -32,6 +32,14 @@ class TestLoginPage:
         assert driver.current_url == self.const.MAIN_PAGE_HOME, \
             'Не произошел переход на главную страницу при клике на лого'
 
+    @allure.title(f"Проверка редиректа на страницу восстановления пароля при клике на ссылку "
+                  f"\'{message.FORGOT_PASSWORD_MSG}'")
+    @pytest.mark.smoke
+    def test_redirect_password_recovery(self, login_page_open, driver):
+        login_page_open.check_forgot_password_message().click()
+        assert driver.current_url == self.const.PASSWORD_RECOVERY, \
+            'Не произошел переход на страницу восстановления пароля'
+
     @allure.title("Авторизация с корректными данными")
     @pytest.mark.smoke
     def test_login(self, login_page_open, driver):

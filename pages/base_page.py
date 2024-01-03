@@ -86,9 +86,11 @@ class BasePage:
             return self.element_is_visible(element).text
 
     def wait_changed_url(self, url):
-        with allure.step(f'Wait until url: {url} will be changed.'):
-            return Wait(self.driver, self.timeout).until(es.url_changes(url),
-                                                         message=f"Url: {url} has not been changed!!!")
+        try:
+            Wait(self.driver, self.timeout).until(es.url_changes(url))
+            return self.driver.current_url
+        except TimeoutException:
+            return False
 
     def element_is_not_clickable(self, locator):
         """

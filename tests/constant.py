@@ -8,6 +8,7 @@ class Constant:
     TERMS_OF_SERVICE = f'{MAIN_PAGE}documents/terms-of-service'
     WORKSPACE = f'{MAIN_PAGE}workspaces'
     PULSEWAVE_PRIVACY = f'{MAIN_PAGE}documents/privacy'
+    PASSWORD_RECOVERY = f'{MAIN_PAGE}auth/password?email='
 
 
 class Messages:

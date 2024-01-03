@@ -61,4 +61,4 @@ class LoginPage(BasePage):
 
     @allure.step(f"Проверка неактивности кнопки '{login.TEXT_LOGIN}'")
     def button_login_not_active(self):
-        return self.element_is_not_clickable(self.locator.SUBMIT, )
+        return self.element_is_not_clickable(self.locator.SUBMIT)
