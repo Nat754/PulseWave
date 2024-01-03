@@ -1,0 +1,247 @@
+{
+  "uid" : "697cdf02da42085a",
+  "name" : "Проверка года © PulseWave, 2024 в хедере",
+  "fullName" : "tests.test_footer.test_footer.TestFooter#test_get_year_cooperation",
+  "historyId" : "796a9882bcb275fb3b9d4ad51e6c59fb",
+  "time" : {
+    "start" : 1704295992906,
+    "stop" : 1704295992941,
+    "duration" : 35
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL Нет решения о смене года в футере\n\nAssertionError: Пора поменять год '2023',                 уже '2024'\nassert 2023 == 2024\n +  where 2024 = <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10>.YEAR_COOPERATION\n +    where <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10> = <tests.test_footer.test_footer.TestFooter object at 0x7f2ee8980510>.footer",
+  "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f2ee8980510>\nfooter_open = <pages.footer.FooterPage object at 0x7f2ee8984cd0>\nurl = 'https://front.pwave.pnpl.tech/auth/signup'\n\n    @allure.title(f\"Проверка года © PulseWave, {footer.YEAR_COOPERATION} в хедере\")\n    @pytest.mark.xfail(reason='Нет решения о смене года в футере')\n    @pytest.mark.parametrize('url', footer.PAGES)\n    @pytest.mark.smoke\n    def test_get_year_cooperation(self, footer_open, url):\n        year = int(footer_open.get_footer_cooperation().text[-4:])\n        with allure.step(f\"Проверить актуальность года элемента '{self.footer.TEXT_COOPERATION}'\"):\n>           assert year == self.footer.YEAR_COOPERATION, f\"Пора поменять год '{year}', \\\n                уже '{self.footer.YEAR_COOPERATION}'\"\nE           AssertionError: Пора поменять год '2023',                 уже '2024'\nE           assert 2023 == 2024\nE            +  where 2024 = <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10>.YEAR_COOPERATION\nE            +    where <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10> = <tests.test_footer.test_footer.TestFooter object at 0x7f2ee8980510>.footer\n\ntests/test_footer/test_footer.py:58: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1704295854744,
+      "stop" : 1704295854815,
+      "duration" : 71
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1704295854815,
+      "stop" : 1704295854815,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1704295990952,
+      "stop" : 1704295991617,
+      "duration" : 665
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "footer_open",
+    "time" : {
+      "start" : 1704295991618,
+      "stop" : 1704295992906,
+      "duration" : 1288
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка перехода по ссылке для просмотра информации о файлах cookie на Главной странице",
+      "time" : {
+        "start" : 1704295992843,
+        "stop" : 1704295992906,
+        "duration" : 63
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL Нет решения о смене года в футере\n\nAssertionError: Пора поменять год '2023',                 уже '2024'\nassert 2023 == 2024\n +  where 2024 = <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10>.YEAR_COOPERATION\n +    where <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10> = <tests.test_footer.test_footer.TestFooter object at 0x7f2ee8980510>.footer",
+    "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f2ee8980510>\nfooter_open = <pages.footer.FooterPage object at 0x7f2ee8984cd0>\nurl = 'https://front.pwave.pnpl.tech/auth/signup'\n\n    @allure.title(f\"Проверка года © PulseWave, {footer.YEAR_COOPERATION} в хедере\")\n    @pytest.mark.xfail(reason='Нет решения о смене года в футере')\n    @pytest.mark.parametrize('url', footer.PAGES)\n    @pytest.mark.smoke\n    def test_get_year_cooperation(self, footer_open, url):\n        year = int(footer_open.get_footer_cooperation().text[-4:])\n        with allure.step(f\"Проверить актуальность года элемента '{self.footer.TEXT_COOPERATION}'\"):\n>           assert year == self.footer.YEAR_COOPERATION, f\"Пора поменять год '{year}', \\\n                уже '{self.footer.YEAR_COOPERATION}'\"\nE           AssertionError: Пора поменять год '2023',                 уже '2024'\nE           assert 2023 == 2024\nE            +  where 2024 = <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10>.YEAR_COOPERATION\nE            +    where <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10> = <tests.test_footer.test_footer.TestFooter object at 0x7f2ee8980510>.footer\n\ntests/test_footer/test_footer.py:58: AssertionError",
+    "steps" : [ {
+      "name" : "Получить элемент '© PulseWave, 2023' в футере",
+      "time" : {
+        "start" : 1704295992906,
+        "stop" : 1704295992931,
+        "duration" : 25
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Проверить актуальность года элемента '© PulseWave, 2023'",
+      "time" : {
+        "start" : 1704295992940,
+        "stop" : 1704295992940,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Пора поменять год '2023',                 уже '2024'\nassert 2023 == 2024\n +  where 2024 = <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10>.YEAR_COOPERATION\n +    where <tests.test_footer.constant.FooterConstant object at 0x7f2ee7cfdd10> = <tests.test_footer.test_footer.TestFooter object at 0x7f2ee8980510>.footer\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/tests/test_footer/test_footer.py\", line 58, in test_get_year_cooperation\n    assert year == self.footer.YEAR_COOPERATION, f\"Пора поменять год '{year}', \\\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "47710efa7ca48c28",
+      "name" : "Screenshot",
+      "source" : "47710efa7ca48c28.png",
+      "type" : "image/png",
+      "size" : 85983
+    }, {
+      "uid" : "f24ab40360acfbc",
+      "name" : "HTML source",
+      "source" : "f24ab40360acfbc.html",
+      "type" : "text/html",
+      "size" : 77579
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1704295992995,
+      "stop" : 1704295993052,
+      "duration" : 57
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Футера"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(reason='Нет решения о смене года в футере')"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_footer"
+  }, {
+    "name" : "suite",
+    "value" : "test_footer"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestFooter"
+  }, {
+    "name" : "host",
+    "value" : "fv-az775-694"
+  }, {
+    "name" : "thread",
+    "value" : "2214-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_footer.test_footer"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "url",
+    "value" : "'https://front.pwave.pnpl.tech/auth/signup'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 3,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "93958bb220574af5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/138//#testresult/93958bb220574af5",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL Нет решения о смене года в футере\n\nAssertionError: Пора поменять год '2023',                 уже '2024'\nassert 2023 == 2024\n +  where 2024 = <tests.test_footer.constant.FooterConstant object at 0x7fcb955da410>.YEAR_COOPERATION\n +    where <tests.test_footer.constant.FooterConstant object at 0x7fcb955da410> = <tests.test_footer.test_footer.TestFooter object at 0x7fcb95464ed0>.footer",
+        "time" : {
+          "start" : 1704199018298,
+          "stop" : 1704199018333,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "fb25823043716f1a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/137//#testresult/fb25823043716f1a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL Нет решения о смене года в футере\n\nAssertionError: Пора поменять год '2023',                 уже '2024'\nassert 2023 == 2024\n +  where 2024 = <tests.test_footer.constant.FooterConstant object at 0x7fac4fea08d0>.YEAR_COOPERATION\n +    where <tests.test_footer.constant.FooterConstant object at 0x7fac4fea08d0> = <tests.test_footer.test_footer.TestFooter object at 0x7fac4fcde210>.footer",
+        "time" : {
+          "start" : 1704196727680,
+          "stop" : 1704196727718,
+          "duration" : 38
+        }
+      } ]
+    },
+    "tags" : [ "smoke", "@pytest.mark.xfail(reason='Нет решения о смене года в футере')" ]
+  },
+  "source" : "697cdf02da42085a.json",
+  "parameterValues" : [ "'https://front.pwave.pnpl.tech/auth/signup'" ]
+}
