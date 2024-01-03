@@ -1,4 +1,4 @@
-from data import email_auth, password0, incorrect_email, email2
+from data import email_auth, password0, email2
 from locators.login_locators import LoginPageLocators
 from pages.base_page import BasePage
 import allure

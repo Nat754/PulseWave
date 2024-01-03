@@ -18,4 +18,4 @@ class FooterConstant:
         ('color', 'rgba(16, 16, 18, 1)', 'цвета шрифта'),
         ('font-family', 'Mulish, sans-serif', 'шрифта')
     ]
-    PAGES = [Constant.MAIN_PAGE, Constant.LOGIN_PAGE, Constant.SIGNUP_PAGE]
+    PAGES = [Constant.MAIN_PAGE, Constant.LOGIN_PAGE, Constant.SIGNUP_PAGE, Constant.PASSWORD_RECOVERY]
