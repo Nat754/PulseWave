@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from data import email1, email2, password0
 
 
@@ -13,6 +15,7 @@ class ApiConstant:
 
     BASE_URL = "https://api.pwave.pnpl.tech/"
     MAIL_URL = 'https://mail.ru/'
+
     CREATE_USER = {
       "subscriber": "true",
       "email": email1,
@@ -66,7 +69,7 @@ class ApiConstant:
 
     CREATE_TASK = {
         "name": "string",
-        "deadline": "2023-12-22",
+        "deadline": f"{datetime.now().date()}",
         "description": "string",
         "priority": 0,
         "color_mark": "string",
@@ -80,11 +83,23 @@ class ApiConstant:
       "responsible": [
         0
       ],
-      "deadline": "2023-12-23",
+      "deadline": f"{datetime.now().date()}",
       "description": "string",
       "priority": 0,
       "color_mark": "string",
       "name_mark": "string"
+    }
+
+    PUT_TASK = {
+        "name": "string",
+        "index": 2147483647,
+        "column": 0,
+        "responsible": [
+          0
+        ],
+        "deadline": f"{datetime.now().date()}",
+        "description": "string",
+        "priority": 0
     }
 
     PATCH_TASK = {
@@ -92,7 +107,7 @@ class ApiConstant:
         "index": 2147483647,
         "column": 0,
         "responsible": [0],
-        "deadline": "2023-12-23",
+        "deadline": f"{datetime.now().date()}",
         "description": "string",
         "priority": 0,
         "color_mark": "string",

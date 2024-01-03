@@ -1,5 +1,6 @@
 import imaplib
 import os
+import random
 
 import allure
 import requests
@@ -117,17 +118,18 @@ class ApiBase:
             board_id = self.get_board_id()
             url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-            column_id = response.json()[0]['id']
-            return column_id
+            columns_id = [i['id'] for i in response.json()]
+            return columns_id
 
     def get_column_task_id(self):
         with allure.step("Получить id задачи"):
             jwt = self.create_jwt(email1, password0)
-            column_id = self.get_board_column_id()
+            columns_id = self.get_board_column_id()
+            column_id = columns_id[random.randint(0, len(columns_id)) - 1]
             url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
             task_id = response.json()[0]['id']
-            return task_id
+            return column_id, task_id
 
     def get_workspace_id(self):
         with allure.step("Получить id рабочего пространства"):

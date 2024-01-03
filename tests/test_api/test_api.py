@@ -1,3 +1,4 @@
+import random
 import time
 import requests
 import allure
@@ -127,7 +128,8 @@ class TestAPI:
     def test_put_api_boards_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()
-        column_id = use_api_base.get_board_column_id()
+        columns_id = use_api_base.get_board_column_id()
+        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
@@ -138,7 +140,8 @@ class TestAPI:
     def test_patch_api_boards_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()
-        column_id = use_api_base.get_board_column_id()
+        columns_id = use_api_base.get_board_column_id()
+        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
@@ -149,7 +152,8 @@ class TestAPI:
     def test_get_api_board_column_info(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()
-        column_id = use_api_base.get_board_column_id()
+        columns_id = use_api_base.get_board_column_id()
+        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
@@ -159,7 +163,7 @@ class TestAPI:
     @allure.title("POST Создать задачу")
     def test_post_column_task_create(self, use_api_base):
         """
-        responsible: Список ответсвенны пользователей. Передается массивом из id,например {"responsible": [1,2,3]}
+        responsible: Список ответственных пользователей. Передается массивом из id,например {"responsible": [1,2,3]}
         deadline: Срок выполнения задачи
         description: Описание
         priority: Приоритет, число от 0 до 3, где 0 - высочайший приоритет
@@ -167,7 +171,9 @@ class TestAPI:
         name_mark: Название метки
         """
         jwt = use_api_base.create_jwt(email1, password0)
-        column_id = use_api_base.get_board_column_id()
+        columns_id = use_api_base.get_board_column_id()
+        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
+        print(columns_id, column_id)
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.CREATE_TASK)
@@ -178,7 +184,8 @@ class TestAPI:
     @allure.title("GET Список всех задач колонки")
     def test_get_column_tasks(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        column_id = use_api_base.get_board_column_id()
+        columns_id = use_api_base.get_board_column_id()
+        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
@@ -188,19 +195,45 @@ class TestAPI:
     @allure.title("GET Информация о конкретной задаче")
     def test_get_column_task_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        column_id = use_api_base.get_board_column_id()
-        task_id = use_api_base.get_column_task_id()
+        column_id, task_id = use_api_base.get_column_task_id()
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                         actual status {response.status_code}"
 
+    @allure.title("PUT Обновить задачу")
+    def test_put_column_task_id(self, use_api_base):
+        """Для перемещения между колонок нужно передать column - id новой колонки и index - куда ее вставить"""
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
+        response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                json={"name": "name", "index": 0, "column": f"{column_id}",
+                                      "responsible": [f'{use_api_base.get_auth_user_id()}']})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                            actual status {response.status_code}"
+
+    @allure.title("PATCH Частично обновить задачу")
+    def test_patch_column_task_id(self, use_api_base):
+        """Перемещение между колонками возможно только PUT запросом"""
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
+        response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                  json={"name": "name", "index": 0, "column": f"{column_id}",
+                                        "responsible": [f'{use_api_base.get_auth_user_id()}']})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                                actual status {response.status_code}"
+
     @allure.title("DELETE Удалить колонку")
     def test_delete_api_board_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()
-        column_id = use_api_base.get_board_column_id()
+        columns_id = use_api_base.get_board_column_id()
+        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_204}"):
