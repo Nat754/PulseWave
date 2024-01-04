@@ -15,3 +15,12 @@ class TestLoginPage:
     def test_get_title_recovery(self, recovery_page_open):
         title = recovery_page_open.get_title_recovery().text
         assert title == self.recovery.RECOVERY_PAGE_TITLE, f'Неверный заголовок "{title}"'
+
+    @pytest.mark.parametrize('css_property, figma, name', recovery.CHECK_TITLE)
+    @pytest.mark.regress
+    def test_get_css_property_recovery_title(self, recovery_page_open, css_property, figma, name):
+        allure.dynamic.title(f"Проверка {name} заголовка '{self.recovery.RECOVERY_PAGE_TITLE}'")
+        element = recovery_page_open.get_title_recovery()
+        mean_css = element.value_of_css_property(css_property)
+        assert mean_css == figma, \
+            f"Не прошла проверка соответствия {name} заголовка '{self.recovery.RECOVERY_PAGE_TITLE}' макету"
