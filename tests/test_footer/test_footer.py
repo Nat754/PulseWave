@@ -28,12 +28,9 @@ class TestFooter:
     @pytest.mark.parametrize('url', footer.PAGES)
     def test_get_footer_link(self, footer_open, driver, url):
         allure.dynamic.title(f"Проверка перехода на страницу c лицензионным соглашением со страницы '{url}")
-        with allure.step(f"Получить текст ссылки '{self.footer.LICENSE_LINK}"):
-            text = footer_open.get_footer_license().text
-        with allure.step(f"Перейти по ссылке '{self.footer.LICENSE_LINK}"):
-            footer_open.get_footer_license().click()
-        with allure.step(f"Получить заголовок страницы'{driver.current_url}"):
-            title = footer_open.get_license_title().text
+        text = footer_open.get_footer_license().text
+        footer_open.get_footer_license().click()
+        title = footer_open.get_license_title().text
         assert text == self.footer.LICENSE_LINK, f"Неверный текст ссылки '{self.footer.LICENSE_LINK}"
         assert driver.current_url == self.const.TERMS_OF_SERVICE, \
             f"Произошел переход на страницу '{driver.current_url}'"

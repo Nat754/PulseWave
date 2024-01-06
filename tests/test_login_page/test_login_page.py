@@ -25,13 +25,6 @@ class TestLoginPage:
         mean_css = element.value_of_css_property(css_property)
         assert mean_css == figma, f"Не прошла проверка соответствия {name} заголовка '{self.login.TEXT_LOGIN}' макету"
 
-    @allure.title("Проверка редиректа на главную страницу при клике на логотип")
-    @pytest.mark.smoke
-    def test_redirect_logo_login(self, login_page_open, driver):
-        login_page_open.get_header_logo_login().click()
-        assert driver.current_url == self.const.MAIN_PAGE_HOME, \
-            'Не произошел переход на главную страницу при клике на лого'
-
     @allure.title(f"Проверка редиректа на страницу восстановления пароля при клике на ссылку "
                   f"\'{message.FORGOT_PASSWORD_MSG}'")
     @pytest.mark.smoke

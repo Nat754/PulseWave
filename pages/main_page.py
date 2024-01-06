@@ -10,18 +10,6 @@ class MainPage(BasePage):
     footer = FooterConstant
     locator = MainPageLocators
 
-    @allure.step("Проверка видимости логотипа в хедере")
-    def get_header_logo(self):
-        return self.element_is_visible(self.locator.LOGO)
-
-    @allure.step(f"Проверка видимости кнопки '{main.TEXT_LOGIN}' в хэдере")
-    def get_header_auth_login(self):
-        return self.element_is_visible(self.locator.AUTH_LOGIN)
-
-    @allure.step(f"Проверка видимости кнопки '{main.TEXT_SIGNUP_HEADER}' в хэдере")
-    def get_header_auth_signup(self):
-        return self.element_is_visible(self.locator.AUTH_SIGNUP)
-
     @allure.step(f"Проверка видимости кнопки '{main.TEXT_SIGNUP}' на главной странице")
     def get_body_auth_signup(self):
         return self.element_is_visible(self.locator.SIGNUP)

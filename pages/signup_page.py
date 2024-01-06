@@ -37,10 +37,6 @@ class SignUpPage(BasePage):
     def get_allow_all_cookies(self):
         return self.element_is_visible(self.locator.ALLOW_ALL_COOKIES)
 
-    @allure.step("Проверка видимости логотипа в хедере")
-    def get_header_logo_signup(self):
-        return self.element_is_visible(self.locator.LOGO)
-
     @allure.step(f"Видимость подсказки: '{message.PASSWORD_RULES_MSG}'")
     def check_password_rules_message(self):
         return self.element_is_visible(self.locator.PASSWORD_RULES)
