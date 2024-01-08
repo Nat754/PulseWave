@@ -15,6 +15,10 @@ class HeaderPage(BasePage):
     def get_header_logo(self):
         return self.element_is_visible(self.locator.LOGO)
 
+    @allure.step("Проверка некликабельности логотипа в хедере")
+    def get_header_logo_is_not_clickable(self):
+        return self.element_is_not_clickable(self.locator.LOGO)
+
     @allure.step(f"Проверка видимости кнопки '{header.TEXT_LOGIN}' в хэдере")
     def get_header_auth_login(self):
         return self.element_is_visible(self.locator.AUTH_LOGIN)

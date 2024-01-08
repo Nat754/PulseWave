@@ -17,3 +17,7 @@ class PasswordRecoveryPage(BasePage):
     @allure.step("Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie")
     def get_allow_all_cookies(self):
         return self.element_is_visible(self.locator.ALLOW_ALL_COOKIES)
+
+    @allure.step(f"Проверка некликабельности кнопки '{recovery.RESUME_BUTTON_TEXT}'")
+    def check_resume_button_is_not_clickable(self):
+        return self.element_is_not_clickable(self.locator.SUBMIT_BUTTON)

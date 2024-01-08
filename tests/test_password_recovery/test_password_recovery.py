@@ -24,3 +24,9 @@ class TestLoginPage:
         mean_css = element.value_of_css_property(css_property)
         assert mean_css == figma, \
             f"Не прошла проверка соответствия {name} заголовка '{self.recovery.RECOVERY_PAGE_TITLE}' макету"
+
+    @allure.title(f"Проверка некликабельности кнопки '{recovery.RESUME_BUTTON_TEXT}'")
+    @pytest.mark.regress
+    def test_check_resume_button_is_not_clickable_without_email(self, recovery_page_open):
+        assert recovery_page_open.check_resume_button_is_not_clickable(), \
+            f"Кликабельна кнопка '{self.recovery.RESUME_BUTTON_TEXT}' без заполнения поля емайл"

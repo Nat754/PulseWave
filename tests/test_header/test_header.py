@@ -13,12 +13,10 @@ class TestHeader:
     @allure.title("Проверка некликабельности логотипа на Главной странице")
     @pytest.mark.smoke
     def test_visibility_logo(self, header_open, driver, url):
-        try:
-            header_open.get_header_logo().click()
-        except AttributeError:
-            with (allure.step("Логотип некликабельный на Главной странице")):
-                assert driver.current_url == self.const.MAIN_PAGE_HOME, \
-                    'Произошел переход на другую страницу при клике на лого'
+        header_open.get_header_logo_is_not_clickable()
+        with ((allure.step("Логотип некликабельный на Главной странице"))):
+            assert driver.current_url == self.const.MAIN_PAGE_HOME, \
+              'Произошел переход на другую страницу при клике на лого'
 
     @pytest.mark.parametrize('url', [const.LOGIN_PAGE, const.SIGNUP_PAGE, const.PASSWORD_RECOVERY])
     @allure.title(f"Проверка редиректа на главную страницу при клике на логотип")
@@ -69,7 +67,7 @@ class TestHeader:
         allure.dynamic.title(f"Проверка {name} кнопки '{self.header.TEXT_LOGIN}' в хедере {url}")
         element = header_open.get_header_auth_login()
         mean_css = element.value_of_css_property(css_property)
-        with allure.step(f"Соответствует макету {name} кнопки '{self.header.TEXT_LOGIN}'"):
+        with allure.step(f"Прошла проверка соответствия {name} кнопки '{self.header.TEXT_LOGIN}' макету"):
             assert mean_css == figma, f"Не прошла проверка соответствия {name} кнопки '{self.header.TEXT_LOGIN}' макету"
 
     @pytest.mark.parametrize('url', [const.MAIN_PAGE_HOME, const.LOGIN_PAGE, const.PASSWORD_RECOVERY])
@@ -79,6 +77,6 @@ class TestHeader:
         allure.dynamic.title(f"Проверка {name} кнопки '{self.header.TEXT_SIGNUP} в хедере {url}'")
         element = header_open.get_header_auth_login()
         mean_css = element.value_of_css_property(css_property)
-        with allure.step(f"Соответствует макету {name} кнопки '{self.header.TEXT_SIGNUP}'"):
+        with allure.step(f"Прошла проверка соответствия {name} кнопки '{self.header.TEXT_SIGNUP}' макету"):
             assert mean_css == figma, \
                 f"Не прошла проверка соответствия {name} кнопки '{self.header.TEXT_SIGNUP}' макету"
