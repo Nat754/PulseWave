@@ -125,10 +125,13 @@ class ApiBase:
         with allure.step("Получить id задачи"):
             jwt = self.create_jwt(email1, password0)
             columns_id = self.get_board_column_id()
-            column_id = columns_id[random.randint(0, len(columns_id)) - 1]
+            k = (len(columns_id) - 1 if len(columns_id) else 0)
+            column_id = columns_id[random.randint(0, k)]
+
             url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
-            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-            task_id = response.json()[0]['id']
+            response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                     json=ApiConstant.CREATE_TASK)
+            task_id = response.json()['id']
             return column_id, task_id
 
     def get_workspace_id(self):

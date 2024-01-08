@@ -129,7 +129,8 @@ class TestAPI:
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()
         columns_id = use_api_base.get_board_column_id()
-        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
+        k = (len(columns_id) - 1 if len(columns_id) else 0)
+        column_id = columns_id[random.randint(0, k)]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
@@ -141,7 +142,8 @@ class TestAPI:
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()
         columns_id = use_api_base.get_board_column_id()
-        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
+        k = (len(columns_id) - 1 if len(columns_id) else 0)
+        column_id = columns_id[random.randint(0, k)]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
@@ -153,7 +155,8 @@ class TestAPI:
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()
         columns_id = use_api_base.get_board_column_id()
-        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
+        k = (len(columns_id) - 1 if len(columns_id) else 0)
+        column_id = columns_id[random.randint(0, k)]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
@@ -172,7 +175,8 @@ class TestAPI:
         """
         jwt = use_api_base.create_jwt(email1, password0)
         columns_id = use_api_base.get_board_column_id()
-        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
+        k = (len(columns_id) - 1 if len(columns_id) else 0)
+        column_id = columns_id[random.randint(0, k)]
         print(columns_id, column_id)
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
@@ -185,7 +189,8 @@ class TestAPI:
     def test_get_column_tasks(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         columns_id = use_api_base.get_board_column_id()
-        column_id = columns_id[random.randint(0, len(columns_id)) - 1]
+        k = (len(columns_id) - 1 if len(columns_id) else 0)
+        column_id = columns_id[random.randint(0, k)]
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
@@ -211,6 +216,7 @@ class TestAPI:
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                 json={"name": "name", "index": 0, "column": f"{column_id}",
                                       "responsible": [f'{use_api_base.get_auth_user_id()}']})
+        print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                             actual status {response.status_code}"
@@ -252,7 +258,7 @@ class TestAPI:
 
     @allure.title("POST index fixed")
     def test_post_api_index_fixed(self):
-        url = f'{self.constant.BASE_URL}api/index_fixed'
+        url = f'{self.constant.BASE_URL}api/index_fixed/'
         response = requests.post(url)
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, \
