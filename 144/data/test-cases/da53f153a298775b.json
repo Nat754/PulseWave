@@ -1,0 +1,232 @@
+{
+  "uid" : "da53f153a298775b",
+  "name" : "PUT Обновить задачу",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_put_column_task_id",
+  "historyId" : "5af89794b642ed4580dd4b745d0b044a",
+  "time" : {
+    "start" : 1704734698915,
+    "stop" : 1704734703002,
+    "duration" : 4087
+  },
+  "description" : "Для перемещения между колонок нужно передать column - id новой колонки и index - куда ее вставить",
+  "descriptionHtml" : "<p>Для перемещения между колонок нужно передать column - id новой колонки и index - куда ее вставить</p>\n",
+  "status" : "broken",
+  "statusMessage" : "IndexError: list index out of range",
+  "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f89e2e8ea10>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f89e2ec4410>\n\n    @allure.title(\"PUT Обновить задачу\")\n    def test_put_column_task_id(self, use_api_base):\n        \"\"\"Для перемещения между колонок нужно передать column - id новой колонки и index - куда ее вставить\"\"\"\n        jwt = use_api_base.create_jwt(email1, password0)\n>       column_id, task_id = use_api_base.get_column_task_id()\n\ntests/test_api/test_api.py:209: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <api_testing.api_base.ApiBase object at 0x7f89e2ec4410>\n\n    def get_column_task_id(self):\n        with allure.step(\"Получить id задачи\"):\n            jwt = self.create_jwt(email1, password0)\n            columns_id = self.get_board_column_id()\n            column_id = columns_id[random.randint(0, len(columns_id)) - 1]\n            url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'\n            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f\"\"\"{jwt}\"\"\"})\n>           task_id = response.json()[0]['id']\nE           IndexError: list index out of range\n\napi_testing/api_base.py:131: IndexError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1704734647354,
+      "stop" : 1704734647437,
+      "duration" : 83
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1704734647437,
+      "stop" : 1704734647437,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1704734698915,
+      "stop" : 1704734698915,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "Для перемещения между колонок нужно передать column - id новой колонки и index - куда ее вставить",
+    "status" : "broken",
+    "statusMessage" : "IndexError: list index out of range",
+    "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f89e2e8ea10>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f89e2ec4410>\n\n    @allure.title(\"PUT Обновить задачу\")\n    def test_put_column_task_id(self, use_api_base):\n        \"\"\"Для перемещения между колонок нужно передать column - id новой колонки и index - куда ее вставить\"\"\"\n        jwt = use_api_base.create_jwt(email1, password0)\n>       column_id, task_id = use_api_base.get_column_task_id()\n\ntests/test_api/test_api.py:209: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <api_testing.api_base.ApiBase object at 0x7f89e2ec4410>\n\n    def get_column_task_id(self):\n        with allure.step(\"Получить id задачи\"):\n            jwt = self.create_jwt(email1, password0)\n            columns_id = self.get_board_column_id()\n            column_id = columns_id[random.randint(0, len(columns_id)) - 1]\n            url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'\n            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f\"\"\"{jwt}\"\"\"})\n>           task_id = response.json()[0]['id']\nE           IndexError: list index out of range\n\napi_testing/api_base.py:131: IndexError",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя на емайл",
+      "time" : {
+        "start" : 1704734698915,
+        "stop" : 1704734699499,
+        "duration" : 584
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Получить id задачи",
+      "time" : {
+        "start" : 1704734699500,
+        "stop" : 1704734703001,
+        "duration" : 3501
+      },
+      "status" : "broken",
+      "statusMessage" : "IndexError: list index out of range\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/api_base.py\", line 131, in get_column_task_id\n    task_id = response.json()[0]['id']\n              ~~~~~~~~~~~~~~~^^^\n",
+      "steps" : [ {
+        "name" : "Получить access токен пользователя на емайл",
+        "time" : {
+          "start" : 1704734699500,
+          "stop" : 1704734700079,
+          "duration" : 579
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Получить id колонки",
+        "time" : {
+          "start" : 1704734700080,
+          "stop" : 1704734702594,
+          "duration" : 2514
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Получить access токен пользователя на емайл",
+          "time" : {
+            "start" : 1704734700080,
+            "stop" : 1704734700669,
+            "duration" : 589
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Получить id доски",
+          "time" : {
+            "start" : 1704734700670,
+            "stop" : 1704734702182,
+            "duration" : 1512
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Получить access токен пользователя на емайл",
+            "time" : {
+              "start" : 1704734700670,
+              "stop" : 1704734701255,
+              "duration" : 585
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 3,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 5,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 7,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1391-759"
+  }, {
+    "name" : "thread",
+    "value" : "2200-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "da53f153a298775b.json",
+  "parameterValues" : [ ]
+}
