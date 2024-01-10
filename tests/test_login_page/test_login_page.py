@@ -1,6 +1,8 @@
 import time
 import allure
 import pytest
+
+from data import email_auth, email2, password0
 from tests.constant import Constant, Messages
 from tests.test_login_page.login_constant import LoginConstant
 
@@ -36,8 +38,10 @@ class TestLoginPage:
     @allure.title("Авторизация с корректными данными")
     @pytest.mark.smoke
     def test_login(self, login_page_open, driver):
-        login_page_open.input_e_mail()
-        login_page_open.input_password()
+        with allure.step('Ввести в поле емайл корректные данные'):
+            login_page_open.input_email(email_auth)
+        with allure.step('Ввести в поле пароль корректные данные'):
+            login_page_open.input_password(password0)
         login_page_open.click_submit()
         time.sleep(3)
         assert driver.current_url == self.const.WORKSPACE, 'Не прошла авторизация с корректными данными'
@@ -45,8 +49,10 @@ class TestLoginPage:
     @allure.title("Авторизация с некорректным паролем")
     @pytest.mark.smoke
     def test_login_wrong_password(self, login_page_open):
-        login_page_open.input_e_mail()
-        login_page_open.input_wrong_password()
+        with allure.step('Ввести в поле емайл корректные данные'):
+            login_page_open.input_email(email_auth)
+        with allure.step('Ввести в поле пароль некорректные данные'):
+            login_page_open.input_password('password')
         login_page_open.click_submit()
         element = login_page_open.check_wrong_password_message()
         with allure.step(f'Проверить текст сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
@@ -80,8 +86,10 @@ class TestLoginPage:
     @allure.title("Авторизация с некорректным емайл")
     @pytest.mark.smoke
     def test_login_not_auth_email(self, login_page_open):
-        login_page_open.input_not_auth_email()
-        login_page_open.input_password()
+        with allure.step('Ввести в поле емайл некорректные данные'):
+            login_page_open.input_email(email2)
+        with allure.step('Ввести в поле пароль корректные данные'):
+            login_page_open.input_password(password0)
         login_page_open.click_submit()
         element = login_page_open.check_wrong_password_message()
         with allure.step(f'Проверить текст сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
@@ -90,13 +98,16 @@ class TestLoginPage:
     @allure.title("Авторизация с пустым емайл")
     @pytest.mark.smoke
     def test_login_without_email(self, login_page_open):
-        login_page_open.empty_email()
-        login_page_open.input_password()
+        with allure.step('Оставить поле e-mail пустым'):
+            login_page_open.input_email('')
+        with (allure.step('Ввести в поле пароль корректные данные')
+              ):login_page_open.input_password(password0)
         assert login_page_open.button_login_not_active(), 'Нет проверки на заполнение обязательного поля емайл'
 
     @allure.title("Авторизация с пустым паролем")
     @pytest.mark.smoke
     def test_login_without_password(self, login_page_open):
-        login_page_open.input_e_mail()
-        login_page_open.empty_password()
+        with allure.step('Ввести в поле емайл корректные данные'):
+            login_page_open.input_email(email_auth)
+        login_page_open.input_password('')
         assert login_page_open.button_login_not_active(), 'Нет проверки на заполнение обязательного поля пароль'

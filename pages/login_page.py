@@ -1,4 +1,3 @@
-from data import email_auth, password0, email2
 from locators.login_locators import LoginPageLocators
 from pages.base_page import BasePage
 import allure
@@ -19,37 +18,16 @@ class LoginPage(BasePage):
     def get_allow_all_cookies(self):
         return self.element_is_visible(self.locator.ALLOW_ALL_COOKIES)
 
-    @allure.step("Проверка видимости логотипа в хедере")
-    def get_header_logo_login(self):
-        return self.element_is_visible(self.locator.LOGO)
-
-    @allure.step("Ввести в поле e-mail корректные данные")
-    def input_e_mail(self):
-        return self.element_is_visible(self.locator.EMAIL).send_keys(email_auth)
-
-    @allure.step("Ввести в поле e-mail некорректные данные")
-    def input_not_auth_email(self):
-        return self.element_is_visible(self.locator.EMAIL).send_keys(email2)
-
-    @allure.step("Оставить поле e-mail пустым")
-    def empty_email(self):
-        return self.element_is_visible(self.locator.EMAIL).send_keys('')
+    def input_email(self, email):
+        return self.element_is_visible(self.locator.EMAIL).send_keys(email)
 
     @allure.step("Ввести в поле пароль сильный пароль")
-    def input_password(self):
-        return self.element_is_visible(self.locator.PASSWORD).send_keys(password0)
-
-    @allure.step("Оставить поле пароль пустым")
-    def empty_password(self):
-        return self.element_is_visible(self.locator.PASSWORD).send_keys('')
+    def input_password(self, password):
+        return self.element_is_visible(self.locator.PASSWORD).send_keys(password)
 
     @allure.step(f"Нажать кнопку '{login.TEXT_LOGIN}'")
     def click_submit(self):
         return self.element_is_clickable(self.locator.SUBMIT).click()
-
-    @allure.step("Ввести в поле пароль некорректный пароль")
-    def input_wrong_password(self):
-        return self.element_is_visible(self.locator.PASSWORD).send_keys('password')
 
     @allure.step(f"Высветилась ошибка: '{message.WRONG_PASSWORD_MSG}'")
     def check_wrong_password_message(self):
