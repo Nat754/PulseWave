@@ -1,5 +1,9 @@
+import time
+
 import allure
 import pytest
+
+from data import email_auth
 from tests.constant import Constant, Messages
 from tests.test_password_recovery.constant import PasswordRecoveryConstant
 
@@ -30,3 +34,12 @@ class TestLoginPage:
     def test_check_resume_button_is_not_clickable_without_email(self, recovery_page_open):
         assert recovery_page_open.check_resume_button_is_not_clickable(), \
             f"Кликабельна кнопка '{self.recovery.RESUME_BUTTON_TEXT}' без заполнения поля емайл"
+
+    @allure.title("Восстановить пароль на корректный емайл")
+    @pytest.mark.regress
+    def test_fill_correct_email(self, recovery_page_open):
+        recovery_page_open.fill_email_to_recovery_password(email_auth)
+        recovery_page_open.click_resume_button()
+        text = recovery_page_open.get_message_text()
+        assert text == f'{self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}', \
+            f"ОР: {self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}, ФР: {text}"

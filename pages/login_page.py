@@ -21,7 +21,6 @@ class LoginPage(BasePage):
     def input_email(self, email):
         return self.element_is_visible(self.locator.EMAIL).send_keys(email)
 
-    @allure.step("Ввести в поле пароль сильный пароль")
     def input_password(self, password):
         return self.element_is_visible(self.locator.PASSWORD).send_keys(password)
 
@@ -40,3 +39,4 @@ class LoginPage(BasePage):
     @allure.step(f"Проверка неактивности кнопки '{login.TEXT_LOGIN}'")
     def button_login_not_active(self):
         return self.element_is_not_clickable(self.locator.SUBMIT)
+

@@ -100,8 +100,8 @@ class TestLoginPage:
     def test_login_without_email(self, login_page_open):
         with allure.step('Оставить поле e-mail пустым'):
             login_page_open.input_email('')
-        with (allure.step('Ввести в поле пароль корректные данные')
-              ):login_page_open.input_password(password0)
+        with allure.step('Ввести в поле пароль корректные данные'):
+            login_page_open.input_password(password0)
         assert login_page_open.button_login_not_active(), 'Нет проверки на заполнение обязательного поля емайл'
 
     @allure.title("Авторизация с пустым паролем")
