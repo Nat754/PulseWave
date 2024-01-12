@@ -8,3 +8,5 @@ class PasswordRecoveryLocators:
     SUBMIT_BUTTON = (By.XPATH, '//button[@type="submit"]')
     INPUT_EMAIL = (By.CLASS_NAME, 'input')
     MESSAGE_SENT_EMAIL = (By.CSS_SELECTOR, '.auth p')
+    INPUT_PASSWORD = (By.XPATH, '(//input[@type="password"])[1]')
+    INPUT_CONFIRM_PASSWORD = (By.XPATH, '(//input[@type="password"])[2]')

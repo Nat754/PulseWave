@@ -2,13 +2,14 @@ from locators.login_locators import LoginPageLocators
 from pages.base_page import BasePage
 import allure
 from tests.test_login_page.login_constant import LoginConstant
-from tests.constant import Messages
+from tests.constant import Messages, Constant
 
 
 class LoginPage(BasePage):
     login = LoginConstant
     locator = LoginPageLocators
     message = Messages
+    const = Constant
 
     @allure.step(f"Проверка видимости заголовка {login.TEXT_LOGIN}")
     def get_title_login(self):
@@ -40,3 +41,6 @@ class LoginPage(BasePage):
     def button_login_not_active(self):
         return self.element_is_not_clickable(self.locator.SUBMIT)
 
+    @allure.step('Ждать обновление страницы')
+    def check_changed_url_login(self):
+        return self.wait_changed_url(self.const.LOGIN_PAGE)

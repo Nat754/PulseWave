@@ -43,7 +43,7 @@ class TestLoginPage:
         with allure.step('Ввести в поле пароль корректные данные'):
             login_page_open.input_password(password0)
         login_page_open.click_submit()
-        time.sleep(3)
+        login_page_open.check_changed_url_login()
         assert driver.current_url == self.const.WORKSPACE, 'Не прошла авторизация с корректными данными'
 
     @allure.title("Авторизация с некорректным паролем")

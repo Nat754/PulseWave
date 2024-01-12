@@ -242,9 +242,9 @@ class TestAPI:
         column_id = columns_id[random.randint(0, len(columns_id)) - 1]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                    actual status {response.status_code}"
+        with allure.step(f"Expected status {self.code.STATUS_204}"):
+            assert response.status_code == self.code.STATUS_204, (f"ОР: {self.code.STATUS_204}, "
+                                                                  f"ФР: {response.status_code}")
 
     @allure.title("POST Создать Рабочее пространство")
     def test_post_api_workspace(self, use_api_base):

@@ -131,7 +131,7 @@ class ApiBase:
             url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json=ApiConstant.CREATE_TASK)
-            task_id = response.json()[0]['id']
+            task_id = response.json()['id']
             return column_id, task_id
 
     def get_workspace_id(self):
