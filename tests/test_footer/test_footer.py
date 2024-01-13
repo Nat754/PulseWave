@@ -46,7 +46,6 @@ class TestFooter:
         assert link == self.footer.EMAIL_TEXT_HOVER, f"Неверный вызов '{link}'"
 
     @allure.title(f"Проверка года © PulseWave, {footer.YEAR_COOPERATION} в хедере")
-    @pytest.mark.xfail(reason='Нет решения о смене года в футере')
     @pytest.mark.parametrize('url', footer.PAGES)
     @pytest.mark.smoke
     def test_get_year_cooperation(self, footer_open, url):
