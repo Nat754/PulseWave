@@ -23,7 +23,7 @@ class SignUpLocators:
     BUTTON_AVATAR = (By.CLASS_NAME, 'avatar__button')
     PROFILE_SETTINGS = (By.XPATH, '(//div[@class="nav__item"])[1]')
     DELETE_PROFILE = (By.XPATH, '//span[text()="Удалить профиль"]')
-    CONFIRM_PASSWORD = (By.XPATH, '(//input[@type="password"])[1]')
+    CONFIRM_PASSWORD = (By.XPATH, '(//input[@class="input"])[2]')
     DELETE_BUTTON = (By.CSS_SELECTOR, 'button[type="submit"]')
     DELETE_MESSAGE = (By.XPATH, '//p[@class="text"]')
     AGREE_RADIO_BUTTON = (By.CSS_SELECTOR, 'for="myCheckbox"')
