@@ -19,7 +19,7 @@ class TestHeader:
               'Произошел переход на другую страницу при клике на лого'
 
     @pytest.mark.parametrize('url', [const.LOGIN_PAGE, const.SIGNUP_PAGE, const.PASSWORD_RECOVERY])
-    @allure.title(f"Проверка редиректа на главную страницу при клике на логотип")
+    @allure.title(f"1.13 Проверка редиректа на главную страницу при клике на логотип")
     @pytest.mark.smoke
     def test_redirect_logo_login(self, header_open, driver, url):
         header_open.get_header_logo().click()
@@ -53,7 +53,7 @@ class TestHeader:
             assert driver.current_url == self.const.LOGIN_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
     @pytest.mark.parametrize('url', [const.MAIN_PAGE_HOME, const.LOGIN_PAGE, const.PASSWORD_RECOVERY])
-    @allure.title(f"Проверка перехода на страницу '{const.SIGNUP_PAGE}' по кнопке '{header.TEXT_SIGNUP}'")
+    @allure.title(f"1.2 Проверка перехода на страницу '{const.SIGNUP_PAGE}' по кнопке '{header.TEXT_SIGNUP}'")
     @pytest.mark.smoke
     def test_get_header_auth_signup(self, header_open, driver, url):
         header_open.get_header_auth_signup().click()

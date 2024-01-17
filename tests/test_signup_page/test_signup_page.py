@@ -15,7 +15,7 @@ class TestSignupPage:
     msg = Messages
     base = BasePage
 
-    @allure.title(f"Проверка текста заголовка '{signup.TEXT_SIGNUP}'")
+    @allure.title(f"1.16 Проверка текста заголовка '{signup.TEXT_SIGNUP}'")
     @pytest.mark.regress
     def test_get_title_signup(self, signup_page_open):
         title = signup_page_open.get_title_login().text
@@ -24,12 +24,12 @@ class TestSignupPage:
     @pytest.mark.parametrize('css_property, figma, name', signup.CHECK_TITLE)
     @pytest.mark.regress
     def test_get_css_property_title_signup(self, signup_page_open, css_property, figma, name):
-        allure.dynamic.title(f"Проверка {name} заголовка '{self.signup.TEXT_SIGNUP}'")
+        allure.dynamic.title(f"1.17-1.19 Проверка {name} заголовка '{self.signup.TEXT_SIGNUP}'")
         element = signup_page_open.get_title_login()
         mean_css = element.value_of_css_property(css_property)
         assert mean_css == figma, f"Не прошла проверка соответствия {name} заголовка '{self.signup.TEXT_SIGNUP}' макету"
 
-    @allure.title(f"Окно регистрации сообщение '{msg.PASSWORD_RULES_MSG}'")
+    @allure.title(f"1.20 Окно регистрации сообщение '{msg.PASSWORD_RULES_MSG}'")
     @pytest.mark.smoke
     def test_signup_message_password_rules(self, signup_page_open):
         element = signup_page_open.check_password_rules_message()
@@ -46,7 +46,7 @@ class TestSignupPage:
             assert element.value_of_css_property('font-family') == self.signup.PASSWORD_RULES_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
-    @allure.title(f"Окно регистрации сообщение '{msg.PULSEWAVE_POLICY_MSG}'")
+    @allure.title(f"1.27 Окно регистрации сообщение '{msg.PULSEWAVE_POLICY_MSG}'")
     @pytest.mark.smoke
     def test_signup_message_pulsewave_policy(self, signup_page_open):
         element = signup_page_open.check_pulsewave_policy_message()
@@ -63,7 +63,7 @@ class TestSignupPage:
             assert element.value_of_css_property('font-family') == self.signup.PULSEWAVE_POLICY_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
-    @allure.title(f"Окно регистрации сообщение '{msg.AGREEMENT_MSG}'")
+    @allure.title(f"1.28 Окно регистрации сообщение '{msg.AGREEMENT_MSG}'")
     @pytest.mark.smoke
     def test_signup_message_agreement(self, signup_page_open):
         element = signup_page_open.check_agreement_message()
@@ -79,7 +79,7 @@ class TestSignupPage:
             assert element.value_of_css_property('font-family') == self.signup.AGREEMENT_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
-    @allure.title(f"Окно регистрации сообщение '{msg.AGREEMENT_MSG}', проверка корректности перехода по ссылке "
+    @allure.title(f"1.30 Окно регистрации сообщение '{msg.AGREEMENT_MSG}', проверка корректности перехода по ссылке "
                   f"'{msg.AGREEMENT_MSG[30:51]}'")
     @pytest.mark.smoke
     def test_check_redirect_to_terms_of_service(self, signup_page_open):
@@ -87,7 +87,7 @@ class TestSignupPage:
         url = signup_page_open.check_agreement_message_terms_of_service()
         assert url == self.const.TERMS_OF_SERVICE, f'Нет перехода на: "{self.const.TERMS_OF_SERVICE}"'
 
-    @allure.title(f"Окно регистрации сообщение '{msg.AGREEMENT_MSG}' проверка корректности перехода по ссылке "
+    @allure.title(f"1.29 Окно регистрации сообщение '{msg.AGREEMENT_MSG}' проверка корректности перехода по ссылке "
                   f"'{msg.AGREEMENT_MSG[54:83]}'")
     @pytest.mark.smoke
     def test_check_redirect_to_policy_service(self, signup_page_open):
@@ -96,7 +96,7 @@ class TestSignupPage:
         assert url == self.const.PULSEWAVE_PRIVACY, f'Нет перехода на: "{self.const.PULSEWAVE_PRIVACY}"'
 
     @pytest.mark.parametrize('data_password', signup.WEAK_PASSWORD)
-    @allure.title("Регистрация с корректным email и слабым паролем и подтверждением пароля")
+    @allure.title("1.20 Регистрация с корректным email и слабым паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_weak_password(self, signup_page_open, data_password):
         with allure.step('Заполнить поле email корректными данными'):
@@ -111,7 +111,7 @@ class TestSignupPage:
             assert element.text == self.msg.INVALID_PASSWORD_MSG, 'Нет сообщения о слабом пароле'
 
     @pytest.mark.parametrize('data_email', signup.INCORRECT_EMAIL)
-    @allure.title("Регистрация с некорректным email и сильным паролем и подтверждением пароля")
+    @allure.title("1.21, 1.22 Регистрация с некорректным email и сильным паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_incorrect_email_and_strong_password(self, signup_page_open, data_email):
         with allure.step('Заполнить поле email некорректными данными'):
@@ -125,7 +125,7 @@ class TestSignupPage:
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.INVALID_EMAIL_MSG}"'):
             assert element.text == self.msg.INVALID_EMAIL_MSG, 'Нет сообщения об ошибке'
 
-    @allure.title("Регистрация с корректным email и не совпадающими паролем и подтверждением пароля")
+    @allure.title("1.6 Регистрация с корректным email и не совпадающими паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_correct_email_and_passwords_not_equal(self, signup_page_open):
         with allure.step('Заполнить поле email корректными данными'):
@@ -139,7 +139,7 @@ class TestSignupPage:
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.PASSWORDS_NOT_EQUAL_MSG}"'):
             assert element.text == self.msg.PASSWORDS_NOT_EQUAL_MSG, 'Нет сообщения об ошибке'
 
-    @allure.title("Регистрация с корректными email и паролем без согласия на подписку")
+    @allure.title("1.23 Регистрация с корректными email и паролем без согласия на подписку")
     @pytest.mark.smoke
     def test_signup_with_correct_email_and_password(self, signup_page_open, driver):
         with allure.step('Заполнить поле email корректными данными'):
@@ -162,7 +162,7 @@ class TestSignupPage:
         text = signup_page_open.delete_user_profile_confirmation().text
         assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
 
-    @allure.title("Регистрация с корректными email и паролем и с согласием на подписку")
+    @allure.title("1.3, 1.3.1, 1.15 Регистрация с корректными email и паролем и с согласием на подписку")
     @pytest.mark.smoke
     def test_signup_with_correct_data_and_agree(self, signup_page_open, driver):
         with allure.step('Заполнить поле email корректными данными'):
@@ -187,7 +187,7 @@ class TestSignupPage:
         text = signup_page_open.delete_user_profile_confirmation().text
         assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
 
-    @allure.title("Регистрация с корректным email и паролем и пустым подтверждением пароля")
+    @allure.title("1.24 Регистрация с корректным email и паролем и пустым подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_correct_email_and_password_without_confirm_password(self, signup_page_open):
         with allure.step('Заполнить поле email корректными данными'):
@@ -199,7 +199,7 @@ class TestSignupPage:
         assert signup_page_open.button_registration_not_active(), \
             'Нет проверки на заполнение обязательного поля подтверждение пароля'
 
-    @allure.title("Регистрация с корректным email и подтверждением пароля и пустым паролем")
+    @allure.title("1.25 Регистрация с корректным email и подтверждением пароля и пустым паролем")
     @pytest.mark.smoke
     def test_signup_with_correct_email_and_confirm_password_without_password(self, signup_page_open):
         with allure.step('Заполнить поле email корректными данными'):
@@ -211,7 +211,7 @@ class TestSignupPage:
         assert signup_page_open.button_registration_not_active(), \
             'Нет проверки на заполнение обязательного поля пароль'
 
-    @allure.title("Регистрация с пустым email и сильным паролем и подтверждением пароля")
+    @allure.title("1.26 Регистрация с пустым email и сильным паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_without_email_and_strong_passwords(self, signup_page_open):
         with allure.step('Оставить поле email пустым'):
@@ -222,3 +222,17 @@ class TestSignupPage:
             signup_page_open.put_data_to_confirm_password_field(password0)
         assert signup_page_open.button_registration_not_active(), \
             'Нет проверки на заполнение обязательного поля пароль'
+
+    @allure.title("1.11 Регистрация с уже зарегистрированным email и корректными паролем и подтверждением пароля")
+    @pytest.mark.smoke
+    def test_signup_with_old_email_and_correct_passwords(self, signup_page_open):
+        with allure.step('Заполнить поле email ранее зарегистрированным емайлом'):
+            signup_page_open.put_data_to_email_field(email_auth)
+        with allure.step('Заполнить поле пароль сильным паролем'):
+            signup_page_open.put_data_to_password_field(password0)
+        with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
+            signup_page_open.put_data_to_confirm_password_field(password0)
+        signup_page_open.click_button_registration()
+        element = signup_page_open.get_error_message()
+        with allure.step(f'Получено сообщение об ошибке: "{self.msg.EXISTING_EMAIL}"'):
+            assert element.text == self.msg.EXISTING_EMAIL, 'Нет сообщения об ошибке'

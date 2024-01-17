@@ -9,7 +9,7 @@ class TestMainPage:
     main = MainConstant
     const = Constant
 
-    @allure.title(f"Проверка перехода на страницу {const.SIGNUP_PAGE} по кнопке '{main.TEXT_SIGNUP}'")
+    @allure.title(f"1.1 Проверка перехода на страницу {const.SIGNUP_PAGE} по кнопке '{main.TEXT_SIGNUP}'")
     @pytest.mark.smoke
     def test_get_body_auth_signup(self, main_page_open, driver):
         main_page_open.get_body_auth_signup().click()
