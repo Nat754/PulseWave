@@ -1,7 +1,7 @@
 import time
 import allure
 import pytest
-from data import email_auth, password0
+from data import email_auth, password0, email1
 from tests.constant import Constant, Messages
 from tests.test_password_recovery.constant import PasswordRecoveryConstant
 from pages.password_recovery_page import get_link_recovery_password_by_email
@@ -28,7 +28,7 @@ class TestLoginPage:
         assert mean_css == figma, \
             f"Не прошла проверка соответствия {name} заголовка '{self.recovery.RECOVERY_PAGE_TITLE}' макету"
 
-    @allure.title(f"Проверка некликабельности кнопки '{recovery.RESUME_BUTTON_TEXT}'")
+    @allure.title(f"3.4 Проверка некликабельности кнопки '{recovery.RESUME_BUTTON_TEXT}'")
     @pytest.mark.regress
     def test_check_resume_button_is_not_clickable_without_email(self, recovery_page_open):
         assert recovery_page_open.check_resume_button_is_not_clickable(), \
@@ -45,7 +45,7 @@ class TestLoginPage:
         assert text == f'{self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}', \
             f"ОР: {self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}, ФР: {text}"
 
-    @allure.title("Восстановить пароль на корректный емайл")
+    @allure.title("3.2, 3.2.1 Восстановить пароль на корректный емайл")
     @pytest.mark.regress
     def test_recovery_password_to_fill_correct_email(self, recovery_page_open, driver):
         with allure.step('Заполнить поле емайл'):
@@ -73,3 +73,13 @@ class TestLoginPage:
         link = driver.current_url
         with allure.step('Проверка успешного перехода в рабочее пространство'):
             assert link == self.const.WORKSPACE, f'ОР: {self.const.WORKSPACE}, ФР: {link}'
+
+    @allure.title("3.3 Восстановить пароль на некорректный емайл")
+    @pytest.mark.regress
+    def test_recovery_password_to_fill_incorrect_email(self, recovery_page_open, driver):
+        with allure.step('Заполнить поле емайл'):
+            recovery_page_open.fill_email_to_recovery_password(email1)
+        with allure.step("Нажать кнопку 'Продолжить'"):
+            recovery_page_open.click_resume_button()
+        text = recovery_page_open.get_invalid_email_message()
+        assert text == f'{self.message.NON_EXISTENT_EMAIL}', f"ОР: {self.message.NON_EXISTENT_EMAIL}, ФР: {text}"

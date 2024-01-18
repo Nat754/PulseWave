@@ -59,3 +59,7 @@ class PasswordRecoveryPage(BasePage):
     @allure.step('Ждать обновление страницы')
     def check_changed_url_login(self):
         return self.wait_changed_url(self.const.LOGIN_PAGE)
+
+    @allure.step("Получить текст сообщения о неверном емайл")
+    def get_invalid_email_message(self):
+        return self.element_is_visible(self.locator.INVALID_EMAIL).text

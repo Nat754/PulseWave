@@ -10,3 +10,4 @@ class PasswordRecoveryLocators:
     MESSAGE_SENT_EMAIL = (By.CSS_SELECTOR, '.auth p')
     INPUT_PASSWORD = (By.XPATH, '(//input[@type="password"])[1]')
     INPUT_CONFIRM_PASSWORD = (By.XPATH, '(//input[@type="password"])[2]')
+    INVALID_EMAIL = (By.CSS_SELECTOR, '.invalid.invalid-form')
