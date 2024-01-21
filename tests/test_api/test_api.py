@@ -427,7 +427,7 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_204, \
                 f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
 
-    @allure.title("POST Регистрация пользователя без емайл")
+    @allure.title("POST Регистрация пользователя без электронной почты")
     def test_post_create_user_no_email(self):
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER_NO_EMAIL)
@@ -469,7 +469,7 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_204, \
                 f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
 
-    @allure.title("Проверка инвалидации кеша workspace")
+    @allure.title("Проверка недействительности кеша workspace")
     def test_api_invalidation_workspace(self, use_api_base):
         jwt = use_api_base.create_jwt(email_auth, password0)
         url = f'{self.constant.BASE_URL}api/workspace/'
@@ -481,7 +481,7 @@ class TestAPI:
             url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             workspace_name = response.json()['name']
-            users_id = [item['id'] for item in response.json()['users']]
+            # users_id = [item['id'] for item in response.json()['users']]
             # index_user = random.randint(0, len(users_id) - 1)
             # user_id = users_id[index_user]
             # user_email = response.json()['users'][index_user]['email']

@@ -67,15 +67,13 @@ class ApiBase:
             tokens = {"uid": link[0], "token": link[1]}
             return tokens
 
-    @staticmethod
-    def create_jwt(e_mail, passwrd):
+    def create_jwt(self, e_mail, passwrd):
         with allure.step('Получить access токен пользователя на емайл'):
             url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
             response = requests.post(url, json={"email": e_mail, "password": passwrd})
             jwt = f"JWT {response.json()['access']}"
             return jwt
 
-    @staticmethod
     def create_refresh(self, e_mail, passwrd):
         with allure.step('Получить refresh токен пользователя на емайл'):
             url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
