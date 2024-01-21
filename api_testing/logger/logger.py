@@ -1,13 +1,13 @@
 import logging
 import os
 from logging.handlers import RotatingFileHandler
-from pages.base_page import BasePage
+from api_testing.api_base import ApiBase
 
 
 def create_logs_dir():
-    base = BasePage()
+    api_base = ApiBase
     file_name = f"""logs.log"""
-    project_dir = base.get_root_path()
+    project_dir = api_base.get_root_path()
     log_dir = os.path.join(project_dir, "log_files")
     if not os.path.exists(log_dir):
         os.makedirs(log_dir)

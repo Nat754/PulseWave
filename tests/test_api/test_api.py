@@ -1,10 +1,14 @@
-import random
 import time
 import requests
 import allure
-from data import email1, password0, email2, password3, password1, password2
+import random
+from faker import Faker
+from data import email1, password0, email2, password3, password1, password2, email_auth
 from api_testing.api_base import ApiBase
 from tests.test_api.api_constant import ApiConstant, StatusCode
+
+faker = Faker('En')
+Faker.seed()
 
 
 @allure.epic("Тестирование API")
@@ -68,7 +72,6 @@ class TestAPI:
 
     @allure.title("POST Повторная отправка ссылки с приглашением пользователя")
     def test_post_api_workspace_resend_invite(self, use_api_base):
-        """Удаление как из участников так и из приглашенных"""
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id = use_api_base.get_workspace_id()
         invite_user_id = use_api_base.get_invite_user_id()
@@ -465,3 +468,35 @@ class TestAPI:
         with allure.step(f"Expected status {self.code.STATUS_204}"):
             assert response.status_code == self.code.STATUS_204, \
                 f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+
+    @allure.title("Проверка инвалидации кеша workspace")
+    def test_api_invalidation_workspace(self, use_api_base):
+        jwt = use_api_base.create_jwt(email_auth, password0)
+        url = f'{self.constant.BASE_URL}api/workspace/'
+        with allure.step("GET Получить список всех Рабочих пространств авторизованного пользователя"):
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+            workspaces_id = [item['id'] for item in response.json()]
+            workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+        with allure.step(f"GET Получить имя Рабочего пространства с id='{workspace_id}"):
+            url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+            workspace_name = response.json()['name']
+            users_id = [item['id'] for item in response.json()['users']]
+            # index_user = random.randint(0, len(users_id) - 1)
+            # user_id = users_id[index_user]
+            # user_email = response.json()['users'][index_user]['email']
+            # user_name = response.json()['users'][index_user]['name']
+            # user_represent_name = response.json()['users'][index_user]['represent_name']
+            # user_role = response.json()['users'][index_user]['role']
+            # invited_users = [item['id'] for item in response.json()['invited']]
+            # invited_user = random.randint(0, len(users_id) - 1) if invited_users is not None else None
+            # print(invited_user)
+        with allure.step(f"PUT Изменить имя Рабочего пространства с id='{workspace_id}"):
+            response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                    json={'name': f'{faker.job()}'})
+        with allure.step(f"GET Получить имя Рабочего пространства с id={workspace_id}"):
+            workspace_new_name = response.json()['name']
+            print('\n', workspace_name, '!=', workspace_new_name)
+        with (allure.step(f"Проверить, что у Рабочего пространства с id='{workspace_id} изменилось имя")):
+            assert workspace_name != workspace_new_name, \
+                f'Не изменилось имя у Рабочего пространства с id={workspace_id}'

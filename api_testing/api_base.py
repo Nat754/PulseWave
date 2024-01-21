@@ -1,7 +1,6 @@
 import imaplib
 import os
 import random
-
 import allure
 import requests
 from data import email1, password0
@@ -68,13 +67,15 @@ class ApiBase:
             tokens = {"uid": link[0], "token": link[1]}
             return tokens
 
-    def create_jwt(self, e_mail, passwrd):
+    @staticmethod
+    def create_jwt(e_mail, passwrd):
         with allure.step('Получить access токен пользователя на емайл'):
             url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
             response = requests.post(url, json={"email": e_mail, "password": passwrd})
             jwt = f"JWT {response.json()['access']}"
             return jwt
 
+    @staticmethod
     def create_refresh(self, e_mail, passwrd):
         with allure.step('Получить refresh токен пользователя на емайл'):
             url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
