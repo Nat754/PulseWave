@@ -1,6 +1,9 @@
 from datetime import datetime
+from faker import Faker
+from data import email1, email2, password0, email_auth
 
-from data import email1, email2, password0
+faker = Faker('en')
+Faker.seed()
 
 
 class StatusCode:
@@ -54,13 +57,13 @@ class ApiConstant:
     }
 
     WORKSPACE = {
-      "name": "My workspace"
+      "name": faker.company()
     }
 
     NO_DATA = ['Это поле не может быть пустым.']
 
-    BOARD_WITHOUT_WS = {
-        "name": "MyBoard"
+    BOARD_CREATE = {
+        "name": faker.job()
     }
 
     PUT_COLUMN = {
@@ -114,4 +117,4 @@ class ApiConstant:
         "name_mark": "string"
     }
 
-    INVITE_USER = {"email": "user@example.com"}
+    INVITE_USER = {"email": email_auth}

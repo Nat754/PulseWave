@@ -3,7 +3,7 @@ import requests
 import allure
 import random
 from faker import Faker
-from data import email1, password0, email2, password3, password1, password2, email_auth
+from data import email1, password0, email2, password3, password1, password2, email_auth, password_auth_email
 from api_testing.api_base import ApiBase
 from tests.test_api.api_constant import ApiConstant, StatusCode
 
@@ -95,16 +95,109 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
 
+    @allure.title("POST Подтверждение приглашения в РП")
+    def test_post_api_workspace_confirm_invite(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
+        requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                      json=self.constant.INVITE_USER)
+        time.sleep(5)
+        token = use_api_base.confirm_invite_token(email_auth, password_auth_email)
+        url = f'{self.constant.BASE_URL}api/workspace/confirm_invite/'
+        response = requests.post(url, headers={'accept': 'application/json'},
+                                 json={"token": token})
+        with allure.step(f"Expected status {self.code.STATUS_204}"):
+            assert response.status_code == self.code.STATUS_204, \
+                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+
+    @allure.title("GET Список всех досок указанного РП")
+    def test_get_api_workspace_id_boards(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, \
+                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+
+    @allure.title("POST Создать доску")
+    def test_post_api_workspace_id_boards(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                 json=self.constant.BOARD_CREATE | {"work_space": f"{workspace_id}"})
+        with allure.step(f"Expected status {self.code.STATUS_201}"):
+            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
+            actual status {response.status_code}"
+
+    @allure.title("GET Информация о конкретной доске")
+    def test_get_api_workspace_id_boards_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        board_id = use_api_base.get_board_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                actual status {response.status_code}"
+
+    @allure.title("PUT Обновить доску")
+    def test_put_api_workspace_id_boards_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        board_id = use_api_base.get_board_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+        response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                json=self.constant.BOARD_CREATE)
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                    actual status {response.status_code}"
+
+    @allure.title("PATCH Частично обновить доску")
+    def test_patch_api_workspace_id_boards_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        board_id = use_api_base.get_board_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+        response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                  json=self.constant.BOARD_CREATE)
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                        actual status {response.status_code}"
+
+    @allure.title("DELETE Удалить доску")
+    def test_delete_api_workspace_id_boards_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        board_id = use_api_base.get_board_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+        response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_204}"):
+            assert response.status_code == self.code.STATUS_204, f"Expected status {self.code.STATUS_204}, \
+                            actual status {response.status_code}"
+
     @allure.title("POST Создать доску без указания РП")
     def test_post_api_board_create(self, use_api_base):
         """Создание доски без указания РП, будет создано дефолтное РП для этой доски"""
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/board_create/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
-                                 json=self.constant.BOARD_WITHOUT_WS)
+                                 json=self.constant.BOARD_CREATE)
         with allure.step(f"Expected status {self.code.STATUS_201}"):
             assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
         actual status {response.status_code}"
+
+    @allure.title("GET Список всех пользователей доски для назначения ответственных")
+    def test_get_api_board_users(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        url = f'{self.constant.BASE_URL}api/board_users/?workspace={workspace_id}'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                actual status {response.status_code}"
 
     @allure.title("POST Создать колонку на доске")
     def test_post_api_board_column_create(self, use_api_base):
@@ -112,13 +205,13 @@ class TestAPI:
         board_id = use_api_base.get_board_id()
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
-                                 json=self.constant.BOARD_WITHOUT_WS)
+                                 json=self.constant.BOARD_CREATE)
         with allure.step(f"Expected status {self.code.STATUS_201}"):
             assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
             actual status {response.status_code}"
 
     @allure.title("GET Список всех колонок доски")
-    def test_get_api_board_column(self, use_api_base):
+    def test_get_api_boards_id_column(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/'
@@ -469,7 +562,7 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_204, \
                 f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
 
-    @allure.title("Проверка недействительности кеша workspace")
+    @allure.title("Проверка недействительности кеша рабочего пространства")
     def test_api_invalidation_workspace(self, use_api_base):
         jwt = use_api_base.create_jwt(email_auth, password0)
         url = f'{self.constant.BASE_URL}api/workspace/'
@@ -481,16 +574,6 @@ class TestAPI:
             url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             workspace_name = response.json()['name']
-            # users_id = [item['id'] for item in response.json()['users']]
-            # index_user = random.randint(0, len(users_id) - 1)
-            # user_id = users_id[index_user]
-            # user_email = response.json()['users'][index_user]['email']
-            # user_name = response.json()['users'][index_user]['name']
-            # user_represent_name = response.json()['users'][index_user]['represent_name']
-            # user_role = response.json()['users'][index_user]['role']
-            # invited_users = [item['id'] for item in response.json()['invited']]
-            # invited_user = random.randint(0, len(users_id) - 1) if invited_users is not None else None
-            # print(invited_user)
         with allure.step(f"PUT Изменить имя Рабочего пространства с id='{workspace_id}"):
             response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                     json={'name': f'{faker.job()}'})
@@ -500,3 +583,28 @@ class TestAPI:
         with (allure.step(f"Проверить, что у Рабочего пространства с id='{workspace_id} изменилось имя")):
             assert workspace_name != workspace_new_name, \
                 f'Не изменилось имя у Рабочего пространства с id={workspace_id}'
+
+    @allure.title("Проверка недействительности кеша доски")
+    def test_api_invalidation_board(self, use_api_base):
+        jwt = use_api_base.create_jwt(email_auth, password0)
+        url = f'{self.constant.BASE_URL}api/workspace/'
+        with allure.step("GET Получить список всех Рабочих пространств авторизованного пользователя"):
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+            workspaces_id = [item['id'] for item in response.json()]
+            workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+        with allure.step("Создать доску"):
+            url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
+            response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                     json={"name": faker.job(), "work_space": f"{workspace_id}"})
+            board_id = response.json()['id']
+        with allure.step(f"GET Получить имя доски {board_id} Рабочего пространства {workspace_id}"):
+            url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+            board_name = response.json()['name']
+        with allure.step("Изменить имя доски"):
+            response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                    json=self.constant.BOARD_CREATE)
+        board_name_new = response.json()['name']
+        print('\n', board_name, '!=', board_name_new)
+        with (allure.step(f"Проверить, что у доски изменилось имя")):
+            assert board_name != board_name_new, 'Не изменилось имя у доски'

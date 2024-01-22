@@ -9,7 +9,8 @@ from tests.test_api.api_constant import ApiConstant
 
 class ApiBase:
 
-    def get_root_path(self):
+    @staticmethod
+    def get_root_path():
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         return project_root
 
@@ -37,7 +38,8 @@ class ApiBase:
                 os.remove(file_to_delete)
                 print(f"Удален файл: {file_to_delete}")
 
-    def get_activate_email_tokens(self, e_mail, passwrd):
+    @staticmethod
+    def get_activate_email_tokens(e_mail, passwrd):
         with allure.step('Получить токен активации пользователя на емайл'):
             mail = imaplib.IMAP4_SSL('imap.mail.ru')
             mail.login(e_mail, passwrd)
@@ -52,7 +54,8 @@ class ApiBase:
             tokens = {"uid": link[0], "token": link[1]}
             return tokens
 
-    def get_confirm_email_tokens(self, e_mail, passwrd):
+    @staticmethod
+    def get_confirm_email_tokens(e_mail, passwrd):
         with allure.step('Получить токен подтверждения пользователя на емайл'):
             mail = imaplib.IMAP4_SSL('imap.mail.ru')
             mail.login(e_mail, passwrd)
@@ -67,21 +70,24 @@ class ApiBase:
             tokens = {"uid": link[0], "token": link[1]}
             return tokens
 
-    def create_jwt(self, e_mail, passwrd):
+    @staticmethod
+    def create_jwt(e_mail, passwrd):
         with allure.step('Получить access токен пользователя на емайл'):
             url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
             response = requests.post(url, json={"email": e_mail, "password": passwrd})
             jwt = f"JWT {response.json()['access']}"
             return jwt
 
-    def create_refresh(self, e_mail, passwrd):
+    @staticmethod
+    def create_refresh(e_mail, passwrd):
         with allure.step('Получить refresh токен пользователя на емайл'):
             url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
             response = requests.post(url, json={"email": e_mail, "password": passwrd})
             refresh = f"{response.json()['refresh']}"
             return refresh
 
-    def change_email_confirm_token(self, e_mail, passwrd):
+    @staticmethod
+    def change_email_confirm_token(e_mail, passwrd):
         with allure.step("Получить подтверждение смены почты пользователя на емайл"):
             mail = imaplib.IMAP4_SSL('imap.mail.ru')
             mail.login(e_mail, passwrd)
@@ -92,6 +98,21 @@ class ApiBase:
             raw_email = str(data_id[0][1])
             first = raw_email.find('token=')
             token = raw_email[first + 6:first + 254]
+            mail.logout()
+            return token
+
+    @staticmethod
+    def confirm_invite_token(e_mail, passwrd):
+        with allure.step("Получить токен подтверждения приглашения на емайл"):
+            mail = imaplib.IMAP4_SSL('imap.mail.ru')
+            mail.login(e_mail, passwrd)
+            mail.select('INBOX')
+            result, data_id = mail.search(None, 'UNSEEN')
+            message_ids = data_id[0].split()
+            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
+            raw_email = str(data_id[0][1])
+            first = raw_email.find('invite/workspace/')
+            token = raw_email[first + 17:first + 49]
             mail.logout()
             return token
 
@@ -138,7 +159,8 @@ class ApiBase:
             jwt = self.create_jwt(email1, password0)
             url = f'{ApiConstant.BASE_URL}api/workspace/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-            workspace_id = response.json()[0]['id']
+            workspaces_id = [item['id'] for item in response.json()]
+            workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
             return workspace_id
 
     def get_invite_user_id(self):
