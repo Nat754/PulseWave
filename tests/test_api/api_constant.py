@@ -67,21 +67,21 @@ class ApiConstant:
     }
 
     PUT_COLUMN = {
-      "name": "My_Column"
+      "name": faker.job()
     }
 
     CREATE_TASK = {
-        "name": "string",
+        "name": faker.city(),
         "deadline": f"{datetime.now().date()}",
-        "description": "string",
+        "description": faker.name(),
         "priority": 0,
-        "color_mark": "string",
-        "name_mark": "string"
+        "color_mark": faker.color(),
+        "name_mark": faker.first_name()
     }
 
     MOVE_TASK = {
-      "name": "string",
-      "index": 2147483647,
+      "name": faker.city(),
+      "index": 0,
       "column": 0,
       "responsible": [
         0
@@ -94,8 +94,8 @@ class ApiConstant:
     }
 
     PUT_TASK = {
-        "name": "string",
-        "index": 2147483647,
+        "name": faker.city(),
+        "index": 0,
         "column": 0,
         "responsible": [
           0

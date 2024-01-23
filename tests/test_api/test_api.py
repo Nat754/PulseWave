@@ -273,7 +273,6 @@ class TestAPI:
         columns_id = use_api_base.get_board_column_id()
         k = (len(columns_id) - 1 if len(columns_id) else 0)
         column_id = columns_id[random.randint(0, k)]
-        print(columns_id, column_id)
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.CREATE_TASK)
@@ -387,6 +386,43 @@ class TestAPI:
         with allure.step(f"Expected status {self.code.STATUS_204}"):
             assert response.status_code == self.code.STATUS_204, \
                 f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+
+    @allure.title("GET Список стикеров задачи")
+    def test_get_api_task_id_sticker(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        print(response.json())
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, \
+                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+
+    @allure.title("POST Создать стикер к задаче")
+    def test_post_api_task_id_sticker(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json={"name": faker.first_name(), "color": faker.color()})
+        print(response.json())
+        with allure.step(f"Expected status {self.code.STATUS_201}"):
+            assert response.status_code == self.code.STATUS_201, \
+                f"Expected status {self.code.STATUS_201}, actual status {response.status_code}"
+
+    @allure.title("GET Представление одного стикера")
+    def test_get_api_task_id_sticker_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json={"name": faker.first_name(), "color": faker.color()})
+        sticker_id = response.json()['id']
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/{sticker_id}/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, \
+                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
 
     @allure.title("GET Получить список всех пользователей для поиска")
     def test_get_api_user_list(self, use_api_base):
@@ -596,6 +632,7 @@ class TestAPI:
             url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json={"name": faker.job(), "work_space": f"{workspace_id}"})
+            print(response.json())
             board_id = response.json()['id']
         with allure.step(f"GET Получить имя доски {board_id} Рабочего пространства {workspace_id}"):
             url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
