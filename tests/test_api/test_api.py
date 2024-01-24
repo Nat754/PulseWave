@@ -1,5 +1,4 @@
 import time
-from pprint import pprint
 import requests
 import allure
 import random
@@ -118,7 +117,6 @@ class TestAPI:
         workspace_id = use_api_base.get_workspace_id()
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        pprint(response.json())
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"

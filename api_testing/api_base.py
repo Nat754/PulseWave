@@ -1,6 +1,8 @@
 import imaplib
 import os
 import random
+import time
+
 import allure
 import requests
 from data import email1, password0
@@ -158,8 +160,6 @@ class ApiBase:
             jwt = self.create_jwt(email1, password0)
             column_id = self.get_board_column_id()[1]
             url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
-            requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
-                          json=ApiConstant.CREATE_TASK)
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json=ApiConstant.CREATE_TASK)
             task_id = response.json()['id']
