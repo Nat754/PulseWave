@@ -172,4 +172,3 @@ class ApiBase:
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             invite_user_id = response.json()[0]['invited'][0]['id']
             return invite_user_id
-

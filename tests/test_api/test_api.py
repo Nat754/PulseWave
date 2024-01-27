@@ -291,11 +291,12 @@ class TestAPI:
                     actual status {response.status_code}"
 
     @allure.title("GET Информация о конкретной задаче")
-    def test_get_column_task_id(self, use_api_base):
+    def test_get_task_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
-        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                         actual status {response.status_code}"
@@ -325,6 +326,16 @@ class TestAPI:
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                                 actual status {response.status_code}"
+
+    @allure.title("DELETE Удалить задачу")
+    def test_delete_column_task_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
+        response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        with allure.step(f"Expected status {self.code.STATUS_204}"):
+            assert response.status_code == self.code.STATUS_204, f"Expected status {self.code.STATUS_204}, \
+                                    actual status {response.status_code}"
 
     @allure.title("DELETE Удалить колонку")
     def test_delete_api_board_column_id(self, use_api_base):
@@ -482,7 +493,7 @@ class TestAPI:
         user_id = use_api_base.get_auth_user_id()
         url = f'{self.constant.BASE_URL}auth/users/{user_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}",
-                                                'name': 'Nata'})
+                                                'name': faker.first_name()})
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
