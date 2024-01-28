@@ -1,8 +1,6 @@
 import imaplib
 import os
 import random
-import time
-
 import allure
 import requests
 from data import email1, password0
@@ -148,8 +146,10 @@ class ApiBase:
     def get_board_column_id(self):
         with allure.step("Получить id колонки"):
             jwt = self.create_jwt(email1, password0)
-            board_id = self.get_board_id()[1]
+            workspace_id, board_id = self.get_board_id()
             url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
+            requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                          json=ApiConstant.BOARD_CREATE)
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
             columns_id = [i['id'] for i in response.json()]
             column_id = random.choice(columns_id)
@@ -158,7 +158,7 @@ class ApiBase:
     def get_column_task_id(self):
         with allure.step("Получить id задачи"):
             jwt = self.create_jwt(email1, password0)
-            column_id = self.get_board_column_id()[1]
+            board_id, column_id = self.get_board_column_id()
             url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json=ApiConstant.CREATE_TASK)

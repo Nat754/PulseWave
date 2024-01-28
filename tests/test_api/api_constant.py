@@ -1,3 +1,4 @@
+import random
 from datetime import datetime
 from faker import Faker
 from data import email1, email2, password0, email_auth
@@ -18,6 +19,8 @@ class ApiConstant:
 
     BASE_URL = "https://api.pwave.pnpl.tech/"
     MAIL_URL = 'https://mail.ru/'
+
+    COLOR_STICKER = ['#FF5E5E', '#FF9A3C', '#FFC727', '#67A700', '#5ED8FF', '#0069B4', '#7849FF', '#C852FF']
 
     CREATE_USER = {
       "subscriber": "true",
@@ -75,7 +78,7 @@ class ApiConstant:
         "deadline": f"{datetime.now().date()}",
         "description": faker.name(),
         "priority": 0,
-        "color_mark": faker.color(),
+        "color_mark": random.choice(COLOR_STICKER),
         "name_mark": faker.first_name()
     }
 
@@ -89,7 +92,7 @@ class ApiConstant:
       "deadline": f"{datetime.now().date()}",
       "description": "string",
       "priority": 0,
-      "color_mark": "string",
+      "color_mark": random.choice(COLOR_STICKER),
       "name_mark": "string"
     }
 
@@ -113,7 +116,7 @@ class ApiConstant:
         "deadline": f"{datetime.now().date()}",
         "description": "string",
         "priority": 0,
-        "color_mark": "string",
+        "color_mark": random.choice(COLOR_STICKER),
         "name_mark": "string"
     }
 
