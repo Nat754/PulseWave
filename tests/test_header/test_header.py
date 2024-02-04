@@ -4,6 +4,7 @@ from tests.constant import Constant
 from tests.test_header.constant import HeaderConstant
 
 
+@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic("Тестирование Хедера")
 class TestHeader:
     header = HeaderConstant

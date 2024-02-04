@@ -3,6 +3,7 @@ import pytest
 from tests.constant import Constant
 
 
+@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{Constant.WORKSPACE}'")
 class TestWorkspacePage:
     const = Constant

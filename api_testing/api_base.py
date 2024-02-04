@@ -2,9 +2,13 @@ import imaplib
 import os
 import random
 import allure
+from faker import Faker
 import requests
 from data import email1, password0
 from tests.test_api.api_constant import ApiConstant
+
+faker = Faker('En')
+Faker.seed()
 
 
 class ApiBase:
@@ -50,7 +54,9 @@ class ApiBase:
             raw_email = str(data_id[0][1])
             mail.logout()
             first = raw_email.find('activate')
-            link = raw_email[first + 9:first + 53].split('/')
+            start = first + 9
+            end = raw_email[start:].find('"')
+            link = raw_email[start:start + end].split('/')
             tokens = {"uid": link[0], "token": link[1]}
             return tokens
 
@@ -66,7 +72,9 @@ class ApiBase:
             raw_email = str(data_id[0][1])
             mail.logout()
             first = raw_email.find('confirm')
-            link = raw_email[first + 8:first + 52].split('/')
+            start = first + 8
+            end = raw_email[start:].find('"')
+            link = raw_email[start:start + end].split('/')
             tokens = {"uid": link[0], "token": link[1]}
             return tokens
 
@@ -97,7 +105,9 @@ class ApiBase:
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
             raw_email = str(data_id[0][1])
             first = raw_email.find('token=')
-            token = raw_email[first + 6:first + 254]
+            start = first + 6
+            end = raw_email[start:].find('"')
+            token = raw_email[start:start + end]
             mail.logout()
             return token
 
@@ -112,7 +122,9 @@ class ApiBase:
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
             raw_email = str(data_id[0][1])
             first = raw_email.find('invite/workspace/')
-            token = raw_email[first + 17:first + 49]
+            start = first + 17
+            end = raw_email[start:].find('"')
+            token = raw_email[start:start + end]
             mail.logout()
             return token
 
@@ -128,7 +140,8 @@ class ApiBase:
         with allure.step("Получить id рабочего пространства"):
             jwt = self.create_jwt(email1, password0)
             url = f'{ApiConstant.BASE_URL}api/workspace/'
-            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+            response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                     json=ApiConstant.WORKSPACE)
             workspaces_id = [item['id'] for item in response.json()]
             workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
             return workspace_id
@@ -138,9 +151,10 @@ class ApiBase:
             jwt = self.create_jwt(email1, password0)
             workspace_id = self.get_workspace_id()
             url = f'{ApiConstant.BASE_URL}api/workspace/{workspace_id}/boards/'
-            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-            boards_id = [item['id'] for item in response.json()]
-            board_id = random.choice(boards_id)
+            response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                     json={"name": faker.job()[:50], "work_space": f"{workspace_id}"})
+            print(response.json())
+            board_id = response.json()['id']
             return workspace_id, board_id
 
     def get_board_column_id(self):
@@ -153,6 +167,8 @@ class ApiBase:
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
             columns_id = [i['id'] for i in response.json()]
             column_id = random.choice(columns_id)
+            print(response.json())
+            print('workspace_id, board_id, column_id = ', workspace_id, board_id, column_id)
             return board_id, column_id
 
     def get_column_task_id(self):
@@ -162,13 +178,7 @@ class ApiBase:
             url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json=ApiConstant.CREATE_TASK)
+            print(response.json())
             task_id = response.json()['id']
+            print('board_id, column_id, task_id = ', board_id, column_id, task_id)
             return column_id, task_id
-
-    def get_invite_user_id(self):
-        with allure.step("Получить id приглашенного пользователя"):
-            jwt = self.create_jwt(email1, password0)
-            url = f'{ApiConstant.BASE_URL}api/workspace/'
-            response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-            invite_user_id = response.json()[0]['invited'][0]['id']
-            return invite_user_id

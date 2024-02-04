@@ -11,6 +11,7 @@ class Constant:
     WORKSPACE = f'{MAIN_PAGE}workspaces'
     PULSEWAVE_PRIVACY = f'{MAIN_PAGE}documents/privacy'
     PASSWORD_RECOVERY = f'{MAIN_PAGE}auth/password?email='
+    SET_OF_BROWSERS = ['chrome']
 
 
 class Messages:

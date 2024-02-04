@@ -1,12 +1,11 @@
-import time
 import allure
 import pytest
-
 from data import email_auth, email2, password0
 from tests.constant import Constant, Messages
 from tests.test_login_page.login_constant import LoginConstant
 
 
+@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{LoginConstant.TEXT_LOGIN}'")
 class TestLoginPage:
     const = Constant

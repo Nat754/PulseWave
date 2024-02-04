@@ -29,7 +29,56 @@ class TestAPI:
     @allure.title("POST Активация пользователя с корректными данными")
     def test_post_users_activation(self, use_api_base):
         url = f'{self.constant.BASE_URL}auth/users/activation/'
-        response = requests.post(url, json=use_api_base.get_activate_email_tokens(email1, password1))
+        user_token = use_api_base.get_activate_email_tokens(email1, password1)
+        response = requests.post(url, json=user_token)
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, \
+                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+
+    @allure.title("POST Пригласить пользователя по email")
+    def test_post_api_workspace_invite_user(self, use_api_base):
+        """Пользователи добавляются по одному. Если пользователя не существует, он будет создан"""
+        jwt = use_api_base.create_jwt(email1, password0)
+        url = f'{self.constant.BASE_URL}api/workspace/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        workspaces_id = [item['id'] for item in response.json()]
+        workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json=self.constant.INVITE_USER)
+        print(response.json())
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, \
+                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+
+    @allure.title("POST Повторная отправка ссылки с приглашением пользователя")
+    def test_post_api_workspace_resend_invite(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        url = f'{self.constant.BASE_URL}api/workspace/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        workspaces_id = [item['id'] for item in response.json()]
+        workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+        invite_user_id = response.json()[0]['invited'][0]['id']
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/resend_invite/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json={"user_id": invite_user_id} | self.constant.INVITE_USER)
+        print(response.text)
+        with allure.step(f"Expected status {self.code.STATUS_204}"):
+            assert response.status_code == self.code.STATUS_204, \
+                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+
+    @allure.title("POST Удаление приглашенного пользователей из РП")
+    def test_post_api_workspace_kick_user(self, use_api_base):
+        """Удаление как из участников так и из приглашенных"""
+        jwt = use_api_base.create_jwt(email1, password0)
+        url = f'{self.constant.BASE_URL}api/workspace/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        workspaces_id = [item['id'] for item in response.json()]
+        workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+        invite_user_id = response.json()[0]['invited'][0]['id']
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/kick_user/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                 json={"user_id": invite_user_id} | self.constant.INVITE_USER)
         print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, \
@@ -111,46 +160,6 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_200, \
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
 
-    @allure.title("POST Пригласить пользователя по email")
-    def test_post_api_workspace_invite_user(self, use_api_base):
-        """Пользователи добавляются по одному. Если пользователя не существует, он будет создан"""
-        jwt = use_api_base.create_jwt(email1, password0)
-        workspace_id = use_api_base.get_workspace_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
-        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-                                 json=self.constant.INVITE_USER)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
-
-    @allure.title("POST Повторная отправка ссылки с приглашением пользователя")
-    def test_post_api_workspace_resend_invite(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
-        workspace_id = use_api_base.get_workspace_id()
-        invite_user_id = use_api_base.get_invite_user_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/resend_invite/'
-        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-                                 json={"user_id": invite_user_id} | self.constant.INVITE_USER)
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
-
-    @allure.title("POST Удаление приглашенного пользователей из РП")
-    def test_post_api_workspace_kick_user(self, use_api_base):
-        """Удаление как из участников так и из приглашенных"""
-        jwt = use_api_base.create_jwt(email1, password0)
-        workspace_id = use_api_base.get_workspace_id()
-        invite_user_id = use_api_base.get_invite_user_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/kick_user/'
-        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-                                 json={"user_id": invite_user_id} | self.constant.INVITE_USER)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
-
     @allure.title("POST Подтверждение приглашения в РП")
     def test_post_api_workspace_confirm_invite(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -225,17 +234,6 @@ class TestAPI:
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                         actual status {response.status_code}"
-
-    @allure.title("DELETE Удалить доску")
-    def test_delete_api_workspace_id_boards_id(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
-        workspace_id, board_id = use_api_base.get_board_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
-        response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, f"Expected status {self.code.STATUS_204}, \
-                            actual status {response.status_code}"
 
     @allure.title("POST Создать доску без указания РП")
     def test_post_api_board_create(self, use_api_base):
@@ -420,6 +418,17 @@ class TestAPI:
         with allure.step(f"Expected status {self.code.STATUS_204}"):
             assert response.status_code == self.code.STATUS_204, (f"ОР: {self.code.STATUS_204}, "
                                                                   f"ФР: {response.status_code}")
+
+    @allure.title("DELETE Удалить доску")
+    def test_delete_api_workspace_id_boards_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id, board_id = use_api_base.get_board_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+        response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        print(response.text)
+        with allure.step(f"Expected status {self.code.STATUS_204}"):
+            assert response.status_code == self.code.STATUS_204, f"Expected status {self.code.STATUS_204}, \
+                                actual status {response.status_code}"
 
     @allure.title("POST Создать Рабочее пространство")
     def test_post_api_workspace(self, use_api_base):

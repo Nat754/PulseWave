@@ -7,6 +7,7 @@ from tests.test_password_recovery.constant import PasswordRecoveryConstant
 from pages.password_recovery_page import get_link_recovery_password_by_email
 
 
+@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{PasswordRecoveryConstant.RECOVERY_PAGE_TITLE}'")
 class TestLoginPage:
     const = Constant

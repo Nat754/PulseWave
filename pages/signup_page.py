@@ -8,26 +8,27 @@ from tests.test_signup_page.constant import SignUpConstants
 from tests.constant import Messages, Constant
 
 
-def get_confirm_signup_to_email(e_mail, passwrd):
-    with allure.step('Получить ссылку подтверждения регистрации пользователя на емайл'):
-        mail = imaplib.IMAP4_SSL('imap.mail.ru')
-        mail.login(e_mail, passwrd)
-        mail.select('INBOX')
-        result, data_id = mail.search(None, 'ALL')
-        message_ids = data_id[0].split()
-        result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-        raw_email = str(data_id[0][1])
-        mail.logout()
-        first = raw_email.find('https://front.pwave.pnpl.tech')
-        link = raw_email[first:first + 88]
-        return link
-
-
 class SignUpPage(BasePage):
     signup = SignUpConstants
     locator = SignUpLocators
     message = Messages
     const = Constant
+
+    @staticmethod
+    def get_confirm_signup_to_email(e_mail, passwrd):
+        with allure.step('Получить ссылку подтверждения регистрации пользователя на емайл'):
+            mail = imaplib.IMAP4_SSL('imap.mail.ru')
+            mail.login(e_mail, passwrd)
+            mail.select('INBOX')
+            result, data_id = mail.search(None, 'ALL')
+            message_ids = data_id[0].split()
+            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
+            raw_email = str(data_id[0][1])
+            mail.logout()
+            first = raw_email.find('https://front.pwave.pnpl.tech')
+            end = raw_email[first:].find('"')
+            link = raw_email[first:first + end]
+            return link
 
     @allure.step(f"Проверка видимости заголовка {signup.TEXT_SIGNUP}")
     def get_title_login(self):

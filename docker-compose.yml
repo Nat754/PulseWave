@@ -1,0 +1,8 @@
+services:
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./:/usr/workspace
+    command: [ "pytest -s -v --alluredir=allure-results" ]

@@ -4,6 +4,7 @@ from tests.constant import Constant
 from tests.test_main_page.constant import MainConstant
 
 
+@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic("Тестирование Главной страницы")
 class TestMainPage:
     main = MainConstant

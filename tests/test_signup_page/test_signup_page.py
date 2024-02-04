@@ -5,9 +5,9 @@ from pages.base_page import BasePage
 from data import *
 from tests.constant import Constant, Messages
 from tests.test_signup_page.constant import SignUpConstants
-from pages.signup_page import get_confirm_signup_to_email
 
 
+@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{SignUpConstants.TEXT_SIGNUP}'")
 class TestSignupPage:
     const = Constant
@@ -30,7 +30,7 @@ class TestSignupPage:
         with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
             assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'
         time.sleep(2)
-        link = get_confirm_signup_to_email(email1, password1)
+        link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
         signup_page_open.get_welcome_to_workspace_message()
         signup_page_open.click_button_avatar()
@@ -127,7 +127,7 @@ class TestSignupPage:
         element = signup_page_open.get_send_invite_message()
         with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
             assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'
-        link = get_confirm_signup_to_email(email1, password1)
+        link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
         signup_page_open.get_welcome_to_workspace_message()
         signup_page_open.click_button_avatar()
