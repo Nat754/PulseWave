@@ -3,184 +3,69 @@
   "children" : [ {
     "name" : "Product defects",
     "children" : [ {
-      "name" : "AssertionError: Expected status 201, actual status 400\nassert 400 == 201\n +  where 400 = <Response [400]>.status_code\n +  and   201 = <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70>.STATUS_201\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70> = <tests.test_api.test_api.TestAPI object at 0x7f3e41026750>.code",
+      "name" : "AssertionError: Expected status 201, actual status 400\nassert 400 == 201\n +  where 400 = <Response [400]>.status_code\n +  and   201 = <tests.test_api.api_constant.StatusCode object at 0x7f19a08cb1d0>.STATUS_201\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f19a08cb1d0> = <tests.test_api.test_api.TestAPI object at 0x7f19a068cb90>.code",
       "children" : [ {
         "name" : "POST Создать пользователя с корректными данными",
-        "uid" : "126e65b4aae2b036",
-        "parentUid" : "7b2ecb3ebf97a66b74deb897e1daf00d",
+        "uid" : "7a20fc40aa4e730d",
+        "parentUid" : "c6475ad2afb50d9857dd82f366412c19",
         "status" : "failed",
         "time" : {
-          "start" : 1707240825294,
-          "stop" : 1707240830844,
-          "duration" : 5550
+          "start" : 1707241789146,
+          "stop" : 1707241794747,
+          "duration" : 5601
         },
         "flaky" : false,
-        "newFailed" : true,
+        "newFailed" : false,
         "parameters" : [ ]
       } ],
-      "uid" : "7b2ecb3ebf97a66b74deb897e1daf00d"
-    }, {
-      "name" : "AssertionError: Expected status 204, actual status 404\nassert 404 == 204\n +  where 404 = <Response [404]>.status_code\n +  and   204 = <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70>.STATUS_204\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70> = <tests.test_api.test_api.TestAPI object at 0x7f3e40679370>.code",
-      "children" : [ {
-        "name" : "POST Создать SSE - передает случайную строку",
-        "uid" : "76efdfebf09cf55",
-        "parentUid" : "b7f3fc7fb3175fd6ffa413326792d8be",
-        "status" : "failed",
-        "time" : {
-          "start" : 1707240942340,
-          "stop" : 1707240942720,
-          "duration" : 380
-        },
-        "flaky" : false,
-        "newFailed" : true,
-        "parameters" : [ ]
-      } ],
-      "uid" : "b7f3fc7fb3175fd6ffa413326792d8be"
-    }, {
-      "name" : "AssertionError: Expected status 204, actual status 404\nassert 404 == 204\n +  where 404 = <Response [404]>.status_code\n +  and   204 = <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70>.STATUS_204\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70> = <tests.test_api.test_api.TestAPI object at 0x7f3e40678140>.code",
-      "children" : [ {
-        "name" : "POST Создать SSE - передает текущего юзера",
-        "uid" : "184785a816901980",
-        "parentUid" : "2f1a0fb39f221c6925a0b83a872e0f3f",
-        "status" : "failed",
-        "time" : {
-          "start" : 1707240942744,
-          "stop" : 1707240943681,
-          "duration" : 937
-        },
-        "flaky" : false,
-        "newFailed" : true,
-        "parameters" : [ ]
-      } ],
-      "uid" : "2f1a0fb39f221c6925a0b83a872e0f3f"
-    }, {
-      "name" : "AssertionError: Expected status 201, actual status 400\nassert 400 == 201\n +  where 400 = <Response [400]>.status_code\n +  and   201 = <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70>.STATUS_201\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70> = <tests.test_api.test_api.TestAPI object at 0x7f3e40649a00>.code",
-      "children" : [ {
-        "name" : "POST Регистрация пользователя без подтверждения подписки",
-        "uid" : "1210e27a8014618a",
-        "parentUid" : "ec31668b1b6ceeff9d8657c9c3af4018",
-        "status" : "failed",
-        "time" : {
-          "start" : 1707241111408,
-          "stop" : 1707241116794,
-          "duration" : 5386
-        },
-        "flaky" : true,
-        "newFailed" : true,
-        "parameters" : [ ]
-      } ],
-      "uid" : "ec31668b1b6ceeff9d8657c9c3af4018"
+      "uid" : "c6475ad2afb50d9857dd82f366412c19"
     } ],
     "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
   }, {
     "name" : "Test defects",
     "children" : [ {
-      "name" : "TimeoutError: [Errno 110] Connection timed out",
+      "name" : "IndexError: list index out of range",
       "children" : [ {
-        "name" : "POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.",
-        "uid" : "28df5432de2d4bf1",
-        "parentUid" : "652bdb8b8bbfa3e1ba6b3a98bcc126fe",
+        "name" : "POST Активация пользователя с корректными данными",
+        "uid" : "8276b0e31d709767",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
         "status" : "broken",
         "time" : {
-          "start" : 1707240977504,
-          "stop" : 1707241109288,
-          "duration" : 131784
+          "start" : 1707241794806,
+          "stop" : 1707241797364,
+          "duration" : 2558
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       }, {
-        "name" : "DELETE Активировать и удалить авторизованного пользователя",
-        "uid" : "aea183be87675efc",
-        "parentUid" : "652bdb8b8bbfa3e1ba6b3a98bcc126fe",
+        "name" : "POST Повторная отправка ссылки с приглашением пользователя",
+        "uid" : "2062e9e540dc8736",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
         "status" : "broken",
         "time" : {
-          "start" : 1707241116820,
-          "stop" : 1707241252616,
-          "duration" : 135796
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ ]
-      } ],
-      "uid" : "652bdb8b8bbfa3e1ba6b3a98bcc126fe"
-    }, {
-      "name" : "KeyError: 'access'",
-      "children" : [ {
-        "name" : "POST Сброс пароля",
-        "uid" : "56614aec6ca4fb96",
-        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
-        "status" : "broken",
-        "time" : {
-          "start" : 1707241109397,
-          "stop" : 1707241109786,
-          "duration" : 389
+          "start" : 1707241800456,
+          "stop" : 1707241801511,
+          "duration" : 1055
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       }, {
-        "name" : "POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке     auth/password/reset/confirm/{uid}/{token}",
-        "uid" : "6b3d809d92820f6",
-        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "name" : "POST Удаление приглашенного пользователей из РП",
+        "uid" : "cd187e723df84134",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
         "status" : "broken",
         "time" : {
-          "start" : 1707241109815,
-          "stop" : 1707241110200,
-          "duration" : 385
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ ]
-      }, {
-        "name" : "DELETE Удалить авторизованного пользователя",
-        "uid" : "6e2803a5ce9ef5f",
-        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
-        "status" : "broken",
-        "time" : {
-          "start" : 1707241110233,
-          "stop" : 1707241110616,
-          "duration" : 383
+          "start" : 1707241801536,
+          "stop" : 1707241803422,
+          "duration" : 1886
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       } ],
-      "uid" : "c0db57c4a80d04e81137955fc8cd39c0"
-    }, {
-      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x5581393b6d93 <unknown>\n#1 0x55813909a337 <unknown>\n#2 0x5581390e5d60 <unknown>\n#3 0x5581390e5e51 <unknown>\n#4 0x558139129bc4 <unknown>\n#5 0x55813910846d <unknown>\n#6 0x55813912712d <unknown>\n#7 0x5581391081e3 <unknown>\n#8 0x5581390d8135 <unknown>\n#9 0x5581390d913e <unknown>\n#10 0x55813937ae4b <unknown>\n#11 0x55813937edfa <unknown>\n#12 0x5581393676d5 <unknown>\n#13 0x55813937fa6f <unknown>\n#14 0x55813934b69f <unknown>\n#15 0x5581393a4098 <unknown>\n#16 0x5581393a4262 <unknown>\n#17 0x5581393b5f34 <unknown>\n#18 0x7f1d0f694ac3 <unknown>",
-      "children" : [ {
-        "name" : "1.3, 1.3.1, 1.15 Регистрация с корректными email и паролем и с согласием на подписку",
-        "uid" : "a7abd78acf9809bb",
-        "parentUid" : "fbd96331c6de39a7a891fe56979772d3",
-        "status" : "broken",
-        "time" : {
-          "start" : 1707241513099,
-          "stop" : 1707241533734,
-          "duration" : 20635
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ "'chrome'" ]
-      } ],
-      "uid" : "fbd96331c6de39a7a891fe56979772d3"
-    }, {
-      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x556aeaed6d93 <unknown>\n#1 0x556aeabba337 <unknown>\n#2 0x556aeac05d60 <unknown>\n#3 0x556aeac05e51 <unknown>\n#4 0x556aeac49bc4 <unknown>\n#5 0x556aeac2846d <unknown>\n#6 0x556aeac4712d <unknown>\n#7 0x556aeac281e3 <unknown>\n#8 0x556aeabf8135 <unknown>\n#9 0x556aeabf913e <unknown>\n#10 0x556aeae9ae4b <unknown>\n#11 0x556aeae9edfa <unknown>\n#12 0x556aeae876d5 <unknown>\n#13 0x556aeae9fa6f <unknown>\n#14 0x556aeae6b69f <unknown>\n#15 0x556aeaec4098 <unknown>\n#16 0x556aeaec4262 <unknown>\n#17 0x556aeaed5f34 <unknown>\n#18 0x7ff4cf894ac3 <unknown>",
-      "children" : [ {
-        "name" : "1.23 Регистрация с корректными email и паролем без согласия на подписку",
-        "uid" : "304c8eee59108886",
-        "parentUid" : "48eec7b05ec7ddd06ae03f9f341e1378",
-        "status" : "broken",
-        "time" : {
-          "start" : 1707241552279,
-          "stop" : 1707241572862,
-          "duration" : 20583
-        },
-        "flaky" : false,
-        "newFailed" : false,
-        "parameters" : [ "'chrome'" ]
-      } ],
-      "uid" : "48eec7b05ec7ddd06ae03f9f341e1378"
+      "uid" : "cbf21ee610ffd376e0ce643a364ade80"
     } ],
     "uid" : "bdbf199525818fae7a8651db9eafe741"
   } ],
