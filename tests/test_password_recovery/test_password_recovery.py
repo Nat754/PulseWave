@@ -9,7 +9,7 @@ from pages.password_recovery_page import get_link_recovery_password_by_email
 
 @pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{PasswordRecoveryConstant.RECOVERY_PAGE_TITLE}'")
-class TestLoginPage:
+class TestPasswordRecoveryPage:
     const = Constant
     recovery = PasswordRecoveryConstant
     message = Messages
@@ -53,7 +53,7 @@ class TestLoginPage:
             recovery_page_open.fill_email_to_recovery_password(email_auth)
         with allure.step("Нажать кнопку 'Продолжить'"):
             recovery_page_open.click_resume_button()
-        time.sleep(2)  # Получить ссылку на емайл
+        time.sleep(10)  # Получить ссылку на емайл
         link = get_link_recovery_password_by_email()
         driver.get(link)
         with allure.step('Ввести пароль в поле пароль'):

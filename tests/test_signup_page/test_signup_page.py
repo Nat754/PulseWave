@@ -29,7 +29,7 @@ class TestSignupPage:
         element = signup_page_open.get_send_invite_message()
         with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
             assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'
-        time.sleep(5)
+        time.sleep(10)
         link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
         signup_page_open.get_welcome_to_workspace_message()
@@ -127,7 +127,7 @@ class TestSignupPage:
         element = signup_page_open.get_send_invite_message()
         with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
             assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'
-        time.sleep(5)
+        time.sleep(10)
         link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
         signup_page_open.get_welcome_to_workspace_message()

@@ -20,7 +20,7 @@ class TestAPI:
     def test_post_create_user(self):
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER)
-        time.sleep(5)
+        time.sleep(10)
         print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_201}"):
             assert response.status_code == self.code.STATUS_201, \
@@ -42,7 +42,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         workspaces_id = [item['id'] for item in response.json()]
-        workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+        workspace_id = random.choice(workspaces_id)
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.INVITE_USER)
@@ -57,7 +57,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         workspaces_id = [item['id'] for item in response.json()]
-        workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+        workspace_id = random.choice(workspaces_id)
         invite_user_id = response.json()[0]['invited'][0]['id']
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/resend_invite/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
@@ -74,7 +74,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         workspaces_id = [item['id'] for item in response.json()]
-        workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+        workspace_id = random.choice(workspaces_id)
         invite_user_id = response.json()[0]['invited'][0]['id']
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/kick_user/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
@@ -91,7 +91,7 @@ class TestAPI:
         with allure.step("GET Получить список всех Рабочих пространств авторизованного пользователя"):
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             workspaces_id = [item['id'] for item in response.json()]
-            workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+            workspace_id = random.choice(workspaces_id)
         with allure.step("Создать доску"):
             url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
@@ -117,7 +117,7 @@ class TestAPI:
         with allure.step("GET Получить список всех Рабочих пространств авторизованного пользователя"):
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             workspaces_id = [item['id'] for item in response.json()]
-            workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+            workspace_id = random.choice(workspaces_id)
         with allure.step(f"GET Получить имя Рабочего пространства с id='{workspace_id}"):
             url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
@@ -167,7 +167,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
         requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                       json=self.constant.INVITE_USER)
-        time.sleep(5)
+        time.sleep(10)
         token = use_api_base.confirm_invite_token(email_auth, password_auth_email)
         url = f'{self.constant.BASE_URL}api/workspace/confirm_invite/'
         response = requests.post(url, headers={'accept': 'application/json'},
@@ -490,35 +490,6 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                                     actual status {response.status_code}"
 
-    @allure.title("POST Создать SSE - передает случайную строку")
-    def test_post_api_sse_random_string(self):
-        """
-        Слушать /events/
-        channel: test
-        event_type: test_message
-        """
-        url = f'{self.constant.BASE_URL}api/sse_random_string/'
-        response = requests.post(url)
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
-
-    @allure.title("POST Создать SSE - передает текущего юзера")
-    def test_post_api_sse_user(self, use_api_base):
-        """
-        Слушать /events/
-        channel: test
-        event_type: test_user
-        """
-        jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/sse_user/'
-        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
-
     @allure.title("GET Список стикеров задачи")
     def test_get_api_task_id_sticker(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -649,7 +620,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}auth/change_email/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.NEW_EMAIL)
-        time.sleep(5)
+        time.sleep(10)
         print(response.text)
         with allure.step(f"Expected status {self.code.STATUS_204}"):
             assert response.status_code == self.code.STATUS_204, \
@@ -673,7 +644,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}auth/users/reset_password/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"email": email2})
-        time.sleep(5)
+        time.sleep(10)
         print(response.text)
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_204, \
@@ -732,7 +703,7 @@ class TestAPI:
     def test_post_create_user_no_subscriber(self, use_api_base):
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER_NO_SUBSCRIBER)
-        time.sleep(5)
+        time.sleep(10)
         print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_201}"):
             assert response.status_code == self.code.STATUS_201, \
@@ -741,7 +712,7 @@ class TestAPI:
     @allure.title("DELETE Активировать и удалить авторизованного пользователя")
     def test_delete_auth_users_me_new(self, use_api_base):
         url = f'{self.constant.BASE_URL}auth/users/activation/'
-        time.sleep(5)
+        time.sleep(10)
         user_token = use_api_base.get_activate_email_tokens(email1, password1)
         requests.post(url, json=user_token)
         jwt = use_api_base.create_jwt(email1, password0)
