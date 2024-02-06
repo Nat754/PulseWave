@@ -5,39 +5,150 @@
     "children" : [ {
       "name" : "TimeoutError: [Errno 110] Connection timed out",
       "children" : [ {
-        "name" : "1.3, 1.3.1, 1.15 Регистрация с корректными email и паролем и с согласием на подписку",
-        "uid" : "dc3c904566ec9f41",
+        "name" : "POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.",
+        "uid" : "5f74c53d85d97599",
         "parentUid" : "652bdb8b8bbfa3e1ba6b3a98bcc126fe",
         "status" : "broken",
         "time" : {
-          "start" : 1707220320973,
-          "stop" : 1707220459034,
-          "duration" : 138061
+          "start" : 1707235678399,
+          "stop" : 1707235809319,
+          "duration" : 130920
         },
         "flaky" : false,
         "newFailed" : false,
-        "parameters" : [ "'chrome'" ]
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Активировать и удалить авторизованного пользователя",
+        "uid" : "e7447ad1fde263b3",
+        "parentUid" : "652bdb8b8bbfa3e1ba6b3a98bcc126fe",
+        "status" : "broken",
+        "time" : {
+          "start" : 1707235816934,
+          "stop" : 1707235952634,
+          "duration" : 135700
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
       } ],
       "uid" : "652bdb8b8bbfa3e1ba6b3a98bcc126fe"
     }, {
-      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55ed3351ad93 <unknown>\n#1 0x55ed331fe337 <unknown>\n#2 0x55ed33249d60 <unknown>\n#3 0x55ed33249e51 <unknown>\n#4 0x55ed3328dbc4 <unknown>\n#5 0x55ed3326c46d <unknown>\n#6 0x55ed3328b12d <unknown>\n#7 0x55ed3326c1e3 <unknown>\n#8 0x55ed3323c135 <unknown>\n#9 0x55ed3323d13e <unknown>\n#10 0x55ed334dee4b <unknown>\n#11 0x55ed334e2dfa <unknown>\n#12 0x55ed334cb6d5 <unknown>\n#13 0x55ed334e3a6f <unknown>\n#14 0x55ed334af69f <unknown>\n#15 0x55ed33508098 <unknown>\n#16 0x55ed33508262 <unknown>\n#17 0x55ed33519f34 <unknown>\n#18 0x7fd617294ac3 <unknown>",
+      "name" : "KeyError: 'access'",
       "children" : [ {
-        "name" : "1.23 Регистрация с корректными email и паролем без согласия на подписку",
-        "uid" : "5f512c6927829fc0",
-        "parentUid" : "a5583b049d5c7ad146a8b86a123269b1",
+        "name" : "POST Сброс пароля",
+        "uid" : "6472723881e2b1c9",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
         "status" : "broken",
         "time" : {
-          "start" : 1707220479524,
-          "stop" : 1707220500089,
-          "duration" : 20565
+          "start" : 1707235809465,
+          "stop" : 1707235809856,
+          "duration" : 391
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке     auth/password/reset/confirm/{uid}/{token}",
+        "uid" : "5abe384649af47d4",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1707235809885,
+          "stop" : 1707235810278,
+          "duration" : 393
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Удалить авторизованного пользователя",
+        "uid" : "6e40f028323b4f9f",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1707235810308,
+          "stop" : 1707235810698,
+          "duration" : 390
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c0db57c4a80d04e81137955fc8cd39c0"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x557e37325d93 <unknown>\n#1 0x557e37009337 <unknown>\n#2 0x557e37054d60 <unknown>\n#3 0x557e37054e51 <unknown>\n#4 0x557e37098bc4 <unknown>\n#5 0x557e3707746d <unknown>\n#6 0x557e3709612d <unknown>\n#7 0x557e370771e3 <unknown>\n#8 0x557e37047135 <unknown>\n#9 0x557e3704813e <unknown>\n#10 0x557e372e9e4b <unknown>\n#11 0x557e372eddfa <unknown>\n#12 0x557e372d66d5 <unknown>\n#13 0x557e372eea6f <unknown>\n#14 0x557e372ba69f <unknown>\n#15 0x557e37313098 <unknown>\n#16 0x557e37313262 <unknown>\n#17 0x557e37324f34 <unknown>\n#18 0x7faa85694ac3 <unknown>",
+      "children" : [ {
+        "name" : "3.3 Восстановить пароль на некорректный емайл",
+        "uid" : "9579894e31762c69",
+        "parentUid" : "80cf1bc8f732d1a9df6cf13bdae7eaf5",
+        "status" : "broken",
+        "time" : {
+          "start" : 1707236218753,
+          "stop" : 1707236239236,
+          "duration" : 20483
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ "'chrome'" ]
       } ],
-      "uid" : "a5583b049d5c7ad146a8b86a123269b1"
+      "uid" : "80cf1bc8f732d1a9df6cf13bdae7eaf5"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x5637e4ac6d93 <unknown>\n#1 0x5637e47aa337 <unknown>\n#2 0x5637e47f5d60 <unknown>\n#3 0x5637e47f5e51 <unknown>\n#4 0x5637e4839bc4 <unknown>\n#5 0x5637e481846d <unknown>\n#6 0x5637e483712d <unknown>\n#7 0x5637e48181e3 <unknown>\n#8 0x5637e47e8135 <unknown>\n#9 0x5637e47e913e <unknown>\n#10 0x5637e4a8ae4b <unknown>\n#11 0x5637e4a8edfa <unknown>\n#12 0x5637e4a776d5 <unknown>\n#13 0x5637e4a8fa6f <unknown>\n#14 0x5637e4a5b69f <unknown>\n#15 0x5637e4ab4098 <unknown>\n#16 0x5637e4ab4262 <unknown>\n#17 0x5637e4ac5f34 <unknown>\n#18 0x7fd0ee894ac3 <unknown>",
+      "children" : [ {
+        "name" : "1.3, 1.3.1, 1.15 Регистрация с корректными email и паролем и с согласием на подписку",
+        "uid" : "adf9e7ca645ba1f4",
+        "parentUid" : "f49659c78b0eba49983b10882ab74371",
+        "status" : "broken",
+        "time" : {
+          "start" : 1707236241001,
+          "stop" : 1707236261636,
+          "duration" : 20635
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "f49659c78b0eba49983b10882ab74371"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55640ab15d93 <unknown>\n#1 0x55640a7f9337 <unknown>\n#2 0x55640a844d60 <unknown>\n#3 0x55640a844e51 <unknown>\n#4 0x55640a888bc4 <unknown>\n#5 0x55640a86746d <unknown>\n#6 0x55640a88612d <unknown>\n#7 0x55640a8671e3 <unknown>\n#8 0x55640a837135 <unknown>\n#9 0x55640a83813e <unknown>\n#10 0x55640aad9e4b <unknown>\n#11 0x55640aadddfa <unknown>\n#12 0x55640aac66d5 <unknown>\n#13 0x55640aadea6f <unknown>\n#14 0x55640aaaa69f <unknown>\n#15 0x55640ab03098 <unknown>\n#16 0x55640ab03262 <unknown>\n#17 0x55640ab14f34 <unknown>\n#18 0x7fd4bf094ac3 <unknown>",
+      "children" : [ {
+        "name" : "1.23 Регистрация с корректными email и паролем без согласия на подписку",
+        "uid" : "aca6f72c210b27e1",
+        "parentUid" : "b3c5af5dab6159de79b70a63ff8b3d1f",
+        "status" : "broken",
+        "time" : {
+          "start" : 1707236280489,
+          "stop" : 1707236301099,
+          "duration" : 20610
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "b3c5af5dab6159de79b70a63ff8b3d1f"
     } ],
     "uid" : "bdbf199525818fae7a8651db9eafe741"
+  }, {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Expected status 201, actual status 400\nassert 400 == 201\n +  where 400 = <Response [400]>.status_code\n +  and   201 = <tests.test_api.api_constant.StatusCode object at 0x7f5da918e3c0>.STATUS_201\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f5da918e3c0> = <tests.test_api.test_api.TestAPI object at 0x7f5da9159c70>.code",
+      "children" : [ {
+        "name" : "POST Регистрация пользователя без подтверждения подписки",
+        "uid" : "9c45f4192d892fae",
+        "parentUid" : "22b6aa6e143a5e649da68e9591889b06",
+        "status" : "failed",
+        "time" : {
+          "start" : 1707235811516,
+          "stop" : 1707235816907,
+          "duration" : 5391
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "22b6aa6e143a5e649da68e9591889b06"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
   } ],
   "name" : "categories"
 }
