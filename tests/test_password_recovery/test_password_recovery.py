@@ -1,7 +1,7 @@
 import time
 import allure
 import pytest
-from data import email_auth, password0, email1
+from data import email_auth, password0, emailx
 from tests.constant import Constant, Messages
 from tests.test_password_recovery.constant import PasswordRecoveryConstant
 from pages.password_recovery_page import get_link_recovery_password_by_email
@@ -79,7 +79,7 @@ class TestLoginPage:
     @pytest.mark.regress
     def test_recovery_password_to_fill_incorrect_email(self, recovery_page_open, driver):
         with allure.step('Заполнить поле емайл'):
-            recovery_page_open.fill_email_to_recovery_password(email1)
+            recovery_page_open.fill_email_to_recovery_password(emailx)
         with allure.step("Нажать кнопку 'Продолжить'"):
             recovery_page_open.click_resume_button()
         text = recovery_page_open.get_invalid_email_message()
