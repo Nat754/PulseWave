@@ -451,14 +451,44 @@ class TestAPI:
                 f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
 
     @allure.title("GET Список уведомлений текущего пользователя")
-    def test_get_notification(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+    def test_get_api_notification(self, use_api_base):
+        jwt = use_api_base.create_jwt(email_auth, password0)
         url = f'{self.constant.BASE_URL}api/notification/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.text)
+        print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                             actual status {response.status_code}"
+
+    @allure.title("PATCH Отметить прочтение уведомления")
+    def test_patch_api_notification_id_read(self, use_api_base):
+        jwt = use_api_base.create_jwt(email_auth, password0)
+        url = f'{self.constant.BASE_URL}api/notification/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        notifications_id = [item['id'] for item in response.json()]
+        notification_id = random.choice(notifications_id)
+        url = f'{self.constant.BASE_URL}api/notification/{notification_id}/read/'
+        response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                json=self.constant.PUT_NOTIFICATION)
+        print(response.text)
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                                actual status {response.status_code}"
+
+    @allure.title("PUT Отметить прочтение уведомления")
+    def test_put_api_notification_id_read(self, use_api_base):
+        jwt = use_api_base.create_jwt(email_auth, password0)
+        url = f'{self.constant.BASE_URL}api/notification/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        notifications_id = [item['id'] for item in response.json()]
+        notification_id = random.choice(notifications_id)
+        url = f'{self.constant.BASE_URL}api/notification/{notification_id}/read/'
+        response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                json=self.constant.PUT_NOTIFICATION)
+        print(response.text)
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                                    actual status {response.status_code}"
 
     @allure.title("POST Создать SSE - передает случайную строку")
     def test_post_api_sse_random_string(self):

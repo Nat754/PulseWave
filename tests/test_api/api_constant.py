@@ -121,3 +121,5 @@ class ApiConstant:
     }
 
     INVITE_USER = {"email": email_auth}
+
+    PUT_NOTIFICATION = {"read": True}
