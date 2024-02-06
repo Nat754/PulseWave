@@ -20,7 +20,7 @@ class TestAPI:
     def test_post_create_user(self):
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER)
-        time.sleep(5)
+        time.sleep(10)
         print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_201}"):
             assert response.status_code == self.code.STATUS_201, \
@@ -167,7 +167,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
         requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                       json=self.constant.INVITE_USER)
-        time.sleep(5)
+        time.sleep(10)
         token = use_api_base.confirm_invite_token(email_auth, password_auth_email)
         url = f'{self.constant.BASE_URL}api/workspace/confirm_invite/'
         response = requests.post(url, headers={'accept': 'application/json'},
@@ -649,7 +649,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}auth/change_email/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.NEW_EMAIL)
-        time.sleep(5)
+        time.sleep(10)
         print(response.text)
         with allure.step(f"Expected status {self.code.STATUS_204}"):
             assert response.status_code == self.code.STATUS_204, \
@@ -673,7 +673,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}auth/users/reset_password/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"email": email2})
-        time.sleep(5)
+        time.sleep(10)
         print(response.text)
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_204, \
@@ -732,7 +732,7 @@ class TestAPI:
     def test_post_create_user_no_subscriber(self, use_api_base):
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER_NO_SUBSCRIBER)
-        time.sleep(5)
+        time.sleep(10)
         print(response.json())
         with allure.step(f"Expected status {self.code.STATUS_201}"):
             assert response.status_code == self.code.STATUS_201, \
@@ -741,7 +741,7 @@ class TestAPI:
     @allure.title("DELETE Активировать и удалить авторизованного пользователя")
     def test_delete_auth_users_me_new(self, use_api_base):
         url = f'{self.constant.BASE_URL}auth/users/activation/'
-        time.sleep(5)
+        time.sleep(10)
         user_token = use_api_base.get_activate_email_tokens(email1, password1)
         requests.post(url, json=user_token)
         jwt = use_api_base.create_jwt(email1, password0)
