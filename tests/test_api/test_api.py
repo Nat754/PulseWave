@@ -740,12 +740,14 @@ class TestAPI:
 
     @allure.title("DELETE Активировать и удалить авторизованного пользователя")
     def test_delete_auth_users_me_new(self, use_api_base):
-        self.test_post_users_activation(use_api_base)
         jwt = use_api_base.create_jwt(email1, password0)
+        url = f'{self.constant.BASE_URL}auth/users/activation/'
+        time.sleep(5)
+        user_token = use_api_base.get_activate_email_tokens(email1, password1)
+        requests.post(url, json=user_token)
         url = f'{self.constant.BASE_URL}auth/users/me/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                    json={"current_password": password0})
-        print(response.text)
         with allure.step(f"Expected status {self.code.STATUS_204}"):
             assert response.status_code == self.code.STATUS_204, \
                 f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
