@@ -143,7 +143,7 @@ class ApiBase:
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                      json=ApiConstant.WORKSPACE)
             workspaces_id = [item['id'] for item in response.json()]
-            workspace_id = workspaces_id[random.randint(0, len(workspaces_id) - 1)]
+            workspace_id = random.choice(workspaces_id)
             return workspace_id
 
     def get_board_id(self):
