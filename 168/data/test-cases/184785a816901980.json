@@ -1,0 +1,294 @@
+{
+  "uid" : "184785a816901980",
+  "name" : "POST Создать SSE - передает текущего юзера",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_post_api_sse_user",
+  "historyId" : "873d1046f7eeb21f3993fe3feb89a353",
+  "time" : {
+    "start" : 1707240942744,
+    "stop" : 1707240943681,
+    "duration" : 937
+  },
+  "description" : "\n        Слушать /events/\n        channel: test\n        event_type: test_user\n        ",
+  "descriptionHtml" : "<pre><code>    Слушать /events/\n    channel: test\n    event_type: test_user\n</code></pre>\n",
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Expected status 204, actual status 404\nassert 404 == 204\n +  where 404 = <Response [404]>.status_code\n +  and   204 = <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70>.STATUS_204\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70> = <tests.test_api.test_api.TestAPI object at 0x7f3e40678140>.code",
+  "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f3e40678140>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f3e3ffa4e90>\n\n    @allure.title(\"POST Создать SSE - передает текущего юзера\")\n    def test_post_api_sse_user(self, use_api_base):\n        \"\"\"\n        Слушать /events/\n        channel: test\n        event_type: test_user\n        \"\"\"\n        jwt = use_api_base.create_jwt(email1, password0)\n        url = f'{self.constant.BASE_URL}api/sse_user/'\n        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"})\n        print(response.text)\n        with allure.step(f\"Expected status {self.code.STATUS_204}\"):\n>           assert response.status_code == self.code.STATUS_204, \\\n                f\"Expected status {self.code.STATUS_204}, actual status {response.status_code}\"\nE           AssertionError: Expected status 204, actual status 404\nE           assert 404 == 204\nE            +  where 404 = <Response [404]>.status_code\nE            +  and   204 = <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70>.STATUS_204\nE            +    where <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70> = <tests.test_api.test_api.TestAPI object at 0x7f3e40678140>.code\n\ntests/test_api/test_api.py:519: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1707240825276,
+      "stop" : 1707240825294,
+      "duration" : 18
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1707240825294,
+      "stop" : 1707240825294,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1707240942744,
+      "stop" : 1707240942744,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "\n        Слушать /events/\n        channel: test\n        event_type: test_user\n        ",
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Expected status 204, actual status 404\nassert 404 == 204\n +  where 404 = <Response [404]>.status_code\n +  and   204 = <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70>.STATUS_204\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70> = <tests.test_api.test_api.TestAPI object at 0x7f3e40678140>.code",
+    "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f3e40678140>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f3e3ffa4e90>\n\n    @allure.title(\"POST Создать SSE - передает текущего юзера\")\n    def test_post_api_sse_user(self, use_api_base):\n        \"\"\"\n        Слушать /events/\n        channel: test\n        event_type: test_user\n        \"\"\"\n        jwt = use_api_base.create_jwt(email1, password0)\n        url = f'{self.constant.BASE_URL}api/sse_user/'\n        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"})\n        print(response.text)\n        with allure.step(f\"Expected status {self.code.STATUS_204}\"):\n>           assert response.status_code == self.code.STATUS_204, \\\n                f\"Expected status {self.code.STATUS_204}, actual status {response.status_code}\"\nE           AssertionError: Expected status 204, actual status 404\nE           assert 404 == 204\nE            +  where 404 = <Response [404]>.status_code\nE            +  and   204 = <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70>.STATUS_204\nE            +    where <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70> = <tests.test_api.test_api.TestAPI object at 0x7f3e40678140>.code\n\ntests/test_api/test_api.py:519: AssertionError",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя на емайл",
+      "time" : {
+        "start" : 1707240942744,
+        "stop" : 1707240943302,
+        "duration" : 558
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Expected status 204",
+      "time" : {
+        "start" : 1707240943681,
+        "stop" : 1707240943681,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Expected status 204, actual status 404\nassert 404 == 204\n +  where 404 = <Response [404]>.status_code\n +  and   204 = <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70>.STATUS_204\n +    where <tests.test_api.api_constant.StatusCode object at 0x7f3e408bba70> = <tests.test_api.test_api.TestAPI object at 0x7f3e40678140>.code\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/tests/test_api/test_api.py\", line 519, in test_post_api_sse_user\n    assert response.status_code == self.code.STATUS_204, \\\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1116-70"
+  }, {
+    "name" : "thread",
+    "value" : "2272-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 14,
+        "unknown" : 0,
+        "total" : 15
+      },
+      "items" : [ {
+        "uid" : "10c597cc214197e9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/167//#testresult/10c597cc214197e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707239435625,
+          "stop" : 1707239436942,
+          "duration" : 1317
+        }
+      }, {
+        "uid" : "97b9fe1bddf9e027",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/97b9fe1bddf9e027",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707235632162,
+          "stop" : 1707235633111,
+          "duration" : 949
+        }
+      }, {
+        "uid" : "ab13c953d60cc2a8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/ab13c953d60cc2a8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707219947114,
+          "stop" : 1707219948134,
+          "duration" : 1020
+        }
+      }, {
+        "uid" : "5008b70bf986f645",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/5008b70bf986f645",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707218373018,
+          "stop" : 1707218373953,
+          "duration" : 935
+        }
+      }, {
+        "uid" : "a9e6b020c64e4f6b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/a9e6b020c64e4f6b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707217410536,
+          "stop" : 1707217411502,
+          "duration" : 966
+        }
+      }, {
+        "uid" : "9d2f08fde5d4a7f4",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/165//#testresult/9d2f08fde5d4a7f4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707216506793,
+          "stop" : 1707216507737,
+          "duration" : 944
+        }
+      }, {
+        "uid" : "bbc9c0c49f493a12",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/164//#testresult/bbc9c0c49f493a12",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707214829562,
+          "stop" : 1707214830497,
+          "duration" : 935
+        }
+      }, {
+        "uid" : "2833ec0ccc8429af",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/164//#testresult/2833ec0ccc8429af",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707211283096,
+          "stop" : 1707211284412,
+          "duration" : 1316
+        }
+      }, {
+        "uid" : "bb359b9e73444d1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/163//#testresult/bb359b9e73444d1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707078354710,
+          "stop" : 1707078355664,
+          "duration" : 954
+        }
+      }, {
+        "uid" : "3f5f4140d657bb5b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/162//#testresult/3f5f4140d657bb5b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1706456387579,
+          "stop" : 1706456388914,
+          "duration" : 1335
+        }
+      }, {
+        "uid" : "24505b2cdcd0d195",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/161//#testresult/24505b2cdcd0d195",
+        "status" : "passed",
+        "time" : {
+          "start" : 1706393076400,
+          "stop" : 1706393077700,
+          "duration" : 1300
+        }
+      }, {
+        "uid" : "c06512f6d6adaa8b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/161//#testresult/c06512f6d6adaa8b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1706391715147,
+          "stop" : 1706391716189,
+          "duration" : 1042
+        }
+      }, {
+        "uid" : "5dc1749e52006218",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/160//#testresult/5dc1749e52006218",
+        "status" : "passed",
+        "time" : {
+          "start" : 1706133385780,
+          "stop" : 1706133386830,
+          "duration" : 1050
+        }
+      }, {
+        "uid" : "3825b06287e322c6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/159//#testresult/3825b06287e322c6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1706129780818,
+          "stop" : 1706129781809,
+          "duration" : 991
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "184785a816901980.json",
+  "parameterValues" : [ ]
+}
