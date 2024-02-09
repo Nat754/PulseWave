@@ -11,31 +11,19 @@ from selenium.webdriver.edge.options import Options as EdgeOptions
 @pytest.fixture(scope='function')
 def driver(browser):
     print(f'\nstart {browser} browser...')
-    chrome_options = ChromeOptions()
-    firefox_options = FirefoxOptions()
-    edge_options = EdgeOptions()
-    # if 'CI' in os.environ:
     if browser == "chrome":
+        chrome_options = ChromeOptions()
         chrome_options.add_argument('--headless')
         # chrome_options.add_argument('--start-maximized')
         driver = webdriver.Chrome(options=chrome_options)
     elif browser == "firefox":
+        firefox_options = FirefoxOptions()
         firefox_options.add_argument('--headless')
         driver = webdriver.Firefox(options=firefox_options)
     elif browser == "edge":
+        edge_options = EdgeOptions()
         edge_options.add_argument('--headless')
         driver = webdriver.Edge(options=edge_options)
-        # driver.set_window_size(1920, 1080)
-    # else:
-    #     if browser == "chrome":
-    #         chrome_options.add_argument('--start-maximized')  # ('--headless')('--start-maximized')
-    #         driver = webdriver.Chrome(options=chrome_options)
-    #     elif browser == "firefox":
-    #         firefox_options.add_argument('--start-maximized')
-    #         driver = webdriver.Firefox(options=firefox_options)
-    #     elif browser == "edge":
-    #         edge_options.add_argument('--start-maximized')
-    #         driver = webdriver.Edge(options=edge_options)
     yield driver
     print(f'\nquit {browser} browser...')
     driver.quit()
