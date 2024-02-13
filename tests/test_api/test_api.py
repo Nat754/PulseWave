@@ -358,7 +358,7 @@ class TestAPI:
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                     actual status {response.status_code}"
 
-    @allure.title("GET Информация о конкретной задаче")
+    @allure.title("GET Получение одной задачи")
     def test_get_task_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
@@ -488,7 +488,55 @@ class TestAPI:
         print(response.text)
         with allure.step(f"Expected status {self.code.STATUS_200}"):
             assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                                        actual status {response.status_code}"
+
+    @allure.title("PATCH Отметить прочтение всех уведомлений")
+    def test_patch_api_notification_read_all(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        url = f'{self.constant.BASE_URL}api/notification/read_all/'
+        response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        print(response.text)
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
                                     actual status {response.status_code}"
+
+    @allure.title("POST Создать комментарий")
+    def test_post_task_id_comment(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                 json=self.constant.COMMENT)
+        print(response.json())
+        with allure.step(f"Expected status {self.code.STATUS_201}"):
+            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
+                                actual status {response.status_code}"
+
+    @allure.title("DELETE Создать комментарий")
+    def test_delete_task_id_comment(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
+        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                 json=self.constant.COMMENT)
+        comment_id = response.json()['id']
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/{comment_id}/'
+        response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        print(response.text)
+        with allure.step(f"Expected status {self.code.STATUS_204}"):
+            assert response.status_code == self.code.STATUS_204, f"Expected status {self.code.STATUS_204}, \
+                                    actual status {response.status_code}"
+
+    @allure.title("GET Получение комментария")
+    def test_get_task_id_comment(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+        print(response.json())
+        with allure.step(f"Expected status {self.code.STATUS_200}"):
+            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
+                            actual status {response.status_code}"
 
     @allure.title("GET Список стикеров задачи")
     def test_get_api_task_id_sticker(self, use_api_base):

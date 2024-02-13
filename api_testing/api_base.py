@@ -153,7 +153,7 @@ class ApiBase:
             url = f'{ApiConstant.BASE_URL}api/workspace/{workspace_id}/boards/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json={"name": faker.job()[:50], "work_space": f"{workspace_id}"})
-            print(response.json())
+            # print(response.json())
             board_id = response.json()['id']
             return workspace_id, board_id
 
@@ -167,8 +167,8 @@ class ApiBase:
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
             columns_id = [i['id'] for i in response.json()]
             column_id = random.choice(columns_id)
-            print(response.json())
-            print('workspace_id, board_id, column_id = ', workspace_id, board_id, column_id)
+            # print(response.json())
+            # print('workspace_id, board_id, column_id = ', workspace_id, board_id, column_id)
             return board_id, column_id
 
     def get_column_task_id(self):
@@ -178,7 +178,7 @@ class ApiBase:
             url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json=ApiConstant.CREATE_TASK)
-            print(response.json())
+            # print(response.json())
             task_id = response.json()['id']
-            print('board_id, column_id, task_id = ', board_id, column_id, task_id)
+            # print('board_id, column_id, task_id = ', board_id, column_id, task_id)
             return column_id, task_id
