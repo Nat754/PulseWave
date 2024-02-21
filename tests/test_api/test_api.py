@@ -5,6 +5,7 @@ import random
 from faker import Faker
 from data import email1, password0, email2, password3, password1, password2, email_auth, password_auth_email
 from api_testing.api_base import ApiBase
+from api_testing.assertions import Assertions
 from tests.test_api.api_constant import ApiConstant, StatusCode
 
 faker = Faker('En')
@@ -13,27 +14,22 @@ Faker.seed()
 
 @allure.epic("Тестирование API")
 class TestAPI:
-    constant = ApiConstant()
-    code = StatusCode()
+    constant = ApiConstant
+    code = StatusCode
 
     @allure.title("POST Создать пользователя с корректными данными")
     def test_post_create_user(self):
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER)
         time.sleep(10)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_201}"):
-            assert response.status_code == self.code.STATUS_201, \
-                f"Expected status {self.code.STATUS_201}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("POST Активация пользователя с корректными данными")
     def test_post_users_activation(self, use_api_base):
         url = f'{self.constant.BASE_URL}auth/users/activation/'
         user_token = use_api_base.get_activate_email_tokens(email1, password1)
         response = requests.post(url, json=user_token)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Пригласить пользователя по email")
     def test_post_api_workspace_invite_user(self, use_api_base):
@@ -46,10 +42,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.INVITE_USER)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Повторная отправка ссылки с приглашением пользователя")
     def test_post_api_workspace_resend_invite(self, use_api_base):
@@ -61,11 +54,8 @@ class TestAPI:
         invite_user_id = response.json()[0]['invited'][0]['id']
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/resend_invite/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
-                                 json={"user_id": invite_user_id} | self.constant.INVITE_USER)
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+                                 json={"user_id": invite_user_id})
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Удаление приглашенного пользователей из РП")
     def test_post_api_workspace_kick_user(self, use_api_base):
@@ -79,10 +69,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/kick_user/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"user_id": invite_user_id} | self.constant.INVITE_USER)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("Проверка недействительности кеша доски")
     def test_api_invalidation_board(self, use_api_base):
@@ -96,7 +83,6 @@ class TestAPI:
             url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json={"name": faker.job(), "work_space": f"{workspace_id}"})
-            print(response.json())
             board_id = response.json()['id']
         with allure.step(f"GET Получить имя доски {board_id} Рабочего пространства {workspace_id}"):
             url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
@@ -137,28 +123,20 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER)
         print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_400}"):
-            assert response.status_code == self.code.STATUS_400, \
-                f"Expected status {self.code.STATUS_400}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_400)
 
     @allure.title("POST Создать пару токенов access и refresh")
     def test_post_create_jwt(self):
         url = f'{self.constant.BASE_URL}auth/jwt/create/'
         response = requests.post(url, json={"email": email1, "password": password0})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получить список всех Рабочих пространств авторизованного пользователя")
     def test_get_api_workspace(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Подтверждение приглашения в РП")
     def test_post_api_workspace_confirm_invite(self, use_api_base):
@@ -172,10 +150,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/confirm_invite/'
         response = requests.post(url, headers={'accept': 'application/json'},
                                  json={"token": token})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("GET Список всех досок указанного РП")
     def test_get_api_workspace_id_boards(self, use_api_base):
@@ -183,10 +158,7 @@ class TestAPI:
         workspace_id = use_api_base.get_workspace_id()
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Создать доску")
     def test_post_api_workspace_id_boards(self, use_api_base):
@@ -195,10 +167,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.BOARD_CREATE | {"work_space": f"{workspace_id}"})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_201}"):
-            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
-            actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("GET Информация о конкретной доске")
     def test_get_api_workspace_id_boards_id(self, use_api_base):
@@ -206,10 +175,7 @@ class TestAPI:
         workspace_id, board_id = use_api_base.get_board_id()
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Обновить доску")
     def test_put_api_workspace_id_boards_id(self, use_api_base):
@@ -218,10 +184,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                 json=self.constant.BOARD_CREATE)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                    actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PATCH Частично обновить доску")
     def test_patch_api_workspace_id_boards_id(self, use_api_base):
@@ -230,10 +193,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                   json=self.constant.BOARD_CREATE)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                        actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Создать доску без указания РП")
     def test_post_api_board_create(self, use_api_base):
@@ -242,10 +202,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/board_create/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.BOARD_CREATE)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_201}"):
-            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
-        actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("GET Список всех пользователей доски для назначения ответственных")
     def test_get_api_board_users(self, use_api_base):
@@ -253,10 +210,7 @@ class TestAPI:
         workspace_id = use_api_base.get_workspace_id()
         url = f'{self.constant.BASE_URL}api/board_users/?workspace={workspace_id}'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Создать колонку на доске")
     def test_post_api_board_column_create(self, use_api_base):
@@ -265,10 +219,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.BOARD_CREATE)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_201}"):
-            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
-            actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("GET Список всех колонок доски")
     def test_get_api_boards_id_column(self, use_api_base):
@@ -276,10 +227,7 @@ class TestAPI:
         board_id = use_api_base.get_board_id()[1]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                    actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Информация о конкретной колонке")
     def test_get_api_boards_id_column_id(self, use_api_base):
@@ -287,10 +235,7 @@ class TestAPI:
         board_id, column_id = use_api_base.get_board_column_id()
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Обновить колонку (название и порядковый номер)")
     def test_put_api_board_column_info(self, use_api_base):
@@ -322,10 +267,7 @@ class TestAPI:
         board_id, column_id = use_api_base.get_board_column_id()
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                                    actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Создать задачу")
     def test_post_column_task_create(self, use_api_base):
@@ -342,10 +284,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.CREATE_TASK)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_201}"):
-            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
-                            actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("GET Список всех задач колонки")
     def test_get_column_tasks(self, use_api_base):
@@ -353,10 +292,7 @@ class TestAPI:
         column_id = use_api_base.get_board_column_id()[1]
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                    actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получение одной задачи")
     def test_get_task_id(self, use_api_base):
@@ -364,10 +300,7 @@ class TestAPI:
         column_id, task_id = use_api_base.get_column_task_id()
         url = f'{self.constant.BASE_URL}api/task/{task_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                        actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Обновить задачу")
     def test_put_column_task_id(self, use_api_base):
@@ -378,10 +311,7 @@ class TestAPI:
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                 json={"name": "name", "index": 0, "column": f"{column_id}",
                                       "responsible": [f'{use_api_base.get_auth_user_id()}']})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                            actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PATCH Частично обновить задачу")
     def test_patch_column_task_id(self, use_api_base):
@@ -392,10 +322,7 @@ class TestAPI:
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                   json={"name": "name", "index": 0, "column": f"{column_id}",
                                         "responsible": [f'{use_api_base.get_auth_user_id()}']})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                                actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("DELETE Удалить задачу")
     def test_delete_column_task_id(self, use_api_base):
@@ -403,10 +330,7 @@ class TestAPI:
         column_id, task_id = use_api_base.get_column_task_id()
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, f"Expected status {self.code.STATUS_204}, \
-                                    actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("DELETE Удалить колонку")
     def test_delete_api_board_column_id(self, use_api_base):
@@ -414,10 +338,7 @@ class TestAPI:
         board_id, column_id = use_api_base.get_board_column_id()
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, (f"ОР: {self.code.STATUS_204}, "
-                                                                  f"ФР: {response.status_code}")
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("DELETE Удалить доску")
     def test_delete_api_workspace_id_boards_id(self, use_api_base):
@@ -425,10 +346,7 @@ class TestAPI:
         workspace_id, board_id = use_api_base.get_board_id()
         url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, f"Expected status {self.code.STATUS_204}, \
-                                actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Создать Рабочее пространство")
     def test_post_api_workspace(self, use_api_base):
@@ -436,29 +354,20 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/workspace/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.WORKSPACE)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_201}"):
-            assert response.status_code == self.code.STATUS_201, \
-                f"Expected status {self.code.STATUS_201}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("POST index fixed")
     def test_post_api_index_fixed(self):
         url = f'{self.constant.BASE_URL}api/index_fixed/'
         response = requests.post(url)
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Список уведомлений текущего пользователя")
     def test_get_api_notification(self, use_api_base):
         jwt = use_api_base.create_jwt(email_auth, password0)
         url = f'{self.constant.BASE_URL}api/notification/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                            actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PATCH Отметить прочтение уведомления")
     def test_patch_api_notification_id_read(self, use_api_base):
@@ -469,11 +378,8 @@ class TestAPI:
         notification_id = random.choice(notifications_id)
         url = f'{self.constant.BASE_URL}api/notification/{notification_id}/read/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
-                                json=self.constant.PUT_NOTIFICATION)
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                                actual status {response.status_code}"
+                                  json=self.constant.PUT_NOTIFICATION)
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Отметить прочтение уведомления")
     def test_put_api_notification_id_read(self, use_api_base):
@@ -485,20 +391,14 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/notification/{notification_id}/read/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                 json=self.constant.PUT_NOTIFICATION)
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                                        actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PATCH Отметить прочтение всех уведомлений")
     def test_patch_api_notification_read_all(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/notification/read_all/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                                    actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Создать комментарий")
     def test_post_task_id_comment(self, use_api_base):
@@ -507,10 +407,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.COMMENT)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_201}"):
-            assert response.status_code == self.code.STATUS_201, f"Expected status {self.code.STATUS_201}, \
-                                actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("DELETE Создать комментарий")
     def test_delete_task_id_comment(self, use_api_base):
@@ -522,10 +419,7 @@ class TestAPI:
         comment_id = response.json()['id']
         url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/{comment_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, f"Expected status {self.code.STATUS_204}, \
-                                    actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("GET Получение комментария")
     def test_get_task_id_comment(self, use_api_base):
@@ -533,10 +427,7 @@ class TestAPI:
         column_id, task_id = use_api_base.get_column_task_id()
         url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, f"Expected status {self.code.STATUS_200}, \
-                            actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Список стикеров задачи")
     def test_get_api_task_id_sticker(self, use_api_base):
@@ -546,10 +437,7 @@ class TestAPI:
         requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                       json={"name": faker.first_name(), "color": random.choice(self.constant.COLOR_STICKER)})
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Создать стикер к задаче")
     def test_post_api_task_id_sticker(self, use_api_base):
@@ -558,10 +446,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"name": faker.first_name(), "color": random.choice(self.constant.COLOR_STICKER)})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_201}"):
-            assert response.status_code == self.code.STATUS_201, \
-                f"Expected status {self.code.STATUS_201}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("GET Представление одного стикера")
     def test_get_api_task_id_sticker_id(self, use_api_base):
@@ -573,50 +458,36 @@ class TestAPI:
         sticker_id = response.json()['id']
         url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/{sticker_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получить список всех пользователей для поиска")
     def test_get_api_user_list(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/user_list/?users=tes'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Обновить JWT access_token авторизованного пользователя")
     def test_post_refresh_jwt(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}auth/jwt/refresh/'
         refresh = use_api_base.create_refresh(email1, password0)
         response = requests.post(url, json={"refresh": refresh})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получить данные авторизованного пользователя")
     def test_get_auth_users(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получить данные авторизованного пользователя me")
     def test_get_auth_user_me(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}auth/users/me/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получить данные авторизованного пользователя по id")
     def test_get_auth_user_id(self, use_api_base):
@@ -624,10 +495,7 @@ class TestAPI:
         user_id = use_api_base.get_auth_user_id()
         url = f'{self.constant.BASE_URL}auth/users/{user_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Обновить все данные авторизованного пользователя по id")
     def test_put_auth_user_id(self, use_api_base):
@@ -635,10 +503,7 @@ class TestAPI:
         user_id = use_api_base.get_auth_user_id()
         url = f'{self.constant.BASE_URL}auth/users/{user_id}/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PATCH Частично обновить данные авторизованного пользователя")
     def test_patch_auth_user_id(self, use_api_base):
@@ -647,20 +512,14 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}auth/users/{user_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}",
                                                 'name': faker.first_name()})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Обновить все данные авторизованного пользователя me")
     def test_put_auth_user_me(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}auth/users/me/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_200, \
-                f"Expected status {self.code.STATUS_200}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Запрос на смену почты")
     def test_post_auth_change_email(self, use_api_base):
@@ -669,10 +528,7 @@ class TestAPI:
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.NEW_EMAIL)
         time.sleep(10)
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.")
     def test_post_auth_change_email_confirm(self, use_api_base):
@@ -681,10 +537,7 @@ class TestAPI:
         token_email = use_api_base.change_email_confirm_token(email2, password2)
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"token": token_email, "email": email2, "password": password0})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Сброс пароля")
     def test_post_auth_users_reset_password(self, use_api_base):
@@ -693,10 +546,7 @@ class TestAPI:
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"email": email2})
         time.sleep(10)
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке \
     auth/password/reset/confirm/{uid}/{token}")
@@ -707,10 +557,7 @@ class TestAPI:
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=page.get_confirm_email_tokens(email2, password2) | {
                                  "new_password": password3, "re_new_password": password3})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("DELETE Удалить авторизованного пользователя")
     def test_delete_auth_users_me(self, use_api_base):
@@ -718,10 +565,7 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}auth/users/me/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                    json={"current_password": password3})
-        print(response.text)
-        with allure.step(f"Expected status {self.code.STATUS_200}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Регистрация пользователя без электронной почты")
     def test_post_create_user_no_email(self):
@@ -730,10 +574,7 @@ class TestAPI:
         with allure.step(f"Expected message: {self.constant.NO_DATA}"):
             assert response.json()["email"] == self.constant.NO_DATA, \
                 f'Expected message: {self.constant.NO_DATA}, actual message: {response.json()["email"]}'
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_400}"):
-            assert response.status_code == self.code.STATUS_400, \
-                f'Expected status {self.code.STATUS_400}, actual status {response.status_code}'
+        Assertions.assert_status_code(response, self.code.STATUS_400)
 
     @allure.title("POST Регистрация пользователя без пароля")
     def test_post_create_user_no_passwrd(self):
@@ -742,20 +583,14 @@ class TestAPI:
         with allure.step(f"Expected message: {self.constant.NO_DATA}"):
             assert response.json()["password"] == self.constant.NO_DATA, \
                 f'Expected message: {self.constant.NO_DATA}, actual message: {response.json()["password"]}'
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_400}"):
-            assert response.status_code == self.code.STATUS_400, \
-                f"Expected status {self.code.STATUS_400}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_400)
 
     @allure.title("POST Регистрация пользователя без подтверждения подписки")
     def test_post_create_user_no_subscriber(self, use_api_base):
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER_NO_SUBSCRIBER)
         time.sleep(10)
-        print(response.json())
-        with allure.step(f"Expected status {self.code.STATUS_201}"):
-            assert response.status_code == self.code.STATUS_201, \
-                f"Expected status {self.code.STATUS_201}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("DELETE Активировать и удалить авторизованного пользователя")
     def test_delete_auth_users_me_new(self, use_api_base):
@@ -767,6 +602,4 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}auth/users/me/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                    json={"current_password": password0})
-        with allure.step(f"Expected status {self.code.STATUS_204}"):
-            assert response.status_code == self.code.STATUS_204, \
-                f"Expected status {self.code.STATUS_204}, actual status {response.status_code}"
+        Assertions.assert_status_code(response, self.code.STATUS_204)
