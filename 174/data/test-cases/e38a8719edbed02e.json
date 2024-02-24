@@ -1,0 +1,303 @@
+{
+  "uid" : "e38a8719edbed02e",
+  "name" : "test_get_css_property_footer_email[font-family-Mulish, sans-serif-\\u0448\\u0440\\u0438\\u0444\\u0442\\u0430-https://front.pwave.pnpl.tech/-chrome]",
+  "fullName" : "tests.test_footer.test_footer.TestFooter#test_get_css_property_footer_email",
+  "historyId" : "fa80c730cdce160fb347416b4906b2bd",
+  "time" : {
+    "start" : 1708805858487,
+    "stop" : 1708805858487,
+    "duration" : 0
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.\n  (session not created: DevToolsActivePort file doesn't exist)\n  (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)\nStacktrace:\n#0 0x56231987e303 <unknown>\n#1 0x5623195632b7 <unknown>\n#2 0x562319597b40 <unknown>\n#3 0x5623195936e5 <unknown>\n#4 0x5623195ddabc <unknown>\n#5 0x5623195d1123 <unknown>\n#6 0x5623195a1095 <unknown>\n#7 0x5623195a209e <unknown>\n#8 0x5623198426ab <unknown>\n#9 0x5623198464ba <unknown>\n#10 0x56231982ef85 <unknown>\n#11 0x56231984712f <unknown>\n#12 0x562319812e6f <unknown>\n#13 0x56231986b5f8 <unknown>\n#14 0x56231986b7c2 <unknown>\n#15 0x56231987d4a4 <unknown>\n#16 0x7effcca94ac3 <unknown>",
+  "statusTrace" : "browser = 'chrome'\n\n    @pytest.fixture(scope='function')\n    def driver(browser):\n        print(f'\\nstart {browser} browser...')\n        if browser == \"chrome\":\n            chrome_options = ChromeOptions()\n            # chrome_options.add_argument('--headless')\n            chrome_options.add_argument('--start-maximized')\n>           driver = webdriver.Chrome(options=chrome_options)\n\nconftest.py:18: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/chrome/webdriver.py:45: in __init__\n    super().__init__(\n/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/chromium/webdriver.py:61: in __init__\n    super().__init__(command_executor=executor, options=options)\n/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:208: in __init__\n    self.start_session(capabilities)\n/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:292: in start_session\n    response = self.execute(Command.NEW_SESSION, caps)[\"value\"]\n/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:347: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7f13ac339bb0>\nresponse = {'status': 500, 'value': '{\"value\":{\"error\":\"session not created\",\"message\":\"session not created: Chrome failed to sta...\\\\n#14 0x56231986b7c2 \\\\u003Cunknown>\\\\n#15 0x56231987d4a4 \\\\u003Cunknown>\\\\n#16 0x7effcca94ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.\nE         (session not created: DevToolsActivePort file doesn't exist)\nE         (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)\nE       Stacktrace:\nE       #0 0x56231987e303 <unknown>\nE       #1 0x5623195632b7 <unknown>\nE       #2 0x562319597b40 <unknown>\nE       #3 0x5623195936e5 <unknown>\nE       #4 0x5623195ddabc <unknown>\nE       #5 0x5623195d1123 <unknown>\nE       #6 0x5623195a1095 <unknown>\nE       #7 0x5623195a209e <unknown>\nE       #8 0x5623198426ab <unknown>\nE       #9 0x5623198464ba <unknown>\nE       #10 0x56231982ef85 <unknown>\nE       #11 0x56231984712f <unknown>\nE       #12 0x562319812e6f <unknown>\nE       #13 0x56231986b5f8 <unknown>\nE       #14 0x56231986b7c2 <unknown>\nE       #15 0x56231987d4a4 <unknown>\nE       #16 0x7effcca94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: SessionNotCreatedException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1708805607601,
+      "stop" : 1708805607618,
+      "duration" : 17
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1708805607619,
+      "stop" : 1708805607619,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1708805858488,
+      "stop" : 1708805858659,
+      "duration" : 171
+    },
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.\n  (session not created: DevToolsActivePort file doesn't exist)\n  (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)\nStacktrace:\n#0 0x56231987e303 <unknown>\n#1 0x5623195632b7 <unknown>\n#2 0x562319597b40 <unknown>\n#3 0x5623195936e5 <unknown>\n#4 0x5623195ddabc <unknown>\n#5 0x5623195d1123 <unknown>\n#6 0x5623195a1095 <unknown>\n#7 0x5623195a209e <unknown>\n#8 0x5623198426ab <unknown>\n#9 0x5623198464ba <unknown>\n#10 0x56231982ef85 <unknown>\n#11 0x56231984712f <unknown>\n#12 0x562319812e6f <unknown>\n#13 0x56231986b5f8 <unknown>\n#14 0x56231986b7c2 <unknown>\n#15 0x56231987d4a4 <unknown>\n#16 0x7effcca94ac3 <unknown>\n\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/pluggy/_callers.py\", line 166, in _multicall\n    teardown.throw(outcome._exception)\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/_pytest/setuponly.py\", line 36, in pytest_fixture_setup\n    return (yield)\n            ^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/pluggy/_callers.py\", line 102, in _multicall\n    res = hook_impl.function(*args)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/_pytest/fixtures.py\", line 1149, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/_pytest/fixtures.py\", line 916, in call_fixture_func\n    fixture_result = next(generator)\n                     ^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/conftest.py\", line 18, in driver\n    driver = webdriver.Chrome(options=chrome_options)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/chrome/webdriver.py\", line 45, in __init__\n    super().__init__(\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/chromium/webdriver.py\", line 61, in __init__\n    super().__init__(command_executor=executor, options=options)\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 208, in __init__\n    self.start_session(capabilities)\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 292, in start_session\n    response = self.execute(Command.NEW_SESSION, caps)[\"value\"]\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 347, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.2/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  } ],
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Футера"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_footer"
+  }, {
+    "name" : "suite",
+    "value" : "test_footer"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestFooter"
+  }, {
+    "name" : "host",
+    "value" : "fv-az885-50"
+  }, {
+    "name" : "thread",
+    "value" : "2222-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_footer.test_footer"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  }, {
+    "name" : "css_property",
+    "value" : "'font-family'"
+  }, {
+    "name" : "figma",
+    "value" : "'Mulish, sans-serif'"
+  }, {
+    "name" : "name",
+    "value" : "'шрифта'"
+  }, {
+    "name" : "url",
+    "value" : "'https://front.pwave.pnpl.tech/'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 18,
+        "unknown" : 0,
+        "total" : 19
+      },
+      "items" : [ {
+        "uid" : "6a1aa3300443224c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/173//#testresult/6a1aa3300443224c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1708547997520,
+          "stop" : 1708547997556,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "8922aff4edd97ca5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/172//#testresult/8922aff4edd97ca5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707851271161,
+          "stop" : 1707851271193,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "aa0d786b7bfc94fe",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/171//#testresult/aa0d786b7bfc94fe",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707494792093,
+          "stop" : 1707494792125,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "f46ea10157fb15cb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/171//#testresult/f46ea10157fb15cb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707479866277,
+          "stop" : 1707479866309,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "93dd353c93f010c2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/170//#testresult/93dd353c93f010c2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707255210743,
+          "stop" : 1707255210776,
+          "duration" : 33
+        }
+      }, {
+        "uid" : "6012cd0a27e31628",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/169//#testresult/6012cd0a27e31628",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707252553516,
+          "stop" : 1707252553550,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "514d5817313d6b61",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/169//#testresult/514d5817313d6b61",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707245263535,
+          "stop" : 1707245263569,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "3d0e6e4a9ae2af19",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/169//#testresult/3d0e6e4a9ae2af19",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707244222367,
+          "stop" : 1707244222403,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "45c5b616acd0e914",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/168//#testresult/45c5b616acd0e914",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707241316909,
+          "stop" : 1707241316942,
+          "duration" : 33
+        }
+      }, {
+        "uid" : "a5bffe4eeac73e41",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/167//#testresult/a5bffe4eeac73e41",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707239661705,
+          "stop" : 1707239661738,
+          "duration" : 33
+        }
+      }, {
+        "uid" : "bacc9dc2e2660319",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/bacc9dc2e2660319",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707236018715,
+          "stop" : 1707236018747,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "8734f8a009f555b7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/8734f8a009f555b7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707220107311,
+          "stop" : 1707220107342,
+          "duration" : 31
+        }
+      }, {
+        "uid" : "6848aeb4c30c9e05",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/6848aeb4c30c9e05",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707218519834,
+          "stop" : 1707218519865,
+          "duration" : 31
+        }
+      }, {
+        "uid" : "bb6b0a020129684e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/bb6b0a020129684e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707217560031,
+          "stop" : 1707217560063,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "41fa88dc1c539561",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/165//#testresult/41fa88dc1c539561",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707216657855,
+          "stop" : 1707216657887,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "d521c661ccc6f639",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/164//#testresult/d521c661ccc6f639",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707214980322,
+          "stop" : 1707214980354,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "fd4c601eb889fdc",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/164//#testresult/fd4c601eb889fdc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707211598873,
+          "stop" : 1707211598905,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "445e799fbef603bd",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/163//#testresult/445e799fbef603bd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707078512560,
+          "stop" : 1707078512591,
+          "duration" : 31
+        }
+      } ]
+    },
+    "tags" : [ "regress" ]
+  },
+  "source" : "e38a8719edbed02e.json",
+  "parameterValues" : [ "'chrome'", "'font-family'", "'Mulish, sans-serif'", "'шрифта'", "'https://front.pwave.pnpl.tech/'" ]
+}
