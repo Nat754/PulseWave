@@ -13,8 +13,8 @@ def driver(browser):
     print(f'\nstart {browser} browser...')
     if browser == "chrome":
         chrome_options = ChromeOptions()
-        chrome_options.add_argument('--headless')
-        # chrome_options.add_argument('--start-maximized')
+        # chrome_options.add_argument('--headless')
+        chrome_options.add_argument('--start-maximized')
         driver = webdriver.Chrome(options=chrome_options)
     elif browser == "firefox":
         firefox_options = FirefoxOptions()
