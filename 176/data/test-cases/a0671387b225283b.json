@@ -1,0 +1,395 @@
+{
+  "uid" : "a0671387b225283b",
+  "name" : "Проверка элемента 'pulsewave@gmail.com'в хедере",
+  "fullName" : "tests.test_footer.test_footer.TestFooter#test_get_footer_email",
+  "historyId" : "607171844534283c9303ccbfc63a6bd4",
+  "time" : {
+    "start" : 1708882923869,
+    "stop" : 1708882923904,
+    "duration" : 35
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: email адрес 'info@pulsewave.ru' неверный\nassert 'info@pulsewave.ru' == 'pulsewave@gmail.com'\n  \n  - pulsewave@gmail.com\n  + info@pulsewave.ru",
+  "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f33dea9f440>\nfooter_open = <pages.footer.FooterPage object at 0x7f33de473800>\nurl = 'https://front.pwave.pnpl.tech/auth/signup'\n\n    @allure.title(f\"Проверка элемента '{footer.EMAIL_TEXT}'в хедере\")\n    @pytest.mark.parametrize('url', footer.PAGES)\n    @pytest.mark.smoke\n    def test_get_footer_email(self, footer_open, url):\n        text = footer_open.get_footer_email().text\n>       assert text == self.footer.EMAIL_TEXT, f\"email адрес '{text}' неверный\"\nE       AssertionError: email адрес 'info@pulsewave.ru' неверный\nE       assert 'info@pulsewave.ru' == 'pulsewave@gmail.com'\nE         \nE         - pulsewave@gmail.com\nE         + info@pulsewave.ru\n\ntests/test_footer/test_footer.py:45: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1708882581636,
+      "stop" : 1708882581654,
+      "duration" : 18
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1708882920832,
+      "stop" : 1708882921007,
+      "duration" : 175
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1708882581654,
+      "stop" : 1708882581654,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "footer_open",
+    "time" : {
+      "start" : 1708882921008,
+      "stop" : 1708882923869,
+      "duration" : 2861
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка перехода по ссылке для просмотра информации о файлах cookie на Главной странице",
+      "time" : {
+        "start" : 1708882923806,
+        "stop" : 1708882923869,
+        "duration" : 63
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: email адрес 'info@pulsewave.ru' неверный\nassert 'info@pulsewave.ru' == 'pulsewave@gmail.com'\n  \n  - pulsewave@gmail.com\n  + info@pulsewave.ru",
+    "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f33dea9f440>\nfooter_open = <pages.footer.FooterPage object at 0x7f33de473800>\nurl = 'https://front.pwave.pnpl.tech/auth/signup'\n\n    @allure.title(f\"Проверка элемента '{footer.EMAIL_TEXT}'в хедере\")\n    @pytest.mark.parametrize('url', footer.PAGES)\n    @pytest.mark.smoke\n    def test_get_footer_email(self, footer_open, url):\n        text = footer_open.get_footer_email().text\n>       assert text == self.footer.EMAIL_TEXT, f\"email адрес '{text}' неверный\"\nE       AssertionError: email адрес 'info@pulsewave.ru' неверный\nE       assert 'info@pulsewave.ru' == 'pulsewave@gmail.com'\nE         \nE         - pulsewave@gmail.com\nE         + info@pulsewave.ru\n\ntests/test_footer/test_footer.py:45: AssertionError",
+    "steps" : [ {
+      "name" : "Получить элемент 'pulsewave@gmail.com' в футере",
+      "time" : {
+        "start" : 1708882923870,
+        "stop" : 1708882923895,
+        "duration" : 25
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "4f5d5f8a027259a8",
+      "name" : "Screenshot",
+      "source" : "4f5d5f8a027259a8.png",
+      "type" : "image/png",
+      "size" : 96980
+    }, {
+      "uid" : "580b0d5acadca612",
+      "name" : "HTML source",
+      "source" : "580b0d5acadca612.html",
+      "type" : "text/html",
+      "size" : 78716
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1708882923973,
+      "stop" : 1708882924031,
+      "duration" : 58
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Футера"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_footer"
+  }, {
+    "name" : "suite",
+    "value" : "test_footer"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestFooter"
+  }, {
+    "name" : "host",
+    "value" : "fv-az841-564"
+  }, {
+    "name" : "thread",
+    "value" : "2236-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_footer.test_footer"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  }, {
+    "name" : "url",
+    "value" : "'https://front.pwave.pnpl.tech/auth/signup'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 19,
+        "unknown" : 0,
+        "total" : 21
+      },
+      "items" : [ {
+        "uid" : "874d08176a3fe8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/175//#testresult/874d08176a3fe8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1708806531749,
+          "stop" : 1708806531810,
+          "duration" : 61
+        }
+      }, {
+        "uid" : "bbef5e45ee1ab281",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/174//#testresult/bbef5e45ee1ab281",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.SessionNotCreatedException: Message: session not created: Chrome failed to start: exited normally.\n  (session not created: DevToolsActivePort file doesn't exist)\n  (The process started from chrome location /usr/bin/google-chrome is no longer running, so ChromeDriver is assuming that Chrome has crashed.)\nStacktrace:\n#0 0x5624db693303 <unknown>\n#1 0x5624db3782b7 <unknown>\n#2 0x5624db3acb40 <unknown>\n#3 0x5624db3a86e5 <unknown>\n#4 0x5624db3f2abc <unknown>\n#5 0x5624db3e6123 <unknown>\n#6 0x5624db3b6095 <unknown>\n#7 0x5624db3b709e <unknown>\n#8 0x5624db6576ab <unknown>\n#9 0x5624db65b4ba <unknown>\n#10 0x5624db643f85 <unknown>\n#11 0x5624db65c12f <unknown>\n#12 0x5624db627e6f <unknown>\n#13 0x5624db6805f8 <unknown>\n#14 0x5624db6807c2 <unknown>\n#15 0x5624db6924a4 <unknown>\n#16 0x7fb72c094ac3 <unknown>",
+        "time" : {
+          "start" : 1708805852932,
+          "stop" : 1708805852932,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "55760050a1969dd3",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/173//#testresult/55760050a1969dd3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1708547935620,
+          "stop" : 1708547935679,
+          "duration" : 59
+        }
+      }, {
+        "uid" : "e89ab7f526d1cb79",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/172//#testresult/e89ab7f526d1cb79",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707851184238,
+          "stop" : 1707851184298,
+          "duration" : 60
+        }
+      }, {
+        "uid" : "9718c8537045df3f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/171//#testresult/9718c8537045df3f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707494731141,
+          "stop" : 1707494731201,
+          "duration" : 60
+        }
+      }, {
+        "uid" : "41e1d3993d7d86e7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/171//#testresult/41e1d3993d7d86e7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707479796495,
+          "stop" : 1707479796556,
+          "duration" : 61
+        }
+      }, {
+        "uid" : "46419619b2ca7fa3",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/170//#testresult/46419619b2ca7fa3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707255150088,
+          "stop" : 1707255150148,
+          "duration" : 60
+        }
+      }, {
+        "uid" : "c3fa34020cdec882",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/169//#testresult/c3fa34020cdec882",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707252508235,
+          "stop" : 1707252508299,
+          "duration" : 64
+        }
+      }, {
+        "uid" : "41575a054b05a2eb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/169//#testresult/41575a054b05a2eb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707245204484,
+          "stop" : 1707245204550,
+          "duration" : 66
+        }
+      }, {
+        "uid" : "14f21dbe8b73cad9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/169//#testresult/14f21dbe8b73cad9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707244162577,
+          "stop" : 1707244162640,
+          "duration" : 63
+        }
+      }, {
+        "uid" : "e0f1df31012eb559",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/168//#testresult/e0f1df31012eb559",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707241272682,
+          "stop" : 1707241272743,
+          "duration" : 61
+        }
+      }, {
+        "uid" : "e86f0e5b736cfcf7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/167//#testresult/e86f0e5b736cfcf7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707239600879,
+          "stop" : 1707239600941,
+          "duration" : 62
+        }
+      }, {
+        "uid" : "4ed13d29716c3bf",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/4ed13d29716c3bf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707235973229,
+          "stop" : 1707235973295,
+          "duration" : 66
+        }
+      }, {
+        "uid" : "7ae55514b8831bf6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/7ae55514b8831bf6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707220059260,
+          "stop" : 1707220059320,
+          "duration" : 60
+        }
+      }, {
+        "uid" : "cccf18be411213e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/cccf18be411213e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707218475436,
+          "stop" : 1707218475497,
+          "duration" : 61
+        }
+      }, {
+        "uid" : "c408076717e6e79c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/166//#testresult/c408076717e6e79c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707217514681,
+          "stop" : 1707217514742,
+          "duration" : 61
+        }
+      }, {
+        "uid" : "caa0e6e194157ac2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/165//#testresult/caa0e6e194157ac2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707216613148,
+          "stop" : 1707216613212,
+          "duration" : 64
+        }
+      }, {
+        "uid" : "8f0262520d796ae",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/164//#testresult/8f0262520d796ae",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707214935693,
+          "stop" : 1707214935755,
+          "duration" : 62
+        }
+      }, {
+        "uid" : "226f8ebc162b5c59",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/164//#testresult/226f8ebc162b5c59",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707211537929,
+          "stop" : 1707211537994,
+          "duration" : 65
+        }
+      }, {
+        "uid" : "175dbe5c39480623",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/163//#testresult/175dbe5c39480623",
+        "status" : "passed",
+        "time" : {
+          "start" : 1707078467212,
+          "stop" : 1707078467272,
+          "duration" : 60
+        }
+      } ]
+    },
+    "tags" : [ "smoke" ]
+  },
+  "source" : "a0671387b225283b.json",
+  "parameterValues" : [ "'chrome'", "'https://front.pwave.pnpl.tech/auth/signup'" ]
+}
