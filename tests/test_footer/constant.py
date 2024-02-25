@@ -8,8 +8,8 @@ class FooterConstant:
     LICENSE_LINK = 'Условия пользования'
     YEAR_COOPERATION = datetime.datetime.now().year
     TEXT_COOPERATION = f'© PulseWave, 2023-{YEAR_COOPERATION}'
-    EMAIL_TEXT = 'pulsewave@gmail.com'
-    EMAIL_TEXT_HOVER = 'mailto:pulsewave@gmail.com'
+    EMAIL_TEXT = 'info@pulsewave.ru'
+    EMAIL_TEXT_HOVER = 'mailto:info@pulsewave.ru'
     COOKIES_TEXT = ('Наш сайт использует файлы cookie, чтобы улучшить работу сайта, повысить его эффективность и '
                     'удобство. Продолжая использовать сайт, вы соглашаетесь на использование файлов cookie')
     COOKIES_BUTTON = 'Принимаю всё'
