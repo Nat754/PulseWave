@@ -9,10 +9,10 @@ from tests.constant import Messages, Constant
 
 
 class SignUpPage(BasePage):
-    signup = SignUpConstants
-    locator = SignUpLocators
-    message = Messages
-    const = Constant
+    signup = SignUpConstants()
+    locator = SignUpLocators()
+    message = Messages()
+    const = Constant()
 
     @staticmethod
     def get_confirm_signup_to_email(e_mail, passwrd):

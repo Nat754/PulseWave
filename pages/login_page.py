@@ -6,10 +6,10 @@ from tests.constant import Messages, Constant
 
 
 class LoginPage(BasePage):
-    login = LoginConstant
-    locator = LoginPageLocators
-    message = Messages
-    const = Constant
+    login = LoginConstant()
+    locator = LoginPageLocators()
+    message = Messages()
+    const = Constant()
 
     @allure.step(f"Проверка видимости заголовка {login.TEXT_LOGIN}")
     def get_title_login(self):

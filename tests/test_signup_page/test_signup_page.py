@@ -10,9 +10,9 @@ from tests.test_signup_page.constant import SignUpConstants
 @pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{SignUpConstants.TEXT_SIGNUP}'")
 class TestSignupPage:
-    const = Constant
-    signup = SignUpConstants
-    msg = Messages
+    const = Constant()
+    signup = SignUpConstants()
+    msg = Messages()
     base = BasePage
 
     @allure.title("1.3, 1.3.1, 1.15 Регистрация с корректными email и паролем и с согласием на подписку")

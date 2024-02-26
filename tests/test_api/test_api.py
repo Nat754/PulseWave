@@ -14,8 +14,8 @@ Faker.seed()
 
 @allure.epic("Тестирование API")
 class TestAPI:
-    constant = ApiConstant
-    code = StatusCode
+    constant = ApiConstant()
+    code = StatusCode()
 
     @allure.title("POST Создать пользователя с корректными данными")
     def test_post_create_user(self):

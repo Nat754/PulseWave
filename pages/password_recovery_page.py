@@ -7,26 +7,26 @@ from tests.test_password_recovery.constant import PasswordRecoveryConstant
 from tests.constant import Messages, Constant
 
 
-def get_link_recovery_password_by_email():
-    with allure.step('Получить ссылку для смены пароля на email'):
-        mail = imaplib.IMAP4_SSL('imap.mail.ru')
-        mail.login(email_auth, password_auth_email)
-        mail.select('INBOX')
-        result, data_id = mail.search(None, 'ALL')
-        message_ids = data_id[0].split()
-        result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-        raw_email = str(data_id[0][1])
-        mail.logout()
-        first = raw_email.find('https://front.pwave.pnpl.tech/auth/password/reset/confirm')
-        link = raw_email[first:first + 102]
-        return link
-
-
 class PasswordRecoveryPage(BasePage):
-    recovery = PasswordRecoveryConstant
-    locator = PasswordRecoveryLocators
-    message = Messages
-    const = Constant
+    recovery = PasswordRecoveryConstant()
+    locator = PasswordRecoveryLocators()
+    message = Messages()
+    const = Constant()
+
+    @staticmethod
+    def get_link_recovery_password_by_email():
+        with allure.step('Получить ссылку для смены пароля на email'):
+            mail = imaplib.IMAP4_SSL('imap.mail.ru')
+            mail.login(email_auth, password_auth_email)
+            mail.select('INBOX')
+            result, data_id = mail.search(None, 'ALL')
+            message_ids = data_id[0].split()
+            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
+            raw_email = str(data_id[0][1])
+            mail.logout()
+            first = raw_email.find('https://front.pwave.pnpl.tech/auth/password/reset/confirm')
+            link = raw_email[first:first + 102]
+            return link
 
     @allure.step(f"Проверка видимости заголовка {recovery.RECOVERY_PAGE_TITLE}")
     def get_title_recovery(self):

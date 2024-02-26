@@ -7,9 +7,9 @@ from locators.footer_locators import FooterLocators
 
 
 class HeaderPage(BasePage):
-    header = HeaderConstant
-    footer = FooterConstant
-    locator = HeaderLocators
+    header = HeaderConstant()
+    footer = FooterConstant()
+    locator = HeaderLocators()
 
     @allure.step("Проверка видимости логотипа в хедере")
     def get_header_logo(self):

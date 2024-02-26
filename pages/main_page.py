@@ -6,9 +6,9 @@ from locators.main_locators import MainPageLocators
 
 
 class MainPage(BasePage):
-    main = MainConstant
-    footer = FooterConstant
-    locator = MainPageLocators
+    main = MainConstant()
+    footer = FooterConstant()
+    locator = MainPageLocators()
 
     @allure.step(f"Проверка видимости кнопки '{main.TEXT_SIGNUP}' на главной странице")
     def get_body_auth_signup(self):

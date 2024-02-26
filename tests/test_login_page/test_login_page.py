@@ -8,9 +8,9 @@ from tests.test_login_page.login_constant import LoginConstant
 @pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{LoginConstant.TEXT_LOGIN}'")
 class TestLoginPage:
-    const = Constant
-    login = LoginConstant
-    message = Messages
+    const = Constant()
+    login = LoginConstant()
+    message = Messages()
 
     @allure.title(f"Проверка текста заголовка '{login.TEXT_LOGIN}'")
     @pytest.mark.regress

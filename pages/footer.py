@@ -5,8 +5,8 @@ from tests.test_footer.constant import FooterConstant
 
 
 class FooterPage(BasePage):
-    footer = FooterConstant
-    locator = FooterLocators
+    footer = FooterConstant()
+    locator = FooterLocators()
 
     @allure.step(f"Проверка видимости ссылки '{footer.LICENSE_LINK}' в футере")
     def get_footer_license(self):
@@ -43,7 +43,8 @@ class FooterPage(BasePage):
     def get_cookies_link(self):
         return self.element_is_visible(self.locator.COOKIES_LINK).click()
 
-    def get_page_open(self, driver, url):
+    @staticmethod
+    def get_page_open(driver, url):
         with allure.step(f"Открыть страницу '{url}'"):
             page = FooterPage(driver)
             driver.get(url)

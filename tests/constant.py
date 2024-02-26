@@ -1,6 +1,3 @@
-from data import email_auth
-
-
 class Constant:
 
     MAIN_PAGE = 'https://front.pwave.pnpl.tech/'
