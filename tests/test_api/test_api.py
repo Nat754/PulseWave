@@ -147,6 +147,32 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @allure.title("PUT Обновить все данные РП (на данный момент только имя)")
+    def test_put_api_workspace_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
+        response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                json=self.constant.WORKSPACE)
+        Assertions.assert_status_code(response, self.code.STATUS_200)
+
+    @allure.title("PATCH Частично обновить данные РП (на данный момент только имя)")
+    def test_patch_api_workspace_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
+        response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
+                                  json=self.constant.WORKSPACE)
+        Assertions.assert_status_code(response, self.code.STATUS_200)
+
+    @allure.title("DELETE Частично обновить данные РП (на данный момент только имя)")
+    def test_delete_api_workspace_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
+        response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        Assertions.assert_status_code(response, self.code.STATUS_204)
+
     @allure.title("POST Подтверждение приглашения в РП")
     def test_post_api_workspace_confirm_invite(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
