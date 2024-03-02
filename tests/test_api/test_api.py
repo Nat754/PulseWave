@@ -1,4 +1,5 @@
 import time
+import pytest
 import requests
 import allure
 import random
@@ -18,7 +19,7 @@ class TestAPI:
     code = StatusCode()
 
     @allure.title("POST Создать пользователя с корректными данными")
-    def test_post_create_user(self):
+    def test_post_auth_user(self):
         url = f'{self.constant.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER)
         time.sleep(10)
@@ -32,7 +33,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Пригласить пользователя по email")
-    def test_post_api_workspace_invite_user(self, use_api_base):
+    def test_post_api_workspace_id_invite_user(self, use_api_base):
         """Пользователи добавляются по одному. Если пользователя не существует, он будет создан"""
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/workspace/'
@@ -45,7 +46,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Повторная отправка ссылки с приглашением пользователя")
-    def test_post_api_workspace_resend_invite(self, use_api_base):
+    def test_post_api_workspace_id_resend_invite(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
@@ -58,7 +59,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Удаление приглашенного пользователей из РП")
-    def test_post_api_workspace_kick_user(self, use_api_base):
+    def test_post_api_workspace_id_kick_user(self, use_api_base):
         """Удаление как из участников так и из приглашенных"""
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/workspace/'
@@ -126,7 +127,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_400)
 
     @allure.title("POST Создать пару токенов access и refresh")
-    def test_post_create_jwt(self):
+    def test_post_auth_jwt_create(self):
         url = f'{self.constant.BASE_URL}auth/jwt/create/'
         response = requests.post(url, json={"email": email1, "password": password0})
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -135,6 +136,14 @@ class TestAPI:
     def test_get_api_workspace(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}api/workspace/'
+        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+        Assertions.assert_status_code(response, self.code.STATUS_200)
+
+    @allure.title("GET Информация о конкретном рабочем пространстве")
+    def test_get_api_workspace_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        workspace_id = use_api_base.get_workspace_id()
+        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -213,7 +222,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Создать колонку на доске")
-    def test_post_api_board_column_create(self, use_api_base):
+    def test_post_api_board_id_column(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()[1]
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/'
@@ -238,7 +247,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Обновить колонку (название и порядковый номер)")
-    def test_put_api_board_column_info(self, use_api_base):
+    def test_put_api_board_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id, column_id = use_api_base.get_board_column_id()
         url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
@@ -270,7 +279,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Создать задачу")
-    def test_post_column_task_create(self, use_api_base):
+    def test_post_api_column_id_task(self, use_api_base):
         """
         responsible: Список ответственных пользователей. Передается массивом из id,например {"responsible": [1,2,3]}
         deadline: Срок выполнения задачи
@@ -287,7 +296,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("GET Список всех задач колонки")
-    def test_get_column_tasks(self, use_api_base):
+    def test_get_column_id_task(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id = use_api_base.get_board_column_id()[1]
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
@@ -303,7 +312,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Обновить задачу")
-    def test_put_column_task_id(self, use_api_base):
+    def test_put_api_column_id_task_id(self, use_api_base):
         """Для перемещения между колонок нужно передать column - id новой колонки и index - куда ее вставить"""
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
@@ -314,7 +323,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PATCH Частично обновить задачу")
-    def test_patch_column_task_id(self, use_api_base):
+    def test_patch_api_column_id_task_id(self, use_api_base):
         """Перемещение между колонками возможно только PUT запросом"""
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
@@ -325,7 +334,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("DELETE Удалить задачу")
-    def test_delete_column_task_id(self, use_api_base):
+    def test_delete_column_id_task_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
         url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
@@ -333,7 +342,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("DELETE Удалить колонку")
-    def test_delete_api_board_column_id(self, use_api_base):
+    def test_delete_api_boards_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id, column_id = use_api_base.get_board_column_id()
         url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
@@ -401,7 +410,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Создать комментарий")
-    def test_post_task_id_comment(self, use_api_base):
+    def test_post_api_task_id_comment(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
         url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
@@ -409,8 +418,8 @@ class TestAPI:
                                  json=self.constant.COMMENT)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
-    @allure.title("DELETE Создать комментарий")
-    def test_delete_task_id_comment(self, use_api_base):
+    @allure.title("DELETE Удалить комментарий")
+    def test_delete_task_id_comment_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
         url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
@@ -460,6 +469,51 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @allure.title("PUT Обновить стикер")
+    def test_put_api_task_id_sticker_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        sticker_new = {"name": faker.first_name(), "color": random.choice(self.constant.COLOR_STICKER)}
+        headers = {'accept': 'application/json', 'Authorization': f"{jwt}"}
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/'
+        response = requests.post(url, headers=headers, json=sticker_new)
+        sticker_id = response.json()['id']
+        sticker_put = {"name": faker.first_name(), "color": random.choice(self.constant.COLOR_STICKER)}
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/{sticker_id}/'
+        response = requests.put(url, headers=headers, json=sticker_put)
+        print(sticker_new, sticker_put)
+        Assertions.assert_status_code(response, self.code.STATUS_200)
+
+    @pytest.mark.parametrize('field', [{"name": faker.first_name()}, {"color": random.choice(constant.COLOR_STICKER)}])
+    def test_patch_api_task_id_sticker_id(self, use_api_base, field):
+        allure.dynamic.title(f"PATCH Частично обновить стикер {field}")
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        sticker_new = {"name": faker.first_name(), "color": random.choice(self.constant.COLOR_STICKER)}
+        headers = {'accept': 'application/json', 'Authorization': f"{jwt}"}
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/'
+        response = requests.post(url, headers=headers, json=sticker_new)
+        print('\n', response.json()['name'], response.json()['color'])
+        sticker_id = response.json()['id']
+        sticker_patch = field
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/{sticker_id}/'
+        response = requests.patch(url, headers=headers, json=sticker_patch)
+        print(response.json()['name'], response.json()['color'])
+        Assertions.assert_status_code(response, self.code.STATUS_200)
+
+    @allure.title(f"DELETE Удалить стикер")
+    def test_delete_api_task_id_sticker_id(self, use_api_base):
+        jwt = use_api_base.create_jwt(email1, password0)
+        column_id, task_id = use_api_base.get_column_task_id()
+        sticker_new = {"name": faker.first_name(), "color": random.choice(self.constant.COLOR_STICKER)}
+        headers = {'accept': 'application/json', 'Authorization': f"{jwt}"}
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/'
+        response = requests.post(url, headers=headers, json=sticker_new)
+        sticker_id = response.json()['id']
+        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/{sticker_id}/'
+        response = requests.delete(url, headers=headers)
+        Assertions.assert_status_code(response, self.code.STATUS_204)
+
     @allure.title("GET Получить список всех пользователей для поиска")
     def test_get_api_user_list(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -468,7 +522,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Обновить JWT access_token авторизованного пользователя")
-    def test_post_refresh_jwt(self, use_api_base):
+    def test_post_auth_jwt_refresh(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}auth/jwt/refresh/'
         refresh = use_api_base.create_refresh(email1, password0)
@@ -498,7 +552,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Обновить все данные авторизованного пользователя по id")
-    def test_put_auth_user_id(self, use_api_base):
+    def test_put_auth_users_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         user_id = use_api_base.get_auth_user_id()
         url = f'{self.constant.BASE_URL}auth/users/{user_id}/'
@@ -506,7 +560,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PATCH Частично обновить данные авторизованного пользователя")
-    def test_patch_auth_user_id(self, use_api_base):
+    def test_patch_auth_users_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         user_id = use_api_base.get_auth_user_id()
         url = f'{self.constant.BASE_URL}auth/users/{user_id}/'
@@ -515,7 +569,7 @@ class TestAPI:
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PUT Обновить все данные авторизованного пользователя me")
-    def test_put_auth_user_me(self, use_api_base):
+    def test_put_auth_users_me(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         url = f'{self.constant.BASE_URL}auth/users/me/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
