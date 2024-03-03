@@ -24,8 +24,9 @@ class PasswordRecoveryPage(BasePage):
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
             raw_email = str(data_id[0][1])
             mail.logout()
-            first = raw_email.find('https://front.pwave.pnpl.tech/auth/password/reset/confirm')
-            link = raw_email[first:first + 102]
+            first = raw_email.find(Constant.MAIN_PAGE)
+            end = raw_email[first:].find('"')
+            link = raw_email[first:first + end]
             return link
 
     @allure.step(f"Проверка видимости заголовка {recovery.RECOVERY_PAGE_TITLE}")
