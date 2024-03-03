@@ -1,0 +1,192 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Не изменилось имя у доски\nassert 'Interior and spatial designer' != 'Interior and spatial designer'",
+      "children" : [ {
+        "name" : "Проверка недействительности кеша доски",
+        "uid" : "cafdff7de8a726b3",
+        "parentUid" : "688cfacfd3f3cd15cabd79f288097198",
+        "status" : "failed",
+        "time" : {
+          "start" : 1709483621671,
+          "stop" : 1709483625053,
+          "duration" : 3382
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "688cfacfd3f3cd15cabd79f288097198"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 204. Actual: 200",
+      "children" : [ {
+        "name" : "POST Подтверждение приглашения в РП",
+        "uid" : "3424a73f99c83489",
+        "parentUid" : "b43e2ec87e35e19c29999f9204f55148",
+        "status" : "failed",
+        "time" : {
+          "start" : 1709483643868,
+          "stop" : 1709483659726,
+          "duration" : 15858
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "b43e2ec87e35e19c29999f9204f55148"
+    }, {
+      "name" : "AssertionError: Не прошла авторизация с корректными данными\nassert 'https://puls...ru/auth/login' == 'https://puls...ru/workspaces'\n  \n  - https://pulsewave.ru/workspaces\n  + https://pulsewave.ru/auth/login",
+      "children" : [ {
+        "name" : "Авторизация с корректными данными",
+        "uid" : "3ccf664f12c9bcab",
+        "parentUid" : "6f06b0914d834499b784aaca66befa3b",
+        "status" : "failed",
+        "time" : {
+          "start" : 1709484187866,
+          "stop" : 1709484208192,
+          "duration" : 20326
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "6f06b0914d834499b784aaca66befa3b"
+    }, {
+      "name" : "AssertionError: Не произошел переход в рабочее пространство\nassert 'https://puls...ru/auth/login' == 'https://puls...ru/workspaces'\n  \n  - https://pulsewave.ru/workspaces\n  + https://pulsewave.ru/auth/login",
+      "children" : [ {
+        "name" : "Проверка перехода в рабочее пространство авторизованного пользователя",
+        "uid" : "d8d8f8b9513c332",
+        "parentUid" : "688e5adfdedc18a940961699cee448b8",
+        "status" : "failed",
+        "time" : {
+          "start" : 1709484481794,
+          "stop" : 1709484481798,
+          "duration" : 4
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "688e5adfdedc18a940961699cee448b8"
+    }, {
+      "name" : "AssertionError: Неверный заголовок\nassert 'Вход' == 'Рабочие пространства'\n  \n  - Рабочие пространства\n  + Вход",
+      "children" : [ {
+        "name" : "Проверка заголовка рабочего пространства",
+        "uid" : "f460044a7970229",
+        "parentUid" : "776f3214d369b234c3bdbf6f0b773049",
+        "status" : "failed",
+        "time" : {
+          "start" : 1709484504824,
+          "stop" : 1709484504829,
+          "duration" : 5
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "776f3214d369b234c3bdbf6f0b773049"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "KeyError: 'access'",
+      "children" : [ {
+        "name" : "GET Список уведомлений текущего пользователя",
+        "uid" : "94ac2af96ce4e548",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1709483762309,
+          "stop" : 1709483762720,
+          "duration" : 411
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PATCH Отметить прочтение уведомления",
+        "uid" : "64496b82ba16bd53",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1709483762747,
+          "stop" : 1709483763161,
+          "duration" : 414
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PUT Отметить прочтение уведомления",
+        "uid" : "dd24083f2acad668",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1709483763187,
+          "stop" : 1709483763598,
+          "duration" : 411
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c0db57c4a80d04e81137955fc8cd39c0"
+    }, {
+      "name" : "selenium.common.exceptions.InvalidArgumentException: Message: invalid argument\n  (Session info: chrome-headless-shell=122.0.6261.69)\nStacktrace:\n#0 0x5573a04d9793 <unknown>\n#1 0x5573a01cd017 <unknown>\n#2 0x5573a01b49bf <unknown>\n#3 0x5573a01b2d43 <unknown>\n#4 0x5573a01b328a <unknown>\n#5 0x5573a01cf97e <unknown>\n#6 0x5573a0259985 <unknown>\n#7 0x5573a023a3d2 <unknown>\n#8 0x5573a0258dd9 <unknown>\n#9 0x5573a023a173 <unknown>\n#10 0x5573a020b2d3 <unknown>\n#11 0x5573a020bc9e <unknown>\n#12 0x5573a049d8cb <unknown>\n#13 0x5573a04a1745 <unknown>\n#14 0x5573a048a2e1 <unknown>\n#15 0x5573a04a22d2 <unknown>\n#16 0x5573a046e17f <unknown>\n#17 0x5573a04c7dc8 <unknown>\n#18 0x5573a04c7fc3 <unknown>\n#19 0x5573a04d8944 <unknown>\n#20 0x7f48a0a94ac3 <unknown>",
+      "children" : [ {
+        "name" : "3.2, 3.2.1 Восстановить пароль на корректный емайл",
+        "uid" : "662c6bd4132b0c29",
+        "parentUid" : "058cbf79368a1ce2c07399766c60beed",
+        "status" : "broken",
+        "time" : {
+          "start" : 1709484336930,
+          "stop" : 1709484349279,
+          "duration" : 12349
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "058cbf79368a1ce2c07399766c60beed"
+    }, {
+      "name" : "selenium.common.exceptions.InvalidArgumentException: Message: invalid argument\n  (Session info: chrome-headless-shell=122.0.6261.69)\nStacktrace:\n#0 0x5588c1898793 <unknown>\n#1 0x5588c158c017 <unknown>\n#2 0x5588c15739bf <unknown>\n#3 0x5588c1571d43 <unknown>\n#4 0x5588c157228a <unknown>\n#5 0x5588c158e97e <unknown>\n#6 0x5588c1618985 <unknown>\n#7 0x5588c15f93d2 <unknown>\n#8 0x5588c1617dd9 <unknown>\n#9 0x5588c15f9173 <unknown>\n#10 0x5588c15ca2d3 <unknown>\n#11 0x5588c15cac9e <unknown>\n#12 0x5588c185c8cb <unknown>\n#13 0x5588c1860745 <unknown>\n#14 0x5588c18492e1 <unknown>\n#15 0x5588c18612d2 <unknown>\n#16 0x5588c182d17f <unknown>\n#17 0x5588c1886dc8 <unknown>\n#18 0x5588c1886fc3 <unknown>\n#19 0x5588c1897944 <unknown>\n#20 0x7f098f694ac3 <unknown>",
+      "children" : [ {
+        "name" : "1.3, 1.3.1, 1.15 Регистрация с корректными email и паролем и с согласием на подписку",
+        "uid" : "ce0594f31712e286",
+        "parentUid" : "e627fd96222579616e0d93912c975244",
+        "status" : "broken",
+        "time" : {
+          "start" : 1709484355479,
+          "stop" : 1709484370446,
+          "duration" : 14967
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "e627fd96222579616e0d93912c975244"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x5595792fb793 <unknown>\n#1 0x559578fef1c6 <unknown>\n#2 0x55957903a358 <unknown>\n#3 0x55957903a411 <unknown>\n#4 0x55957907d934 <unknown>\n#5 0x55957905c3fd <unknown>\n#6 0x55957907add9 <unknown>\n#7 0x55957905c173 <unknown>\n#8 0x55957902d2d3 <unknown>\n#9 0x55957902dc9e <unknown>\n#10 0x5595792bf8cb <unknown>\n#11 0x5595792c3745 <unknown>\n#12 0x5595792ac2e1 <unknown>\n#13 0x5595792c42d2 <unknown>\n#14 0x55957929017f <unknown>\n#15 0x5595792e9dc8 <unknown>\n#16 0x5595792e9fc3 <unknown>\n#17 0x5595792fa944 <unknown>\n#18 0x7f0d6e294ac3 <unknown>",
+      "children" : [ {
+        "name" : "1.23 Регистрация с корректными email и паролем без согласия на подписку",
+        "uid" : "a35038b5a4c8fac0",
+        "parentUid" : "2fa1e4db3942c6d2e326f3fb873379d2",
+        "status" : "broken",
+        "time" : {
+          "start" : 1709484399524,
+          "stop" : 1709484420153,
+          "duration" : 20629
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "2fa1e4db3942c6d2e326f3fb873379d2"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
