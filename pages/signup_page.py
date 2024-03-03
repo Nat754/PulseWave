@@ -25,7 +25,7 @@ class SignUpPage(BasePage):
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
             raw_email = str(data_id[0][1])
             mail.logout()
-            first = raw_email.find('https://front.pwave.pnpl.tech')
+            first = raw_email.find(Constant.MAIN_PAGE)
             end = raw_email[first:].find('"')
             link = raw_email[first:first + end]
             return link
