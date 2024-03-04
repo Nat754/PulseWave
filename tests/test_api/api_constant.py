@@ -17,8 +17,8 @@ class StatusCode:
 
 class ApiConstant:
 
-    # BASE_URL = "https://api.pwave.pnpl.tech/"
-    BASE_URL = 'https://owa.pulsewave.ru/'
+    BASE_URL = "https://api.pwave.pnpl.tech/"
+    # BASE_URL = 'https://owa.pulsewave.ru/'
     MAIL_URL = 'https://mail.ru/'
 
     COLOR_STICKER = ['#FF5E5E', '#FF9A3C', '#FFC727', '#67A700', '#5ED8FF', '#0069B4', '#7849FF', '#C852FF']
@@ -91,10 +91,10 @@ class ApiConstant:
         0
       ],
       "deadline": f"{datetime.now().date()}",
-      "description": "string",
+      "description": faker.text(),
       "priority": 0,
       "color_mark": random.choice(COLOR_STICKER),
-      "name_mark": "string"
+      "name_mark": faker.first_name()
     }
 
     PUT_TASK = {
@@ -105,20 +105,20 @@ class ApiConstant:
           0
         ],
         "deadline": f"{datetime.now().date()}",
-        "description": "string",
+        "description": faker.text(),
         "priority": 0
     }
 
     PATCH_TASK = {
-        "name": "string",
+        "name": faker.city(),
         "index": 2147483647,
         "column": 0,
         "responsible": [0],
         "deadline": f"{datetime.now().date()}",
-        "description": "string",
+        "description": faker.text(),
         "priority": 0,
         "color_mark": random.choice(COLOR_STICKER),
-        "name_mark": "string"
+        "name_mark": faker.first_name()
     }
 
     INVITE_USER = {"email": email_auth}
