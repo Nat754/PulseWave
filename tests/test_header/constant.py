@@ -1,6 +1,3 @@
-from tests.constant import Constant
-
-
 class HeaderConstant:
 
     TEXT_LOGIN = 'Войти'
