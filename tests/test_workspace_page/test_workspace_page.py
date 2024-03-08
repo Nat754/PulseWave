@@ -8,8 +8,8 @@ from pages.workspace_page import WorkspacePage
 @pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{Constant.WORKSPACE}'")
 class TestWorkspacePage:
-    const = Constant
-    wsconst = WorkspaceConstant
+    const = Constant()
+    wsconst = WorkspaceConstant()
 
     @allure.title("Проверка перехода в рабочее пространство авторизованного пользователя")
     @pytest.mark.regress

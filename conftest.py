@@ -16,7 +16,7 @@ def driver(browser):
         chrome_options.add_argument('--headless')
         # chrome_options.add_argument('--start-maximized')
         driver = webdriver.Chrome(options=chrome_options)
-        driver.set_window_size(1920, 1080)
+        # driver.set_window_size(1920, 1080)
     elif browser == "firefox":
         firefox_options = FirefoxOptions()
         firefox_options.add_argument('--headless')
