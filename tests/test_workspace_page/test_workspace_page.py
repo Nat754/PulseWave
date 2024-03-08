@@ -2,6 +2,7 @@ import allure
 import pytest
 from tests.constant import Constant
 from tests.test_workspace_page.constant import WorkspaceConstant
+from pages.workspace_page import WorkspacePage
 
 
 @pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
@@ -25,3 +26,10 @@ class TestWorkspacePage:
             title = driver.title
         with allure.step('Проверить заголовок рабочее пространство'):
             assert title == self.wsconst.WORKSPACE_TITLE, 'Неверный заголовок'
+
+    @allure.title("Проверка видимости аватара")
+    @pytest.mark.regress
+    def test_avatar_is_visible(self, auth_user, driver):
+        page = WorkspacePage(driver)
+        with allure.step('Проверить заголовок рабочее пространство'):
+            assert page.get_avatar_is_visible(), 'Не отображается аватар'
