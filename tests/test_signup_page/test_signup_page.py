@@ -37,7 +37,7 @@ class TestSignupPage:
         signup_page_open.click_button_settings()
         signup_page_open.click_delete_profile()
         signup_page_open.send_field_email()
-        text = signup_page_open.delete_user_profile_confirmation().text
+        text = signup_page_open.delete_user_profile_confirmation()
         assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
 
     @allure.title("1.6 Регистрация с корректным email и не совпадающими паролем и подтверждением пароля")
