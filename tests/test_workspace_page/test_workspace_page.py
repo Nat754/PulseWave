@@ -33,3 +33,10 @@ class TestWorkspacePage:
         page = WorkspacePage(driver)
         with allure.step('Проверить заголовок рабочее пространство'):
             assert page.get_avatar_is_visible(), 'Не отображается аватар'
+
+    @allure.title("Проверка что авторизованный пользователь попадает в Рабочие пространства")
+    @pytest.mark.regress
+    def test_auth_user_into_workspace(self, auth_user, driver):
+        url = driver.current_url
+        with allure.step('Проверить что авторизованный пользователь попадает в Рабочие пространства'):
+            assert url == self.const.WORKSPACE, 'Авторизованный пользователь не попал в Рабочие пространства'
