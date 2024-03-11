@@ -119,3 +119,11 @@ class SignUpPage(BasePage):
     @allure.step(f"Проверка неактивности кнопки '{signup.TEXT_SIGNUP}'")
     def button_registration_not_active(self):
         return self.element_is_not_clickable(self.locator.SUBMIT_BUTTON)
+
+    @allure.step("Нажать ссылку 'Выйти'")
+    def click_exit_button(self):
+        return self.element_is_visible(self.locator.AVATAR_LOGOUT).click()
+
+    @allure.step("Получить сообщение")
+    def get_message_to_exit(self):
+        return self.element_is_visible(self.locator.LOGOUT_MSG).text

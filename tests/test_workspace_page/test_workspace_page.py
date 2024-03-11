@@ -1,15 +1,17 @@
 import allure
 import pytest
-from tests.constant import Constant
+from pages.signup_page import SignUpPage
+from tests.constant import Constant, Messages
 from tests.test_workspace_page.constant import WorkspaceConstant
 from pages.workspace_page import WorkspacePage
 
 
 @pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
-@allure.epic(f"Тестирование страницы '{Constant.WORKSPACE}'")
+@allure.epic(f"Тестирование страницы '{WorkspaceConstant.WORKSPACE_TITLE}'")
 class TestWorkspacePage:
     const = Constant()
     wsconst = WorkspaceConstant()
+    message = Messages()
 
     @allure.title("Проверка перехода в рабочее пространство авторизованного пользователя")
     @pytest.mark.regress
@@ -40,3 +42,13 @@ class TestWorkspacePage:
         url = driver.current_url
         with allure.step('Проверить что авторизованный пользователь попадает в Рабочие пространства'):
             assert url == self.const.WORKSPACE, 'Авторизованный пользователь не попал в Рабочие пространства'
+
+    @allure.title("Проверка что авторизованный пользователь может выйти из аккаунта")
+    @pytest.mark.regress
+    def test_auth_user_logout(self, auth_user, driver):
+        page = SignUpPage(driver)
+        page.click_button_avatar()
+        page.click_exit_button()
+        text = page.get_message_to_exit()
+        with allure.step('Проверка что авторизованный пользователь вышел из аккаунта'):
+            assert text == self.message.EXIT_CONFIRM_MSG, 'Авторизованный пользователь не вышел из аккаунта'
