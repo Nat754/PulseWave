@@ -25,14 +25,14 @@ class TestSignupPage:
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
         signup_page_open.check_pulsewave_policy_message().click()
-        signup_page_open.click_button_registration()
+        signup_page_open.click_button_submit()
         element = signup_page_open.get_send_invite_message()
         with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
             assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'
         time.sleep(10)
         link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
-        signup_page_open.get_welcome_to_workspace_message()
+        signup_page_open.click_button_submit()
         signup_page_open.click_button_avatar()
         signup_page_open.click_button_settings()
         signup_page_open.click_delete_profile()
@@ -49,7 +49,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля паролем отличным от предыдущего шага'):
             signup_page_open.put_data_to_confirm_password_field(password3)
-        signup_page_open.click_button_registration()
+        signup_page_open.click_button_submit()
         element = signup_page_open.get_error_message()
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.PASSWORDS_NOT_EQUAL_MSG}"'):
             assert element.text == self.msg.PASSWORDS_NOT_EQUAL_MSG, 'Нет сообщения об ошибке'
@@ -63,7 +63,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
-        signup_page_open.click_button_registration()
+        signup_page_open.click_button_submit()
         element = signup_page_open.get_error_message()
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.EXISTING_EMAIL}"'):
             assert element.text == self.msg.EXISTING_EMAIL, 'Нет сообщения об ошибке'
@@ -109,7 +109,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
-        signup_page_open.click_button_registration()
+        signup_page_open.click_button_submit()
         element = signup_page_open.get_error_message()
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.INVALID_EMAIL_MSG}"'):
             assert element.text == self.msg.INVALID_EMAIL_MSG, 'Нет сообщения об ошибке'
@@ -123,14 +123,14 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
-        signup_page_open.click_button_registration()
+        signup_page_open.click_button_submit()
         element = signup_page_open.get_send_invite_message()
         with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
             assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'
         time.sleep(10)
         link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
-        signup_page_open.get_welcome_to_workspace_message()
+        signup_page_open.click_button_submit()
         signup_page_open.click_button_avatar()
         signup_page_open.click_button_settings()
         signup_page_open.click_delete_profile()
@@ -233,7 +233,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(data_password)
         with allure.step('Заполнить поле подтверждение пароля слабым паролем'):
             signup_page_open.put_data_to_confirm_password_field(data_password)
-        signup_page_open.click_button_registration()
+        signup_page_open.click_button_submit()
         element = signup_page_open.get_error_message()
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.INVALID_PASSWORD_MSG}"'):
             assert element.text == self.msg.INVALID_PASSWORD_MSG, 'Нет сообщения о слабом пароле'

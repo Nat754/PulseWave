@@ -74,8 +74,8 @@ class SignUpPage(BasePage):
         """Put data to confirm password field"""
         return self.element_is_visible(self.locator.CONFIRM_PASSWORD_FIELD).send_keys(data_confirm_password)
 
-    @allure.step(f"Нажать кнопку '{signup.TEXT_SIGNUP}'")
-    def click_button_registration(self):
+    @allure.step(f"Подтвердить изменения'")
+    def click_button_submit(self):
         return self.element_is_visible(self.locator.SUBMIT_BUTTON).click()
 
     @allure.step("Проверка сообщения")
@@ -85,10 +85,6 @@ class SignUpPage(BasePage):
     @allure.step("Получено сообщения о подтверждении регистрации")
     def get_send_invite_message(self):
         return self.element_is_visible(self.locator.SEND_INVITE_EMAIL)
-
-    @allure.step("Согласиться с приглашением войти в рабочее пространство")
-    def get_welcome_to_workspace_message(self):
-        return self.element_is_visible(self.locator.WELCOME_TO_WORKSPACE).click()
 
     @allure.step("Нажать на иконку аватара")
     def click_button_avatar(self):
