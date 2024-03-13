@@ -52,3 +52,14 @@ class TestWorkspacePage:
         text = page.get_message_to_exit()
         with allure.step('Проверка что авторизованный пользователь вышел из аккаунта'):
             assert text == self.message.EXIT_CONFIRM_MSG, 'Авторизованный пользователь не вышел из аккаунта'
+
+    @allure.title(f"Проверка перехода в {wsconst.WORKSPACE_TITLE} по ссылке {message.TO_MAIN_TEXT}")
+    @pytest.mark.regress
+    def test_link_to_main(self, auth_user, driver):
+        page = SignUpPage(driver)
+        page.click_button_avatar()
+        page.click_button_settings()
+        page = WorkspacePage(driver)
+        text = page.get_link_to_main().text
+        with allure.step(f'Проверка текста ссылки {self.message.TO_MAIN_TEXT}'):
+            assert text == self.message.TO_MAIN_TEXT, f'ОР: {self.message.TO_MAIN_TEXT}, ФР: {text}'

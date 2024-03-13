@@ -19,7 +19,7 @@ class SignUpLocators:
     CHECK_BOX = (By.CLASS_NAME, 'styled-checkbox')
     WEAK_PASSWORD = (By.CLASS_NAME, 'invalid-form')
     SEND_INVITE_EMAIL = (By.CLASS_NAME, 'form__texts')
-    BUTTON_AVATAR = (By.CLASS_NAME, 'avatar__button')
+    BUTTON_AVATAR = (By.CLASS_NAME, 'avatar__icon')
     PROFILE_SETTINGS = (By.XPATH, '(//div[@class="nav__item"])[1]')
     DELETE_PROFILE = (By.XPATH, '//span[text()="Удалить профиль"]')
     CONFIRM_PASSWORD = (By.XPATH, '(//input[@class="input"])[2]')
