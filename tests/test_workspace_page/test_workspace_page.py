@@ -63,3 +63,11 @@ class TestWorkspacePage:
         text = page.get_link_to_main().text
         with allure.step(f'Проверка текста ссылки {self.message.TO_MAIN_TEXT}'):
             assert text == self.message.TO_MAIN_TEXT, f'ОР: {self.message.TO_MAIN_TEXT}, ФР: {text}'
+
+    @allure.title("Проверка видимости заголовка 'Ваши рабочие пространства'")
+    @pytest.mark.regress
+    def test_check_right_title(self, auth_user, driver):
+        page = WorkspacePage(driver)
+        title = page.get_title_main_workspace().text
+        with allure.step('Проверить заголовок "Ваши рабочие пространства"'):
+            assert title == self.wsconst.MAIN_WORKSPACE_TITLE, 'Не отображается заголовок "Ваши рабочие пространства"'

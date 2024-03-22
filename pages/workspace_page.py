@@ -13,3 +13,7 @@ class WorkspacePage(BasePage):
     @allure.step(f"Проверка видимости ссылки 'На главную'")
     def get_link_to_main(self):
         return self.element_is_visible(self.locator.TO_MAIM_LINK)
+
+    @allure.step(f"Проверка видимости заголовка 'Ваши рабочие пространства'")
+    def get_title_main_workspace(self):
+        return self.element_is_visible(self.locator.RIGHT_TITLE)
