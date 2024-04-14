@@ -1,5 +1,116 @@
 {
   "uid" : "4b4757e66a1912dae1a509f688f20b0f",
-  "children" : [ ],
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Unexpected status code. Expected: 200. Actual: 404",
+      "children" : [ {
+        "name" : "POST index fixed",
+        "uid" : "d1ee0a6eaac530e5",
+        "parentUid" : "7b9c7db0f8705ffdb37f2b1000d71ac9",
+        "status" : "failed",
+        "time" : {
+          "start" : 1713101246622,
+          "stop" : 1713101247232,
+          "duration" : 610
+        },
+        "flaky" : true,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "7b9c7db0f8705ffdb37f2b1000d71ac9"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 201. Actual: 500",
+      "children" : [ {
+        "name" : "POST Создать стикер к задаче",
+        "uid" : "8a0bae7bb07cc638",
+        "parentUid" : "5e82109233799afdc078de894ecef68e",
+        "status" : "failed",
+        "time" : {
+          "start" : 1713101319335,
+          "stop" : 1713101334347,
+          "duration" : 15012
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5e82109233799afdc078de894ecef68e"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "requests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+      "children" : [ {
+        "name" : "GET Представление одного стикера",
+        "uid" : "9a257c06babcd0d7",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713101334370,
+          "stop" : 1713101350270,
+          "duration" : 15900
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PUT Обновить стикер",
+        "uid" : "4d15615637d423cb",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713101350345,
+          "stop" : 1713101364399,
+          "duration" : 14054
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PATCH Частично обновить стикер {'name': 'Jenny'}",
+        "uid" : "f1dd0efe749bed42",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713101364447,
+          "stop" : 1713101379287,
+          "duration" : 14840
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'name': 'Jenny'}" ]
+      }, {
+        "name" : "PATCH Частично обновить стикер {'color': '#7849FF'}",
+        "uid" : "f2215797525115b4",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713101379336,
+          "stop" : 1713101393456,
+          "duration" : 14120
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "{'color': '#7849FF'}" ]
+      }, {
+        "name" : "DELETE Удалить стикер",
+        "uid" : "cc9c67958b8fad4c",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713101393508,
+          "stop" : 1713101409149,
+          "duration" : 15641
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
   "name" : "categories"
 }
