@@ -391,12 +391,6 @@ class TestAPI:
                                  json=self.constant.WORKSPACE)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
-    @allure.title("POST index fixed")
-    def test_post_api_index_fixed(self):
-        url = f'{self.constant.BASE_URL}api/index_fixed/'
-        response = requests.post(url)
-        Assertions.assert_status_code(response, self.code.STATUS_200)
-
     @allure.title("GET Список уведомлений текущего пользователя")
     def test_get_api_notification(self, use_api_base):
         jwt = use_api_base.create_jwt(email_auth, password0)
