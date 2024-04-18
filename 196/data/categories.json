@@ -3,39 +3,86 @@
   "children" : [ {
     "name" : "Product defects",
     "children" : [ {
-      "name" : "AssertionError: Unexpected status code. Expected: 200. Actual: 404",
+      "name" : "AssertionError: Unexpected status code. Expected: 200. Actual: 500",
       "children" : [ {
-        "name" : "POST index fixed",
-        "uid" : "d1ee0a6eaac530e5",
-        "parentUid" : "7b9c7db0f8705ffdb37f2b1000d71ac9",
+        "name" : "POST Активация пользователя с корректными данными",
+        "uid" : "1591529897eb8c2c",
+        "parentUid" : "76824a09e74d05466a15a8c820b14253",
         "status" : "failed",
         "time" : {
-          "start" : 1713101246622,
-          "stop" : 1713101247232,
-          "duration" : 610
+          "start" : 1713435477163,
+          "stop" : 1713435482170,
+          "duration" : 5007
         },
-        "flaky" : true,
+        "flaky" : false,
         "newFailed" : true,
         "parameters" : [ ]
       } ],
-      "uid" : "7b9c7db0f8705ffdb37f2b1000d71ac9"
+      "uid" : "76824a09e74d05466a15a8c820b14253"
     }, {
       "name" : "AssertionError: Unexpected status code. Expected: 201. Actual: 500",
       "children" : [ {
-        "name" : "POST Создать стикер к задаче",
-        "uid" : "8a0bae7bb07cc638",
+        "name" : "POST Создать доску",
+        "uid" : "c5c8b78bc16cf63",
         "parentUid" : "5e82109233799afdc078de894ecef68e",
         "status" : "failed",
         "time" : {
-          "start" : 1713101319335,
-          "stop" : 1713101334347,
-          "duration" : 15012
+          "start" : 1713435565411,
+          "stop" : 1713435571274,
+          "duration" : 5863
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Создать доску без указания РП",
+        "uid" : "7e0a120fda933478",
+        "parentUid" : "5e82109233799afdc078de894ecef68e",
+        "status" : "failed",
+        "time" : {
+          "start" : 1713435595099,
+          "stop" : 1713435598160,
+          "duration" : 3061
         },
         "flaky" : false,
         "newFailed" : true,
         "parameters" : [ ]
       } ],
       "uid" : "5e82109233799afdc078de894ecef68e"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 200. Actual: 404",
+      "children" : [ {
+        "name" : "POST index fixed",
+        "uid" : "84d0b3ee7f080b8e",
+        "parentUid" : "7b9c7db0f8705ffdb37f2b1000d71ac9",
+        "status" : "failed",
+        "time" : {
+          "start" : 1713435742231,
+          "stop" : 1713435743047,
+          "duration" : 816
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "7b9c7db0f8705ffdb37f2b1000d71ac9"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 204. Actual: 500",
+      "children" : [ {
+        "name" : "POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке     auth/password/reset/confirm/{uid}/{token}",
+        "uid" : "227f9c00c290ab54",
+        "parentUid" : "961760a297de4546ab90b609bb79591c",
+        "status" : "failed",
+        "time" : {
+          "start" : 1713435951198,
+          "stop" : 1713435959208,
+          "duration" : 8010
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "961760a297de4546ab90b609bb79591c"
     } ],
     "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
   }, {
@@ -43,72 +90,409 @@
     "children" : [ {
       "name" : "requests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
       "children" : [ {
-        "name" : "GET Представление одного стикера",
-        "uid" : "9a257c06babcd0d7",
+        "name" : "Проверка недействительности кеша доски",
+        "uid" : "f806543f17c36672",
         "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
         "status" : "broken",
         "time" : {
-          "start" : 1713101334370,
-          "stop" : 1713101350270,
-          "duration" : 15900
+          "start" : 1713435498688,
+          "stop" : 1713435503222,
+          "duration" : 4534
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Информация о конкретной доске",
+        "uid" : "8f8d64d85c5ad0d",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435571299,
+          "stop" : 1713435579205,
+          "duration" : 7906
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PUT Обновить доску",
+        "uid" : "9396dfb6072c06ce",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435579266,
+          "stop" : 1713435586647,
+          "duration" : 7381
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PATCH Частично обновить доску",
+        "uid" : "44c6b964dfa72bea",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435586703,
+          "stop" : 1713435595036,
+          "duration" : 8333
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Создать колонку на доске",
+        "uid" : "f9759953ca9ecf73",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435604114,
+          "stop" : 1713435612015,
+          "duration" : 7901
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Список всех колонок доски",
+        "uid" : "6fc22d681e610011",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435612072,
+          "stop" : 1713435620228,
+          "duration" : 8156
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Информация о конкретной колонке",
+        "uid" : "8b4321e9c25cb907",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435620311,
+          "stop" : 1713435630775,
+          "duration" : 10464
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PUT Обновить колонку (название и порядковый номер)",
+        "uid" : "596859bc32d07db9",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435630836,
+          "stop" : 1713435641551,
+          "duration" : 10715
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PATCH Частично обновить колонку (название/порядковый номер)",
+        "uid" : "393fd855997738ae",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435641613,
+          "stop" : 1713435651309,
+          "duration" : 9696
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Создать задачу",
+        "uid" : "11ff3947de102a37",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435651376,
+          "stop" : 1713435661788,
+          "duration" : 10412
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Список всех задач колонки",
+        "uid" : "805f8b94ec697c54",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435661847,
+          "stop" : 1713435672388,
+          "duration" : 10541
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Получение одной задачи",
+        "uid" : "48fbab254efa1891",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435672454,
+          "stop" : 1713435685085,
+          "duration" : 12631
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PUT Обновить задачу",
+        "uid" : "12af27217955ce9a",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435685147,
+          "stop" : 1713435697166,
+          "duration" : 12019
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PATCH Частично обновить задачу",
+        "uid" : "8d6fba5bc6a6caca",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435697231,
+          "stop" : 1713435708789,
+          "duration" : 11558
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Удалить задачу",
+        "uid" : "ba814f71e096d850",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435708886,
+          "stop" : 1713435720039,
+          "duration" : 11153
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Удалить колонку",
+        "uid" : "f3e9e08e2c0c165e",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435720102,
+          "stop" : 1713435730369,
+          "duration" : 10267
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Удалить доску",
+        "uid" : "68a29df2dc8ff110",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435730433,
+          "stop" : 1713435739270,
+          "duration" : 8837
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Создать комментарий",
+        "uid" : "c5523aae9dc9a032",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435757459,
+          "stop" : 1713435769726,
+          "duration" : 12267
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Удалить комментарий",
+        "uid" : "f3543554f7db1a55",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435769792,
+          "stop" : 1713435781848,
+          "duration" : 12056
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Получение комментария",
+        "uid" : "56dbf31527a452a1",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435781910,
+          "stop" : 1713435793626,
+          "duration" : 11716
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Список стикеров задачи",
+        "uid" : "a8bb098987c5b073",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435793687,
+          "stop" : 1713435805836,
+          "duration" : 12149
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Создать стикер к задаче",
+        "uid" : "701f507c15bc48bf",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435805903,
+          "stop" : 1713435819393,
+          "duration" : 13490
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Представление одного стикера",
+        "uid" : "9d59aa8dbb7cc8a2",
+        "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713435819455,
+          "stop" : 1713435832187,
+          "duration" : 12732
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       }, {
         "name" : "PUT Обновить стикер",
-        "uid" : "4d15615637d423cb",
+        "uid" : "aa441757645a5bb0",
         "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
         "status" : "broken",
         "time" : {
-          "start" : 1713101350345,
-          "stop" : 1713101364399,
-          "duration" : 14054
+          "start" : 1713435832253,
+          "stop" : 1713435844573,
+          "duration" : 12320
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       }, {
-        "name" : "PATCH Частично обновить стикер {'name': 'Jenny'}",
-        "uid" : "f1dd0efe749bed42",
+        "name" : "PATCH Частично обновить стикер {'name': 'Henry'}",
+        "uid" : "e0514e8dc19c3067",
         "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
         "status" : "broken",
         "time" : {
-          "start" : 1713101364447,
-          "stop" : 1713101379287,
-          "duration" : 14840
+          "start" : 1713435844635,
+          "stop" : 1713435857430,
+          "duration" : 12795
         },
         "flaky" : false,
         "newFailed" : false,
-        "parameters" : [ "{'name': 'Jenny'}" ]
+        "parameters" : [ "{'name': 'Henry'}" ]
       }, {
-        "name" : "PATCH Частично обновить стикер {'color': '#7849FF'}",
-        "uid" : "f2215797525115b4",
+        "name" : "PATCH Частично обновить стикер {'color': '#FFC727'}",
+        "uid" : "853a173bbc591c9a",
         "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
         "status" : "broken",
         "time" : {
-          "start" : 1713101379336,
-          "stop" : 1713101393456,
-          "duration" : 14120
+          "start" : 1713435857498,
+          "stop" : 1713435870027,
+          "duration" : 12529
         },
         "flaky" : false,
         "newFailed" : false,
-        "parameters" : [ "{'color': '#7849FF'}" ]
+        "parameters" : [ "{'color': '#FFC727'}" ]
       }, {
         "name" : "DELETE Удалить стикер",
-        "uid" : "cc9c67958b8fad4c",
+        "uid" : "c063c44172fddb05",
         "parentUid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc",
         "status" : "broken",
         "time" : {
-          "start" : 1713101393508,
-          "stop" : 1713101409149,
-          "duration" : 15641
+          "start" : 1713435870091,
+          "stop" : 1713435881915,
+          "duration" : 11824
         },
         "flaky" : false,
         "newFailed" : false,
         "parameters" : [ ]
       } ],
       "uid" : "5c0b41e5cdb39cbcc4a9ec2073f37adc"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55f9f4bbb863 <unknown>\n#1 0x55f9f48b18c6 <unknown>\n#2 0x55f9f48fc618 <unknown>\n#3 0x55f9f48fc6d1 <unknown>\n#4 0x55f9f493f744 <unknown>\n#5 0x55f9f491e5cd <unknown>\n#6 0x55f9f493cc19 <unknown>\n#7 0x55f9f491e343 <unknown>\n#8 0x55f9f48ef593 <unknown>\n#9 0x55f9f48eff5e <unknown>\n#10 0x55f9f4b7f84b <unknown>\n#11 0x55f9f4b837a5 <unknown>\n#12 0x55f9f4b6d571 <unknown>\n#13 0x55f9f4b84332 <unknown>\n#14 0x55f9f4b5287f <unknown>\n#15 0x55f9f4baa728 <unknown>\n#16 0x55f9f4baa8fb <unknown>\n#17 0x55f9f4bba9b4 <unknown>\n#18 0x7f2b13c94ac3 <unknown>",
+      "children" : [ {
+        "name" : "3.2, 3.2.1 Восстановить пароль на корректный емайл",
+        "uid" : "3a0a7751312899fd",
+        "parentUid" : "26288e515392952031bfa4f63b432d0a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713436565715,
+          "stop" : 1713436599784,
+          "duration" : 34069
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "26288e515392952031bfa4f63b432d0a"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x559e351ba863 <unknown>\n#1 0x559e34eb08c6 <unknown>\n#2 0x559e34efb618 <unknown>\n#3 0x559e34efb6d1 <unknown>\n#4 0x559e34f3e744 <unknown>\n#5 0x559e34f1d5cd <unknown>\n#6 0x559e34f3bc19 <unknown>\n#7 0x559e34f1d343 <unknown>\n#8 0x559e34eee593 <unknown>\n#9 0x559e34eeef5e <unknown>\n#10 0x559e3517e84b <unknown>\n#11 0x559e351827a5 <unknown>\n#12 0x559e3516c571 <unknown>\n#13 0x559e35183332 <unknown>\n#14 0x559e3515187f <unknown>\n#15 0x559e351a9728 <unknown>\n#16 0x559e351a98fb <unknown>\n#17 0x559e351b99b4 <unknown>\n#18 0x7fef9b494ac3 <unknown>",
+      "children" : [ {
+        "name" : "1.3, 1.3.1, 1.15 Регистрация с корректными email и паролем и с согласием на подписку",
+        "uid" : "de510a659cd4e8d9",
+        "parentUid" : "53c4e1eef79896c6255c81ec6ec95d57",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713436608760,
+          "stop" : 1713436646879,
+          "duration" : 38119
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "53c4e1eef79896c6255c81ec6ec95d57"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x56021b079863 <unknown>\n#1 0x56021ad6f8c6 <unknown>\n#2 0x56021adba618 <unknown>\n#3 0x56021adba6d1 <unknown>\n#4 0x56021adfd744 <unknown>\n#5 0x56021addc5cd <unknown>\n#6 0x56021adfac19 <unknown>\n#7 0x56021addc343 <unknown>\n#8 0x56021adad593 <unknown>\n#9 0x56021adadf5e <unknown>\n#10 0x56021b03d84b <unknown>\n#11 0x56021b0417a5 <unknown>\n#12 0x56021b02b571 <unknown>\n#13 0x56021b042332 <unknown>\n#14 0x56021b01087f <unknown>\n#15 0x56021b068728 <unknown>\n#16 0x56021b0688fb <unknown>\n#17 0x56021b0789b4 <unknown>\n#18 0x7f36ddc94ac3 <unknown>",
+      "children" : [ {
+        "name" : "1.23 Регистрация с корректными email и паролем без согласия на подписку",
+        "uid" : "bbfd3a2a1644a89e",
+        "parentUid" : "836e48e068eb58bb53fe4a7d10fa1672",
+        "status" : "broken",
+        "time" : {
+          "start" : 1713436687620,
+          "stop" : 1713436708250,
+          "duration" : 20630
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "836e48e068eb58bb53fe4a7d10fa1672"
     } ],
     "uid" : "bdbf199525818fae7a8651db9eafe741"
   } ],

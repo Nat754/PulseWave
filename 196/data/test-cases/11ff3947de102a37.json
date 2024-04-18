@@ -1,0 +1,426 @@
+{
+  "uid" : "11ff3947de102a37",
+  "name" : "POST Создать задачу",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_post_api_column_id_task",
+  "historyId" : "b3a0dec94fba2069f242de52bffa8877",
+  "time" : {
+    "start" : 1713435651376,
+    "stop" : 1713435661788,
+    "duration" : 10412
+  },
+  "description" : "\n        responsible: Список ответственных пользователей. Передается массивом из id,например {\"responsible\": [1,2,3]}\n        deadline: Срок выполнения задачи\n        description: Описание\n        priority: Приоритет, число от 0 до 3, где 0 - высочайший приоритет\n        color_mark: Цвет метки\n        name_mark: Название метки\n        ",
+  "descriptionHtml" : "<pre><code>    responsible: Список ответственных пользователей. Передается массивом из id,например {&quot;responsible&quot;: [1,2,3]}\n    deadline: Срок выполнения задачи\n    description: Описание\n    priority: Приоритет, число от 0 до 3, где 0 - высочайший приоритет\n    color_mark: Цвет метки\n    name_mark: Название метки\n</code></pre>\n",
+  "status" : "broken",
+  "statusMessage" : "requests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+  "statusTrace" : "self = <Response [500]>, kwargs = {}\n\n    def json(self, **kwargs):\n        r\"\"\"Returns the json-encoded content of a response, if any.\n    \n        :param \\*\\*kwargs: Optional arguments that ``json.loads`` takes.\n        :raises requests.exceptions.JSONDecodeError: If the response body does not\n            contain valid json.\n        \"\"\"\n    \n        if not self.encoding and self.content and len(self.content) > 3:\n            # No encoding set. JSON RFC 4627 section 3 states we should expect\n            # UTF-8, -16 or -32. Detect which one to use; If the detection or\n            # decoding fails, fall back to `self.text` (using charset_normalizer to make\n            # a best guess).\n            encoding = guess_json_utf(self.content)\n            if encoding is not None:\n                try:\n                    return complexjson.loads(self.content.decode(encoding), **kwargs)\n                except UnicodeDecodeError:\n                    # Wrong UTF codec detected; usually because it's not UTF-8\n                    # but some other 8-bit codec.  This is an RFC violation,\n                    # and the server didn't bother to tell us what codec *was*\n                    # used.\n                    pass\n                except JSONDecodeError as e:\n                    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\n    \n        try:\n>           return complexjson.loads(self.text, **kwargs)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/requests/models.py:971: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/__init__.py:346: in loads\n    return _default_decoder.decode(s)\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py:337: in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <json.decoder.JSONDecoder object at 0x7f02b133f1a0>\ns = '\\n<!doctype html>\\n<html lang=\"en\">\\n<head>\\n  <title>Server Error (500)</title>\\n</head>\\n<body>\\n  <h1>Server Error (500)</h1><p></p>\\n</body>\\n</html>\\n'\nidx = 1\n\n    def raw_decode(self, s, idx=0):\n        \"\"\"Decode a JSON document from ``s`` (a ``str`` beginning with\n        a JSON document) and return a 2-tuple of the Python\n        representation and the index in ``s`` where the document ended.\n    \n        This can be used to decode a JSON document from a string that may\n        have extraneous data at the end.\n    \n        \"\"\"\n        try:\n            obj, end = self.scan_once(s, idx)\n        except StopIteration as err:\n>           raise JSONDecodeError(\"Expecting value\", s, err.value) from None\nE           json.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py:355: JSONDecodeError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.test_api.test_api.TestAPI object at 0x7f02b05a60c0>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f02afeb8cb0>\n\n    @allure.title(\"POST Создать задачу\")\n    def test_post_api_column_id_task(self, use_api_base):\n        \"\"\"\n        responsible: Список ответственных пользователей. Передается массивом из id,например {\"responsible\": [1,2,3]}\n        deadline: Срок выполнения задачи\n        description: Описание\n        priority: Приоритет, число от 0 до 3, где 0 - высочайший приоритет\n        color_mark: Цвет метки\n        name_mark: Название метки\n        \"\"\"\n        jwt = use_api_base.create_jwt(email1, password0)\n>       column_id = use_api_base.get_board_column_id()[1]\n\ntests/test_api/test_api.py:318: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \napi_testing/api_base.py:163: in get_board_column_id\n    workspace_id, board_id = self.get_board_id()\napi_testing/api_base.py:157: in get_board_id\n    board_id = response.json()['id']\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <Response [500]>, kwargs = {}\n\n    def json(self, **kwargs):\n        r\"\"\"Returns the json-encoded content of a response, if any.\n    \n        :param \\*\\*kwargs: Optional arguments that ``json.loads`` takes.\n        :raises requests.exceptions.JSONDecodeError: If the response body does not\n            contain valid json.\n        \"\"\"\n    \n        if not self.encoding and self.content and len(self.content) > 3:\n            # No encoding set. JSON RFC 4627 section 3 states we should expect\n            # UTF-8, -16 or -32. Detect which one to use; If the detection or\n            # decoding fails, fall back to `self.text` (using charset_normalizer to make\n            # a best guess).\n            encoding = guess_json_utf(self.content)\n            if encoding is not None:\n                try:\n                    return complexjson.loads(self.content.decode(encoding), **kwargs)\n                except UnicodeDecodeError:\n                    # Wrong UTF codec detected; usually because it's not UTF-8\n                    # but some other 8-bit codec.  This is an RFC violation,\n                    # and the server didn't bother to tell us what codec *was*\n                    # used.\n                    pass\n                except JSONDecodeError as e:\n                    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\n    \n        try:\n            return complexjson.loads(self.text, **kwargs)\n        except JSONDecodeError as e:\n            # Catch JSON-related errors and raise as requests.JSONDecodeError\n            # This aliases json.JSONDecodeError and simplejson.JSONDecodeError\n>           raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\nE           requests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/requests/models.py:975: JSONDecodeError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1713435463362,
+      "stop" : 1713435463379,
+      "duration" : 17
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1713435651375,
+      "stop" : 1713435651375,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1713435463379,
+      "stop" : 1713435463380,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "description" : "\n        responsible: Список ответственных пользователей. Передается массивом из id,например {\"responsible\": [1,2,3]}\n        deadline: Срок выполнения задачи\n        description: Описание\n        priority: Приоритет, число от 0 до 3, где 0 - высочайший приоритет\n        color_mark: Цвет метки\n        name_mark: Название метки\n        ",
+    "status" : "broken",
+    "statusMessage" : "requests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+    "statusTrace" : "self = <Response [500]>, kwargs = {}\n\n    def json(self, **kwargs):\n        r\"\"\"Returns the json-encoded content of a response, if any.\n    \n        :param \\*\\*kwargs: Optional arguments that ``json.loads`` takes.\n        :raises requests.exceptions.JSONDecodeError: If the response body does not\n            contain valid json.\n        \"\"\"\n    \n        if not self.encoding and self.content and len(self.content) > 3:\n            # No encoding set. JSON RFC 4627 section 3 states we should expect\n            # UTF-8, -16 or -32. Detect which one to use; If the detection or\n            # decoding fails, fall back to `self.text` (using charset_normalizer to make\n            # a best guess).\n            encoding = guess_json_utf(self.content)\n            if encoding is not None:\n                try:\n                    return complexjson.loads(self.content.decode(encoding), **kwargs)\n                except UnicodeDecodeError:\n                    # Wrong UTF codec detected; usually because it's not UTF-8\n                    # but some other 8-bit codec.  This is an RFC violation,\n                    # and the server didn't bother to tell us what codec *was*\n                    # used.\n                    pass\n                except JSONDecodeError as e:\n                    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\n    \n        try:\n>           return complexjson.loads(self.text, **kwargs)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/requests/models.py:971: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/__init__.py:346: in loads\n    return _default_decoder.decode(s)\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py:337: in decode\n    obj, end = self.raw_decode(s, idx=_w(s, 0).end())\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <json.decoder.JSONDecoder object at 0x7f02b133f1a0>\ns = '\\n<!doctype html>\\n<html lang=\"en\">\\n<head>\\n  <title>Server Error (500)</title>\\n</head>\\n<body>\\n  <h1>Server Error (500)</h1><p></p>\\n</body>\\n</html>\\n'\nidx = 1\n\n    def raw_decode(self, s, idx=0):\n        \"\"\"Decode a JSON document from ``s`` (a ``str`` beginning with\n        a JSON document) and return a 2-tuple of the Python\n        representation and the index in ``s`` where the document ended.\n    \n        This can be used to decode a JSON document from a string that may\n        have extraneous data at the end.\n    \n        \"\"\"\n        try:\n            obj, end = self.scan_once(s, idx)\n        except StopIteration as err:\n>           raise JSONDecodeError(\"Expecting value\", s, err.value) from None\nE           json.decoder.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/json/decoder.py:355: JSONDecodeError\n\nDuring handling of the above exception, another exception occurred:\n\nself = <tests.test_api.test_api.TestAPI object at 0x7f02b05a60c0>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f02afeb8cb0>\n\n    @allure.title(\"POST Создать задачу\")\n    def test_post_api_column_id_task(self, use_api_base):\n        \"\"\"\n        responsible: Список ответственных пользователей. Передается массивом из id,например {\"responsible\": [1,2,3]}\n        deadline: Срок выполнения задачи\n        description: Описание\n        priority: Приоритет, число от 0 до 3, где 0 - высочайший приоритет\n        color_mark: Цвет метки\n        name_mark: Название метки\n        \"\"\"\n        jwt = use_api_base.create_jwt(email1, password0)\n>       column_id = use_api_base.get_board_column_id()[1]\n\ntests/test_api/test_api.py:318: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \napi_testing/api_base.py:163: in get_board_column_id\n    workspace_id, board_id = self.get_board_id()\napi_testing/api_base.py:157: in get_board_id\n    board_id = response.json()['id']\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <Response [500]>, kwargs = {}\n\n    def json(self, **kwargs):\n        r\"\"\"Returns the json-encoded content of a response, if any.\n    \n        :param \\*\\*kwargs: Optional arguments that ``json.loads`` takes.\n        :raises requests.exceptions.JSONDecodeError: If the response body does not\n            contain valid json.\n        \"\"\"\n    \n        if not self.encoding and self.content and len(self.content) > 3:\n            # No encoding set. JSON RFC 4627 section 3 states we should expect\n            # UTF-8, -16 or -32. Detect which one to use; If the detection or\n            # decoding fails, fall back to `self.text` (using charset_normalizer to make\n            # a best guess).\n            encoding = guess_json_utf(self.content)\n            if encoding is not None:\n                try:\n                    return complexjson.loads(self.content.decode(encoding), **kwargs)\n                except UnicodeDecodeError:\n                    # Wrong UTF codec detected; usually because it's not UTF-8\n                    # but some other 8-bit codec.  This is an RFC violation,\n                    # and the server didn't bother to tell us what codec *was*\n                    # used.\n                    pass\n                except JSONDecodeError as e:\n                    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\n    \n        try:\n            return complexjson.loads(self.text, **kwargs)\n        except JSONDecodeError as e:\n            # Catch JSON-related errors and raise as requests.JSONDecodeError\n            # This aliases json.JSONDecodeError and simplejson.JSONDecodeError\n>           raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\nE           requests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/requests/models.py:975: JSONDecodeError",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя на емайл",
+      "time" : {
+        "start" : 1713435651376,
+        "stop" : 1713435653484,
+        "duration" : 2108
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Получить id колонки",
+      "time" : {
+        "start" : 1713435653485,
+        "stop" : 1713435661788,
+        "duration" : 8303
+      },
+      "status" : "broken",
+      "statusMessage" : "requests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/api_base.py\", line 163, in get_board_column_id\n    workspace_id, board_id = self.get_board_id()\n                             ^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/api_testing/api_base.py\", line 157, in get_board_id\n    board_id = response.json()['id']\n               ^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/requests/models.py\", line 975, in json\n    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\n",
+      "steps" : [ {
+        "name" : "Получить access токен пользователя на емайл",
+        "time" : {
+          "start" : 1713435653485,
+          "stop" : 1713435655605,
+          "duration" : 2120
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Получить id доски",
+        "time" : {
+          "start" : 1713435655606,
+          "stop" : 1713435661788,
+          "duration" : 6182
+        },
+        "status" : "broken",
+        "statusMessage" : "requests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)\n",
+        "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/api_base.py\", line 157, in get_board_id\n    board_id = response.json()['id']\n               ^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/requests/models.py\", line 975, in json\n    raise RequestsJSONDecodeError(e.msg, e.doc, e.pos)\n",
+        "steps" : [ {
+          "name" : "Получить access токен пользователя на емайл",
+          "time" : {
+            "start" : 1713435655606,
+            "stop" : 1713435657712,
+            "duration" : 2106
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Получить id рабочего пространства",
+          "time" : {
+            "start" : 1713435657713,
+            "stop" : 1713435660736,
+            "duration" : 3023
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Получить access токен пользователя на емайл",
+            "time" : {
+              "start" : 1713435657713,
+              "stop" : 1713435659785,
+              "duration" : 2072
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 1,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 3,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : true,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 5,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 7,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az698-577"
+  }, {
+    "name" : "thread",
+    "value" : "2280-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 23,
+        "unknown" : 0,
+        "total" : 25
+      },
+      "items" : [ {
+        "uid" : "c9390ceb49c2b581",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/197//#testresult/c9390ceb49c2b581",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713198562052,
+          "stop" : 1713198572333,
+          "duration" : 10281
+        }
+      }, {
+        "uid" : "9f4e17c469d40e1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/196//#testresult/9f4e17c469d40e1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713101139031,
+          "stop" : 1713101150341,
+          "duration" : 11310
+        }
+      }, {
+        "uid" : "2fc4564805f33190",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/196//#testresult/2fc4564805f33190",
+        "status" : "passed",
+        "time" : {
+          "start" : 1711136608127,
+          "stop" : 1711136614912,
+          "duration" : 6785
+        }
+      }, {
+        "uid" : "48143fee5580dfff",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/195//#testresult/48143fee5580dfff",
+        "status" : "passed",
+        "time" : {
+          "start" : 1710360893694,
+          "stop" : 1710360902681,
+          "duration" : 8987
+        }
+      }, {
+        "uid" : "cc86a3809aaf0372",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/194//#testresult/cc86a3809aaf0372",
+        "status" : "passed",
+        "time" : {
+          "start" : 1710226333222,
+          "stop" : 1710226340823,
+          "duration" : 7601
+        }
+      }, {
+        "uid" : "f33b9f272bf48f4f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/193//#testresult/f33b9f272bf48f4f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1710181348170,
+          "stop" : 1710181354150,
+          "duration" : 5980
+        }
+      }, {
+        "uid" : "d26fb60e72084e3b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/192//#testresult/d26fb60e72084e3b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1710080896392,
+          "stop" : 1710080902161,
+          "duration" : 5769
+        }
+      }, {
+        "uid" : "21c8c4c725cebd6a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/191//#testresult/21c8c4c725cebd6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709990282689,
+          "stop" : 1709990289724,
+          "duration" : 7035
+        }
+      }, {
+        "uid" : "ebab9ecf2e59f1a0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/190//#testresult/ebab9ecf2e59f1a0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709988507549,
+          "stop" : 1709988514555,
+          "duration" : 7006
+        }
+      }, {
+        "uid" : "a54a649967633351",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/189//#testresult/a54a649967633351",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709931457251,
+          "stop" : 1709931464687,
+          "duration" : 7436
+        }
+      }, {
+        "uid" : "baee280288370b62",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/188//#testresult/baee280288370b62",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709929415275,
+          "stop" : 1709929422392,
+          "duration" : 7117
+        }
+      }, {
+        "uid" : "d54225750ed5aed1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/187//#testresult/d54225750ed5aed1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709813939222,
+          "stop" : 1709813945021,
+          "duration" : 5799
+        }
+      }, {
+        "uid" : "dc20d17532fc6940",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/186//#testresult/dc20d17532fc6940",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709750319505,
+          "stop" : 1709750325285,
+          "duration" : 5780
+        }
+      }, {
+        "uid" : "15ff225c1f85b16c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/185//#testresult/15ff225c1f85b16c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709748708101,
+          "stop" : 1709748715742,
+          "duration" : 7641
+        }
+      }, {
+        "uid" : "dce95beed0e83f6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/184//#testresult/dce95beed0e83f6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709534808813,
+          "stop" : 1709534813508,
+          "duration" : 4695
+        }
+      }, {
+        "uid" : "d74fd185244a3347",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/183//#testresult/d74fd185244a3347",
+        "status" : "broken",
+        "statusDetails" : "requests.exceptions.JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+        "time" : {
+          "start" : 1709529415519,
+          "stop" : 1709529416100,
+          "duration" : 581
+        }
+      }, {
+        "uid" : "e0c68ac870caddf1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/183//#testresult/e0c68ac870caddf1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709496019426,
+          "stop" : 1709496026556,
+          "duration" : 7130
+        }
+      }, {
+        "uid" : "39a1453905900d78",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/183//#testresult/39a1453905900d78",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709491349467,
+          "stop" : 1709491356850,
+          "duration" : 7383
+        }
+      }, {
+        "uid" : "eb56677c4954eed8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/183//#testresult/eb56677c4954eed8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709489741798,
+          "stop" : 1709489748829,
+          "duration" : 7031
+        }
+      }, {
+        "uid" : "1b8f625c5d0d2544",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/182//#testresult/1b8f625c5d0d2544",
+        "status" : "passed",
+        "time" : {
+          "start" : 1709488021263,
+          "stop" : 1709488027462,
+          "duration" : 6199
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "11ff3947de102a37.json",
+  "parameterValues" : [ ]
+}
