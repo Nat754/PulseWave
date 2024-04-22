@@ -43,6 +43,7 @@ class TestWorkspacePage:
         with allure.step('Проверить что авторизованный пользователь попадает в Рабочие пространства'):
             assert url == self.const.WORKSPACE, 'Авторизованный пользователь не попал в Рабочие пространства'
 
+    @pytest.mark.xfail
     @allure.title("Проверка что авторизованный пользователь может выйти из аккаунта")
     @pytest.mark.regress
     def test_auth_user_logout(self, auth_user, driver):

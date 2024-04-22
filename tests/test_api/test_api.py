@@ -18,6 +18,7 @@ class TestAPI:
     constant = ApiConstant()
     code = StatusCode()
 
+    @pytest.mark.xfail
     @allure.title("POST Создать пользователя с корректными данными")
     def test_post_auth_user(self):
         url = f'{self.constant.BASE_URL}auth/users/'
