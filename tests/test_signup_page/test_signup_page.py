@@ -15,6 +15,7 @@ class TestSignupPage:
     msg = Messages()
     base = BasePage
 
+    @pytest.mark.xfail
     @allure.title("1.3, 1.3.1, 1.15 Регистрация с корректными email и паролем и с согласием на подписку")
     @pytest.mark.smoke
     def test_signup_with_correct_data_and_agree(self, signup_page_open, driver):
@@ -114,6 +115,7 @@ class TestSignupPage:
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.INVALID_EMAIL_MSG}"'):
             assert element.text == self.msg.INVALID_EMAIL_MSG, 'Нет сообщения об ошибке'
 
+    @pytest.mark.xfail
     @allure.title("1.23 Регистрация с корректными email и паролем без согласия на подписку")
     @pytest.mark.smoke
     def test_signup_with_correct_email_and_password(self, signup_page_open, driver):

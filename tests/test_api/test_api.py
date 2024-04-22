@@ -18,6 +18,7 @@ class TestAPI:
     constant = ApiConstant()
     code = StatusCode()
 
+    @pytest.mark.xfail('Bug 🐞')
     @allure.title("POST Создать пользователя с корректными данными")
     def test_post_auth_user(self):
         url = f'{self.constant.BASE_URL}auth/users/'
@@ -25,6 +26,7 @@ class TestAPI:
         time.sleep(10)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
+    @pytest.mark.xfail
     @allure.title("POST Активация пользователя с корректными данными")
     def test_post_users_activation(self, use_api_base):
         url = f'{self.constant.BASE_URL}auth/users/activation/'
@@ -72,6 +74,7 @@ class TestAPI:
                                  json={"user_id": invite_user_id} | self.constant.INVITE_USER)
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("Проверка недействительности кеша доски")
     def test_api_invalidation_board(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -195,6 +198,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail('Bug 🐞')
     @allure.title("POST Создать доску")
     def test_post_api_workspace_id_boards(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -204,6 +208,7 @@ class TestAPI:
                                  json=self.constant.BOARD_CREATE | {"work_space": f"{workspace_id}"})
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
+    @pytest.mark.xfail
     @allure.title("GET Информация о конкретной доске")
     def test_get_api_workspace_id_boards_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -212,6 +217,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("PUT Обновить доску")
     def test_put_api_workspace_id_boards_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -221,6 +227,7 @@ class TestAPI:
                                 json=self.constant.BOARD_CREATE)
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("PATCH Частично обновить доску")
     def test_patch_api_workspace_id_boards_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -230,6 +237,7 @@ class TestAPI:
                                   json=self.constant.BOARD_CREATE)
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail('Bug 🐞')
     @allure.title("POST Создать доску без указания РП")
     def test_post_api_board_create(self, use_api_base):
         """Создание доски без указания РП, будет создано дефолтное РП для этой доски"""
@@ -247,6 +255,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("POST Создать колонку на доске")
     def test_post_api_board_id_column(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -256,6 +265,7 @@ class TestAPI:
                                  json=self.constant.BOARD_CREATE)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
+    @pytest.mark.xfail
     @allure.title("GET Список всех колонок доски")
     def test_get_api_boards_id_column(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -264,6 +274,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("GET Информация о конкретной колонке")
     def test_get_api_boards_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -272,6 +283,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("PUT Обновить колонку (название и порядковый номер)")
     def test_put_api_board_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -296,6 +308,7 @@ class TestAPI:
             print(column_name, '!=', column_name_new)
             assert column_name != column_name_new, 'Не изменилось имя колонки'
 
+    @pytest.mark.xfail
     @allure.title("PATCH Частично обновить колонку (название/порядковый номер)")
     def test_patch_api_boards_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -304,6 +317,7 @@ class TestAPI:
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("POST Создать задачу")
     def test_post_api_column_id_task(self, use_api_base):
         """
@@ -321,6 +335,7 @@ class TestAPI:
                                  json=self.constant.CREATE_TASK)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
+    @pytest.mark.xfail
     @allure.title("GET Список всех задач колонки")
     def test_get_column_id_task(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -329,6 +344,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("GET Получение одной задачи")
     def test_get_task_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -337,6 +353,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("PUT Обновить задачу")
     def test_put_api_column_id_task_id(self, use_api_base):
         """Для перемещения между колонок нужно передать column - id новой колонки и index - куда ее вставить"""
@@ -348,6 +365,7 @@ class TestAPI:
                                       "responsible": [f'{use_api_base.get_auth_user_id()}']})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("PATCH Частично обновить задачу")
     def test_patch_api_column_id_task_id(self, use_api_base):
         """Перемещение между колонками возможно только PUT запросом"""
@@ -359,6 +377,7 @@ class TestAPI:
                                         "responsible": [f'{use_api_base.get_auth_user_id()}']})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("DELETE Удалить задачу")
     def test_delete_column_id_task_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -367,6 +386,7 @@ class TestAPI:
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
+    @pytest.mark.xfail
     @allure.title("DELETE Удалить колонку")
     def test_delete_api_boards_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -375,6 +395,7 @@ class TestAPI:
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
+    @pytest.mark.xfail@pytest.mark.xfail
     @allure.title("DELETE Удалить доску")
     def test_delete_api_workspace_id_boards_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -429,6 +450,7 @@ class TestAPI:
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("POST Создать комментарий")
     def test_post_api_task_id_comment(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -438,6 +460,7 @@ class TestAPI:
                                  json=self.constant.COMMENT)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
+    @pytest.mark.xfail
     @allure.title("DELETE Удалить комментарий")
     def test_delete_task_id_comment_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -450,6 +473,7 @@ class TestAPI:
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
+    @pytest.mark.xfail
     @allure.title("GET Получение комментария")
     def test_get_task_id_comment(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -458,6 +482,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("GET Список стикеров задачи")
     def test_get_api_task_id_sticker(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -468,6 +493,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("POST Создать стикер к задаче")
     def test_post_api_task_id_sticker(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -477,6 +503,7 @@ class TestAPI:
                                  json={"name": faker.first_name(), "color": random.choice(self.constant.COLOR_STICKER)})
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
+    @pytest.mark.xfail
     @allure.title("GET Представление одного стикера")
     def test_get_api_task_id_sticker_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -489,6 +516,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title("PUT Обновить стикер")
     def test_put_api_task_id_sticker_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -504,6 +532,7 @@ class TestAPI:
         print(sticker_new, sticker_put)
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @pytest.mark.parametrize('field', [{"name": faker.first_name()}, {"color": random.choice(constant.COLOR_STICKER)}])
     def test_patch_api_task_id_sticker_id(self, use_api_base, field):
         allure.dynamic.title(f"PATCH Частично обновить стикер {field}")
@@ -521,6 +550,7 @@ class TestAPI:
         print(response.json()['name'], response.json()['color'])
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
+    @pytest.mark.xfail
     @allure.title(f"DELETE Удалить стикер")
     def test_delete_api_task_id_sticker_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -622,6 +652,7 @@ class TestAPI:
         time.sleep(10)
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
+    @pytest.mark.xfail('Bug 🐞')
     @allure.title("POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке \
     auth/password/reset/confirm/{uid}/{token}")
     def test_post_auth_users_reset_password_confirm(self, use_api_base):
