@@ -18,7 +18,6 @@ class TestAPI:
     constant = ApiConstant()
     code = StatusCode()
 
-    @pytest.mark.xfail('Bug 🐞')
     @allure.title("POST Создать пользователя с корректными данными")
     def test_post_auth_user(self):
         url = f'{self.constant.BASE_URL}auth/users/'
@@ -198,7 +197,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
-    @pytest.mark.xfail('Bug 🐞')
+    @pytest.mark.xfail(reazon='Bug')
     @allure.title("POST Создать доску")
     def test_post_api_workspace_id_boards(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -237,7 +236,7 @@ class TestAPI:
                                   json=self.constant.BOARD_CREATE)
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
-    @pytest.mark.xfail('Bug 🐞')
+    @pytest.mark.xfail(reazon='Bug')
     @allure.title("POST Создать доску без указания РП")
     def test_post_api_board_create(self, use_api_base):
         """Создание доски без указания РП, будет создано дефолтное РП для этой доски"""
@@ -395,7 +394,8 @@ class TestAPI:
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
-    @pytest.mark.xfail@pytest.mark.xfail
+    @pytest.mark.xfail
+    @pytest.mark.xfail
     @allure.title("DELETE Удалить доску")
     def test_delete_api_workspace_id_boards_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
@@ -652,7 +652,7 @@ class TestAPI:
         time.sleep(10)
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
-    @pytest.mark.xfail('Bug 🐞')
+    @pytest.mark.xfail(reazon='Bug')
     @allure.title("POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке \
     auth/password/reset/confirm/{uid}/{token}")
     def test_post_auth_users_reset_password_confirm(self, use_api_base):
