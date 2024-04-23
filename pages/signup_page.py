@@ -88,8 +88,9 @@ class SignUpPage(BasePage):
 
     @allure.step("Нажать на иконку аватара")
     def click_button_avatar(self):
-        element = self.element_is_visible(self.locator.BUTTON_AVATAR)
+        element = self.element_is_present(self.locator.BUTTON_AVATAR)
         self.action_move_to_element(element)
+        self.element_is_clickable(element)
         return element.click()
 
     @allure.step("Перейти в настройки")
