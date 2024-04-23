@@ -54,7 +54,7 @@ class TestWorkspacePage:
             assert text == self.message.EXIT_CONFIRM_MSG, 'Авторизованный пользователь не вышел из аккаунта'
 
     @pytest.mark.xfail
-    @allure.title(f"Проверка перехода в {wsconst.WORKSPACE_TITLE} по ссылке {message.TO_MAIN_TEXT}"))
+    @allure.title(f"Проверка перехода в {wsconst.WORKSPACE_TITLE} по ссылке {message.TO_MAIN_TEXT}")
     @pytest.mark.regress
     def test_link_to_main(self, auth_user, driver):
         page = SignUpPage(driver)
