@@ -90,7 +90,7 @@ class SignUpPage(BasePage):
     def click_button_avatar(self):
         element = self.element_is_present(self.locator.BUTTON_AVATAR)
         self.action_move_to_element(element)
-        self.element_is_clickable(element).click()
+        self.element_is_clickable(self.locator.BUTTON_AVATAR).click()
 
     @allure.step("Перейти в настройки")
     def click_button_settings(self):
