@@ -1,0 +1,312 @@
+{
+  "uid" : "96b5941fbc3f1e3d",
+  "name" : "3.2, 3.2.1 Восстановить пароль на корректный емайл",
+  "fullName" : "tests.test_password_recovery.test_password_recovery.TestPasswordRecoveryPage#test_recovery_password_to_fill_correct_email",
+  "historyId" : "3fbb91d2b204c3d1abb80d32ac377e08",
+  "time" : {
+    "start" : 1713882375943,
+    "stop" : 1713882409888,
+    "duration" : 33945
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x556816f72863 <unknown>\n#1 0x556816c688c6 <unknown>\n#2 0x556816cb3618 <unknown>\n#3 0x556816cb36d1 <unknown>\n#4 0x556816cf6744 <unknown>\n#5 0x556816cd55cd <unknown>\n#6 0x556816cf3c19 <unknown>\n#7 0x556816cd5343 <unknown>\n#8 0x556816ca6593 <unknown>\n#9 0x556816ca6f5e <unknown>\n#10 0x556816f3684b <unknown>\n#11 0x556816f3a7a5 <unknown>\n#12 0x556816f24571 <unknown>\n#13 0x556816f3b332 <unknown>\n#14 0x556816f0987f <unknown>\n#15 0x556816f61728 <unknown>\n#16 0x556816f618fb <unknown>\n#17 0x556816f719b4 <unknown>\n#18 0x7f8e3dc94ac3 <unknown>",
+  "statusTrace" : "self = <tests.test_password_recovery.test_password_recovery.TestPasswordRecoveryPage object at 0x7f9be9d14c20>\nrecovery_page_open = <pages.password_recovery_page.PasswordRecoveryPage object at 0x7f9be9d4f350>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"334d8e59a6ff794fae0ca6651162130e\")>\n\n    @pytest.mark.xfail\n    @allure.title(\"3.2, 3.2.1 Восстановить пароль на корректный емайл\")\n    @pytest.mark.regress\n    def test_recovery_password_to_fill_correct_email(self, recovery_page_open, driver):\n        with allure.step('Заполнить поле емайл'):\n            recovery_page_open.fill_email_to_recovery_password(email_auth)\n        with allure.step(\"Нажать кнопку 'Продолжить'\"):\n            recovery_page_open.click_resume_button()\n        time.sleep(10)  # Получить ссылку на емайл\n        link = self.page.get_link_recovery_password_by_email()\n        driver.get(link)\n        with allure.step('Ввести пароль в поле пароль'):\n            recovery_page_open.fill_password_recovery(password0)\n        with allure.step('Ввести пароль в поле подтверждение пароля'):\n            recovery_page_open.fill_confirm_password_recovery(password0)\n        with allure.step(\"Нажать кнопку 'Сохранить пароль'\"):\n            recovery_page_open.click_resume_button()\n        with allure.step(\"Нажать кнопку 'Ок' - подтвердить переход на страницу авторизации\"):\n>           recovery_page_open.click_resume_button()\n\ntests/test_password_recovery/test_password_recovery.py:68: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/password_recovery_page.py:48: in click_resume_button\n    return self.element_is_clickable(self.locator.SUBMIT_BUTTON).click()\npages/base_page.py:60: in element_is_clickable\n    return Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"334d8e59a6ff794fae0ca6651162130e\")>\nmethod = <function element_to_be_clickable.<locals>._predicate at 0x7f9be83702c0>\nmessage = ''\n\n    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = \"\") -> T:\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: \nE       Stacktrace:\nE       #0 0x556816f72863 <unknown>\nE       #1 0x556816c688c6 <unknown>\nE       #2 0x556816cb3618 <unknown>\nE       #3 0x556816cb36d1 <unknown>\nE       #4 0x556816cf6744 <unknown>\nE       #5 0x556816cd55cd <unknown>\nE       #6 0x556816cf3c19 <unknown>\nE       #7 0x556816cd5343 <unknown>\nE       #8 0x556816ca6593 <unknown>\nE       #9 0x556816ca6f5e <unknown>\nE       #10 0x556816f3684b <unknown>\nE       #11 0x556816f3a7a5 <unknown>\nE       #12 0x556816f24571 <unknown>\nE       #13 0x556816f3b332 <unknown>\nE       #14 0x556816f0987f <unknown>\nE       #15 0x556816f61728 <unknown>\nE       #16 0x556816f618fb <unknown>\nE       #17 0x556816f719b4 <unknown>\nE       #18 0x7f8e3dc94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:105: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1713881392683,
+      "stop" : 1713881392683,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "recovery_page_open",
+    "time" : {
+      "start" : 1713882372603,
+      "stop" : 1713882375943,
+      "duration" : 3340
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie",
+      "time" : {
+        "start" : 1713882375882,
+        "stop" : 1713882375913,
+        "duration" : 31
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1713882372320,
+      "stop" : 1713882372602,
+      "duration" : 282
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1713881392665,
+      "stop" : 1713881392683,
+      "duration" : 18
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x556816f72863 <unknown>\n#1 0x556816c688c6 <unknown>\n#2 0x556816cb3618 <unknown>\n#3 0x556816cb36d1 <unknown>\n#4 0x556816cf6744 <unknown>\n#5 0x556816cd55cd <unknown>\n#6 0x556816cf3c19 <unknown>\n#7 0x556816cd5343 <unknown>\n#8 0x556816ca6593 <unknown>\n#9 0x556816ca6f5e <unknown>\n#10 0x556816f3684b <unknown>\n#11 0x556816f3a7a5 <unknown>\n#12 0x556816f24571 <unknown>\n#13 0x556816f3b332 <unknown>\n#14 0x556816f0987f <unknown>\n#15 0x556816f61728 <unknown>\n#16 0x556816f618fb <unknown>\n#17 0x556816f719b4 <unknown>\n#18 0x7f8e3dc94ac3 <unknown>",
+    "statusTrace" : "self = <tests.test_password_recovery.test_password_recovery.TestPasswordRecoveryPage object at 0x7f9be9d14c20>\nrecovery_page_open = <pages.password_recovery_page.PasswordRecoveryPage object at 0x7f9be9d4f350>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"334d8e59a6ff794fae0ca6651162130e\")>\n\n    @pytest.mark.xfail\n    @allure.title(\"3.2, 3.2.1 Восстановить пароль на корректный емайл\")\n    @pytest.mark.regress\n    def test_recovery_password_to_fill_correct_email(self, recovery_page_open, driver):\n        with allure.step('Заполнить поле емайл'):\n            recovery_page_open.fill_email_to_recovery_password(email_auth)\n        with allure.step(\"Нажать кнопку 'Продолжить'\"):\n            recovery_page_open.click_resume_button()\n        time.sleep(10)  # Получить ссылку на емайл\n        link = self.page.get_link_recovery_password_by_email()\n        driver.get(link)\n        with allure.step('Ввести пароль в поле пароль'):\n            recovery_page_open.fill_password_recovery(password0)\n        with allure.step('Ввести пароль в поле подтверждение пароля'):\n            recovery_page_open.fill_confirm_password_recovery(password0)\n        with allure.step(\"Нажать кнопку 'Сохранить пароль'\"):\n            recovery_page_open.click_resume_button()\n        with allure.step(\"Нажать кнопку 'Ок' - подтвердить переход на страницу авторизации\"):\n>           recovery_page_open.click_resume_button()\n\ntests/test_password_recovery/test_password_recovery.py:68: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/password_recovery_page.py:48: in click_resume_button\n    return self.element_is_clickable(self.locator.SUBMIT_BUTTON).click()\npages/base_page.py:60: in element_is_clickable\n    return Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"334d8e59a6ff794fae0ca6651162130e\")>\nmethod = <function element_to_be_clickable.<locals>._predicate at 0x7f9be83702c0>\nmessage = ''\n\n    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = \"\") -> T:\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: \nE       Stacktrace:\nE       #0 0x556816f72863 <unknown>\nE       #1 0x556816c688c6 <unknown>\nE       #2 0x556816cb3618 <unknown>\nE       #3 0x556816cb36d1 <unknown>\nE       #4 0x556816cf6744 <unknown>\nE       #5 0x556816cd55cd <unknown>\nE       #6 0x556816cf3c19 <unknown>\nE       #7 0x556816cd5343 <unknown>\nE       #8 0x556816ca6593 <unknown>\nE       #9 0x556816ca6f5e <unknown>\nE       #10 0x556816f3684b <unknown>\nE       #11 0x556816f3a7a5 <unknown>\nE       #12 0x556816f24571 <unknown>\nE       #13 0x556816f3b332 <unknown>\nE       #14 0x556816f0987f <unknown>\nE       #15 0x556816f61728 <unknown>\nE       #16 0x556816f618fb <unknown>\nE       #17 0x556816f719b4 <unknown>\nE       #18 0x7f8e3dc94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:105: TimeoutException",
+    "steps" : [ {
+      "name" : "Заполнить поле емайл",
+      "time" : {
+        "start" : 1713882375944,
+        "stop" : 1713882376019,
+        "duration" : 75
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Нажать кнопку 'Продолжить'",
+      "time" : {
+        "start" : 1713882376019,
+        "stop" : 1713882376069,
+        "duration" : 50
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Получить ссылку для смены пароля на email",
+      "time" : {
+        "start" : 1713882386070,
+        "stop" : 1713882389008,
+        "duration" : 2938
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Ввести пароль в поле пароль",
+      "time" : {
+        "start" : 1713882389314,
+        "stop" : 1713882389378,
+        "duration" : 64
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Ввести пароль в поле подтверждение пароля",
+      "time" : {
+        "start" : 1713882389378,
+        "stop" : 1713882389434,
+        "duration" : 56
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Нажать кнопку 'Сохранить пароль'",
+      "time" : {
+        "start" : 1713882389434,
+        "stop" : 1713882389478,
+        "duration" : 44
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Нажать кнопку 'Ок' - подтвердить переход на страницу авторизации",
+      "time" : {
+        "start" : 1713882389478,
+        "stop" : 1713882409887,
+        "duration" : 20409
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x556816f72863 <unknown>\n#1 0x556816c688c6 <unknown>\n#2 0x556816cb3618 <unknown>\n#3 0x556816cb36d1 <unknown>\n#4 0x556816cf6744 <unknown>\n#5 0x556816cd55cd <unknown>\n#6 0x556816cf3c19 <unknown>\n#7 0x556816cd5343 <unknown>\n#8 0x556816ca6593 <unknown>\n#9 0x556816ca6f5e <unknown>\n#10 0x556816f3684b <unknown>\n#11 0x556816f3a7a5 <unknown>\n#12 0x556816f24571 <unknown>\n#13 0x556816f3b332 <unknown>\n#14 0x556816f0987f <unknown>\n#15 0x556816f61728 <unknown>\n#16 0x556816f618fb <unknown>\n#17 0x556816f719b4 <unknown>\n#18 0x7f8e3dc94ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/tests/test_password_recovery/test_password_recovery.py\", line 68, in test_recovery_password_to_fill_correct_email\n    recovery_page_open.click_resume_button()\n  File \"/home/runner/work/PulseWave/PulseWave/pages/password_recovery_page.py\", line 48, in click_resume_button\n    return self.element_is_clickable(self.locator.SUBMIT_BUTTON).click()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 60, in element_is_clickable\n    return Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "dc9d46d99195318f",
+      "name" : "Screenshot",
+      "source" : "dc9d46d99195318f.png",
+      "type" : "image/png",
+      "size" : 91537
+    }, {
+      "uid" : "4d6f26c6b656d4fe",
+      "name" : "HTML source",
+      "source" : "4d6f26c6b656d4fe.html",
+      "type" : "text/html",
+      "size" : 175875
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 7,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1713882410042,
+      "stop" : 1713882410103,
+      "duration" : 61
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование страницы 'Восстановление пароля'"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_password_recovery"
+  }, {
+    "name" : "suite",
+    "value" : "test_password_recovery"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestPasswordRecoveryPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az695-415"
+  }, {
+    "name" : "thread",
+    "value" : "2345-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_password_recovery.test_password_recovery"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 2,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "c11d21573ed5f300",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/208//#testresult/c11d21573ed5f300",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55e05a1c9863 <unknown>\n#1 0x55e059ebf8c6 <unknown>\n#2 0x55e059f0a618 <unknown>\n#3 0x55e059f0a6d1 <unknown>\n#4 0x55e059f4d744 <unknown>\n#5 0x55e059f2c5cd <unknown>\n#6 0x55e059f4ac19 <unknown>\n#7 0x55e059f2c343 <unknown>\n#8 0x55e059efd593 <unknown>\n#9 0x55e059efdf5e <unknown>\n#10 0x55e05a18d84b <unknown>\n#11 0x55e05a1917a5 <unknown>\n#12 0x55e05a17b571 <unknown>\n#13 0x55e05a192332 <unknown>\n#14 0x55e05a16087f <unknown>\n#15 0x55e05a1b8728 <unknown>\n#16 0x55e05a1b88fb <unknown>\n#17 0x55e05a1c89b4 <unknown>\n#18 0x7f54d8494ac3 <unknown>",
+        "time" : {
+          "start" : 1713879555164,
+          "stop" : 1713879589224,
+          "duration" : 34060
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail", "regress" ]
+  },
+  "source" : "96b5941fbc3f1e3d.json",
+  "parameterValues" : [ "'chrome'" ]
+}
