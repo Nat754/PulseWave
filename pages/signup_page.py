@@ -90,8 +90,7 @@ class SignUpPage(BasePage):
     def click_button_avatar(self):
         element = self.element_is_present(self.locator.BUTTON_AVATAR)
         self.action_move_to_element(element)
-        self.element_is_clickable(element)
-        element.click()
+        self.element_is_clickable(element).click()
 
     @allure.step("Перейти в настройки")
     def click_button_settings(self):
@@ -121,7 +120,7 @@ class SignUpPage(BasePage):
 
     @allure.step("Нажать ссылку 'Выйти'")
     def click_exit_button(self):
-        return self.element_is_visible(self.locator.AVATAR_LOGOUT).click()
+        self.element_is_clickable(self.locator.AVATAR_LOGOUT).click()
 
     @allure.step("Получить сообщение")
     def get_message_to_exit(self):
