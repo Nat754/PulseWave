@@ -1,0 +1,280 @@
+{
+  "uid" : "b5d6db17f4303ab5",
+  "name" : "test_get_css_property_header_auth_login[font-family-Mulish, sans-serif-\\u0448\\u0440\\u0438\\u0444\\u0442\\u0430-https://pulsewave.ru/auth/signup-chrome]",
+  "fullName" : "tests.test_header.test_header.TestHeader#test_get_css_property_header_auth_login",
+  "historyId" : "0a20f9faebad3f877182dd6228ce3088",
+  "time" : {
+    "start" : 1714357234883,
+    "stop" : 1714357234883,
+    "duration" : 0
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome-headless-shell=124.0.6367.60)\nStacktrace:\n#0 0x55ba45728e33 <unknown>\n#1 0x55ba45418567 <unknown>\n#2 0x55ba45410879 <unknown>\n#3 0x55ba45400852 <unknown>\n#4 0x55ba45401e44 <unknown>\n#5 0x55ba45400bbe <unknown>\n#6 0x55ba454002e0 <unknown>\n#7 0x55ba45400181 <unknown>\n#8 0x55ba453fe0ec <unknown>\n#9 0x55ba453fe60a <unknown>\n#10 0x55ba4541aeef <unknown>\n#11 0x55ba454a4695 <unknown>\n#12 0x55ba45485362 <unknown>\n#13 0x55ba454a3ae2 <unknown>\n#14 0x55ba45485103 <unknown>\n#15 0x55ba454561ba <unknown>\n#16 0x55ba45456b8e <unknown>\n#17 0x55ba456ed59b <unknown>\n#18 0x55ba456f134b <unknown>\n#19 0x55ba456d9681 <unknown>\n#20 0x55ba456f1eb2 <unknown>\n#21 0x55ba456be6af <unknown>\n#22 0x55ba45718428 <unknown>\n#23 0x55ba45718600 <unknown>\n#24 0x55ba45727f84 <unknown>\n#25 0x7f240bc94ac3 <unknown>",
+  "statusTrace" : "driver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"fa0299310b6b387957f6fd4eb4608355\")>\nurl = 'https://pulsewave.ru/auth/signup'\n\n    @pytest.fixture()\n    def header_open(driver, url):\n        page = HeaderPage(driver)\n>       driver.get(url)\n\ntests/test_header/conftest.py:8: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:356: in get\n    self.execute(Command.GET, {\"url\": url})\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:347: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7f7971c35eb0>\nresponse = {'status': 500, 'value': '{\"value\":{\"error\":\"unknown error\",\"message\":\"unknown error: net::ERR_CONNECTION_REFUSED\\\\n  ...\\\\n#23 0x55ba45718600 \\\\u003Cunknown>\\\\n#24 0x55ba45727f84 \\\\u003Cunknown>\\\\n#25 0x7f240bc94ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\nE         (Session info: chrome-headless-shell=124.0.6367.60)\nE       Stacktrace:\nE       #0 0x55ba45728e33 <unknown>\nE       #1 0x55ba45418567 <unknown>\nE       #2 0x55ba45410879 <unknown>\nE       #3 0x55ba45400852 <unknown>\nE       #4 0x55ba45401e44 <unknown>\nE       #5 0x55ba45400bbe <unknown>\nE       #6 0x55ba454002e0 <unknown>\nE       #7 0x55ba45400181 <unknown>\nE       #8 0x55ba453fe0ec <unknown>\nE       #9 0x55ba453fe60a <unknown>\nE       #10 0x55ba4541aeef <unknown>\nE       #11 0x55ba454a4695 <unknown>\nE       #12 0x55ba45485362 <unknown>\nE       #13 0x55ba454a3ae2 <unknown>\nE       #14 0x55ba45485103 <unknown>\nE       #15 0x55ba454561ba <unknown>\nE       #16 0x55ba45456b8e <unknown>\nE       #17 0x55ba456ed59b <unknown>\nE       #18 0x55ba456f134b <unknown>\nE       #19 0x55ba456d9681 <unknown>\nE       #20 0x55ba456f1eb2 <unknown>\nE       #21 0x55ba456be6af <unknown>\nE       #22 0x55ba45718428 <unknown>\nE       #23 0x55ba45718600 <unknown>\nE       #24 0x55ba45727f84 <unknown>\nE       #25 0x7f240bc94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: WebDriverException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1714357159972,
+      "stop" : 1714357159973,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "header_open",
+    "time" : {
+      "start" : 1714357235081,
+      "stop" : 1714357235234,
+      "duration" : 153
+    },
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome-headless-shell=124.0.6367.60)\nStacktrace:\n#0 0x55ba45728e33 <unknown>\n#1 0x55ba45418567 <unknown>\n#2 0x55ba45410879 <unknown>\n#3 0x55ba45400852 <unknown>\n#4 0x55ba45401e44 <unknown>\n#5 0x55ba45400bbe <unknown>\n#6 0x55ba454002e0 <unknown>\n#7 0x55ba45400181 <unknown>\n#8 0x55ba453fe0ec <unknown>\n#9 0x55ba453fe60a <unknown>\n#10 0x55ba4541aeef <unknown>\n#11 0x55ba454a4695 <unknown>\n#12 0x55ba45485362 <unknown>\n#13 0x55ba454a3ae2 <unknown>\n#14 0x55ba45485103 <unknown>\n#15 0x55ba454561ba <unknown>\n#16 0x55ba45456b8e <unknown>\n#17 0x55ba456ed59b <unknown>\n#18 0x55ba456f134b <unknown>\n#19 0x55ba456d9681 <unknown>\n#20 0x55ba456f1eb2 <unknown>\n#21 0x55ba456be6af <unknown>\n#22 0x55ba45718428 <unknown>\n#23 0x55ba45718600 <unknown>\n#24 0x55ba45727f84 <unknown>\n#25 0x7f240bc94ac3 <unknown>\n\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/pluggy/_callers.py\", line 167, in _multicall\n    teardown.throw(outcome._exception)\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/setuponly.py\", line 36, in pytest_fixture_setup\n    return (yield)\n            ^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/pluggy/_callers.py\", line 103, in _multicall\n    res = hook_impl.function(*args)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/fixtures.py\", line 1140, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/_pytest/fixtures.py\", line 917, in call_fixture_func\n    fixture_result = fixturefunc(**kwargs)\n                     ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/tests/test_header/conftest.py\", line 8, in header_open\n    driver.get(url)\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 356, in get\n    self.execute(Command.GET, {\"url\": url})\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 347, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1714357159955,
+      "stop" : 1714357159972,
+      "duration" : 17
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1714357234884,
+      "stop" : 1714357235081,
+      "duration" : 197
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1714357235265,
+      "stop" : 1714357235322,
+      "duration" : 57
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Хедера"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_header"
+  }, {
+    "name" : "suite",
+    "value" : "test_header"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestHeader"
+  }, {
+    "name" : "host",
+    "value" : "fv-az842-111"
+  }, {
+    "name" : "thread",
+    "value" : "2300-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_header.test_header"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  }, {
+    "name" : "css_property",
+    "value" : "'font-family'"
+  }, {
+    "name" : "figma",
+    "value" : "'Mulish, sans-serif'"
+  }, {
+    "name" : "name",
+    "value" : "'шрифта'"
+  }, {
+    "name" : "url",
+    "value" : "'https://pulsewave.ru/auth/signup'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 11,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "c7921a35279d2338",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/8//#testresult/c7921a35279d2338",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x557145a82e33 <unknown>\n#1 0x557145772567 <unknown>\n#2 0x5571457bd27d <unknown>\n#3 0x5571457bd331 <unknown>\n#4 0x557145800624 <unknown>\n#5 0x5571457df38d <unknown>\n#6 0x5571457fdae2 <unknown>\n#7 0x5571457df103 <unknown>\n#8 0x5571457b01ba <unknown>\n#9 0x5571457b0b8e <unknown>\n#10 0x557145a4759b <unknown>\n#11 0x557145a4b34b <unknown>\n#12 0x557145a33681 <unknown>\n#13 0x557145a4beb2 <unknown>\n#14 0x557145a186af <unknown>\n#15 0x557145a72428 <unknown>\n#16 0x557145a72600 <unknown>\n#17 0x557145a81f84 <unknown>\n#18 0x7f7138294ac3 <unknown>",
+        "time" : {
+          "start" : 1714272569622,
+          "stop" : 1714272569622,
+          "duration" : 0
+        }
+      }, {
+        "uid" : "eb1604890f4f4373",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/7//#testresult/eb1604890f4f4373",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714184966497,
+          "stop" : 1714184966532,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "23d9d933f2a05275",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/23d9d933f2a05275",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714148438611,
+          "stop" : 1714148438649,
+          "duration" : 38
+        }
+      }, {
+        "uid" : "c30f04ccc23023cd",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/c30f04ccc23023cd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714098488567,
+          "stop" : 1714098488601,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "130ded27a637fbf5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/5//#testresult/130ded27a637fbf5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714014372617,
+          "stop" : 1714014372652,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "52589dc42cf57ff",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/211//#testresult/52589dc42cf57ff",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713945866362,
+          "stop" : 1713945866396,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "3ffc4cf430a14207",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/4//#testresult/3ffc4cf430a14207",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713925659277,
+          "stop" : 1713925659311,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "37dbc29ea4278c31",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/211//#testresult/37dbc29ea4278c31",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713901510632,
+          "stop" : 1713901510667,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "c28a201824e4e496",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/210//#testresult/c28a201824e4e496",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713885704421,
+          "stop" : 1713885704456,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "e19c89b65b9dbd8b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/209//#testresult/e19c89b65b9dbd8b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713883602700,
+          "stop" : 1713883602735,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "c563212d86ceeab0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/209//#testresult/c563212d86ceeab0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713882120141,
+          "stop" : 1713882120176,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "bcee207ef5d623e9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/208//#testresult/bcee207ef5d623e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713879294625,
+          "stop" : 1713879294660,
+          "duration" : 35
+        }
+      } ]
+    },
+    "tags" : [ "regress" ]
+  },
+  "source" : "b5d6db17f4303ab5.json",
+  "parameterValues" : [ "'chrome'", "'font-family'", "'Mulish, sans-serif'", "'шрифта'", "'https://pulsewave.ru/auth/signup'" ]
+}

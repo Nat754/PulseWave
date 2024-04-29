@@ -1,0 +1,295 @@
+{
+  "uid" : "241e5317872c6787",
+  "name" : "Проверка попапа о принятии файлов cookie на странице https://pulsewave.ru/auth/login",
+  "fullName" : "tests.test_footer.test_footer.TestFooter#test_get_all_cookies",
+  "historyId" : "bfd21e0a73b7568ff1323371ee06c77a",
+  "time" : {
+    "start" : 1714357201941,
+    "stop" : 1714357202094,
+    "duration" : 153
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome-headless-shell=124.0.6367.60)\nStacktrace:\n#0 0x559427bb7e33 <unknown>\n#1 0x5594278a7567 <unknown>\n#2 0x55942789f879 <unknown>\n#3 0x55942788f852 <unknown>\n#4 0x559427890e44 <unknown>\n#5 0x55942788fbbe <unknown>\n#6 0x55942788f2e0 <unknown>\n#7 0x55942788f181 <unknown>\n#8 0x55942788d0ec <unknown>\n#9 0x55942788d60a <unknown>\n#10 0x5594278a9eef <unknown>\n#11 0x559427933695 <unknown>\n#12 0x559427914362 <unknown>\n#13 0x559427932ae2 <unknown>\n#14 0x559427914103 <unknown>\n#15 0x5594278e51ba <unknown>\n#16 0x5594278e5b8e <unknown>\n#17 0x559427b7c59b <unknown>\n#18 0x559427b8034b <unknown>\n#19 0x559427b68681 <unknown>\n#20 0x559427b80eb2 <unknown>\n#21 0x559427b4d6af <unknown>\n#22 0x559427ba7428 <unknown>\n#23 0x559427ba7600 <unknown>\n#24 0x559427bb6f84 <unknown>\n#25 0x7f18d8c94ac3 <unknown>",
+  "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f79724a8050>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"c59308368f5a0cad18104db0f4607155\")>\nurl = 'https://pulsewave.ru/auth/login'\n\n    @pytest.mark.parametrize('url', FooterConstant.PAGES)\n    @pytest.mark.smoke\n    def test_get_all_cookies(self, driver, url):\n        allure.dynamic.title(f\"Проверка попапа о принятии файлов cookie на странице {url}\")\n        page = FooterPage(driver)\n>       page.get_page_open(driver, url)\n\ntests/test_footer/test_footer.py:19: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/footer.py:50: in get_page_open\n    driver.get(url)\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:356: in get\n    self.execute(Command.GET, {\"url\": url})\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:347: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7f7971c21790>\nresponse = {'status': 500, 'value': '{\"value\":{\"error\":\"unknown error\",\"message\":\"unknown error: net::ERR_CONNECTION_REFUSED\\\\n  ...\\\\n#23 0x559427ba7600 \\\\u003Cunknown>\\\\n#24 0x559427bb6f84 \\\\u003Cunknown>\\\\n#25 0x7f18d8c94ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\nE         (Session info: chrome-headless-shell=124.0.6367.60)\nE       Stacktrace:\nE       #0 0x559427bb7e33 <unknown>\nE       #1 0x5594278a7567 <unknown>\nE       #2 0x55942789f879 <unknown>\nE       #3 0x55942788f852 <unknown>\nE       #4 0x559427890e44 <unknown>\nE       #5 0x55942788fbbe <unknown>\nE       #6 0x55942788f2e0 <unknown>\nE       #7 0x55942788f181 <unknown>\nE       #8 0x55942788d0ec <unknown>\nE       #9 0x55942788d60a <unknown>\nE       #10 0x5594278a9eef <unknown>\nE       #11 0x559427933695 <unknown>\nE       #12 0x559427914362 <unknown>\nE       #13 0x559427932ae2 <unknown>\nE       #14 0x559427914103 <unknown>\nE       #15 0x5594278e51ba <unknown>\nE       #16 0x5594278e5b8e <unknown>\nE       #17 0x559427b7c59b <unknown>\nE       #18 0x559427b8034b <unknown>\nE       #19 0x559427b68681 <unknown>\nE       #20 0x559427b80eb2 <unknown>\nE       #21 0x559427b4d6af <unknown>\nE       #22 0x559427ba7428 <unknown>\nE       #23 0x559427ba7600 <unknown>\nE       #24 0x559427bb6f84 <unknown>\nE       #25 0x7f18d8c94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: WebDriverException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1714357201743,
+      "stop" : 1714357201940,
+      "duration" : 197
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1714357159972,
+      "stop" : 1714357159973,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1714357159955,
+      "stop" : 1714357159972,
+      "duration" : 17
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome-headless-shell=124.0.6367.60)\nStacktrace:\n#0 0x559427bb7e33 <unknown>\n#1 0x5594278a7567 <unknown>\n#2 0x55942789f879 <unknown>\n#3 0x55942788f852 <unknown>\n#4 0x559427890e44 <unknown>\n#5 0x55942788fbbe <unknown>\n#6 0x55942788f2e0 <unknown>\n#7 0x55942788f181 <unknown>\n#8 0x55942788d0ec <unknown>\n#9 0x55942788d60a <unknown>\n#10 0x5594278a9eef <unknown>\n#11 0x559427933695 <unknown>\n#12 0x559427914362 <unknown>\n#13 0x559427932ae2 <unknown>\n#14 0x559427914103 <unknown>\n#15 0x5594278e51ba <unknown>\n#16 0x5594278e5b8e <unknown>\n#17 0x559427b7c59b <unknown>\n#18 0x559427b8034b <unknown>\n#19 0x559427b68681 <unknown>\n#20 0x559427b80eb2 <unknown>\n#21 0x559427b4d6af <unknown>\n#22 0x559427ba7428 <unknown>\n#23 0x559427ba7600 <unknown>\n#24 0x559427bb6f84 <unknown>\n#25 0x7f18d8c94ac3 <unknown>",
+    "statusTrace" : "self = <tests.test_footer.test_footer.TestFooter object at 0x7f79724a8050>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"c59308368f5a0cad18104db0f4607155\")>\nurl = 'https://pulsewave.ru/auth/login'\n\n    @pytest.mark.parametrize('url', FooterConstant.PAGES)\n    @pytest.mark.smoke\n    def test_get_all_cookies(self, driver, url):\n        allure.dynamic.title(f\"Проверка попапа о принятии файлов cookie на странице {url}\")\n        page = FooterPage(driver)\n>       page.get_page_open(driver, url)\n\ntests/test_footer/test_footer.py:19: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/footer.py:50: in get_page_open\n    driver.get(url)\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:356: in get\n    self.execute(Command.GET, {\"url\": url})\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:347: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7f7971c21790>\nresponse = {'status': 500, 'value': '{\"value\":{\"error\":\"unknown error\",\"message\":\"unknown error: net::ERR_CONNECTION_REFUSED\\\\n  ...\\\\n#23 0x559427ba7600 \\\\u003Cunknown>\\\\n#24 0x559427bb6f84 \\\\u003Cunknown>\\\\n#25 0x7f18d8c94ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\nE         (Session info: chrome-headless-shell=124.0.6367.60)\nE       Stacktrace:\nE       #0 0x559427bb7e33 <unknown>\nE       #1 0x5594278a7567 <unknown>\nE       #2 0x55942789f879 <unknown>\nE       #3 0x55942788f852 <unknown>\nE       #4 0x559427890e44 <unknown>\nE       #5 0x55942788fbbe <unknown>\nE       #6 0x55942788f2e0 <unknown>\nE       #7 0x55942788f181 <unknown>\nE       #8 0x55942788d0ec <unknown>\nE       #9 0x55942788d60a <unknown>\nE       #10 0x5594278a9eef <unknown>\nE       #11 0x559427933695 <unknown>\nE       #12 0x559427914362 <unknown>\nE       #13 0x559427932ae2 <unknown>\nE       #14 0x559427914103 <unknown>\nE       #15 0x5594278e51ba <unknown>\nE       #16 0x5594278e5b8e <unknown>\nE       #17 0x559427b7c59b <unknown>\nE       #18 0x559427b8034b <unknown>\nE       #19 0x559427b68681 <unknown>\nE       #20 0x559427b80eb2 <unknown>\nE       #21 0x559427b4d6af <unknown>\nE       #22 0x559427ba7428 <unknown>\nE       #23 0x559427ba7600 <unknown>\nE       #24 0x559427bb6f84 <unknown>\nE       #25 0x7f18d8c94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: WebDriverException",
+    "steps" : [ {
+      "name" : "Открыть страницу 'https://pulsewave.ru/auth/login'",
+      "time" : {
+        "start" : 1714357201941,
+        "stop" : 1714357202093,
+        "duration" : 152
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.WebDriverException: Message: unknown error: net::ERR_CONNECTION_REFUSED\n  (Session info: chrome-headless-shell=124.0.6367.60)\nStacktrace:\n#0 0x559427bb7e33 <unknown>\n#1 0x5594278a7567 <unknown>\n#2 0x55942789f879 <unknown>\n#3 0x55942788f852 <unknown>\n#4 0x559427890e44 <unknown>\n#5 0x55942788fbbe <unknown>\n#6 0x55942788f2e0 <unknown>\n#7 0x55942788f181 <unknown>\n#8 0x55942788d0ec <unknown>\n#9 0x55942788d60a <unknown>\n#10 0x5594278a9eef <unknown>\n#11 0x559427933695 <unknown>\n#12 0x559427914362 <unknown>\n#13 0x559427932ae2 <unknown>\n#14 0x559427914103 <unknown>\n#15 0x5594278e51ba <unknown>\n#16 0x5594278e5b8e <unknown>\n#17 0x559427b7c59b <unknown>\n#18 0x559427b8034b <unknown>\n#19 0x559427b68681 <unknown>\n#20 0x559427b80eb2 <unknown>\n#21 0x559427b4d6af <unknown>\n#22 0x559427ba7428 <unknown>\n#23 0x559427ba7600 <unknown>\n#24 0x559427bb6f84 <unknown>\n#25 0x7f18d8c94ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/pages/footer.py\", line 50, in get_page_open\n    driver.get(url)\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 356, in get\n    self.execute(Command.GET, {\"url\": url})\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 347, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.3/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "204d1a3c46e7a322",
+      "name" : "Screenshot",
+      "source" : "204d1a3c46e7a322.png",
+      "type" : "image/png",
+      "size" : 10592
+    }, {
+      "uid" : "6a1ecf588451ddd5",
+      "name" : "HTML source",
+      "source" : "6a1ecf588451ddd5.html",
+      "type" : "text/html",
+      "size" : 39
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1714357202259,
+      "stop" : 1714357202317,
+      "duration" : 58
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Футера"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_footer"
+  }, {
+    "name" : "suite",
+    "value" : "test_footer"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestFooter"
+  }, {
+    "name" : "host",
+    "value" : "fv-az842-111"
+  }, {
+    "name" : "thread",
+    "value" : "2300-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_footer.test_footer"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  }, {
+    "name" : "url",
+    "value" : "'https://pulsewave.ru/auth/login'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 11,
+        "unknown" : 0,
+        "total" : 13
+      },
+      "items" : [ {
+        "uid" : "4cba4ba2431c3aa5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/8//#testresult/4cba4ba2431c3aa5",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55de81939e33 <unknown>\n#1 0x55de81629567 <unknown>\n#2 0x55de8167427d <unknown>\n#3 0x55de81674331 <unknown>\n#4 0x55de816b7624 <unknown>\n#5 0x55de8169638d <unknown>\n#6 0x55de816b4ae2 <unknown>\n#7 0x55de81696103 <unknown>\n#8 0x55de816671ba <unknown>\n#9 0x55de81667b8e <unknown>\n#10 0x55de818fe59b <unknown>\n#11 0x55de8190234b <unknown>\n#12 0x55de818ea681 <unknown>\n#13 0x55de81902eb2 <unknown>\n#14 0x55de818cf6af <unknown>\n#15 0x55de81929428 <unknown>\n#16 0x55de81929600 <unknown>\n#17 0x55de81938f84 <unknown>\n#18 0x7f4309094ac3 <unknown>",
+        "time" : {
+          "start" : 1714271015360,
+          "stop" : 1714271036094,
+          "duration" : 20734
+        }
+      }, {
+        "uid" : "f8c646d0893a81ea",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/7//#testresult/f8c646d0893a81ea",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714184690425,
+          "stop" : 1714184693981,
+          "duration" : 3556
+        }
+      }, {
+        "uid" : "35779f1d21755469",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/35779f1d21755469",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714148212501,
+          "stop" : 1714148215640,
+          "duration" : 3139
+        }
+      }, {
+        "uid" : "c4c6c388e6bc78c6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/c4c6c388e6bc78c6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714098259994,
+          "stop" : 1714098262652,
+          "duration" : 2658
+        }
+      }, {
+        "uid" : "cc11a4e116b7c6ff",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/5//#testresult/cc11a4e116b7c6ff",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714014177813,
+          "stop" : 1714014180135,
+          "duration" : 2322
+        }
+      }, {
+        "uid" : "8e5a8261dbafed6a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/211//#testresult/8e5a8261dbafed6a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713945655068,
+          "stop" : 1713945657562,
+          "duration" : 2494
+        }
+      }, {
+        "uid" : "3f7b8d6e73adf85",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/4//#testresult/3f7b8d6e73adf85",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713925451856,
+          "stop" : 1713925454510,
+          "duration" : 2654
+        }
+      }, {
+        "uid" : "e4c2a7d9fd70d94d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/211//#testresult/e4c2a7d9fd70d94d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713901277540,
+          "stop" : 1713901280465,
+          "duration" : 2925
+        }
+      }, {
+        "uid" : "a8c4b74f6cd031dd",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/210//#testresult/a8c4b74f6cd031dd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713885421135,
+          "stop" : 1713885424837,
+          "duration" : 3702
+        }
+      }, {
+        "uid" : "c364c5d310e376cd",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/209//#testresult/c364c5d310e376cd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713883335645,
+          "stop" : 1713883338834,
+          "duration" : 3189
+        }
+      }, {
+        "uid" : "b9270fb246f1af9b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/209//#testresult/b9270fb246f1af9b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713881836372,
+          "stop" : 1713881839725,
+          "duration" : 3353
+        }
+      }, {
+        "uid" : "b977b017d4e033a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/208//#testresult/b977b017d4e033a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713879010407,
+          "stop" : 1713879013720,
+          "duration" : 3313
+        }
+      } ]
+    },
+    "tags" : [ "smoke" ]
+  },
+  "source" : "241e5317872c6787.json",
+  "parameterValues" : [ "'chrome'", "'https://pulsewave.ru/auth/login'" ]
+}
