@@ -1,0 +1,289 @@
+{
+  "uid" : "910bcee37a15e7f9",
+  "name" : "DELETE Активировать и удалить авторизованного пользователя",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_delete_auth_users_me_new",
+  "historyId" : "1f31a195b6c51e9f98de1a5d94fabc7e",
+  "time" : {
+    "start" : 1714616409949,
+    "stop" : 1714616421928,
+    "duration" : 11979
+  },
+  "status" : "broken",
+  "statusMessage" : "IndexError: list index out of range",
+  "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f3d9d4acfe0>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f3d9ce2a0c0>\n\n    @allure.title(\"DELETE Активировать и удалить авторизованного пользователя\")\n    def test_delete_auth_users_me_new(self, use_api_base):\n        url = f'{self.constant.BASE_URL}auth/users/activation/'\n        time.sleep(10)\n>       user_token = use_api_base.get_activate_email_tokens(email1, password1)\n\ntests/test_api/test_api.py:705: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ne_mail = 'test_pulsewave0@mail.ru', passwrd = '5gA8g3cLYJxwPit07iRF'\n\n    @staticmethod\n    def get_activate_email_tokens(e_mail, passwrd):\n        with allure.step('Получить токен активации пользователя на емайл'):\n            mail = imaplib.IMAP4_SSL('imap.mail.ru')\n            mail.login(e_mail, passwrd)\n            mail.select('INBOX')\n            result, data_id = mail.search(None, 'UNSEEN')\n            message_ids = data_id[0].split()\n>           result, data_id = mail.fetch(message_ids[-1], '(RFC822)')\nE           IndexError: list index out of range\n\napi_testing/api_base.py:53: IndexError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1714616301924,
+      "stop" : 1714616301924,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1714616409949,
+      "stop" : 1714616409949,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1714616301908,
+      "stop" : 1714616301924,
+      "duration" : 16
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "IndexError: list index out of range",
+    "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f3d9d4acfe0>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f3d9ce2a0c0>\n\n    @allure.title(\"DELETE Активировать и удалить авторизованного пользователя\")\n    def test_delete_auth_users_me_new(self, use_api_base):\n        url = f'{self.constant.BASE_URL}auth/users/activation/'\n        time.sleep(10)\n>       user_token = use_api_base.get_activate_email_tokens(email1, password1)\n\ntests/test_api/test_api.py:705: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ne_mail = 'test_pulsewave0@mail.ru', passwrd = '5gA8g3cLYJxwPit07iRF'\n\n    @staticmethod\n    def get_activate_email_tokens(e_mail, passwrd):\n        with allure.step('Получить токен активации пользователя на емайл'):\n            mail = imaplib.IMAP4_SSL('imap.mail.ru')\n            mail.login(e_mail, passwrd)\n            mail.select('INBOX')\n            result, data_id = mail.search(None, 'UNSEEN')\n            message_ids = data_id[0].split()\n>           result, data_id = mail.fetch(message_ids[-1], '(RFC822)')\nE           IndexError: list index out of range\n\napi_testing/api_base.py:53: IndexError",
+    "steps" : [ {
+      "name" : "Получить токен активации пользователя на емайл",
+      "time" : {
+        "start" : 1714616419949,
+        "stop" : 1714616421927,
+        "duration" : 1978
+      },
+      "status" : "broken",
+      "statusMessage" : "IndexError: list index out of range\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/api_base.py\", line 53, in get_activate_email_tokens\n    result, data_id = mail.fetch(message_ids[-1], '(RFC822)')\n                                 ~~~~~~~~~~~^^^^\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1106-694"
+  }, {
+    "name" : "thread",
+    "value" : "2271-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 5,
+        "skipped" : 0,
+        "passed" : 11,
+        "unknown" : 0,
+        "total" : 16
+      },
+      "items" : [ {
+        "uid" : "8ead2e2f21b421af",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/11//#testresult/8ead2e2f21b421af",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714530344755,
+          "stop" : 1714530356770,
+          "duration" : 12015
+        }
+      }, {
+        "uid" : "df9213a0aeddc5a8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/10//#testresult/df9213a0aeddc5a8",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714443513882,
+          "stop" : 1714443526052,
+          "duration" : 12170
+        }
+      }, {
+        "uid" : "25c1f952dbfaceb6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/9//#testresult/25c1f952dbfaceb6",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714357187635,
+          "stop" : 1714357199695,
+          "duration" : 12060
+        }
+      }, {
+        "uid" : "c0502d47c1165d0a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/8//#testresult/c0502d47c1165d0a",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714270981673,
+          "stop" : 1714270993544,
+          "duration" : 11871
+        }
+      }, {
+        "uid" : "7d13bf18bbb60663",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/7//#testresult/7d13bf18bbb60663",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714184661923,
+          "stop" : 1714184679101,
+          "duration" : 17178
+        }
+      }, {
+        "uid" : "f10f72ec967d0cd8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/f10f72ec967d0cd8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714148179195,
+          "stop" : 1714148194838,
+          "duration" : 15643
+        }
+      }, {
+        "uid" : "e0ecb81a438ebb65",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/e0ecb81a438ebb65",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714098238375,
+          "stop" : 1714098254468,
+          "duration" : 16093
+        }
+      }, {
+        "uid" : "b1b025b5a6d11749",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/5//#testresult/b1b025b5a6d11749",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714014152279,
+          "stop" : 1714014168259,
+          "duration" : 15980
+        }
+      }, {
+        "uid" : "92641a4c0e97b5cb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/211//#testresult/92641a4c0e97b5cb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713945620646,
+          "stop" : 1713945637052,
+          "duration" : 16406
+        }
+      }, {
+        "uid" : "42c33bb3f62ca912",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/4//#testresult/42c33bb3f62ca912",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713925419021,
+          "stop" : 1713925434381,
+          "duration" : 15360
+        }
+      }, {
+        "uid" : "1cd1075bbaf873e2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/211//#testresult/1cd1075bbaf873e2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713901241410,
+          "stop" : 1713901257294,
+          "duration" : 15884
+        }
+      }, {
+        "uid" : "2c8129333ee48e0d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/210//#testresult/2c8129333ee48e0d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713885397171,
+          "stop" : 1713885415276,
+          "duration" : 18105
+        }
+      }, {
+        "uid" : "577d9079c58a361",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/209//#testresult/577d9079c58a361",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713883313319,
+          "stop" : 1713883329781,
+          "duration" : 16462
+        }
+      }, {
+        "uid" : "155e83ba94434f32",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/209//#testresult/155e83ba94434f32",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713881813650,
+          "stop" : 1713881830663,
+          "duration" : 17013
+        }
+      }, {
+        "uid" : "39b85a931bca129c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/208//#testresult/39b85a931bca129c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1713878988053,
+          "stop" : 1713879005358,
+          "duration" : 17305
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "910bcee37a15e7f9.json",
+  "parameterValues" : [ ]
+}
