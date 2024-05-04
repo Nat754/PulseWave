@@ -1,0 +1,319 @@
+{
+  "uid" : "6b8520f56fc39cd7",
+  "name" : "GET Список всех задач колонки",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_get_column_id_task",
+  "historyId" : "4727d09c5db0016432a21b8cac383cb9",
+  "time" : {
+    "start" : 1714789036322,
+    "stop" : 1714789037666,
+    "duration" : 1344
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nKeyError: 'access'",
+  "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7feef53ac830>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7feef4cfb320>\n\n    @pytest.mark.xfail\n    @allure.title(\"GET Список всех задач колонки\")\n    def test_get_column_id_task(self, use_api_base):\n>       jwt = use_api_base.create_jwt(email1, password0)\n\ntests/test_api/test_api.py:341: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ne_mail = 'test_pulsewave0@mail.ru', passwrd = '!Q2w3e4r'\n\n    @staticmethod\n    def create_jwt(e_mail, passwrd):\n        with allure.step('Получить access токен пользователя на емайл'):\n            url = f'{ApiConstant.BASE_URL}auth/jwt/create/'\n            response = requests.post(url, json={\"email\": e_mail, \"password\": passwrd})\n>           jwt = f\"JWT {response.json()['access']}\"\nE           KeyError: 'access'\n\napi_testing/api_base.py:86: KeyError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1714788984061,
+      "stop" : 1714788984078,
+      "duration" : 17
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1714789036322,
+      "stop" : 1714789036322,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1714788984078,
+      "stop" : 1714788984078,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nKeyError: 'access'",
+    "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7feef53ac830>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7feef4cfb320>\n\n    @pytest.mark.xfail\n    @allure.title(\"GET Список всех задач колонки\")\n    def test_get_column_id_task(self, use_api_base):\n>       jwt = use_api_base.create_jwt(email1, password0)\n\ntests/test_api/test_api.py:341: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ne_mail = 'test_pulsewave0@mail.ru', passwrd = '!Q2w3e4r'\n\n    @staticmethod\n    def create_jwt(e_mail, passwrd):\n        with allure.step('Получить access токен пользователя на емайл'):\n            url = f'{ApiConstant.BASE_URL}auth/jwt/create/'\n            response = requests.post(url, json={\"email\": e_mail, \"password\": passwrd})\n>           jwt = f\"JWT {response.json()['access']}\"\nE           KeyError: 'access'\n\napi_testing/api_base.py:86: KeyError",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя на емайл",
+      "time" : {
+        "start" : 1714789036322,
+        "stop" : 1714789037666,
+        "duration" : 1344
+      },
+      "status" : "broken",
+      "statusMessage" : "KeyError: 'access'\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/api_base.py\", line 86, in create_jwt\n    jwt = f\"JWT {response.json()['access']}\"\n                 ~~~~~~~~~~~~~~~^^^^^^^^^^\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az915-783"
+  }, {
+    "name" : "thread",
+    "value" : "2283-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 18,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 18
+      },
+      "items" : [ {
+        "uid" : "d3a4c2c439cf84ec",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/13//#testresult/d3a4c2c439cf84ec",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 'access'",
+        "time" : {
+          "start" : 1714702899210,
+          "stop" : 1714702900654,
+          "duration" : 1444
+        }
+      }, {
+        "uid" : "7dc3a14d1949a86b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/12//#testresult/7dc3a14d1949a86b",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 'access'",
+        "time" : {
+          "start" : 1714616351633,
+          "stop" : 1714616353108,
+          "duration" : 1475
+        }
+      }, {
+        "uid" : "f10b31d3e5894970",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/11//#testresult/f10b31d3e5894970",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 'access'",
+        "time" : {
+          "start" : 1714530286436,
+          "stop" : 1714530287602,
+          "duration" : 1166
+        }
+      }, {
+        "uid" : "3a6d73c4f947c140",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/10//#testresult/3a6d73c4f947c140",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.ConnectionError: HTTPSConnectionPool(host='owa.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f17c7d9a8d0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+        "time" : {
+          "start" : 1714443500789,
+          "stop" : 1714443500981,
+          "duration" : 192
+        }
+      }, {
+        "uid" : "ae7238be9801504a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/9//#testresult/ae7238be9801504a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.ConnectionError: HTTPSConnectionPool(host='owa.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f7971dde2a0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+        "time" : {
+          "start" : 1714357176687,
+          "stop" : 1714357176812,
+          "duration" : 125
+        }
+      }, {
+        "uid" : "3e00fb018c9d2607",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/8//#testresult/3e00fb018c9d2607",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.SSLError: HTTPSConnectionPool(host='owa.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1000)')))",
+        "time" : {
+          "start" : 1714270963854,
+          "stop" : 1714270964169,
+          "duration" : 315
+        }
+      }, {
+        "uid" : "5fdb6ccb23074faa",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/7//#testresult/5fdb6ccb23074faa",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1714184409567,
+          "stop" : 1714184417496,
+          "duration" : 7929
+        }
+      }, {
+        "uid" : "d8ea4e7e04b5cb5c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/d8ea4e7e04b5cb5c",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1714147963013,
+          "stop" : 1714147969373,
+          "duration" : 6360
+        }
+      }, {
+        "uid" : "8131ca44f67dde11",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/8131ca44f67dde11",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1714098021729,
+          "stop" : 1714098029104,
+          "duration" : 7375
+        }
+      }, {
+        "uid" : "e254f75011b4526b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/5//#testresult/e254f75011b4526b",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1714013944837,
+          "stop" : 1714013951283,
+          "duration" : 6446
+        }
+      }, {
+        "uid" : "722bacf7c9dd6516",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/211//#testresult/722bacf7c9dd6516",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1713945393190,
+          "stop" : 1713945400082,
+          "duration" : 6892
+        }
+      }, {
+        "uid" : "74ee6590f9d68754",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/4//#testresult/74ee6590f9d68754",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1713925208138,
+          "stop" : 1713925215162,
+          "duration" : 7024
+        }
+      }, {
+        "uid" : "e3ad07a67f48fa18",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/211//#testresult/e3ad07a67f48fa18",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1713901019810,
+          "stop" : 1713901026683,
+          "duration" : 6873
+        }
+      }, {
+        "uid" : "49cf9c4538f3c430",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/210//#testresult/49cf9c4538f3c430",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1713885138767,
+          "stop" : 1713885146610,
+          "duration" : 7843
+        }
+      }, {
+        "uid" : "bf82a9566a1e778a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/209//#testresult/bf82a9566a1e778a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1713883069914,
+          "stop" : 1713883077380,
+          "duration" : 7466
+        }
+      }, {
+        "uid" : "8f4d23ddd52c460a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/209//#testresult/8f4d23ddd52c460a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1713881556168,
+          "stop" : 1713881564145,
+          "duration" : 7977
+        }
+      }, {
+        "uid" : "abe68d8f6d96e09a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/208//#testresult/abe68d8f6d96e09a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1713878730848,
+          "stop" : 1713878738888,
+          "duration" : 8040
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail" ]
+  },
+  "source" : "6b8520f56fc39cd7.json",
+  "parameterValues" : [ ]
+}
