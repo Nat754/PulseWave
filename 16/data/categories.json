@@ -1,0 +1,137 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "IndexError: list index out of range",
+      "children" : [ {
+        "name" : "POST Повторная отправка ссылки с приглашением пользователя",
+        "uid" : "c7dfcbe29d8412d2",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1714962144374,
+          "stop" : 1714962147254,
+          "duration" : 2880
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Удаление приглашенного пользователей из РП",
+        "uid" : "701e316ac73e08f5",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1714962147277,
+          "stop" : 1714962150702,
+          "duration" : 3425
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.",
+        "uid" : "d69eff89a82c9dd5",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1714962443674,
+          "stop" : 1714962446906,
+          "duration" : 3232
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Активировать и удалить авторизованного пользователя",
+        "uid" : "2cffc0c5e73d62b0",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1714962477564,
+          "stop" : 1714962489688,
+          "duration" : 12124
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "cbf21ee610ffd376e0ce643a364ade80"
+    }, {
+      "name" : "KeyError: 'access'",
+      "children" : [ {
+        "name" : "DELETE Удалить авторизованного пользователя",
+        "uid" : "c7486e7ab63fb9f0",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1714962463636,
+          "stop" : 1714962465660,
+          "duration" : 2024
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c0db57c4a80d04e81137955fc8cd39c0"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x5558506e8e33 <unknown>\n#1 0x5558503d8567 <unknown>\n#2 0x55585042327d <unknown>\n#3 0x555850423331 <unknown>\n#4 0x555850466624 <unknown>\n#5 0x55585044538d <unknown>\n#6 0x555850463ae2 <unknown>\n#7 0x555850445103 <unknown>\n#8 0x5558504161ba <unknown>\n#9 0x555850416b8e <unknown>\n#10 0x5558506ad59b <unknown>\n#11 0x5558506b134b <unknown>\n#12 0x555850699681 <unknown>\n#13 0x5558506b1eb2 <unknown>\n#14 0x55585067e6af <unknown>\n#15 0x5558506d8428 <unknown>\n#16 0x5558506d8600 <unknown>\n#17 0x5558506e7f84 <unknown>\n#18 0x7f8521494ac3 <unknown>",
+      "children" : [ {
+        "name" : "Авторизация с некорректным емайл",
+        "uid" : "1ce45543310446e2",
+        "parentUid" : "31ebcdab3ef0e03f6bd9488a8be517c3",
+        "status" : "broken",
+        "time" : {
+          "start" : 1714962766759,
+          "stop" : 1714962787451,
+          "duration" : 20692
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "31ebcdab3ef0e03f6bd9488a8be517c3"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  }, {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Unexpected status code. Expected: 204. Actual: 400",
+      "children" : [ {
+        "name" : "POST Запрос на смену почты",
+        "uid" : "6ef4f094764b1d8c",
+        "parentUid" : "6f86f2d31a28a1d32d4d50bbd4d6ce5f",
+        "status" : "failed",
+        "time" : {
+          "start" : 1714962431086,
+          "stop" : 1714962443650,
+          "duration" : 12564
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "6f86f2d31a28a1d32d4d50bbd4d6ce5f"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+      "children" : [ {
+        "name" : "POST Регистрация пользователя без подтверждения подписки",
+        "uid" : "2f37b61f2253f951",
+        "parentUid" : "5820fa51546e1e6b8c308e8822d39993",
+        "status" : "failed",
+        "time" : {
+          "start" : 1714962466876,
+          "stop" : 1714962477540,
+          "duration" : 10664
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5820fa51546e1e6b8c308e8822d39993"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
+  "name" : "categories"
+}
