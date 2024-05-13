@@ -1,0 +1,111 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Unexpected status code. Expected: 204. Actual: 400",
+      "children" : [ {
+        "name" : "POST Запрос на смену почты",
+        "uid" : "e0f0b18851aa2b2b",
+        "parentUid" : "6f86f2d31a28a1d32d4d50bbd4d6ce5f",
+        "status" : "failed",
+        "time" : {
+          "start" : 1715567340450,
+          "stop" : 1715567353399,
+          "duration" : 12949
+        },
+        "flaky" : true,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "6f86f2d31a28a1d32d4d50bbd4d6ce5f"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+      "children" : [ {
+        "name" : "POST Регистрация пользователя без подтверждения подписки",
+        "uid" : "e336cb894a038d3e",
+        "parentUid" : "5820fa51546e1e6b8c308e8822d39993",
+        "status" : "failed",
+        "time" : {
+          "start" : 1715567378076,
+          "stop" : 1715567388687,
+          "duration" : 10611
+        },
+        "flaky" : true,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5820fa51546e1e6b8c308e8822d39993"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "IndexError: list index out of range",
+      "children" : [ {
+        "name" : "POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.",
+        "uid" : "80648076909f287c",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1715567353423,
+          "stop" : 1715567356968,
+          "duration" : 3545
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Активировать и удалить авторизованного пользователя",
+        "uid" : "20206b1738fa9082",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1715567388712,
+          "stop" : 1715567400286,
+          "duration" : 11574
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "cbf21ee610ffd376e0ce643a364ade80"
+    }, {
+      "name" : "KeyError: 'access'",
+      "children" : [ {
+        "name" : "DELETE Удалить авторизованного пользователя",
+        "uid" : "518b93420947e8fa",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1715567374620,
+          "stop" : 1715567376842,
+          "duration" : 2222
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c0db57c4a80d04e81137955fc8cd39c0"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x559b668fce33 <unknown>\n#1 0x559b665ec567 <unknown>\n#2 0x559b6663727d <unknown>\n#3 0x559b66637331 <unknown>\n#4 0x559b6667a624 <unknown>\n#5 0x559b6665938d <unknown>\n#6 0x559b66677ae2 <unknown>\n#7 0x559b66659103 <unknown>\n#8 0x559b6662a1ba <unknown>\n#9 0x559b6662ab8e <unknown>\n#10 0x559b668c159b <unknown>\n#11 0x559b668c534b <unknown>\n#12 0x559b668ad681 <unknown>\n#13 0x559b668c5eb2 <unknown>\n#14 0x559b668926af <unknown>\n#15 0x559b668ec428 <unknown>\n#16 0x559b668ec600 <unknown>\n#17 0x559b668fbf84 <unknown>\n#18 0x7fc8e5c94ac3 <unknown>",
+      "children" : [ {
+        "name" : "Авторизация с некорректным емайл",
+        "uid" : "d4f7e6a632f95205",
+        "parentUid" : "f4ea83fa8ec5cbd03d147b223aed9904",
+        "status" : "broken",
+        "time" : {
+          "start" : 1715567710839,
+          "stop" : 1715567731184,
+          "duration" : 20345
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "f4ea83fa8ec5cbd03d147b223aed9904"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
