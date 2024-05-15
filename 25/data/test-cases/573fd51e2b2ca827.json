@@ -1,0 +1,346 @@
+{
+  "uid" : "573fd51e2b2ca827",
+  "name" : "DELETE Активировать и удалить авторизованного пользователя",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_delete_auth_users_me_new",
+  "historyId" : "1f31a195b6c51e9f98de1a5d94fabc7e",
+  "time" : {
+    "start" : 1715740424921,
+    "stop" : 1715740436815,
+    "duration" : 11894
+  },
+  "status" : "broken",
+  "statusMessage" : "IndexError: list index out of range",
+  "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7fbadb4b2330>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7fbadae21610>\n\n    @allure.title(\"DELETE Активировать и удалить авторизованного пользователя\")\n    def test_delete_auth_users_me_new(self, use_api_base):\n        url = f'{self.constant.BASE_URL}auth/users/activation/'\n        time.sleep(10)\n>       user_token = use_api_base.get_activate_email_tokens(email1, password1)\n\ntests/test_api/test_api.py:705: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ne_mail = 'test_pulsewave0@mail.ru', passwrd = '5gA8g3cLYJxwPit07iRF'\n\n    @staticmethod\n    def get_activate_email_tokens(e_mail, passwrd):\n        with allure.step('Получить токен активации пользователя на емайл'):\n            mail = imaplib.IMAP4_SSL('imap.mail.ru')\n            mail.login(e_mail, passwrd)\n            mail.select('INBOX')\n            result, data_id = mail.search(None, 'UNSEEN')\n            message_ids = data_id[0].split()\n>           result, data_id = mail.fetch(message_ids[-1], '(RFC822)')\nE           IndexError: list index out of range\n\napi_testing/api_base.py:53: IndexError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1715739904048,
+      "stop" : 1715739904048,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1715739904031,
+      "stop" : 1715739904048,
+      "duration" : 17
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1715740424921,
+      "stop" : 1715740424921,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "IndexError: list index out of range",
+    "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7fbadb4b2330>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7fbadae21610>\n\n    @allure.title(\"DELETE Активировать и удалить авторизованного пользователя\")\n    def test_delete_auth_users_me_new(self, use_api_base):\n        url = f'{self.constant.BASE_URL}auth/users/activation/'\n        time.sleep(10)\n>       user_token = use_api_base.get_activate_email_tokens(email1, password1)\n\ntests/test_api/test_api.py:705: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ne_mail = 'test_pulsewave0@mail.ru', passwrd = '5gA8g3cLYJxwPit07iRF'\n\n    @staticmethod\n    def get_activate_email_tokens(e_mail, passwrd):\n        with allure.step('Получить токен активации пользователя на емайл'):\n            mail = imaplib.IMAP4_SSL('imap.mail.ru')\n            mail.login(e_mail, passwrd)\n            mail.select('INBOX')\n            result, data_id = mail.search(None, 'UNSEEN')\n            message_ids = data_id[0].split()\n>           result, data_id = mail.fetch(message_ids[-1], '(RFC822)')\nE           IndexError: list index out of range\n\napi_testing/api_base.py:53: IndexError",
+    "steps" : [ {
+      "name" : "Получить токен активации пользователя на емайл",
+      "time" : {
+        "start" : 1715740434922,
+        "stop" : 1715740436815,
+        "duration" : 1893
+      },
+      "status" : "broken",
+      "statusMessage" : "IndexError: list index out of range\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/api_base.py\", line 53, in get_activate_email_tokens\n    result, data_id = mail.fetch(message_ids[-1], '(RFC822)')\n                                 ~~~~~~~~~~~^^^^\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az525-581"
+  }, {
+    "name" : "thread",
+    "value" : "2303-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 17,
+        "skipped" : 0,
+        "passed" : 13,
+        "unknown" : 0,
+        "total" : 30
+      },
+      "items" : [ {
+        "uid" : "2c9a7dafc5c8da5d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/24//#testresult/2c9a7dafc5c8da5d",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1715653744481,
+          "stop" : 1715653756596,
+          "duration" : 12115
+        }
+      }, {
+        "uid" : "20206b1738fa9082",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/23//#testresult/20206b1738fa9082",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1715567388712,
+          "stop" : 1715567400286,
+          "duration" : 11574
+        }
+      }, {
+        "uid" : "6b42ae4d818e4cd7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/22//#testresult/6b42ae4d818e4cd7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715480995363,
+          "stop" : 1715481011948,
+          "duration" : 16585
+        }
+      }, {
+        "uid" : "e0c3fbfbd1c9b5f9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/21//#testresult/e0c3fbfbd1c9b5f9",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1715394243995,
+          "stop" : 1715394255721,
+          "duration" : 11726
+        }
+      }, {
+        "uid" : "3fca483b8a2295d8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/20//#testresult/3fca483b8a2295d8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715308333288,
+          "stop" : 1715308349950,
+          "duration" : 16662
+        }
+      }, {
+        "uid" : "5071b5fca58acb64",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/19//#testresult/5071b5fca58acb64",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1715221763420,
+          "stop" : 1715221775017,
+          "duration" : 11597
+        }
+      }, {
+        "uid" : "1b57c7189ede5fac",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/18//#testresult/1b57c7189ede5fac",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1715134421560,
+          "stop" : 1715134433299,
+          "duration" : 11739
+        }
+      }, {
+        "uid" : "fc642850b897cd0f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/17//#testresult/fc642850b897cd0f",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1715049083296,
+          "stop" : 1715049094711,
+          "duration" : 11415
+        }
+      }, {
+        "uid" : "2cffc0c5e73d62b0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/16//#testresult/2cffc0c5e73d62b0",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714962477564,
+          "stop" : 1714962489688,
+          "duration" : 12124
+        }
+      }, {
+        "uid" : "9bd2df1c24f66b1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/15//#testresult/9bd2df1c24f66b1",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714876069962,
+          "stop" : 1714876081767,
+          "duration" : 11805
+        }
+      }, {
+        "uid" : "ae5825e4f82a5371",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/14//#testresult/ae5825e4f82a5371",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714827590679,
+          "stop" : 1714827602426,
+          "duration" : 11747
+        }
+      }, {
+        "uid" : "6242167fc5f5d201",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/14//#testresult/6242167fc5f5d201",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714789100999,
+          "stop" : 1714789113310,
+          "duration" : 12311
+        }
+      }, {
+        "uid" : "a6d53ecc6209d0a8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/13//#testresult/a6d53ecc6209d0a8",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714702957031,
+          "stop" : 1714702968640,
+          "duration" : 11609
+        }
+      }, {
+        "uid" : "910bcee37a15e7f9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/12//#testresult/910bcee37a15e7f9",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714616409949,
+          "stop" : 1714616421928,
+          "duration" : 11979
+        }
+      }, {
+        "uid" : "8ead2e2f21b421af",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/11//#testresult/8ead2e2f21b421af",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714530344755,
+          "stop" : 1714530356770,
+          "duration" : 12015
+        }
+      }, {
+        "uid" : "df9213a0aeddc5a8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/10//#testresult/df9213a0aeddc5a8",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714443513882,
+          "stop" : 1714443526052,
+          "duration" : 12170
+        }
+      }, {
+        "uid" : "25c1f952dbfaceb6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/9//#testresult/25c1f952dbfaceb6",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714357187635,
+          "stop" : 1714357199695,
+          "duration" : 12060
+        }
+      }, {
+        "uid" : "c0502d47c1165d0a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/8//#testresult/c0502d47c1165d0a",
+        "status" : "broken",
+        "statusDetails" : "IndexError: list index out of range",
+        "time" : {
+          "start" : 1714270981673,
+          "stop" : 1714270993544,
+          "duration" : 11871
+        }
+      }, {
+        "uid" : "7d13bf18bbb60663",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/7//#testresult/7d13bf18bbb60663",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714184661923,
+          "stop" : 1714184679101,
+          "duration" : 17178
+        }
+      }, {
+        "uid" : "f10f72ec967d0cd8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/f10f72ec967d0cd8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714148179195,
+          "stop" : 1714148194838,
+          "duration" : 15643
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "573fd51e2b2ca827.json",
+  "parameterValues" : [ ]
+}
