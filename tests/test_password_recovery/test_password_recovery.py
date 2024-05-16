@@ -47,7 +47,6 @@ class TestPasswordRecoveryPage:
         assert text == f'{self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}', \
             f"ОР: {self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}, ФР: {text}"
 
-    @pytest.mark.xfail
     @allure.title("3.2, 3.2.1 Восстановить пароль на корректный емайл")
     @pytest.mark.regress
     def test_recovery_password_to_fill_correct_email(self, recovery_page_open, driver):
