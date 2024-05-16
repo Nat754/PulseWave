@@ -1,0 +1,484 @@
+{
+  "uid" : "22c10888c7211ec5",
+  "name" : "GET Список стикеров задачи",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_get_api_task_id_sticker",
+  "historyId" : "6d6ecebe240d50664140f603964b63e9",
+  "time" : {
+    "start" : 1715841661875,
+    "stop" : 1715841673062,
+    "duration" : 11187
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nAssertionError: Unexpected status code. Expected: 200. Actual: 500",
+  "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f80b9aa0080>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f80b93b7b00>\n\n    @pytest.mark.xfail\n    @allure.title(\"GET Список стикеров задачи\")\n    def test_get_api_task_id_sticker(self, use_api_base):\n        jwt = use_api_base.create_jwt(email1, password0)\n        column_id, task_id = use_api_base.get_column_task_id()\n        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/'\n        requests.post(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"},\n                      json={\"name\": faker.first_name(), \"color\": random.choice(self.constant.COLOR_STICKER)})\n        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"})\n>       Assertions.assert_status_code(response, self.code.STATUS_200)\n\ntests/test_api/test_api.py:470: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nresponse = <Response [500]>, expected_status_code = 200\n\n    @staticmethod\n    def assert_status_code(response: Response, expected_status_code: int):\n        actual_status_code = response.status_code\n        with allure.step(f\"Expected status {expected_status_code}\"):\n>           assert actual_status_code == expected_status_code, \\\n                f\"Unexpected status code. Expected: {expected_status_code}. Actual: {actual_status_code}\"\nE           AssertionError: Unexpected status code. Expected: 200. Actual: 500\n\napi_testing/assertions.py:11: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1715841395756,
+      "stop" : 1715841395773,
+      "duration" : 17
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1715841395773,
+      "stop" : 1715841395773,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1715841661875,
+      "stop" : 1715841661875,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nAssertionError: Unexpected status code. Expected: 200. Actual: 500",
+    "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f80b9aa0080>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f80b93b7b00>\n\n    @pytest.mark.xfail\n    @allure.title(\"GET Список стикеров задачи\")\n    def test_get_api_task_id_sticker(self, use_api_base):\n        jwt = use_api_base.create_jwt(email1, password0)\n        column_id, task_id = use_api_base.get_column_task_id()\n        url = f'{self.constant.BASE_URL}api/task/{task_id}/sticker/'\n        requests.post(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"},\n                      json={\"name\": faker.first_name(), \"color\": random.choice(self.constant.COLOR_STICKER)})\n        response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"})\n>       Assertions.assert_status_code(response, self.code.STATUS_200)\n\ntests/test_api/test_api.py:470: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nresponse = <Response [500]>, expected_status_code = 200\n\n    @staticmethod\n    def assert_status_code(response: Response, expected_status_code: int):\n        actual_status_code = response.status_code\n        with allure.step(f\"Expected status {expected_status_code}\"):\n>           assert actual_status_code == expected_status_code, \\\n                f\"Unexpected status code. Expected: {expected_status_code}. Actual: {actual_status_code}\"\nE           AssertionError: Unexpected status code. Expected: 200. Actual: 500\n\napi_testing/assertions.py:11: AssertionError",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя на емайл",
+      "time" : {
+        "start" : 1715841661875,
+        "stop" : 1715841663561,
+        "duration" : 1686
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Получить id задачи",
+      "time" : {
+        "start" : 1715841663562,
+        "stop" : 1715841671894,
+        "duration" : 8332
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Получить access токен пользователя на емайл",
+        "time" : {
+          "start" : 1715841663562,
+          "stop" : 1715841664864,
+          "duration" : 1302
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      }, {
+        "name" : "Получить id колонки",
+        "time" : {
+          "start" : 1715841664865,
+          "stop" : 1715841671338,
+          "duration" : 6473
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Получить access токен пользователя на емайл",
+          "time" : {
+            "start" : 1715841664865,
+            "stop" : 1715841666293,
+            "duration" : 1428
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : false
+        }, {
+          "name" : "Получить id доски",
+          "time" : {
+            "start" : 1715841666294,
+            "stop" : 1715841670236,
+            "duration" : 3942
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Получить access токен пользователя на емайл",
+            "time" : {
+              "start" : 1715841666294,
+              "stop" : 1715841667705,
+              "duration" : 1411
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : false
+          }, {
+            "name" : "Получить id рабочего пространства",
+            "time" : {
+              "start" : 1715841667706,
+              "stop" : 1715841669686,
+              "duration" : 1980
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Получить access токен пользователя на емайл",
+              "time" : {
+                "start" : 1715841667706,
+                "stop" : 1715841669074,
+                "duration" : 1368
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ ],
+              "stepsCount" : 0,
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "hasContent" : false
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ ],
+            "stepsCount" : 1,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 3,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 5,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 7,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Expected status 200",
+      "time" : {
+        "start" : 1715841673062,
+        "stop" : 1715841673062,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Unexpected status code. Expected: 200. Actual: 500\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/assertions.py\", line 11, in assert_status_code\n    assert actual_status_code == expected_status_code, \\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 10,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1536-703"
+  }, {
+    "name" : "thread",
+    "value" : "2310-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 32,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 32
+      },
+      "items" : [ {
+        "uid" : "d33b20d39355e986",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/26//#testresult/d33b20d39355e986",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Unexpected status code. Expected: 200. Actual: 500",
+        "time" : {
+          "start" : 1715826356693,
+          "stop" : 1715826368712,
+          "duration" : 12019
+        }
+      }, {
+        "uid" : "9d5780940833dc8a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/25//#testresult/9d5780940833dc8a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Unexpected status code. Expected: 200. Actual: 500",
+        "time" : {
+          "start" : 1715740243178,
+          "stop" : 1715740259254,
+          "duration" : 16076
+        }
+      }, {
+        "uid" : "e244d31d632b9880",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/24//#testresult/e244d31d632b9880",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Unexpected status code. Expected: 200. Actual: 500",
+        "time" : {
+          "start" : 1715653569348,
+          "stop" : 1715653583876,
+          "duration" : 14528
+        }
+      }, {
+        "uid" : "672e0bc56b430bec",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/23//#testresult/672e0bc56b430bec",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1715567255217,
+          "stop" : 1715567263379,
+          "duration" : 8162
+        }
+      }, {
+        "uid" : "1936aedd35a7acfa",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/22//#testresult/1936aedd35a7acfa",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1715480843802,
+          "stop" : 1715480853158,
+          "duration" : 9356
+        }
+      }, {
+        "uid" : "987463eaeda13dfe",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/21//#testresult/987463eaeda13dfe",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1715394115522,
+          "stop" : 1715394123411,
+          "duration" : 7889
+        }
+      }, {
+        "uid" : "f839293eebbd367e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/20//#testresult/f839293eebbd367e",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1715308180967,
+          "stop" : 1715308191027,
+          "duration" : 10060
+        }
+      }, {
+        "uid" : "f5e28aa7bfddbe7d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/19//#testresult/f5e28aa7bfddbe7d",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1715221628550,
+          "stop" : 1715221637620,
+          "duration" : 9070
+        }
+      }, {
+        "uid" : "672f92811fcdf886",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/18//#testresult/672f92811fcdf886",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1715134299452,
+          "stop" : 1715134307236,
+          "duration" : 7784
+        }
+      }, {
+        "uid" : "d749de4cf5377dfd",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/17//#testresult/d749de4cf5377dfd",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1715048955894,
+          "stop" : 1715048964608,
+          "duration" : 8714
+        }
+      }, {
+        "uid" : "5511ea051d4f55ea",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/16//#testresult/5511ea051d4f55ea",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1714962354910,
+          "stop" : 1714962362743,
+          "duration" : 7833
+        }
+      }, {
+        "uid" : "a7aaf378f3053e74",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/15//#testresult/a7aaf378f3053e74",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1714875929895,
+          "stop" : 1714875939043,
+          "duration" : 9148
+        }
+      }, {
+        "uid" : "7edf2b144cb120fe",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/14//#testresult/7edf2b144cb120fe",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.JSONDecodeError: Expecting value: line 2 column 1 (char 1)",
+        "time" : {
+          "start" : 1714827473767,
+          "stop" : 1714827480625,
+          "duration" : 6858
+        }
+      }, {
+        "uid" : "ddb04f3c9755183a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/14//#testresult/ddb04f3c9755183a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 'access'",
+        "time" : {
+          "start" : 1714789061588,
+          "stop" : 1714789062946,
+          "duration" : 1358
+        }
+      }, {
+        "uid" : "7d317a75747ee999",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/13//#testresult/7d317a75747ee999",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 'access'",
+        "time" : {
+          "start" : 1714702922512,
+          "stop" : 1714702923630,
+          "duration" : 1118
+        }
+      }, {
+        "uid" : "3e1b5af805a7c004",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/12//#testresult/3e1b5af805a7c004",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 'access'",
+        "time" : {
+          "start" : 1714616373986,
+          "stop" : 1714616375590,
+          "duration" : 1604
+        }
+      }, {
+        "uid" : "a2a330b62f6b27e6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/11//#testresult/a2a330b62f6b27e6",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nKeyError: 'access'",
+        "time" : {
+          "start" : 1714530308831,
+          "stop" : 1714530310188,
+          "duration" : 1357
+        }
+      }, {
+        "uid" : "534295cdc57c2fe9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/10//#testresult/534295cdc57c2fe9",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.ConnectionError: HTTPSConnectionPool(host='owa.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f17c7dc0890>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+        "time" : {
+          "start" : 1714443506063,
+          "stop" : 1714443506255,
+          "duration" : 192
+        }
+      }, {
+        "uid" : "8bbe06fc6db30bab",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/9//#testresult/8bbe06fc6db30bab",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.ConnectionError: HTTPSConnectionPool(host='owa.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f7971e045c0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+        "time" : {
+          "start" : 1714357181604,
+          "stop" : 1714357181729,
+          "duration" : 125
+        }
+      }, {
+        "uid" : "78f6aa36dcc3dc4b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/8//#testresult/78f6aa36dcc3dc4b",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nrequests.exceptions.SSLError: HTTPSConnectionPool(host='owa.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by SSLError(SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1000)')))",
+        "time" : {
+          "start" : 1714270970894,
+          "stop" : 1714270971208,
+          "duration" : 314
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail" ]
+  },
+  "source" : "22c10888c7211ec5.json",
+  "parameterValues" : [ ]
+}
