@@ -1,0 +1,330 @@
+{
+  "uid" : "be1ad3e2fcc05ab2",
+  "name" : "GET Получить данные авторизованного пользователя me",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_get_auth_user_me",
+  "historyId" : "bc92778bf363da55d5d2c340cacfccf3",
+  "time" : {
+    "start" : 1716517443995,
+    "stop" : 1716517445404,
+    "duration" : 1409
+  },
+  "status" : "broken",
+  "statusMessage" : "KeyError: 'access'",
+  "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f6ff2caafc0>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f6ff25f9cd0>\n\n    @allure.title(\"GET Получить данные авторизованного пользователя me\")\n    def test_get_auth_user_me(self, use_api_base):\n>       jwt = use_api_base.create_jwt(email1, password0)\n\ntests/test_api/test_api.py:567: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ne_mail = 'test_pulsewave0@mail.ru', passwrd = '!Q2w3e4r'\n\n    @staticmethod\n    def create_jwt(e_mail, passwrd):\n        with allure.step('Получить access токен пользователя на емайл'):\n            url = f'{ApiConstant.BASE_URL}auth/jwt/create/'\n            response = requests.post(url, json={\"email\": e_mail, \"password\": passwrd})\n>           jwt = f\"JWT {response.json()['access']}\"\nE           KeyError: 'access'\n\napi_testing/api_base.py:86: KeyError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1716517354685,
+      "stop" : 1716517354702,
+      "duration" : 17
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1716517354703,
+      "stop" : 1716517354703,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1716517443994,
+      "stop" : 1716517443994,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "KeyError: 'access'",
+    "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f6ff2caafc0>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f6ff25f9cd0>\n\n    @allure.title(\"GET Получить данные авторизованного пользователя me\")\n    def test_get_auth_user_me(self, use_api_base):\n>       jwt = use_api_base.create_jwt(email1, password0)\n\ntests/test_api/test_api.py:567: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\ne_mail = 'test_pulsewave0@mail.ru', passwrd = '!Q2w3e4r'\n\n    @staticmethod\n    def create_jwt(e_mail, passwrd):\n        with allure.step('Получить access токен пользователя на емайл'):\n            url = f'{ApiConstant.BASE_URL}auth/jwt/create/'\n            response = requests.post(url, json={\"email\": e_mail, \"password\": passwrd})\n>           jwt = f\"JWT {response.json()['access']}\"\nE           KeyError: 'access'\n\napi_testing/api_base.py:86: KeyError",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя на емайл",
+      "time" : {
+        "start" : 1716517443995,
+        "stop" : 1716517445404,
+        "duration" : 1409
+      },
+      "status" : "broken",
+      "statusMessage" : "KeyError: 'access'\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/api_base.py\", line 86, in create_jwt\n    jwt = f\"JWT {response.json()['access']}\"\n                 ~~~~~~~~~~~~~~~^^^^^^^^^^\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az770-693"
+  }, {
+    "name" : "thread",
+    "value" : "2379-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 8,
+        "skipped" : 0,
+        "passed" : 32,
+        "unknown" : 0,
+        "total" : 40
+      },
+      "items" : [ {
+        "uid" : "5d0f781a1887ea9b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/33//#testresult/5d0f781a1887ea9b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716431347828,
+          "stop" : 1716431350134,
+          "duration" : 2306
+        }
+      }, {
+        "uid" : "49bd1b88503cadf8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/32//#testresult/49bd1b88503cadf8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716344954987,
+          "stop" : 1716344957221,
+          "duration" : 2234
+        }
+      }, {
+        "uid" : "dcac838bb0e694db",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/31//#testresult/dcac838bb0e694db",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716258414024,
+          "stop" : 1716258415966,
+          "duration" : 1942
+        }
+      }, {
+        "uid" : "b491dabc139aee35",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/30//#testresult/b491dabc139aee35",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716172234533,
+          "stop" : 1716172236809,
+          "duration" : 2276
+        }
+      }, {
+        "uid" : "ccf6c09497456722",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/29//#testresult/ccf6c09497456722",
+        "status" : "passed",
+        "time" : {
+          "start" : 1716085782668,
+          "stop" : 1716085784760,
+          "duration" : 2092
+        }
+      }, {
+        "uid" : "bd71348aef4bf29a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/28//#testresult/bd71348aef4bf29a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715999199476,
+          "stop" : 1715999201529,
+          "duration" : 2053
+        }
+      }, {
+        "uid" : "cb39460ed783bd0d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/27//#testresult/cb39460ed783bd0d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715912875053,
+          "stop" : 1715912877322,
+          "duration" : 2269
+        }
+      }, {
+        "uid" : "fe39d2bb699b5098",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/212//#testresult/fe39d2bb699b5098",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715841744281,
+          "stop" : 1715841746689,
+          "duration" : 2408
+        }
+      }, {
+        "uid" : "d1384a1feead8630",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/26//#testresult/d1384a1feead8630",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715826441153,
+          "stop" : 1715826442981,
+          "duration" : 1828
+        }
+      }, {
+        "uid" : "75836a5c042033e8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/25//#testresult/75836a5c042033e8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715740354205,
+          "stop" : 1715740356459,
+          "duration" : 2254
+        }
+      }, {
+        "uid" : "a5aaadab2e83f53",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/24//#testresult/a5aaadab2e83f53",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715653670999,
+          "stop" : 1715653673341,
+          "duration" : 2342
+        }
+      }, {
+        "uid" : "f7cbb9f2e7d3e7c7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/23//#testresult/f7cbb9f2e7d3e7c7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715567324188,
+          "stop" : 1715567326117,
+          "duration" : 1929
+        }
+      }, {
+        "uid" : "ccc407d16149dd3",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/22//#testresult/ccc407d16149dd3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715480922508,
+          "stop" : 1715480924977,
+          "duration" : 2469
+        }
+      }, {
+        "uid" : "ee4862f423134b3e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/21//#testresult/ee4862f423134b3e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715394177983,
+          "stop" : 1715394179830,
+          "duration" : 1847
+        }
+      }, {
+        "uid" : "7ad0aeac58615b3e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/20//#testresult/7ad0aeac58615b3e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715308261985,
+          "stop" : 1715308264167,
+          "duration" : 2182
+        }
+      }, {
+        "uid" : "d15b868b7f3e9adb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/19//#testresult/d15b868b7f3e9adb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715221698213,
+          "stop" : 1715221700358,
+          "duration" : 2145
+        }
+      }, {
+        "uid" : "8613eef86175d182",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/18//#testresult/8613eef86175d182",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715134361758,
+          "stop" : 1715134363543,
+          "duration" : 1785
+        }
+      }, {
+        "uid" : "e4b8eae66850539f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/17//#testresult/e4b8eae66850539f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1715049021500,
+          "stop" : 1715049023540,
+          "duration" : 2040
+        }
+      }, {
+        "uid" : "bda9f7aa1136aa50",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/16//#testresult/bda9f7aa1136aa50",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714962416558,
+          "stop" : 1714962418273,
+          "duration" : 1715
+        }
+      }, {
+        "uid" : "35037fbc764ae7b4",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/15//#testresult/35037fbc764ae7b4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1714876002995,
+          "stop" : 1714876005041,
+          "duration" : 2046
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "be1ad3e2fcc05ab2.json",
+  "parameterValues" : [ ]
+}
