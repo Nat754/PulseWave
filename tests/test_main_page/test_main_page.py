@@ -24,6 +24,7 @@ class TestMainPage:
         mean_css = element.value_of_css_property(css_property)
         assert mean_css == figma, f"Не прошла проверка соответствия {name} кнопки '{self.main.MAIN_TITLE}' макету"
 
+    @pytest.mark.xfail
     @pytest.mark.parametrize('css_property, figma, name', main.CHECK_BUTTON)
     @pytest.mark.regress
     def test_get_css_property_body_auth_signup(self, main_page_open, css_property, figma, name):

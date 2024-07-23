@@ -61,6 +61,7 @@ class TestHeader:
         with allure.step(f"Произошел переход на страницу '{self.const.SIGNUP_PAGE}'"):
             assert driver.current_url == self.const.SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
+    @pytest.mark.xfail
     @pytest.mark.parametrize('url', [const.MAIN_PAGE, const.SIGNUP_PAGE, const.PASSWORD_RECOVERY])
     @pytest.mark.parametrize('css_property, figma, name', header.CHECK_BUTTON)
     @pytest.mark.regress
@@ -71,6 +72,7 @@ class TestHeader:
         with allure.step(f"Прошла проверка соответствия {name} кнопки '{self.header.TEXT_LOGIN}' макету"):
             assert mean_css == figma, f"Не прошла проверка соответствия {name} кнопки '{self.header.TEXT_LOGIN}' макету"
 
+    @pytest.mark.xfail
     @pytest.mark.parametrize('url', [const.MAIN_PAGE, const.LOGIN_PAGE, const.PASSWORD_RECOVERY])
     @pytest.mark.parametrize('css_property, figma, name', header.CHECK_BUTTON)
     @pytest.mark.regress

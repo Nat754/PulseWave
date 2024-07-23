@@ -57,6 +57,7 @@ class BasePage:
         Проверка того, что элемент виден, отображается на странице, кликабелен.
         Элемент присутствует в DOM-дереве. Локатор - используется для поиска элемента.
         """
+        self.element_is_visible(locator)
         return Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))
 
     def go_to_element(self, element):
