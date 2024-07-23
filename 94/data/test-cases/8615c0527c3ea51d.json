@@ -1,0 +1,401 @@
+{
+  "uid" : "8615c0527c3ea51d",
+  "name" : "Проверка цвета кнопки 'Зарегистрироваться'",
+  "fullName" : "tests.test_main_page.test_main_page.TestMainPage#test_get_css_property_body_auth_signup",
+  "historyId" : "9f6ba6ed07faf93a50e7aef5f62f42bf",
+  "time" : {
+    "start" : 1721718398115,
+    "stop" : 1721718398149,
+    "duration" : 34
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Не прошла проверка соответствия цвета кнопки 'Зарегистрироваться' макету\nassert 'rgba(252, 225, 90, 1)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  ?             ^  ^^\n  + rgba(252, 225, 90, 1)\n  ?             ^  ^^",
+  "statusTrace" : "self = <tests.test_main_page.test_main_page.TestMainPage object at 0x7f197b544ce0>\nmain_page_open = <pages.main_page.MainPage object at 0x7f197b5946e0>\ncss_property = 'background-color', figma = 'rgba(252, 224, 88, 1)'\nname = 'цвета'\n\n    @pytest.mark.parametrize('css_property, figma, name', main.CHECK_BUTTON)\n    @pytest.mark.regress\n    def test_get_css_property_body_auth_signup(self, main_page_open, css_property, figma, name):\n        allure.dynamic.title(f\"Проверка {name} кнопки '{self.main.TEXT_SIGNUP}'\")\n        element = main_page_open.get_body_auth_signup()\n        mean_css = element.value_of_css_property(css_property)\n>       assert mean_css == figma, f\"Не прошла проверка соответствия {name} кнопки '{self.main.TEXT_SIGNUP}' макету\"\nE       AssertionError: Не прошла проверка соответствия цвета кнопки 'Зарегистрироваться' макету\nE       assert 'rgba(252, 225, 90, 1)' == 'rgba(252, 224, 88, 1)'\nE         \nE         - rgba(252, 224, 88, 1)\nE         ?             ^  ^^\nE         + rgba(252, 225, 90, 1)\nE         ?             ^  ^^\n\ntests/test_main_page/test_main_page.py:33: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "main_page_open",
+    "time" : {
+      "start" : 1721718394998,
+      "stop" : 1721718398114,
+      "duration" : 3116
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю всё' в сообщении о принятии файлов cookie на Главной странице",
+      "time" : {
+        "start" : 1721718398053,
+        "stop" : 1721718398086,
+        "duration" : 33
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1721717889095,
+      "stop" : 1721717889095,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1721717889077,
+      "stop" : 1721717889095,
+      "duration" : 18
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1721718394801,
+      "stop" : 1721718394998,
+      "duration" : 197
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Не прошла проверка соответствия цвета кнопки 'Зарегистрироваться' макету\nassert 'rgba(252, 225, 90, 1)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  ?             ^  ^^\n  + rgba(252, 225, 90, 1)\n  ?             ^  ^^",
+    "statusTrace" : "self = <tests.test_main_page.test_main_page.TestMainPage object at 0x7f197b544ce0>\nmain_page_open = <pages.main_page.MainPage object at 0x7f197b5946e0>\ncss_property = 'background-color', figma = 'rgba(252, 224, 88, 1)'\nname = 'цвета'\n\n    @pytest.mark.parametrize('css_property, figma, name', main.CHECK_BUTTON)\n    @pytest.mark.regress\n    def test_get_css_property_body_auth_signup(self, main_page_open, css_property, figma, name):\n        allure.dynamic.title(f\"Проверка {name} кнопки '{self.main.TEXT_SIGNUP}'\")\n        element = main_page_open.get_body_auth_signup()\n        mean_css = element.value_of_css_property(css_property)\n>       assert mean_css == figma, f\"Не прошла проверка соответствия {name} кнопки '{self.main.TEXT_SIGNUP}' макету\"\nE       AssertionError: Не прошла проверка соответствия цвета кнопки 'Зарегистрироваться' макету\nE       assert 'rgba(252, 225, 90, 1)' == 'rgba(252, 224, 88, 1)'\nE         \nE         - rgba(252, 224, 88, 1)\nE         ?             ^  ^^\nE         + rgba(252, 225, 90, 1)\nE         ?             ^  ^^\n\ntests/test_main_page/test_main_page.py:33: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Зарегистрироваться' на главной странице",
+      "time" : {
+        "start" : 1721718398115,
+        "stop" : 1721718398142,
+        "duration" : 27
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "457ef03ad1a19547",
+      "name" : "Screenshot",
+      "source" : "457ef03ad1a19547.png",
+      "type" : "image/png",
+      "size" : 137489
+    }, {
+      "uid" : "941ddc9f94a9bc61",
+      "name" : "HTML source",
+      "source" : "941ddc9f94a9bc61.html",
+      "type" : "text/html",
+      "size" : 103414
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1721718398286,
+      "stop" : 1721718398345,
+      "duration" : 59
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_main_page"
+  }, {
+    "name" : "suite",
+    "value" : "test_main_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMainPage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1385-900"
+  }, {
+    "name" : "thread",
+    "value" : "2334-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_main_page.test_main_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  }, {
+    "name" : "css_property",
+    "value" : "'background-color'"
+  }, {
+    "name" : "figma",
+    "value" : "'rgba(252, 224, 88, 1)'"
+  }, {
+    "name" : "name",
+    "value" : "'цвета'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 98,
+        "unknown" : 0,
+        "total" : 103
+      },
+      "items" : [ {
+        "uid" : "7463c55aa10fe0f0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/94//#testresult/7463c55aa10fe0f0",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Не прошла проверка соответствия цвета кнопки 'Зарегистрироваться' макету\nassert 'rgba(252, 225, 90, 1)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  ?             ^  ^^\n  + rgba(252, 225, 90, 1)\n  ?             ^  ^^",
+        "time" : {
+          "start" : 1721717511903,
+          "stop" : 1721717511939,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "5f1629e636769ea4",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/94//#testresult/5f1629e636769ea4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721702152822,
+          "stop" : 1721702152855,
+          "duration" : 33
+        }
+      }, {
+        "uid" : "ff50758a30f0d72d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/93//#testresult/ff50758a30f0d72d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721616058114,
+          "stop" : 1721616058149,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "e684f10f9afd14f7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/92//#testresult/e684f10f9afd14f7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721529462210,
+          "stop" : 1721529462245,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "4d198f327b668756",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/91//#testresult/4d198f327b668756",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721442761538,
+          "stop" : 1721442761572,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "554177f698ed2789",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/90//#testresult/554177f698ed2789",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721356626978,
+          "stop" : 1721356627013,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "bb11fb37536de80",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/89//#testresult/bb11fb37536de80",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721270070468,
+          "stop" : 1721270070504,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "3ed6c4d5449fa1b1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/88//#testresult/3ed6c4d5449fa1b1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721183754690,
+          "stop" : 1721183754724,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "152d68ff2be43315",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/87//#testresult/152d68ff2be43315",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721097400739,
+          "stop" : 1721097400775,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "4e5c47d97954ddfb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/86//#testresult/4e5c47d97954ddfb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721011160649,
+          "stop" : 1721011160684,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "662243a4d09e331a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/85//#testresult/662243a4d09e331a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720924972870,
+          "stop" : 1720924972904,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "ec8d02055fcd894d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/84//#testresult/ec8d02055fcd894d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720838092190,
+          "stop" : 1720838092224,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "3aa43077a864806",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/83//#testresult/3aa43077a864806",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720751668592,
+          "stop" : 1720751668629,
+          "duration" : 37
+        }
+      }, {
+        "uid" : "a4dc8f533a5d26d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/82//#testresult/a4dc8f533a5d26d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720665736195,
+          "stop" : 1720665736230,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "1e1a9e0d409e373d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/81//#testresult/1e1a9e0d409e373d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720579243023,
+          "stop" : 1720579243058,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "f2673e7652179294",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/80//#testresult/f2673e7652179294",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720492815676,
+          "stop" : 1720492815712,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "5cc36459e46f602e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/79//#testresult/5cc36459e46f602e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720406646115,
+          "stop" : 1720406646148,
+          "duration" : 33
+        }
+      }, {
+        "uid" : "5154d247a23c5647",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/78//#testresult/5154d247a23c5647",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720320156533,
+          "stop" : 1720320156566,
+          "duration" : 33
+        }
+      }, {
+        "uid" : "5b5748ab023e1503",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/77//#testresult/5b5748ab023e1503",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720233349742,
+          "stop" : 1720233349777,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "e2f8b938a40edc63",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/76//#testresult/e2f8b938a40edc63",
+        "status" : "passed",
+        "time" : {
+          "start" : 1720147079111,
+          "stop" : 1720147079146,
+          "duration" : 35
+        }
+      } ]
+    },
+    "tags" : [ "regress" ]
+  },
+  "source" : "8615c0527c3ea51d.json",
+  "parameterValues" : [ "'chrome'", "'background-color'", "'rgba(252, 224, 88, 1)'", "'цвета'" ]
+}
