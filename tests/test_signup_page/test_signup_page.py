@@ -84,20 +84,33 @@ class TestSignupPage:
 
     @allure.title(f"1.20 Окно регистрации сообщение '{msg.PASSWORD_RULES_MSG}'")
     @pytest.mark.smoke
-    def test_signup_message_password_rules(self, signup_page_open):
+    def test_signup_message_password_rules(self, signup_page_open, err=0):
         element = signup_page_open.check_password_rules_message()
         with (allure.step(f'Проверить текст сообщения: "{self.msg.PASSWORD_RULES_MSG}"')):
-            assert element.text == self.msg.PASSWORD_RULES_MSG, \
-                f'Нет сообщения: "{self.msg.PASSWORD_RULES_MSG}"'
+            try:
+                assert element.text == self.msg.PASSWORD_RULES_MSG
+            except AssertionError:
+                print("", f'ОР: "{self.msg.PASSWORD_RULES_MSG}"', f'ФР: "{element.text}"', sep='\n')
+                err += 1
         with allure.step(f'Проверить цвет шрифта сообщения: "{self.msg.PASSWORD_RULES_MSG}"'):
-            assert element.value_of_css_property('color') == self.signup.PASSWORD_RULES_CSS['color'], \
-                'Цвет сообщения о неверном пароле не соответствует макету'
+            try:
+                assert element.value_of_css_property('color') == self.signup.PASSWORD_RULES_CSS['color'], \
+                    'Цвет сообщения о неверном пароле не соответствует макету'
+            except AssertionError:
+                err += 1
         with allure.step(f'Проверить размер шрифта сообщения: "{self.msg.PASSWORD_RULES_MSG}"'):
-            assert element.value_of_css_property('font-size') == self.signup.PASSWORD_RULES_CSS['font-size'], \
-                'Размер шрифта сообщения о неверном пароле не соответствует макету'
+            try:
+                assert element.value_of_css_property('font-size') == self.signup.PASSWORD_RULES_CSS['font-size'], \
+                    'Размер шрифта сообщения о неверном пароле не соответствует макету'
+            except AssertionError:
+                err += 1
         with allure.step(f'Проверить шрифт сообщения: "{self.msg.PASSWORD_RULES_MSG}"'):
-            assert element.value_of_css_property('font-family') == self.signup.PASSWORD_RULES_CSS['font-family'], \
-                'Шрифт сообщения о неверном пароле не соответствует макету'
+            try:
+                assert element.value_of_css_property('font-family') == self.signup.PASSWORD_RULES_CSS['font-family'], \
+                    'Шрифт сообщения о неверном пароле не соответствует макету'
+            except AssertionError:
+                err += 1
+        assert err == 0, f'Не прошла {err} проверка'
 
     @pytest.mark.parametrize('data_email', signup.INCORRECT_EMAIL)
     @allure.title("1.21, 1.22 Регистрация с некорректным email и сильным паролем и подтверждением пароля")
