@@ -1,0 +1,433 @@
+{
+  "uid" : "d29cfca17e199733",
+  "name" : "Проверка перехода в Рабочие пространства по ссылке На главную",
+  "fullName" : "tests.test_workspace_page.test_workspace_page.TestWorkspacePage#test_link_to_main",
+  "historyId" : "11b6f02ab206056145597ed767926875",
+  "time" : {
+    "start" : 1722392708546,
+    "stop" : 1722392709918,
+    "duration" : 1372
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240731%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240731T022508Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=bd59dcab5bb92346a466387a91954728a0e78e01e07884b906324f72397aa0e3\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x55d9daaaec5a <unknown>\n#1 0x55d9da791e2c <unknown>\n#2 0x55d9da7e5406 <unknown>\n#3 0x55d9da7e3246 <unknown>\n#4 0x55d9da7e0c27 <unknown>\n#5 0x55d9da7dfa60 <unknown>\n#6 0x55d9da7d315f <unknown>\n#7 0x55d9da8015c2 <unknown>\n#8 0x55d9da7d2ad9 <unknown>\n#9 0x55d9da80178e <unknown>\n#10 0x55d9da820303 <unknown>\n#11 0x55d9da801363 <unknown>\n#12 0x55d9da7d1247 <unknown>\n#13 0x55d9da7d1b9e <unknown>\n#14 0x55d9daa7522b <unknown>\n#15 0x55d9daa792d1 <unknown>\n#16 0x55d9daa60ade <unknown>\n#17 0x55d9daa79e32 <unknown>\n#18 0x55d9daa4577f <unknown>\n#19 0x55d9daa9e618 <unknown>\n#20 0x55d9daa9e7f0 <unknown>\n#21 0x55d9daaadd8c <unknown>\n#22 0x7f3c82c94ac3 <unknown>",
+  "statusTrace" : "self = <tests.test_workspace_page.test_workspace_page.TestWorkspacePage object at 0x7fee8079eff0>\nauth_user = <pages.login_page.LoginPage object at 0x7fee807a6150>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"9f9b16a5b12896b73b17626f3c70d3a6\")>\n\n    @allure.title(f\"Проверка перехода в {wsconst.WORKSPACE_TITLE} по ссылке {message.TO_MAIN_TEXT}\")\n    @pytest.mark.regress\n    def test_link_to_main(self, auth_user, driver):\n        page = SignUpPage(driver)\n>       page.click_button_avatar()\n\ntests/test_workspace_page/test_workspace_page.py:60: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/signup_page.py:93: in click_button_avatar\n    self.element_is_clickable(self.locator.BUTTON_AVATAR).click()\n/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:94: in click\n    self._execute(Command.CLICK_ELEMENT)\n/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:395: in _execute\n    return self._parent.execute(command, params)\n/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:347: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7fee812be510>\nresponse = {'status': 400, 'value': '{\"value\":{\"error\":\"element click intercepted\",\"message\":\"element click intercepted: Element ...\\\\n#20 0x55d9daa9e7f0 \\\\u003Cunknown>\\\\n#21 0x55d9daaadd8c \\\\u003Cunknown>\\\\n#22 0x7f3c82c94ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240731%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240731T022508Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=bd59dcab5bb92346a466387a91954728a0e78e01e07884b906324f72397aa0e3\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\nE         (Session info: chrome-headless-shell=126.0.6478.182)\nE       Stacktrace:\nE       #0 0x55d9daaaec5a <unknown>\nE       #1 0x55d9da791e2c <unknown>\nE       #2 0x55d9da7e5406 <unknown>\nE       #3 0x55d9da7e3246 <unknown>\nE       #4 0x55d9da7e0c27 <unknown>\nE       #5 0x55d9da7dfa60 <unknown>\nE       #6 0x55d9da7d315f <unknown>\nE       #7 0x55d9da8015c2 <unknown>\nE       #8 0x55d9da7d2ad9 <unknown>\nE       #9 0x55d9da80178e <unknown>\nE       #10 0x55d9da820303 <unknown>\nE       #11 0x55d9da801363 <unknown>\nE       #12 0x55d9da7d1247 <unknown>\nE       #13 0x55d9da7d1b9e <unknown>\nE       #14 0x55d9daa7522b <unknown>\nE       #15 0x55d9daa792d1 <unknown>\nE       #16 0x55d9daa60ade <unknown>\nE       #17 0x55d9daa79e32 <unknown>\nE       #18 0x55d9daa4577f <unknown>\nE       #19 0x55d9daa9e618 <unknown>\nE       #20 0x55d9daa9e7f0 <unknown>\nE       #21 0x55d9daaadd8c <unknown>\nE       #22 0x7f3c82c94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: ElementClickInterceptedException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1722392704133,
+      "stop" : 1722392704331,
+      "duration" : 198
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "auth_user",
+    "time" : {
+      "start" : 1722392704331,
+      "stop" : 1722392708546,
+      "duration" : 4215
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie",
+      "time" : {
+        "start" : 1722392706771,
+        "stop" : 1722392706800,
+        "duration" : 29
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Нажать кнопку 'Войти'",
+      "time" : {
+        "start" : 1722392706963,
+        "stop" : 1722392707029,
+        "duration" : 66
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Ждать обновление страницы",
+      "time" : {
+        "start" : 1722392707029,
+        "stop" : 1722392708546,
+        "duration" : 1517
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1722391753350,
+      "stop" : 1722391753368,
+      "duration" : 18
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1722391753368,
+      "stop" : 1722391753368,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240731%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240731T022508Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=bd59dcab5bb92346a466387a91954728a0e78e01e07884b906324f72397aa0e3\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x55d9daaaec5a <unknown>\n#1 0x55d9da791e2c <unknown>\n#2 0x55d9da7e5406 <unknown>\n#3 0x55d9da7e3246 <unknown>\n#4 0x55d9da7e0c27 <unknown>\n#5 0x55d9da7dfa60 <unknown>\n#6 0x55d9da7d315f <unknown>\n#7 0x55d9da8015c2 <unknown>\n#8 0x55d9da7d2ad9 <unknown>\n#9 0x55d9da80178e <unknown>\n#10 0x55d9da820303 <unknown>\n#11 0x55d9da801363 <unknown>\n#12 0x55d9da7d1247 <unknown>\n#13 0x55d9da7d1b9e <unknown>\n#14 0x55d9daa7522b <unknown>\n#15 0x55d9daa792d1 <unknown>\n#16 0x55d9daa60ade <unknown>\n#17 0x55d9daa79e32 <unknown>\n#18 0x55d9daa4577f <unknown>\n#19 0x55d9daa9e618 <unknown>\n#20 0x55d9daa9e7f0 <unknown>\n#21 0x55d9daaadd8c <unknown>\n#22 0x7f3c82c94ac3 <unknown>",
+    "statusTrace" : "self = <tests.test_workspace_page.test_workspace_page.TestWorkspacePage object at 0x7fee8079eff0>\nauth_user = <pages.login_page.LoginPage object at 0x7fee807a6150>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"9f9b16a5b12896b73b17626f3c70d3a6\")>\n\n    @allure.title(f\"Проверка перехода в {wsconst.WORKSPACE_TITLE} по ссылке {message.TO_MAIN_TEXT}\")\n    @pytest.mark.regress\n    def test_link_to_main(self, auth_user, driver):\n        page = SignUpPage(driver)\n>       page.click_button_avatar()\n\ntests/test_workspace_page/test_workspace_page.py:60: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/signup_page.py:93: in click_button_avatar\n    self.element_is_clickable(self.locator.BUTTON_AVATAR).click()\n/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:94: in click\n    self._execute(Command.CLICK_ELEMENT)\n/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:395: in _execute\n    return self._parent.execute(command, params)\n/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:347: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7fee812be510>\nresponse = {'status': 400, 'value': '{\"value\":{\"error\":\"element click intercepted\",\"message\":\"element click intercepted: Element ...\\\\n#20 0x55d9daa9e7f0 \\\\u003Cunknown>\\\\n#21 0x55d9daaadd8c \\\\u003Cunknown>\\\\n#22 0x7f3c82c94ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240731%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240731T022508Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=bd59dcab5bb92346a466387a91954728a0e78e01e07884b906324f72397aa0e3\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\nE         (Session info: chrome-headless-shell=126.0.6478.182)\nE       Stacktrace:\nE       #0 0x55d9daaaec5a <unknown>\nE       #1 0x55d9da791e2c <unknown>\nE       #2 0x55d9da7e5406 <unknown>\nE       #3 0x55d9da7e3246 <unknown>\nE       #4 0x55d9da7e0c27 <unknown>\nE       #5 0x55d9da7dfa60 <unknown>\nE       #6 0x55d9da7d315f <unknown>\nE       #7 0x55d9da8015c2 <unknown>\nE       #8 0x55d9da7d2ad9 <unknown>\nE       #9 0x55d9da80178e <unknown>\nE       #10 0x55d9da820303 <unknown>\nE       #11 0x55d9da801363 <unknown>\nE       #12 0x55d9da7d1247 <unknown>\nE       #13 0x55d9da7d1b9e <unknown>\nE       #14 0x55d9daa7522b <unknown>\nE       #15 0x55d9daa792d1 <unknown>\nE       #16 0x55d9daa60ade <unknown>\nE       #17 0x55d9daa79e32 <unknown>\nE       #18 0x55d9daa4577f <unknown>\nE       #19 0x55d9daa9e618 <unknown>\nE       #20 0x55d9daa9e7f0 <unknown>\nE       #21 0x55d9daaadd8c <unknown>\nE       #22 0x7f3c82c94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: ElementClickInterceptedException",
+    "steps" : [ {
+      "name" : "Нажать на иконку аватара",
+      "time" : {
+        "start" : 1722392708546,
+        "stop" : 1722392709917,
+        "duration" : 1371
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240731%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240731T022508Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=bd59dcab5bb92346a466387a91954728a0e78e01e07884b906324f72397aa0e3\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x55d9daaaec5a <unknown>\n#1 0x55d9da791e2c <unknown>\n#2 0x55d9da7e5406 <unknown>\n#3 0x55d9da7e3246 <unknown>\n#4 0x55d9da7e0c27 <unknown>\n#5 0x55d9da7dfa60 <unknown>\n#6 0x55d9da7d315f <unknown>\n#7 0x55d9da8015c2 <unknown>\n#8 0x55d9da7d2ad9 <unknown>\n#9 0x55d9da80178e <unknown>\n#10 0x55d9da820303 <unknown>\n#11 0x55d9da801363 <unknown>\n#12 0x55d9da7d1247 <unknown>\n#13 0x55d9da7d1b9e <unknown>\n#14 0x55d9daa7522b <unknown>\n#15 0x55d9daa792d1 <unknown>\n#16 0x55d9daa60ade <unknown>\n#17 0x55d9daa79e32 <unknown>\n#18 0x55d9daa4577f <unknown>\n#19 0x55d9daa9e618 <unknown>\n#20 0x55d9daa9e7f0 <unknown>\n#21 0x55d9daaadd8c <unknown>\n#22 0x7f3c82c94ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/signup_page.py\", line 93, in click_button_avatar\n    self.element_is_clickable(self.locator.BUTTON_AVATAR).click()\n  File \"/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 94, in click\n    self._execute(Command.CLICK_ELEMENT)\n  File \"/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 395, in _execute\n    return self._parent.execute(command, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 347, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.4/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "dc04919df12058fd",
+      "name" : "Screenshot",
+      "source" : "dc04919df12058fd.png",
+      "type" : "image/png",
+      "size" : 99137
+    }, {
+      "uid" : "de48793a5e65b02e",
+      "name" : "HTML source",
+      "source" : "de48793a5e65b02e.html",
+      "type" : "text/html",
+      "size" : 91544
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1722392710147,
+      "stop" : 1722392710208,
+      "duration" : 61
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование страницы 'Рабочие пространства'"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_workspace_page"
+  }, {
+    "name" : "suite",
+    "value" : "test_workspace_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestWorkspacePage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1435-300"
+  }, {
+    "name" : "thread",
+    "value" : "2330-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_workspace_page.test_workspace_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 24,
+        "skipped" : 0,
+        "passed" : 91,
+        "unknown" : 0,
+        "total" : 115
+      },
+      "items" : [ {
+        "uid" : "6c43f7eb9f1a031",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/101//#testresult/6c43f7eb9f1a031",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome-headless-shell=126.0.6478.182); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x5573bce7fc5a <unknown>\n#1 0x5573bcb62e2c <unknown>\n#2 0x5573bcb68539 <unknown>\n#3 0x5573bcb6a2e5 <unknown>\n#4 0x5573bcb6a36c <unknown>\n#5 0x5573bcbb631c <unknown>\n#6 0x5573bcbb4246 <unknown>\n#7 0x5573bcbb1c27 <unknown>\n#8 0x5573bcbb0a60 <unknown>\n#9 0x5573bcba415f <unknown>\n#10 0x5573bcbd25c2 <unknown>\n#11 0x5573bcba3ad9 <unknown>\n#12 0x5573bcbd278e <unknown>\n#13 0x5573bcbf1303 <unknown>\n#14 0x5573bcbd2363 <unknown>\n#15 0x5573bcba2247 <unknown>\n#16 0x5573bcba2b9e <unknown>\n#17 0x5573bce4622b <unknown>\n#18 0x5573bce4a2d1 <unknown>\n#19 0x5573bce31ade <unknown>\n#20 0x5573bce4ae32 <unknown>\n#21 0x5573bce1677f <unknown>\n#22 0x5573bce6f618 <unknown>\n#23 0x5573bce6f7f0 <unknown>\n#24 0x5573bce7ed8c <unknown>\n#25 0x7fa3c3e94ac3 <unknown>",
+        "time" : {
+          "start" : 1722307691014,
+          "stop" : 1722307691477,
+          "duration" : 463
+        }
+      }, {
+        "uid" : "49be281480b0b387",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/100//#testresult/49be281480b0b387",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240729%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240729T025215Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=0349e71e59afc6ff6e5c2f89777312fe80b9d142a1b8c3550d57f7cc9653cd9f\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x55f3cdecbc5a <unknown>\n#1 0x55f3cdbaee2c <unknown>\n#2 0x55f3cdc02406 <unknown>\n#3 0x55f3cdc00246 <unknown>\n#4 0x55f3cdbfdc27 <unknown>\n#5 0x55f3cdbfca60 <unknown>\n#6 0x55f3cdbf015f <unknown>\n#7 0x55f3cdc1e5c2 <unknown>\n#8 0x55f3cdbefad9 <unknown>\n#9 0x55f3cdc1e78e <unknown>\n#10 0x55f3cdc3d303 <unknown>\n#11 0x55f3cdc1e363 <unknown>\n#12 0x55f3cdbee247 <unknown>\n#13 0x55f3cdbeeb9e <unknown>\n#14 0x55f3cde9222b <unknown>\n#15 0x55f3cde962d1 <unknown>\n#16 0x55f3cde7dade <unknown>\n#17 0x55f3cde96e32 <unknown>\n#18 0x55f3cde6277f <unknown>\n#19 0x55f3cdebb618 <unknown>\n#20 0x55f3cdebb7f0 <unknown>\n#21 0x55f3cdecad8c <unknown>\n#22 0x7fa86d294ac3 <unknown>",
+        "time" : {
+          "start" : 1722221460333,
+          "stop" : 1722221461769,
+          "duration" : 1436
+        }
+      }, {
+        "uid" : "e1db366965b3d0d4",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/99//#testresult/e1db366965b3d0d4",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240728%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240728T024833Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=2ce10e8d5421863faee1068d8e914a0d89bdc8811a0f15dca4c0f03af8343475\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x55c6ffddec5a <unknown>\n#1 0x55c6ffac1e2c <unknown>\n#2 0x55c6ffb15406 <unknown>\n#3 0x55c6ffb13246 <unknown>\n#4 0x55c6ffb10c27 <unknown>\n#5 0x55c6ffb0fa60 <unknown>\n#6 0x55c6ffb0315f <unknown>\n#7 0x55c6ffb315c2 <unknown>\n#8 0x55c6ffb02ad9 <unknown>\n#9 0x55c6ffb3178e <unknown>\n#10 0x55c6ffb50303 <unknown>\n#11 0x55c6ffb31363 <unknown>\n#12 0x55c6ffb01247 <unknown>\n#13 0x55c6ffb01b9e <unknown>\n#14 0x55c6ffda522b <unknown>\n#15 0x55c6ffda92d1 <unknown>\n#16 0x55c6ffd90ade <unknown>\n#17 0x55c6ffda9e32 <unknown>\n#18 0x55c6ffd7577f <unknown>\n#19 0x55c6ffdce618 <unknown>\n#20 0x55c6ffdce7f0 <unknown>\n#21 0x55c6ffdddd8c <unknown>\n#22 0x7f2bf7894ac3 <unknown>",
+        "time" : {
+          "start" : 1722134839949,
+          "stop" : 1722134841387,
+          "duration" : 1438
+        }
+      }, {
+        "uid" : "5c4087e4a77bb2f0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/98//#testresult/5c4087e4a77bb2f0",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240727%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240727T024235Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=c26a1b61657b6bb73fca7977aba11e3f57c3a9af9f97f232f1cb8df6131edcd7\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x5624e59e9c5a <unknown>\n#1 0x5624e56cce2c <unknown>\n#2 0x5624e5720406 <unknown>\n#3 0x5624e571e246 <unknown>\n#4 0x5624e571bc27 <unknown>\n#5 0x5624e571aa60 <unknown>\n#6 0x5624e570e15f <unknown>\n#7 0x5624e573c5c2 <unknown>\n#8 0x5624e570dad9 <unknown>\n#9 0x5624e573c78e <unknown>\n#10 0x5624e575b303 <unknown>\n#11 0x5624e573c363 <unknown>\n#12 0x5624e570c247 <unknown>\n#13 0x5624e570cb9e <unknown>\n#14 0x5624e59b022b <unknown>\n#15 0x5624e59b42d1 <unknown>\n#16 0x5624e599bade <unknown>\n#17 0x5624e59b4e32 <unknown>\n#18 0x5624e598077f <unknown>\n#19 0x5624e59d9618 <unknown>\n#20 0x5624e59d97f0 <unknown>\n#21 0x5624e59e8d8c <unknown>\n#22 0x7fef35694ac3 <unknown>",
+        "time" : {
+          "start" : 1722048082395,
+          "stop" : 1722048083883,
+          "duration" : 1488
+        }
+      }, {
+        "uid" : "6c44ccf2d6e631b5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/214//#testresult/6c44ccf2d6e631b5",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240726%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240726T214305Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=d5fd0b25e45ea16c556322afaddc982e71b2c8301a60ce67dcc88825178ce873\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x55b32caccc5a <unknown>\n#1 0x55b32c7afe2c <unknown>\n#2 0x55b32c803406 <unknown>\n#3 0x55b32c801246 <unknown>\n#4 0x55b32c7fec27 <unknown>\n#5 0x55b32c7fda60 <unknown>\n#6 0x55b32c7f115f <unknown>\n#7 0x55b32c81f5c2 <unknown>\n#8 0x55b32c7f0ad9 <unknown>\n#9 0x55b32c81f78e <unknown>\n#10 0x55b32c83e303 <unknown>\n#11 0x55b32c81f363 <unknown>\n#12 0x55b32c7ef247 <unknown>\n#13 0x55b32c7efb9e <unknown>\n#14 0x55b32ca9322b <unknown>\n#15 0x55b32ca972d1 <unknown>\n#16 0x55b32ca7eade <unknown>\n#17 0x55b32ca97e32 <unknown>\n#18 0x55b32ca6377f <unknown>\n#19 0x55b32cabc618 <unknown>\n#20 0x55b32cabc7f0 <unknown>\n#21 0x55b32cacbd8c <unknown>\n#22 0x7f68e3294ac3 <unknown>",
+        "time" : {
+          "start" : 1722030112877,
+          "stop" : 1722030114313,
+          "duration" : 1436
+        }
+      }, {
+        "uid" : "febe25d5cd031524",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/97//#testresult/febe25d5cd031524",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240726%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240726T132406Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=dc51b7a7c0824856061806caf583f240d9663c4da2db53af64b42c172dda0904\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x56473e6dec5a <unknown>\n#1 0x56473e3c1e2c <unknown>\n#2 0x56473e415406 <unknown>\n#3 0x56473e413246 <unknown>\n#4 0x56473e410c27 <unknown>\n#5 0x56473e40fa60 <unknown>\n#6 0x56473e40315f <unknown>\n#7 0x56473e4315c2 <unknown>\n#8 0x56473e402ad9 <unknown>\n#9 0x56473e43178e <unknown>\n#10 0x56473e450303 <unknown>\n#11 0x56473e431363 <unknown>\n#12 0x56473e401247 <unknown>\n#13 0x56473e401b9e <unknown>\n#14 0x56473e6a522b <unknown>\n#15 0x56473e6a92d1 <unknown>\n#16 0x56473e690ade <unknown>\n#17 0x56473e6a9e32 <unknown>\n#18 0x56473e67577f <unknown>\n#19 0x56473e6ce618 <unknown>\n#20 0x56473e6ce7f0 <unknown>\n#21 0x56473e6ddd8c <unknown>\n#22 0x7f15af694ac3 <unknown>",
+        "time" : {
+          "start" : 1722000174372,
+          "stop" : 1722000175764,
+          "duration" : 1392
+        }
+      }, {
+        "uid" : "f36fba5fd00c86f9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/97//#testresult/f36fba5fd00c86f9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721961767007,
+          "stop" : 1721961768292,
+          "duration" : 1285
+        }
+      }, {
+        "uid" : "9861712fbff718eb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/96//#testresult/9861712fbff718eb",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240725%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240725T024453Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=15625de29f59aa043bd587378965d8e8aedf84a0ec652f903a92b632a74f050f\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x5587778d3c5a <unknown>\n#1 0x5587775b6e2c <unknown>\n#2 0x55877760a406 <unknown>\n#3 0x558777608246 <unknown>\n#4 0x558777605c27 <unknown>\n#5 0x558777604a60 <unknown>\n#6 0x5587775f815f <unknown>\n#7 0x5587776265c2 <unknown>\n#8 0x5587775f7ad9 <unknown>\n#9 0x55877762678e <unknown>\n#10 0x558777645303 <unknown>\n#11 0x558777626363 <unknown>\n#12 0x5587775f6247 <unknown>\n#13 0x5587775f6b9e <unknown>\n#14 0x55877789a22b <unknown>\n#15 0x55877789e2d1 <unknown>\n#16 0x558777885ade <unknown>\n#17 0x55877789ee32 <unknown>\n#18 0x55877786a77f <unknown>\n#19 0x5587778c3618 <unknown>\n#20 0x5587778c37f0 <unknown>\n#21 0x5587778d2d8c <unknown>\n#22 0x7f6865c94ac3 <unknown>",
+        "time" : {
+          "start" : 1721875422160,
+          "stop" : 1721875423607,
+          "duration" : 1447
+        }
+      }, {
+        "uid" : "aed50997ab62757c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/213//#testresult/aed50997ab62757c",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240724%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240724T051350Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=e0f4682e272a0a6d9330cd18916a12be18b3177da1837b36c193258f6598238d\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.126)\nStacktrace:\n#0 0x55741d59dc7a <unknown>\n#1 0x55741d280e2c <unknown>\n#2 0x55741d2d4406 <unknown>\n#3 0x55741d2d2246 <unknown>\n#4 0x55741d2cfc27 <unknown>\n#5 0x55741d2cea60 <unknown>\n#6 0x55741d2c215f <unknown>\n#7 0x55741d2f05c2 <unknown>\n#8 0x55741d2c1ad9 <unknown>\n#9 0x55741d2f078e <unknown>\n#10 0x55741d30f303 <unknown>\n#11 0x55741d2f0363 <unknown>\n#12 0x55741d2c0247 <unknown>\n#13 0x55741d2c0b9e <unknown>\n#14 0x55741d56424b <unknown>\n#15 0x55741d5682f1 <unknown>\n#16 0x55741d54fafe <unknown>\n#17 0x55741d568e52 <unknown>\n#18 0x55741d53479f <unknown>\n#19 0x55741d58d638 <unknown>\n#20 0x55741d58d810 <unknown>\n#21 0x55741d59cdac <unknown>\n#22 0x7f988c294ac3 <unknown>",
+        "time" : {
+          "start" : 1721797960192,
+          "stop" : 1721797961642,
+          "duration" : 1450
+        }
+      }, {
+        "uid" : "12b6629949612dc3",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/95//#testresult/12b6629949612dc3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721788953587,
+          "stop" : 1721788954893,
+          "duration" : 1306
+        }
+      }, {
+        "uid" : "2ca390d0ee26f34f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/213//#testresult/2ca390d0ee26f34f",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240723%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240723T202419Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=a08a693e5a1b28fb066382001ec03efd53dc8ca8c737b71053a1533f45c43fb7\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=126.0.6478.182)\nStacktrace:\n#0 0x564fbaf89c5a <unknown>\n#1 0x564fbac6ce2c <unknown>\n#2 0x564fbacc0406 <unknown>\n#3 0x564fbacbe246 <unknown>\n#4 0x564fbacbbc27 <unknown>\n#5 0x564fbacbaa60 <unknown>\n#6 0x564fbacae15f <unknown>\n#7 0x564fbacdc5c2 <unknown>\n#8 0x564fbacadad9 <unknown>\n#9 0x564fbacdc78e <unknown>\n#10 0x564fbacfb303 <unknown>\n#11 0x564fbacdc363 <unknown>\n#12 0x564fbacac247 <unknown>\n#13 0x564fbacacb9e <unknown>\n#14 0x564fbaf5022b <unknown>\n#15 0x564fbaf542d1 <unknown>\n#16 0x564fbaf3bade <unknown>\n#17 0x564fbaf54e32 <unknown>\n#18 0x564fbaf2077f <unknown>\n#19 0x564fbaf79618 <unknown>\n#20 0x564fbaf797f0 <unknown>\n#21 0x564fbaf88d8c <unknown>\n#22 0x7fa3f2894ac3 <unknown>",
+        "time" : {
+          "start" : 1721766189558,
+          "stop" : 1721766190964,
+          "duration" : 1406
+        }
+      }, {
+        "uid" : "42e1f8731a579da5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/94//#testresult/42e1f8731a579da5",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome-headless-shell=126.0.6478.126); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x55a5b59cac7a <unknown>\n#1 0x55a5b56ade2c <unknown>\n#2 0x55a5b56b3539 <unknown>\n#3 0x55a5b56b52e5 <unknown>\n#4 0x55a5b56b536c <unknown>\n#5 0x55a5b56fc8ae <unknown>\n#6 0x55a5b56fb853 <unknown>\n#7 0x55a5b56ef15f <unknown>\n#8 0x55a5b571d5c2 <unknown>\n#9 0x55a5b56eead9 <unknown>\n#10 0x55a5b571d78e <unknown>\n#11 0x55a5b573c303 <unknown>\n#12 0x55a5b571d363 <unknown>\n#13 0x55a5b56ed247 <unknown>\n#14 0x55a5b56edb9e <unknown>\n#15 0x55a5b599124b <unknown>\n#16 0x55a5b59952f1 <unknown>\n#17 0x55a5b597cafe <unknown>\n#18 0x55a5b5995e52 <unknown>\n#19 0x55a5b596179f <unknown>\n#20 0x55a5b59ba638 <unknown>\n#21 0x55a5b59ba810 <unknown>\n#22 0x55a5b59c9dac <unknown>\n#23 0x7f5398894ac3 <unknown>",
+        "time" : {
+          "start" : 1721718668353,
+          "stop" : 1721718668687,
+          "duration" : 334
+        }
+      }, {
+        "uid" : "7f89cf836fdb3831",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/94//#testresult/7f89cf836fdb3831",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721717792835,
+          "stop" : 1721717794314,
+          "duration" : 1479
+        }
+      }, {
+        "uid" : "5ed4156fed6598ce",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/94//#testresult/5ed4156fed6598ce",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721702404707,
+          "stop" : 1721702405118,
+          "duration" : 411
+        }
+      }, {
+        "uid" : "e53eca926c8f0b3",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/93//#testresult/e53eca926c8f0b3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721616341662,
+          "stop" : 1721616342100,
+          "duration" : 438
+        }
+      }, {
+        "uid" : "a421cf556cf8e7ed",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/92//#testresult/a421cf556cf8e7ed",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721529691203,
+          "stop" : 1721529691626,
+          "duration" : 423
+        }
+      }, {
+        "uid" : "6ee586245181221",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/91//#testresult/6ee586245181221",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721443017028,
+          "stop" : 1721443017448,
+          "duration" : 420
+        }
+      }, {
+        "uid" : "10cea97cad9aee6e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/90//#testresult/10cea97cad9aee6e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721356927344,
+          "stop" : 1721356927776,
+          "duration" : 432
+        }
+      }, {
+        "uid" : "3b127892da29ae9f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/89//#testresult/3b127892da29ae9f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721270294765,
+          "stop" : 1721270295177,
+          "duration" : 412
+        }
+      }, {
+        "uid" : "72b4395de29e0980",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/88//#testresult/72b4395de29e0980",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721184007638,
+          "stop" : 1721184008071,
+          "duration" : 433
+        }
+      } ]
+    },
+    "tags" : [ "regress" ]
+  },
+  "source" : "d29cfca17e199733.json",
+  "parameterValues" : [ "'chrome'" ]
+}
