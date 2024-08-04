@@ -1,0 +1,324 @@
+{
+  "uid" : "b1bc3a99abf61ca7",
+  "name" : "POST Создать пользователя с корректными данными",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_post_auth_user",
+  "historyId" : "d9a2437627bbe237bdf3b37bffffa3b2",
+  "time" : {
+    "start" : 1722738765776,
+    "stop" : 1722738777433,
+    "duration" : 11657
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+  "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f3aca688320>\n\n    @allure.title(\"POST Создать пользователя с корректными данными\")\n    def test_post_auth_user(self):\n        url = f'{self.constant.BASE_URL}auth/users/'\n        response = requests.post(url, json=self.constant.CREATE_USER)\n        time.sleep(10)\n>       Assertions.assert_status_code(response, self.code.STATUS_201)\n\ntests/test_api/test_api.py:26: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nresponse = <Response [400]>, expected_status_code = 201\n\n    @staticmethod\n    def assert_status_code(response: Response, expected_status_code: int):\n        actual_status_code = response.status_code\n        with allure.step(f\"Expected status {expected_status_code}\"):\n>           assert actual_status_code == expected_status_code, \\\n                f\"Unexpected status code. Expected: {expected_status_code}. Actual: {actual_status_code}\"\nE           AssertionError: Unexpected status code. Expected: 201. Actual: 400\n\napi_testing/assertions.py:11: AssertionError",
+  "flaky" : true,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1722738765757,
+      "stop" : 1722738765775,
+      "duration" : 18
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1722738765775,
+      "stop" : 1722738765775,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+    "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f3aca688320>\n\n    @allure.title(\"POST Создать пользователя с корректными данными\")\n    def test_post_auth_user(self):\n        url = f'{self.constant.BASE_URL}auth/users/'\n        response = requests.post(url, json=self.constant.CREATE_USER)\n        time.sleep(10)\n>       Assertions.assert_status_code(response, self.code.STATUS_201)\n\ntests/test_api/test_api.py:26: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nresponse = <Response [400]>, expected_status_code = 201\n\n    @staticmethod\n    def assert_status_code(response: Response, expected_status_code: int):\n        actual_status_code = response.status_code\n        with allure.step(f\"Expected status {expected_status_code}\"):\n>           assert actual_status_code == expected_status_code, \\\n                f\"Unexpected status code. Expected: {expected_status_code}. Actual: {actual_status_code}\"\nE           AssertionError: Unexpected status code. Expected: 201. Actual: 400\n\napi_testing/assertions.py:11: AssertionError",
+    "steps" : [ {
+      "name" : "Expected status 201",
+      "time" : {
+        "start" : 1722738777433,
+        "stop" : 1722738777433,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/assertions.py\", line 11, in assert_status_code\n    assert actual_status_code == expected_status_code, \\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1424-844"
+  }, {
+    "name" : "thread",
+    "value" : "2270-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 20,
+        "broken" : 0,
+        "skipped" : 27,
+        "passed" : 72,
+        "unknown" : 0,
+        "total" : 119
+      },
+      "items" : [ {
+        "uid" : "1fda79ed3682f3e3",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/105//#testresult/1fda79ed3682f3e3",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+        "time" : {
+          "start" : 1722652054310,
+          "stop" : 1722652066014,
+          "duration" : 11704
+        }
+      }, {
+        "uid" : "4eaea29b7819345a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/104//#testresult/4eaea29b7819345a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1722565759229,
+          "stop" : 1722565776372,
+          "duration" : 17143
+        }
+      }, {
+        "uid" : "a160d5361cb0c627",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/103//#testresult/a160d5361cb0c627",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+        "time" : {
+          "start" : 1722479697731,
+          "stop" : 1722479708925,
+          "duration" : 11194
+        }
+      }, {
+        "uid" : "c1f175c3a61cc831",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/102//#testresult/c1f175c3a61cc831",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+        "time" : {
+          "start" : 1722391753368,
+          "stop" : 1722391764333,
+          "duration" : 10965
+        }
+      }, {
+        "uid" : "fee8f57e06b90320",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/101//#testresult/fee8f57e06b90320",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+        "time" : {
+          "start" : 1722306540264,
+          "stop" : 1722306551371,
+          "duration" : 11107
+        }
+      }, {
+        "uid" : "7e263867b226babd",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/100//#testresult/7e263867b226babd",
+        "status" : "passed",
+        "time" : {
+          "start" : 1722220281110,
+          "stop" : 1722220293570,
+          "duration" : 12460
+        }
+      }, {
+        "uid" : "f3d1b47296c6be2d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/99//#testresult/f3d1b47296c6be2d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1722133935202,
+          "stop" : 1722133947209,
+          "duration" : 12007
+        }
+      }, {
+        "uid" : "2c0f24f5cf74a2e8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/98//#testresult/2c0f24f5cf74a2e8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1722047198148,
+          "stop" : 1722047209983,
+          "duration" : 11835
+        }
+      }, {
+        "uid" : "992fdd64d2bc26ad",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/214//#testresult/992fdd64d2bc26ad",
+        "status" : "passed",
+        "time" : {
+          "start" : 1722029230304,
+          "stop" : 1722029242713,
+          "duration" : 12409
+        }
+      }, {
+        "uid" : "1ef632c5f6fa398c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/97//#testresult/1ef632c5f6fa398c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721999067424,
+          "stop" : 1721999079674,
+          "duration" : 12250
+        }
+      }, {
+        "uid" : "9f353dfe26c3a432",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/97//#testresult/9f353dfe26c3a432",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721960927098,
+          "stop" : 1721960939159,
+          "duration" : 12061
+        }
+      }, {
+        "uid" : "618ea70a2f44994",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/96//#testresult/618ea70a2f44994",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721874535820,
+          "stop" : 1721874548530,
+          "duration" : 12710
+        }
+      }, {
+        "uid" : "1b63a8955d956b80",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/213//#testresult/1b63a8955d956b80",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721797089231,
+          "stop" : 1721797101539,
+          "duration" : 12308
+        }
+      }, {
+        "uid" : "f60f94aa5f0c2698",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/95//#testresult/f60f94aa5f0c2698",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721788114623,
+          "stop" : 1721788126876,
+          "duration" : 12253
+        }
+      }, {
+        "uid" : "b03015a2ca0bab81",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/213//#testresult/b03015a2ca0bab81",
+        "status" : "passed",
+        "time" : {
+          "start" : 1721765379352,
+          "stop" : 1721765391440,
+          "duration" : 12088
+        }
+      }, {
+        "uid" : "887879ed40e26401",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/94//#testresult/887879ed40e26401",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Unexpected status code. Expected: 201. Actual: 200",
+        "time" : {
+          "start" : 1721717889095,
+          "stop" : 1721717900660,
+          "duration" : 11565
+        }
+      }, {
+        "uid" : "690689d3f2c13a9d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/94//#testresult/690689d3f2c13a9d",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Unexpected status code. Expected: 201. Actual: 200",
+        "time" : {
+          "start" : 1721717005132,
+          "stop" : 1721717016851,
+          "duration" : 11719
+        }
+      }, {
+        "uid" : "1fbd9db2fe1882eb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/94//#testresult/1fbd9db2fe1882eb",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Unexpected status code. Expected: 201. Actual: 200",
+        "time" : {
+          "start" : 1721701704232,
+          "stop" : 1721701715503,
+          "duration" : 11271
+        }
+      }, {
+        "uid" : "26976bc3a24f9a92",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/93//#testresult/26976bc3a24f9a92",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Unexpected status code. Expected: 201. Actual: 200",
+        "time" : {
+          "start" : 1721615537532,
+          "stop" : 1721615548942,
+          "duration" : 11410
+        }
+      }, {
+        "uid" : "b5217fe6e3fb9293",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/92//#testresult/b5217fe6e3fb9293",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Unexpected status code. Expected: 201. Actual: 200",
+        "time" : {
+          "start" : 1721529051502,
+          "stop" : 1721529062337,
+          "duration" : 10835
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "b1bc3a99abf61ca7.json",
+  "parameterValues" : [ ]
+}
