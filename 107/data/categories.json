@@ -1,0 +1,81 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+      "children" : [ {
+        "name" : "POST Создать пользователя с корректными данными",
+        "uid" : "836e4812b38fbadf",
+        "parentUid" : "5820fa51546e1e6b8c308e8822d39993",
+        "status" : "failed",
+        "time" : {
+          "start" : 1722825085803,
+          "stop" : 1722825096817,
+          "duration" : 11014
+        },
+        "flaky" : true,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5820fa51546e1e6b8c308e8822d39993"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "IndexError: list index out of range",
+      "children" : [ {
+        "name" : "POST Активация пользователя с корректными данными",
+        "uid" : "bc99fe13c60ab49d",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1722825096872,
+          "stop" : 1722825098530,
+          "duration" : 1658
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "cbf21ee610ffd376e0ce643a364ade80"
+    }, {
+      "name" : "selenium.common.exceptions.ElementClickInterceptedException: Message: element click intercepted: Element <img class=\"avatar__icon\" src=\"https://storage.yandexcloud.net/pulsewave/avatars/2024-03-12_13h00_29.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Credential=YCAJEf6kp5paGpS-9IzAM7xDs%2F20240805%2Fru-central1%2Fs3%2Faws4_request&amp;X-Amz-Date=20240805T024712Z&amp;X-Amz-Expires=3600&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Signature=6440277ec100351caa8c73c9a10ba29dcc0ef1c520a661906a5caed45b594220\" alt=\"\"> is not clickable at point (1800, 32). Other element would receive the click: <div data-v-91c04aa2=\"\" data-v-72c59a66=\"\" class=\"loader\">...</div>\n  (Session info: chrome-headless-shell=127.0.6533.72)\nStacktrace:\n#0 0x55c85757d6ba <unknown>\n#1 0x55c85724d730 <unknown>\n#2 0x55c8572a3a96 <unknown>\n#3 0x55c8572a19ad <unknown>\n#4 0x55c85729f447 <unknown>\n#5 0x55c85729e30e <unknown>\n#6 0x55c857291d66 <unknown>\n#7 0x55c8572bfa52 <unknown>\n#8 0x55c857291719 <unknown>\n#9 0x55c8572bfc1e <unknown>\n#10 0x55c8572de1ca <unknown>\n#11 0x55c8572bf7f3 <unknown>\n#12 0x55c85728fec9 <unknown>\n#13 0x55c85729091e <unknown>\n#14 0x55c8575439eb <unknown>\n#15 0x55c857547972 <unknown>\n#16 0x55c857530e15 <unknown>\n#17 0x55c857548502 <unknown>\n#18 0x55c857515d2f <unknown>\n#19 0x55c85756c578 <unknown>\n#20 0x55c85756c750 <unknown>\n#21 0x55c85757c48c <unknown>\n#22 0x7f2d32494ac3 <unknown>",
+      "children" : [ {
+        "name" : "Проверка что авторизованный пользователь может выйти из аккаунта",
+        "uid" : "b979be476e0b7001",
+        "parentUid" : "6abf1f2002089624dac9f163f1f9fdb0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1722826032687,
+          "stop" : 1722826034077,
+          "duration" : 1390
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "6abf1f2002089624dac9f163f1f9fdb0"
+    }, {
+      "name" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome-headless-shell=127.0.6533.72); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x55d1e67136ba <unknown>\n#1 0x55d1e63e3730 <unknown>\n#2 0x55d1e63e95c1 <unknown>\n#3 0x55d1e63eb1f5 <unknown>\n#4 0x55d1e63eb27c <unknown>\n#5 0x55d1e64399ac <unknown>\n#6 0x55d1e64379ad <unknown>\n#7 0x55d1e6435447 <unknown>\n#8 0x55d1e643430e <unknown>\n#9 0x55d1e6427d66 <unknown>\n#10 0x55d1e6455a52 <unknown>\n#11 0x55d1e6427719 <unknown>\n#12 0x55d1e6455c1e <unknown>\n#13 0x55d1e64741ca <unknown>\n#14 0x55d1e64557f3 <unknown>\n#15 0x55d1e6425ec9 <unknown>\n#16 0x55d1e642691e <unknown>\n#17 0x55d1e66d99eb <unknown>\n#18 0x55d1e66dd972 <unknown>\n#19 0x55d1e66c6e15 <unknown>\n#20 0x55d1e66de502 <unknown>\n#21 0x55d1e66abd2f <unknown>\n#22 0x55d1e6702578 <unknown>\n#23 0x55d1e6702750 <unknown>\n#24 0x55d1e671248c <unknown>\n#25 0x7f519f894ac3 <unknown>",
+      "children" : [ {
+        "name" : "Проверка перехода в Рабочие пространства по ссылке На главную",
+        "uid" : "68c349dfed3a1f86",
+        "parentUid" : "76d3c8aa6531e05c8725db7aaff9a4d4",
+        "status" : "broken",
+        "time" : {
+          "start" : 1722826039092,
+          "stop" : 1722826039526,
+          "duration" : 434
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "76d3c8aa6531e05c8725db7aaff9a4d4"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
