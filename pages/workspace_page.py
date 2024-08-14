@@ -17,3 +17,7 @@ class WorkspacePage(BasePage):
     @allure.step(f"Проверка видимости заголовка 'Ваши рабочие пространства'")
     def get_title_main_workspace(self):
         return self.element_is_visible(self.locator.RIGHT_TITLE)
+
+    @allure.step(f"Проверка отсутствия лоадера")
+    def loader_is_not_visible(self):
+        return self.element_is_not_visible(self.locator.LOADER)

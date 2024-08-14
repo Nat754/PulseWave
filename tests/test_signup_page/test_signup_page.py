@@ -3,6 +3,7 @@ import allure
 import pytest
 from pages.base_page import BasePage
 from data import *
+from pages.workspace_page import WorkspacePage
 from tests.constant import Constant, Messages
 from tests.test_signup_page.constant import SignUpConstants
 
@@ -33,6 +34,8 @@ class TestSignupPage:
         link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
         signup_page_open.click_button_submit()
+        page = WorkspacePage(driver)
+        page.loader_is_not_visible()
         signup_page_open.click_button_avatar()
         signup_page_open.click_button_settings()
         signup_page_open.click_delete_profile()
@@ -144,6 +147,8 @@ class TestSignupPage:
         link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
         signup_page_open.click_button_submit()
+        page = WorkspacePage(driver)
+        page.loader_is_not_visible()
         signup_page_open.click_button_avatar()
         signup_page_open.click_button_settings()
         signup_page_open.click_delete_profile()

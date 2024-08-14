@@ -1,5 +1,4 @@
 import time
-import pytest
 import requests
 import allure
 import random

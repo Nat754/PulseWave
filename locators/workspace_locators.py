@@ -12,3 +12,4 @@ class WorkspaceLocators:
     RIGHT_MENU = (By.CSS_SELECTOR, 'div[class="name"]')
     TO_MAIM_LINK = (By.CLASS_NAME, 'navigation__item-home')
     RIGHT_TITLE = (By.CSS_SELECTOR, '.workspaces__content h2.title')
+    LOADER = (By.CSS_SELECTOR, '.loader .icon')
