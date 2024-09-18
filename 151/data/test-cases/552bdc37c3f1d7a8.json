@@ -1,0 +1,439 @@
+{
+  "uid" : "552bdc37c3f1d7a8",
+  "name" : "Проверка что авторизованный пользователь может выйти из аккаунта",
+  "fullName" : "tests.test_workspace_page.test_workspace_page.TestWorkspacePage#test_auth_user_logout",
+  "historyId" : "ef004c13c91f13fae735f1a09c2da0ef",
+  "time" : {
+    "start" : 1726628074924,
+    "stop" : 1726628075236,
+    "duration" : 312
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=128.0.6613.119); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x555d24e3086a <unknown>\n#1 0x555d24afee50 <unknown>\n#2 0x555d24b04c68 <unknown>\n#3 0x555d24b06935 <unknown>\n#4 0x555d24b069bc <unknown>\n#5 0x555d24b49031 <unknown>\n#6 0x555d24b73492 <unknown>\n#7 0x555d24b42e89 <unknown>\n#8 0x555d24b7365e <unknown>\n#9 0x555d24b919c6 <unknown>\n#10 0x555d24b73233 <unknown>\n#11 0x555d24b41093 <unknown>\n#12 0x555d24b4209e <unknown>\n#13 0x555d24df7acb <unknown>\n#14 0x555d24dfba81 <unknown>\n#15 0x555d24de3695 <unknown>\n#16 0x555d24dfc5f2 <unknown>\n#17 0x555d24dc886f <unknown>\n#18 0x555d24e1f668 <unknown>\n#19 0x555d24e1f832 <unknown>\n#20 0x555d24e2f65c <unknown>\n#21 0x7f87f7a94ac3 <unknown>",
+  "statusTrace" : "self = <tests.test_workspace_page.test_workspace_page.TestWorkspacePage object at 0x7fdd0ee1aff0>\nauth_user = <pages.login_page.LoginPage object at 0x7fdd0ee40650>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"aaadd135a0fa673cb0cf81e177538491\")>\n\n    @allure.title(\"Проверка что авторизованный пользователь может выйти из аккаунта\")\n    @pytest.mark.regress\n    def test_auth_user_logout(self, auth_user, driver):\n        page = SignUpPage(driver)\n>       page.click_button_avatar()\n\ntests/test_workspace_page/test_workspace_page.py:50: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/signup_page.py:93: in click_button_avatar\n    self.element_is_clickable(self.locator.BUTTON_AVATAR).click()\npages/base_page.py:61: in element_is_clickable\n    return Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:96: in until\n    value = method(self._driver)\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/support/expected_conditions.py:365: in _predicate\n    if element and element.is_enabled():\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:192: in is_enabled\n    return self._execute(Command.IS_ELEMENT_ENABLED)[\"value\"]\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:395: in _execute\n    return self._parent.execute(command, params)\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:347: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7fdd0ee410d0>\nresponse = {'status': 404, 'value': '{\"value\":{\"error\":\"stale element reference\",\"message\":\"stale element reference: stale elemen...\\\\n#19 0x555d24e1f832 \\\\u003Cunknown>\\\\n#20 0x555d24e2f65c \\\\u003Cunknown>\\\\n#21 0x7f87f7a94ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\nE         (Session info: chrome=128.0.6613.119); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nE       Stacktrace:\nE       #0 0x555d24e3086a <unknown>\nE       #1 0x555d24afee50 <unknown>\nE       #2 0x555d24b04c68 <unknown>\nE       #3 0x555d24b06935 <unknown>\nE       #4 0x555d24b069bc <unknown>\nE       #5 0x555d24b49031 <unknown>\nE       #6 0x555d24b73492 <unknown>\nE       #7 0x555d24b42e89 <unknown>\nE       #8 0x555d24b7365e <unknown>\nE       #9 0x555d24b919c6 <unknown>\nE       #10 0x555d24b73233 <unknown>\nE       #11 0x555d24b41093 <unknown>\nE       #12 0x555d24b4209e <unknown>\nE       #13 0x555d24df7acb <unknown>\nE       #14 0x555d24dfba81 <unknown>\nE       #15 0x555d24de3695 <unknown>\nE       #16 0x555d24dfc5f2 <unknown>\nE       #17 0x555d24dc886f <unknown>\nE       #18 0x555d24e1f668 <unknown>\nE       #19 0x555d24e1f832 <unknown>\nE       #20 0x555d24e2f65c <unknown>\nE       #21 0x7f87f7a94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: StaleElementReferenceException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1726628069920,
+      "stop" : 1726628070188,
+      "duration" : 268
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "auth_user",
+    "time" : {
+      "start" : 1726628070188,
+      "stop" : 1726628074924,
+      "duration" : 4736
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie",
+      "time" : {
+        "start" : 1726628072598,
+        "stop" : 1726628072624,
+        "duration" : 26
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Нажать кнопку 'Войти'",
+      "time" : {
+        "start" : 1726628072820,
+        "stop" : 1726628072891,
+        "duration" : 71
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Ждать обновление страницы",
+      "time" : {
+        "start" : 1726628072891,
+        "stop" : 1726628074910,
+        "duration" : 2019
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "Проверка отсутствия лоадера",
+      "time" : {
+        "start" : 1726628074910,
+        "stop" : 1726628074924,
+        "duration" : 14
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true,
+    "stepsCount" : 4
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1726627124214,
+      "stop" : 1726627124232,
+      "duration" : 18
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1726627124232,
+      "stop" : 1726627124232,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=128.0.6613.119); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x555d24e3086a <unknown>\n#1 0x555d24afee50 <unknown>\n#2 0x555d24b04c68 <unknown>\n#3 0x555d24b06935 <unknown>\n#4 0x555d24b069bc <unknown>\n#5 0x555d24b49031 <unknown>\n#6 0x555d24b73492 <unknown>\n#7 0x555d24b42e89 <unknown>\n#8 0x555d24b7365e <unknown>\n#9 0x555d24b919c6 <unknown>\n#10 0x555d24b73233 <unknown>\n#11 0x555d24b41093 <unknown>\n#12 0x555d24b4209e <unknown>\n#13 0x555d24df7acb <unknown>\n#14 0x555d24dfba81 <unknown>\n#15 0x555d24de3695 <unknown>\n#16 0x555d24dfc5f2 <unknown>\n#17 0x555d24dc886f <unknown>\n#18 0x555d24e1f668 <unknown>\n#19 0x555d24e1f832 <unknown>\n#20 0x555d24e2f65c <unknown>\n#21 0x7f87f7a94ac3 <unknown>",
+    "statusTrace" : "self = <tests.test_workspace_page.test_workspace_page.TestWorkspacePage object at 0x7fdd0ee1aff0>\nauth_user = <pages.login_page.LoginPage object at 0x7fdd0ee40650>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"aaadd135a0fa673cb0cf81e177538491\")>\n\n    @allure.title(\"Проверка что авторизованный пользователь может выйти из аккаунта\")\n    @pytest.mark.regress\n    def test_auth_user_logout(self, auth_user, driver):\n        page = SignUpPage(driver)\n>       page.click_button_avatar()\n\ntests/test_workspace_page/test_workspace_page.py:50: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/signup_page.py:93: in click_button_avatar\n    self.element_is_clickable(self.locator.BUTTON_AVATAR).click()\npages/base_page.py:61: in element_is_clickable\n    return Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:96: in until\n    value = method(self._driver)\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/support/expected_conditions.py:365: in _predicate\n    if element and element.is_enabled():\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:192: in is_enabled\n    return self._execute(Command.IS_ELEMENT_ENABLED)[\"value\"]\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py:395: in _execute\n    return self._parent.execute(command, params)\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py:347: in execute\n    self.error_handler.check_response(response)\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x7fdd0ee410d0>\nresponse = {'status': 404, 'value': '{\"value\":{\"error\":\"stale element reference\",\"message\":\"stale element reference: stale elemen...\\\\n#19 0x555d24e1f832 \\\\u003Cunknown>\\\\n#20 0x555d24e2f65c \\\\u003Cunknown>\\\\n#21 0x7f87f7a94ac3 \\\\u003Cunknown>\\\\n\"}}'}\n\n    def check_response(self, response: Dict[str, Any]) -> None:\n        \"\"\"Checks that a JSON response from the WebDriver does not have an\n        error.\n    \n        :Args:\n         - response - The JSON response from the WebDriver server as a dictionary\n           object.\n    \n        :Raises: If the response contains an error message.\n        \"\"\"\n        status = response.get(\"status\", None)\n        if not status or status == ErrorCode.SUCCESS:\n            return\n        value = None\n        message = response.get(\"message\", \"\")\n        screen: str = response.get(\"screen\", \"\")\n        stacktrace = None\n        if isinstance(status, int):\n            value_json = response.get(\"value\", None)\n            if value_json and isinstance(value_json, str):\n                import json\n    \n                try:\n                    value = json.loads(value_json)\n                    if len(value) == 1:\n                        value = value[\"value\"]\n                    status = value.get(\"error\", None)\n                    if not status:\n                        status = value.get(\"status\", ErrorCode.UNKNOWN_ERROR)\n                        message = value.get(\"value\") or value.get(\"message\")\n                        if not isinstance(message, str):\n                            value = message\n                            message = message.get(\"message\")\n                    else:\n                        message = value.get(\"message\", None)\n                except ValueError:\n                    pass\n    \n        exception_class: Type[WebDriverException]\n        e = ErrorCode()\n        error_codes = [item for item in dir(e) if not item.startswith(\"__\")]\n        for error_code in error_codes:\n            error_info = getattr(ErrorCode, error_code)\n            if isinstance(error_info, list) and status in error_info:\n                exception_class = getattr(ExceptionMapping, error_code, WebDriverException)\n                break\n        else:\n            exception_class = WebDriverException\n    \n        if not value:\n            value = response[\"value\"]\n        if isinstance(value, str):\n            raise exception_class(value)\n        if message == \"\" and \"message\" in value:\n            message = value[\"message\"]\n    \n        screen = None  # type: ignore[assignment]\n        if \"screen\" in value:\n            screen = value[\"screen\"]\n    \n        stacktrace = None\n        st_value = value.get(\"stackTrace\") or value.get(\"stacktrace\")\n        if st_value:\n            if isinstance(st_value, str):\n                stacktrace = st_value.split(\"\\n\")\n            else:\n                stacktrace = []\n                try:\n                    for frame in st_value:\n                        line = frame.get(\"lineNumber\", \"\")\n                        file = frame.get(\"fileName\", \"<anonymous>\")\n                        if line:\n                            file = f\"{file}:{line}\"\n                        meth = frame.get(\"methodName\", \"<anonymous>\")\n                        if \"className\" in frame:\n                            meth = f\"{frame['className']}.{meth}\"\n                        msg = \"    at %s (%s)\"\n                        msg = msg % (meth, file)\n                        stacktrace.append(msg)\n                except TypeError:\n                    pass\n        if exception_class == UnexpectedAlertPresentException:\n            alert_text = None\n            if \"data\" in value:\n                alert_text = value[\"data\"].get(\"text\")\n            elif \"alert\" in value:\n                alert_text = value[\"alert\"].get(\"text\")\n            raise exception_class(message, screen, stacktrace, alert_text)  # type: ignore[call-arg]  # mypy is not smart enough here\n>       raise exception_class(message, screen, stacktrace)\nE       selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\nE         (Session info: chrome=128.0.6613.119); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nE       Stacktrace:\nE       #0 0x555d24e3086a <unknown>\nE       #1 0x555d24afee50 <unknown>\nE       #2 0x555d24b04c68 <unknown>\nE       #3 0x555d24b06935 <unknown>\nE       #4 0x555d24b069bc <unknown>\nE       #5 0x555d24b49031 <unknown>\nE       #6 0x555d24b73492 <unknown>\nE       #7 0x555d24b42e89 <unknown>\nE       #8 0x555d24b7365e <unknown>\nE       #9 0x555d24b919c6 <unknown>\nE       #10 0x555d24b73233 <unknown>\nE       #11 0x555d24b41093 <unknown>\nE       #12 0x555d24b4209e <unknown>\nE       #13 0x555d24df7acb <unknown>\nE       #14 0x555d24dfba81 <unknown>\nE       #15 0x555d24de3695 <unknown>\nE       #16 0x555d24dfc5f2 <unknown>\nE       #17 0x555d24dc886f <unknown>\nE       #18 0x555d24e1f668 <unknown>\nE       #19 0x555d24e1f832 <unknown>\nE       #20 0x555d24e2f65c <unknown>\nE       #21 0x7f87f7a94ac3 <unknown>\n\n/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py:229: StaleElementReferenceException",
+    "steps" : [ {
+      "name" : "Нажать на иконку аватара",
+      "time" : {
+        "start" : 1726628074924,
+        "stop" : 1726628075235,
+        "duration" : 311
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=128.0.6613.119); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x555d24e3086a <unknown>\n#1 0x555d24afee50 <unknown>\n#2 0x555d24b04c68 <unknown>\n#3 0x555d24b06935 <unknown>\n#4 0x555d24b069bc <unknown>\n#5 0x555d24b49031 <unknown>\n#6 0x555d24b73492 <unknown>\n#7 0x555d24b42e89 <unknown>\n#8 0x555d24b7365e <unknown>\n#9 0x555d24b919c6 <unknown>\n#10 0x555d24b73233 <unknown>\n#11 0x555d24b41093 <unknown>\n#12 0x555d24b4209e <unknown>\n#13 0x555d24df7acb <unknown>\n#14 0x555d24dfba81 <unknown>\n#15 0x555d24de3695 <unknown>\n#16 0x555d24dfc5f2 <unknown>\n#17 0x555d24dc886f <unknown>\n#18 0x555d24e1f668 <unknown>\n#19 0x555d24e1f832 <unknown>\n#20 0x555d24e2f65c <unknown>\n#21 0x7f87f7a94ac3 <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/signup_page.py\", line 93, in click_button_avatar\n    self.element_is_clickable(self.locator.BUTTON_AVATAR).click()\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 61, in element_is_clickable\n    return Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 96, in until\n    value = method(self._driver)\n            ^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/support/expected_conditions.py\", line 365, in _predicate\n    if element and element.is_enabled():\n                   ^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 192, in is_enabled\n    return self._execute(Command.IS_ELEMENT_ENABLED)[\"value\"]\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webelement.py\", line 395, in _execute\n    return self._parent.execute(command, params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/webdriver.py\", line 347, in execute\n    self.error_handler.check_response(response)\n  File \"/opt/hostedtoolcache/Python/3.12.5/x64/lib/python3.12/site-packages/selenium/webdriver/remote/errorhandler.py\", line 229, in check_response\n    raise exception_class(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true,
+      "stepsCount" : 0
+    } ],
+    "attachments" : [ {
+      "uid" : "eed0b06da6b298",
+      "name" : "Screenshot",
+      "source" : "eed0b06da6b298.png",
+      "type" : "image/png",
+      "size" : 56702
+    }, {
+      "uid" : "a06725cc2c44df84",
+      "name" : "HTML source",
+      "source" : "a06725cc2c44df84.html",
+      "type" : "text/html",
+      "size" : 72939
+    } ],
+    "parameters" : [ ],
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true,
+    "stepsCount" : 1
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1726628075436,
+      "stop" : 1726628075501,
+      "duration" : 65
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false,
+    "stepsCount" : 0
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование страницы 'Рабочие пространства'"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_workspace_page"
+  }, {
+    "name" : "suite",
+    "value" : "test_workspace_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestWorkspacePage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1116-856"
+  }, {
+    "name" : "thread",
+    "value" : "2255-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_workspace_page.test_workspace_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 42,
+        "skipped" : 0,
+        "passed" : 126,
+        "unknown" : 0,
+        "total" : 168
+      },
+      "items" : [ {
+        "uid" : "33f7c34f861ed8b4",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/150//#testresult/33f7c34f861ed8b4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1726540417044,
+          "stop" : 1726540417486,
+          "duration" : 442
+        }
+      }, {
+        "uid" : "d0e4f000370c8321",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/149//#testresult/d0e4f000370c8321",
+        "status" : "passed",
+        "time" : {
+          "start" : 1726455822246,
+          "stop" : 1726455822698,
+          "duration" : 452
+        }
+      }, {
+        "uid" : "bc5b7171df2be4e1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/148//#testresult/bc5b7171df2be4e1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1726369282568,
+          "stop" : 1726369283017,
+          "duration" : 449
+        }
+      }, {
+        "uid" : "4e4f5c473e8093c6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/147//#testresult/4e4f5c473e8093c6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1726282639704,
+          "stop" : 1726282640147,
+          "duration" : 443
+        }
+      }, {
+        "uid" : "5772d082cdfcf9c7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/146//#testresult/5772d082cdfcf9c7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1726196132426,
+          "stop" : 1726196132865,
+          "duration" : 439
+        }
+      }, {
+        "uid" : "f49b224ea8c485bc",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/145//#testresult/f49b224ea8c485bc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1726109887837,
+          "stop" : 1726109888273,
+          "duration" : 436
+        }
+      }, {
+        "uid" : "f5bfbc1f5ca269f6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/144//#testresult/f5bfbc1f5ca269f6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1726023395183,
+          "stop" : 1726023395619,
+          "duration" : 436
+        }
+      }, {
+        "uid" : "30e281ec680b645",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/143//#testresult/30e281ec680b645",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725936873855,
+          "stop" : 1725936874312,
+          "duration" : 457
+        }
+      }, {
+        "uid" : "22a330a9a6067e7a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/142//#testresult/22a330a9a6067e7a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725850859950,
+          "stop" : 1725850860401,
+          "duration" : 451
+        }
+      }, {
+        "uid" : "39543b25930c5d7c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/141//#testresult/39543b25930c5d7c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725764265772,
+          "stop" : 1725764266224,
+          "duration" : 452
+        }
+      }, {
+        "uid" : "7a61ea233a5fd367",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/140//#testresult/7a61ea233a5fd367",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725683285059,
+          "stop" : 1725683285499,
+          "duration" : 440
+        }
+      }, {
+        "uid" : "b15d9a9a447f028d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/140//#testresult/b15d9a9a447f028d",
+        "status" : "broken",
+        "statusDetails" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=128.0.6613.113); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x55f1c4d898da <unknown>\n#1 0x55f1c4a57e50 <unknown>\n#2 0x55f1c4a5dc68 <unknown>\n#3 0x55f1c4a5f935 <unknown>\n#4 0x55f1c4a5f9bc <unknown>\n#5 0x55f1c4aae25c <unknown>\n#6 0x55f1c4aabd9d <unknown>\n#7 0x55f1c4aa9cf7 <unknown>\n#8 0x55f1c4aa8b9c <unknown>\n#9 0x55f1c4a9c4d6 <unknown>\n#10 0x55f1c4acc492 <unknown>\n#11 0x55f1c4a9be89 <unknown>\n#12 0x55f1c4acc65e <unknown>\n#13 0x55f1c4aea9c6 <unknown>\n#14 0x55f1c4acc233 <unknown>\n#15 0x55f1c4a9a093 <unknown>\n#16 0x55f1c4a9b09e <unknown>\n#17 0x55f1c4d50b3b <unknown>\n#18 0x55f1c4d54af1 <unknown>\n#19 0x55f1c4d3c705 <unknown>\n#20 0x55f1c4d55662 <unknown>\n#21 0x55f1c4d218df <unknown>\n#22 0x55f1c4d786d8 <unknown>\n#23 0x55f1c4d788a2 <unknown>\n#24 0x55f1c4d886cc <unknown>\n#25 0x7fc61d894ac3 <unknown>",
+        "time" : {
+          "start" : 1725677475358,
+          "stop" : 1725677475705,
+          "duration" : 347
+        }
+      }, {
+        "uid" : "ccf26c90840ee918",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/139//#testresult/ccf26c90840ee918",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725591181410,
+          "stop" : 1725591181852,
+          "duration" : 442
+        }
+      }, {
+        "uid" : "b21420237662383",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/138//#testresult/b21420237662383",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725505093120,
+          "stop" : 1725505093573,
+          "duration" : 453
+        }
+      }, {
+        "uid" : "3841998ac383926",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/137//#testresult/3841998ac383926",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725418575243,
+          "stop" : 1725418575676,
+          "duration" : 433
+        }
+      }, {
+        "uid" : "c60a0e2041650dc2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/136//#testresult/c60a0e2041650dc2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725331945647,
+          "stop" : 1725331946092,
+          "duration" : 445
+        }
+      }, {
+        "uid" : "401ceb899dd20316",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/135//#testresult/401ceb899dd20316",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725245915364,
+          "stop" : 1725245915794,
+          "duration" : 430
+        }
+      }, {
+        "uid" : "4f5d3378319b69b9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/134//#testresult/4f5d3378319b69b9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725159990615,
+          "stop" : 1725159991046,
+          "duration" : 431
+        }
+      }, {
+        "uid" : "70102bd4227b93d2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/133//#testresult/70102bd4227b93d2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1725072683513,
+          "stop" : 1725072683960,
+          "duration" : 447
+        }
+      }, {
+        "uid" : "4c22f746bd4f004b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/132//#testresult/4c22f746bd4f004b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1724986380762,
+          "stop" : 1724986381195,
+          "duration" : 433
+        }
+      } ]
+    },
+    "tags" : [ "regress" ]
+  },
+  "source" : "552bdc37c3f1d7a8.json",
+  "parameterValues" : [ "'chrome'" ]
+}
