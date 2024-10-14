@@ -38,7 +38,7 @@ class SignUpPage(BasePage):
     def get_allow_all_cookies(self):
         return self.element_is_visible(self.locator.ALLOW_ALL_COOKIES)
 
-    @allure.step(f"Видимость подсказки: '{message.PASSWORD_RULES_MSG}'")
+    @allure.step(f"Видимость подсказки: '{message.INVALID_PASSWORD_MSG}'")
     def check_password_rules_message(self):
         return self.element_is_visible(self.locator.PASSWORD_RULES)
 

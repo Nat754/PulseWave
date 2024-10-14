@@ -1,4 +1,8 @@
 import time
+from datetime import datetime
+from tests.constant import TestData
+
+import pytest
 import requests
 import allure
 import random
@@ -16,6 +20,7 @@ Faker.seed()
 class TestAPI:
     constant = ApiConstant()
     code = StatusCode()
+    test_data = TestData()
 
     @allure.title("POST Создать пользователя с корректными данными")
     def test_post_auth_user(self):
@@ -599,4 +604,57 @@ class TestAPI:
         url = f'{self.constant.BASE_URL}auth/users/me/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                    json={"current_password": password0})
+        print(response.text)
         Assertions.assert_status_code(response, self.code.STATUS_204)
+
+    @pytest.mark.parametrize('password', test_data.WEAK_PASSWORD)
+    @allure.title("POST Создать пользователя с некорректными данными")
+    def test_post_auth_user_weak_password(self, password):
+        url = f'{self.constant.BASE_URL}auth/users/'
+        response = requests.post(url, json={
+            "subscriber": "true",
+            "email": email1,
+            "password": password,
+            "re_password": password
+        })
+        # print(response.status_code)
+        # print(response.json())
+        Assertions.assert_status_code(response, self.code.STATUS_400)
+
+    @pytest.mark.skip('Только для ручного запуска')
+    @allure.title("Создать задачи для теста")
+    def test_post_api_column_id_task_new(self, use_api_base):
+        """
+        Создаёт {n} новых колонок в нашем тестовом пространстве и по {m} задач в случайной колонке со случайным
+        приоритетом
+        """
+        n, m = 5, 20
+        workspace_id, board_id = 192, 322
+        # workspace_id, board_id = 386, 457
+        jwt = use_api_base.create_jwt(email_auth, password0)
+        for _ in range(n):
+            # создать колонку
+            url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
+            requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                          json={"name": faker.job()})
+            for _ in range(m):
+                # получить id случайной колонки
+                url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
+                response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
+                columns_id = [i['id'] for i in response.json()]
+                column_id = random.choice(columns_id)
+                url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
+                # cоздать задачу в случайной колонке
+                response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
+                                         json={
+                                             "name": faker.city(),
+                                             "deadline": f"{datetime.now().date()}",
+                                             "description": faker.name(),
+                                             "priority": random.choice([random.randint(0, 3), None]),
+                                             "color_mark": random.choice(self.constant.COLOR_STICKER),
+                                             "name_mark": faker.first_name()
+                                         })
+                Assertions.assert_status_code(response, self.code.STATUS_201)
+                # url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+                # response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
+                # pprint(response.json())

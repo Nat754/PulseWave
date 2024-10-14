@@ -36,8 +36,7 @@ class SignUpConstants:
     }
 
     INCORRECT_EMAIL = ['test@test', 'test.test']
-    WEAK_PASSWORD = ['!1password', '!Password', '1Password', '!1PASSWORD', '  !1Password', '!1Pas  sword',
-                     '!1Password  ']
+    # WEAK_PASSWORD = ['password', '12345678', '1Passw', '!1Pas  sword', '!1Password  ', '  !1Password']
 
     INVITE_MSG = f'Регистрация\nМы отправили вам письмо на {email1}.\nДля подтверждения регистрации и \
 активации учётной записи пройдите по ссылке в письме.\nПисьмо не пришло?\nПроверьте папку Спам и нажмите кнопку \

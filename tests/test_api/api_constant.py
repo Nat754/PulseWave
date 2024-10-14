@@ -78,7 +78,7 @@ class ApiConstant:
         "name": faker.city(),
         "deadline": f"{datetime.now().date()}",
         "description": faker.name(),
-        "priority": 0,
+        "priority": 1,
         "color_mark": random.choice(COLOR_STICKER),
         "name_mark": faker.first_name()
     }
@@ -126,3 +126,11 @@ class ApiConstant:
     PUT_NOTIFICATION = {"read": True}
 
     COMMENT = {"message": faker.text()}
+
+    INVALID_PASSWORD = ['1ё3', 'qwertyui', '12345678', '      1й']
+
+
+class ResponseJson:
+    PASSWORD_SMALL = {'password': ['Введённый пароль слишком короткий. Он должен содержать как минимум 8 символов.']}
+    NO_DIGIT = {'password': ['Пароль должен содержать хотя бы одну цифру.']}
+    NO_LETTER = {'password': ['Пароль должен содержать хотя бы одну букву.']}

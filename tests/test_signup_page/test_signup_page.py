@@ -4,17 +4,18 @@ import pytest
 from pages.base_page import BasePage
 from data import *
 from pages.workspace_page import WorkspacePage
-from tests.constant import Constant, Messages
+from tests.constant import Constant, Messages, TestData
 from tests.test_signup_page.constant import SignUpConstants
 
 
 @pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{SignUpConstants.TEXT_SIGNUP}'")
 class TestSignupPage:
-    const = Constant()
-    signup = SignUpConstants()
-    msg = Messages()
+    const = Constant
+    signup = SignUpConstants
+    msg = Messages
     base = BasePage
+    test_data = TestData
 
     @allure.title("1.3, 1.3.1, 1.15 Регистрация с корректными email и паролем и с согласием на подписку")
     @pytest.mark.smoke
@@ -241,7 +242,7 @@ class TestSignupPage:
         url = signup_page_open.check_agreement_message_terms_of_service()
         assert url == self.const.TERMS_OF_SERVICE, f'Нет перехода на: "{self.const.TERMS_OF_SERVICE}"'
 
-    @pytest.mark.parametrize('data_password', signup.WEAK_PASSWORD)
+    @pytest.mark.parametrize('data_password', test_data.WEAK_PASSWORD)
     @allure.title("1.31- 1.34 Регистрация с корректным email и слабым паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_weak_password(self, signup_page_open, data_password):
