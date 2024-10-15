@@ -11,6 +11,7 @@ from data import email1, password0, email2, password3, password1, password2, ema
 from api_testing.api_base import ApiBase
 from api_testing.assertions import Assertions
 from tests.test_api.api_constant import ApiConstant, StatusCode
+from tests.constant import Links
 
 faker = Faker('En')
 Faker.seed()
@@ -18,20 +19,21 @@ Faker.seed()
 
 @allure.epic("Тестирование API")
 class TestAPI:
-    constant = ApiConstant()
-    code = StatusCode()
-    test_data = TestData()
+    link = Links
+    constant = ApiConstant
+    code = StatusCode
+    test_data = TestData
 
     @allure.title("POST Создать пользователя с корректными данными")
     def test_post_auth_user(self):
-        url = f'{self.constant.BASE_URL}auth/users/'
+        url = f'{self.link.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER)
         time.sleep(10)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("POST Активация пользователя с корректными данными")
     def test_post_users_activation(self, use_api_base):
-        url = f'{self.constant.BASE_URL}auth/users/activation/'
+        url = f'{self.link.BASE_URL}auth/users/activation/'
         user_token = use_api_base.get_activate_email_tokens(email1, password1)
         response = requests.post(url, json=user_token)
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -40,11 +42,11 @@ class TestAPI:
     def test_post_api_workspace_id_invite_user(self, use_api_base):
         """Пользователи добавляются по одному. Если пользователя не существует, он будет создан"""
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/workspace/'
+        url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         workspaces_id = [item['id'] for item in response.json()]
         workspace_id = random.choice(workspaces_id)
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/invite_user/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.INVITE_USER)
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -52,12 +54,12 @@ class TestAPI:
     @allure.title("POST Повторная отправка ссылки с приглашением пользователя")
     def test_post_api_workspace_id_resend_invite(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/workspace/'
+        url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         workspaces_id = [item['id'] for item in response.json()]
         workspace_id = random.choice(workspaces_id)
         invite_user_id = response.json()[0]['invited'][0]['id']
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/resend_invite/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/resend_invite/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"user_id": invite_user_id})
         Assertions.assert_status_code(response, self.code.STATUS_204)
@@ -66,12 +68,12 @@ class TestAPI:
     def test_post_api_workspace_id_kick_user(self, use_api_base):
         """Удаление как из участников так и из приглашенных"""
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/workspace/'
+        url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         workspaces_id = [item['id'] for item in response.json()]
         workspace_id = random.choice(workspaces_id)
         invite_user_id = response.json()[0]['invited'][0]['id']
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/kick_user/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/kick_user/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"user_id": invite_user_id} | self.constant.INVITE_USER)
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -79,18 +81,18 @@ class TestAPI:
     @allure.title("Проверка недействительности кеша доски")
     def test_api_invalidation_board(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/workspace/'
+        url = f'{self.link.BASE_URL}api/workspace/'
         with allure.step("GET Получить список всех Рабочих пространств авторизованного пользователя"):
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             workspaces_id = [item['id'] for item in response.json()]
             workspace_id = random.choice(workspaces_id)
         with allure.step("Создать доску"):
-            url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
+            url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json={"name": faker.job(), "work_space": f"{workspace_id}"})
             board_id = response.json()['id']
         with allure.step(f"GET Получить имя доски {board_id} Рабочего пространства {workspace_id}"):
-            url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+            url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             board_name = response.json()['name']
         with allure.step("Изменить имя доски"):
@@ -104,13 +106,13 @@ class TestAPI:
     @allure.title("Проверка недействительности кеша рабочего пространства")
     def test_api_invalidation_workspace(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/workspace/'
+        url = f'{self.link.BASE_URL}api/workspace/'
         with allure.step("GET Получить список всех Рабочих пространств авторизованного пользователя"):
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             workspaces_id = [item['id'] for item in response.json()]
             workspace_id = random.choice(workspaces_id)
         with allure.step(f"GET Получить имя Рабочего пространства с id='{workspace_id}"):
-            url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
+            url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             workspace_name = response.json()['name']
         with allure.step(f"PUT Изменить имя Рабочего пространства с id='{workspace_id}"):
@@ -125,21 +127,21 @@ class TestAPI:
 
     @allure.title("POST Регистрация ранее зарегистрированного пользователя")
     def test_post_create_auth_user(self):
-        url = f'{self.constant.BASE_URL}auth/users/'
+        url = f'{self.link.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER)
         print(response.json())
         Assertions.assert_status_code(response, self.code.STATUS_400)
 
     @allure.title("POST Создать пару токенов access и refresh")
     def test_post_auth_jwt_create(self):
-        url = f'{self.constant.BASE_URL}auth/jwt/create/'
+        url = f'{self.link.BASE_URL}auth/jwt/create/'
         response = requests.post(url, json={"email": email1, "password": password0})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получить список всех Рабочих пространств авторизованного пользователя")
     def test_get_api_workspace(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/workspace/'
+        url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -147,7 +149,7 @@ class TestAPI:
     def test_get_api_workspace_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id = use_api_base.get_workspace_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -155,7 +157,7 @@ class TestAPI:
     def test_put_api_workspace_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id = use_api_base.get_workspace_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                 json=self.constant.WORKSPACE)
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -164,7 +166,7 @@ class TestAPI:
     def test_patch_api_workspace_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id = use_api_base.get_workspace_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                   json=self.constant.WORKSPACE)
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -173,7 +175,7 @@ class TestAPI:
     def test_delete_api_workspace_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id = use_api_base.get_workspace_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
@@ -181,12 +183,12 @@ class TestAPI:
     def test_post_api_workspace_confirm_invite(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id = use_api_base.get_workspace_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/invite_user/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/invite_user/'
         requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                       json=self.constant.INVITE_USER)
         time.sleep(10)
         token = use_api_base.confirm_invite_token(email_auth, password_auth_email)
-        url = f'{self.constant.BASE_URL}api/workspace/confirm_invite/'
+        url = f'{self.link.BASE_URL}api/workspace/confirm_invite/'
         response = requests.post(url, headers={'accept': 'application/json'},
                                  json={"token": token})
         Assertions.assert_status_code(response, self.code.STATUS_204)
@@ -195,7 +197,7 @@ class TestAPI:
     def test_get_api_workspace_id_boards(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id = use_api_base.get_workspace_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -203,7 +205,7 @@ class TestAPI:
     def test_post_api_workspace_id_boards(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id = use_api_base.get_workspace_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.BOARD_CREATE | {"work_space": f"{workspace_id}"})
         Assertions.assert_status_code(response, self.code.STATUS_201)
@@ -212,7 +214,7 @@ class TestAPI:
     def test_get_api_workspace_id_boards_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id, board_id = use_api_base.get_board_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -220,7 +222,7 @@ class TestAPI:
     def test_put_api_workspace_id_boards_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id, board_id = use_api_base.get_board_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                 json=self.constant.BOARD_CREATE)
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -229,7 +231,7 @@ class TestAPI:
     def test_patch_api_workspace_id_boards_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id, board_id = use_api_base.get_board_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                   json=self.constant.BOARD_CREATE)
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -238,7 +240,7 @@ class TestAPI:
     def test_post_api_board_create(self, use_api_base):
         """Создание доски без указания РП, будет создано дефолтное РП для этой доски"""
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/board_create/'
+        url = f'{self.link.BASE_URL}api/board_create/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.BOARD_CREATE)
         Assertions.assert_status_code(response, self.code.STATUS_201)
@@ -247,7 +249,7 @@ class TestAPI:
     def test_get_api_board_users(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id = use_api_base.get_workspace_id()
-        url = f'{self.constant.BASE_URL}api/board_users/?workspace={workspace_id}'
+        url = f'{self.link.BASE_URL}api/board_users/?workspace={workspace_id}'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -255,7 +257,7 @@ class TestAPI:
     def test_post_api_board_id_column(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()[1]
-        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/'
+        url = f'{self.link.BASE_URL}api/boards/{board_id}/column/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.BOARD_CREATE)
         Assertions.assert_status_code(response, self.code.STATUS_201)
@@ -264,7 +266,7 @@ class TestAPI:
     def test_get_api_boards_id_column(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id = use_api_base.get_board_id()[1]
-        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/'
+        url = f'{self.link.BASE_URL}api/boards/{board_id}/column/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -272,7 +274,7 @@ class TestAPI:
     def test_get_api_boards_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id, column_id = use_api_base.get_board_column_id()
-        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
+        url = f'{self.link.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -280,13 +282,13 @@ class TestAPI:
     def test_put_api_board_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id, column_id = use_api_base.get_board_column_id()
-        url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
+        url = f'{self.link.BASE_URL}api/boards/{board_id}/column/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         columns_id = [i['id'] for i in response.json()]
         column_id_index = columns_id.index(column_id)
         column_id_new_index = random.randint(0, len(columns_id) - 1)
         print('board', board_id, 'all', columns_id, 'choice', column_id, column_id_index)
-        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
+        url = f'{self.link.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         column_name = response.json()['name']
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
@@ -304,7 +306,7 @@ class TestAPI:
     def test_patch_api_boards_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id, column_id = use_api_base.get_board_column_id()
-        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
+        url = f'{self.link.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -320,7 +322,7 @@ class TestAPI:
         """
         jwt = use_api_base.create_jwt(email1, password0)
         column_id = use_api_base.get_board_column_id()[1]
-        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
+        url = f'{self.link.BASE_URL}api/column/{column_id}/task/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.CREATE_TASK)
         Assertions.assert_status_code(response, self.code.STATUS_201)
@@ -329,7 +331,7 @@ class TestAPI:
     def test_get_column_id_task(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id = use_api_base.get_board_column_id()[1]
-        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
+        url = f'{self.link.BASE_URL}api/column/{column_id}/task/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -337,7 +339,7 @@ class TestAPI:
     def test_get_task_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
-        url = f'{self.constant.BASE_URL}api/task/{task_id}/'
+        url = f'{self.link.BASE_URL}api/task/{task_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -346,7 +348,7 @@ class TestAPI:
         """Для перемещения между колонок нужно передать column - id новой колонки и index - куда ее вставить"""
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
-        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
+        url = f'{self.link.BASE_URL}api/column/{column_id}/task/{task_id}/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                 json={"name": "name", "index": 0, "column": f"{column_id}",
                                       "responsible": [f'{use_api_base.get_auth_user_id()}']})
@@ -357,7 +359,7 @@ class TestAPI:
         """Перемещение между колонками возможно только PUT запросом"""
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
-        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
+        url = f'{self.link.BASE_URL}api/column/{column_id}/task/{task_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                   json={"name": "name", "index": 0, "column": f"{column_id}",
                                         "responsible": [f'{use_api_base.get_auth_user_id()}']})
@@ -367,7 +369,7 @@ class TestAPI:
     def test_delete_column_id_task_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
-        url = f'{self.constant.BASE_URL}api/column/{column_id}/task/{task_id}/'
+        url = f'{self.link.BASE_URL}api/column/{column_id}/task/{task_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
@@ -375,7 +377,7 @@ class TestAPI:
     def test_delete_api_boards_id_column_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         board_id, column_id = use_api_base.get_board_column_id()
-        url = f'{self.constant.BASE_URL}api/boards/{board_id}/column/{column_id}/'
+        url = f'{self.link.BASE_URL}api/boards/{board_id}/column/{column_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
@@ -383,14 +385,14 @@ class TestAPI:
     def test_delete_api_workspace_id_boards_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         workspace_id, board_id = use_api_base.get_board_id()
-        url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Создать Рабочее пространство")
     def test_post_api_workspace(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/workspace/'
+        url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.WORKSPACE)
         Assertions.assert_status_code(response, self.code.STATUS_201)
@@ -398,18 +400,18 @@ class TestAPI:
     @allure.title("GET Список уведомлений текущего пользователя")
     def test_get_api_notification(self, use_api_base):
         jwt = use_api_base.create_jwt(email_auth, password0)
-        url = f'{self.constant.BASE_URL}api/notification/'
+        url = f'{self.link.BASE_URL}api/notification/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("PATCH Отметить прочтение уведомления")
     def test_patch_api_notification_id_read(self, use_api_base):
         jwt = use_api_base.create_jwt(email_auth, password0)
-        url = f'{self.constant.BASE_URL}api/notification/'
+        url = f'{self.link.BASE_URL}api/notification/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         notifications_id = [item['id'] for item in response.json()]
         notification_id = random.choice(notifications_id)
-        url = f'{self.constant.BASE_URL}api/notification/{notification_id}/read/'
+        url = f'{self.link.BASE_URL}api/notification/{notification_id}/read/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                   json=self.constant.PUT_NOTIFICATION)
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -417,11 +419,11 @@ class TestAPI:
     @allure.title("PUT Отметить прочтение уведомления")
     def test_put_api_notification_id_read(self, use_api_base):
         jwt = use_api_base.create_jwt(email_auth, password0)
-        url = f'{self.constant.BASE_URL}api/notification/'
+        url = f'{self.link.BASE_URL}api/notification/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         notifications_id = [item['id'] for item in response.json()]
         notification_id = random.choice(notifications_id)
-        url = f'{self.constant.BASE_URL}api/notification/{notification_id}/read/'
+        url = f'{self.link.BASE_URL}api/notification/{notification_id}/read/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                 json=self.constant.PUT_NOTIFICATION)
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -429,7 +431,7 @@ class TestAPI:
     @allure.title("PATCH Отметить прочтение всех уведомлений")
     def test_patch_api_notification_read_all(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/notification/read_all/'
+        url = f'{self.link.BASE_URL}api/notification/read_all/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -437,7 +439,7 @@ class TestAPI:
     def test_post_api_task_id_comment(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
-        url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
+        url = f'{self.link.BASE_URL}api/task/{task_id}/comment/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.COMMENT)
         Assertions.assert_status_code(response, self.code.STATUS_201)
@@ -446,11 +448,11 @@ class TestAPI:
     def test_delete_task_id_comment_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
-        url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
+        url = f'{self.link.BASE_URL}api/task/{task_id}/comment/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.COMMENT)
         comment_id = response.json()['id']
-        url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/{comment_id}/'
+        url = f'{self.link.BASE_URL}api/task/{task_id}/comment/{comment_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
@@ -458,21 +460,21 @@ class TestAPI:
     def test_get_task_id_comment(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         column_id, task_id = use_api_base.get_column_task_id()
-        url = f'{self.constant.BASE_URL}api/task/{task_id}/comment/'
+        url = f'{self.link.BASE_URL}api/task/{task_id}/comment/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получить список всех пользователей для поиска")
     def test_get_api_user_list(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}api/user_list/?users=tes'
+        url = f'{self.link.BASE_URL}api/user_list/?users=tes'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Обновить JWT access_token авторизованного пользователя")
     def test_post_auth_jwt_refresh(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}auth/jwt/refresh/'
+        url = f'{self.link.BASE_URL}auth/jwt/refresh/'
         refresh = use_api_base.create_refresh(email1, password0)
         response = requests.post(url, json={"refresh": refresh})
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -480,14 +482,14 @@ class TestAPI:
     @allure.title("GET Получить данные авторизованного пользователя")
     def test_get_auth_users(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}auth/users/'
+        url = f'{self.link.BASE_URL}auth/users/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получить данные авторизованного пользователя me")
     def test_get_auth_user_me(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}auth/users/me/'
+        url = f'{self.link.BASE_URL}auth/users/me/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -495,7 +497,7 @@ class TestAPI:
     def test_get_auth_user_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         user_id = use_api_base.get_auth_user_id()
-        url = f'{self.constant.BASE_URL}auth/users/{user_id}/'
+        url = f'{self.link.BASE_URL}auth/users/{user_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -503,7 +505,7 @@ class TestAPI:
     def test_put_auth_users_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         user_id = use_api_base.get_auth_user_id()
-        url = f'{self.constant.BASE_URL}auth/users/{user_id}/'
+        url = f'{self.link.BASE_URL}auth/users/{user_id}/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
@@ -511,7 +513,7 @@ class TestAPI:
     def test_patch_auth_users_id(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
         user_id = use_api_base.get_auth_user_id()
-        url = f'{self.constant.BASE_URL}auth/users/{user_id}/'
+        url = f'{self.link.BASE_URL}auth/users/{user_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}",
                                                 'name': faker.first_name()})
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -519,14 +521,14 @@ class TestAPI:
     @allure.title("PUT Обновить все данные авторизованного пользователя me")
     def test_put_auth_users_me(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}auth/users/me/'
+        url = f'{self.link.BASE_URL}auth/users/me/'
         response = requests.put(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Запрос на смену почты")
     def test_post_auth_change_email(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}auth/change_email/'
+        url = f'{self.link.BASE_URL}auth/change_email/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.NEW_EMAIL)
         time.sleep(10)
@@ -535,7 +537,7 @@ class TestAPI:
     @allure.title("POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.")
     def test_post_auth_change_email_confirm(self, use_api_base):
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}auth/change_email_confirm/'
+        url = f'{self.link.BASE_URL}auth/change_email_confirm/'
         token_email = use_api_base.change_email_confirm_token(email2, password2)
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"token": token_email, "email": email2, "password": password0})
@@ -544,7 +546,7 @@ class TestAPI:
     @allure.title("POST Сброс пароля")
     def test_post_auth_users_reset_password(self, use_api_base):
         jwt = use_api_base.create_jwt(email2, password0)
-        url = f'{self.constant.BASE_URL}auth/users/reset_password/'
+        url = f'{self.link.BASE_URL}auth/users/reset_password/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"email": email2})
         time.sleep(10)
@@ -555,7 +557,7 @@ class TestAPI:
     def test_post_auth_users_reset_password_confirm(self, use_api_base):
         jwt = use_api_base.create_jwt(email2, password0)
         page = ApiBase()
-        url = f'{self.constant.BASE_URL}auth/users/reset_password_confirm/'
+        url = f'{self.link.BASE_URL}auth/users/reset_password_confirm/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=page.get_confirm_email_tokens(email2, password2) | {
                                  "new_password": password3, "re_new_password": password3})
@@ -564,14 +566,14 @@ class TestAPI:
     @allure.title("DELETE Удалить авторизованного пользователя")
     def test_delete_auth_users_me(self, use_api_base):
         jwt = use_api_base.create_jwt(email2, password3)
-        url = f'{self.constant.BASE_URL}auth/users/me/'
+        url = f'{self.link.BASE_URL}auth/users/me/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                    json={"current_password": password3})
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Регистрация пользователя без электронной почты")
     def test_post_create_user_no_email(self):
-        url = f'{self.constant.BASE_URL}auth/users/'
+        url = f'{self.link.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER_NO_EMAIL)
         with allure.step(f"Expected message: {self.constant.NO_DATA}"):
             assert response.json()["email"] == self.constant.NO_DATA, \
@@ -580,7 +582,7 @@ class TestAPI:
 
     @allure.title("POST Регистрация пользователя без пароля")
     def test_post_create_user_no_passwrd(self):
-        url = f'{self.constant.BASE_URL}auth/users/'
+        url = f'{self.link.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER_NO_PASSWORD)
         with allure.step(f"Expected message: {self.constant.NO_DATA}"):
             assert response.json()["password"] == self.constant.NO_DATA, \
@@ -589,19 +591,19 @@ class TestAPI:
 
     @allure.title("POST Регистрация пользователя без подтверждения подписки")
     def test_post_create_user_no_subscriber(self, use_api_base):
-        url = f'{self.constant.BASE_URL}auth/users/'
+        url = f'{self.link.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER_NO_SUBSCRIBER)
         time.sleep(10)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("DELETE Активировать и удалить авторизованного пользователя")
     def test_delete_auth_users_me_new(self, use_api_base):
-        url = f'{self.constant.BASE_URL}auth/users/activation/'
+        url = f'{self.link.BASE_URL}auth/users/activation/'
         time.sleep(10)
         user_token = use_api_base.get_activate_email_tokens(email1, password1)
         requests.post(url, json=user_token)
         jwt = use_api_base.create_jwt(email1, password0)
-        url = f'{self.constant.BASE_URL}auth/users/me/'
+        url = f'{self.link.BASE_URL}auth/users/me/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                    json={"current_password": password0})
         print(response.text)
@@ -610,7 +612,7 @@ class TestAPI:
     @pytest.mark.parametrize('password', test_data.WEAK_PASSWORD)
     @allure.title("POST Создать пользователя с некорректными данными")
     def test_post_auth_user_weak_password(self, password):
-        url = f'{self.constant.BASE_URL}auth/users/'
+        url = f'{self.link.BASE_URL}auth/users/'
         response = requests.post(url, json={
             "subscriber": "true",
             "email": email1,
@@ -634,16 +636,16 @@ class TestAPI:
         jwt = use_api_base.create_jwt(email_auth, password0)
         for _ in range(n):
             # создать колонку
-            url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
+            url = f'{self.link.BASE_URL}api/boards/{board_id}/column/'
             requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                           json={"name": faker.job()})
             for _ in range(m):
                 # получить id случайной колонки
-                url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
+                url = f'{self.link.BASE_URL.BASE_URL}api/boards/{board_id}/column/'
                 response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
                 columns_id = [i['id'] for i in response.json()]
                 column_id = random.choice(columns_id)
-                url = f'{self.constant.BASE_URL}api/column/{column_id}/task/'
+                url = f'{self.link.BASE_URL}api/column/{column_id}/task/'
                 # cоздать задачу в случайной колонке
                 response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                          json={
@@ -655,6 +657,6 @@ class TestAPI:
                                              "name_mark": faker.first_name()
                                          })
                 Assertions.assert_status_code(response, self.code.STATUS_201)
-                # url = f'{self.constant.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
+                # url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/{board_id}/'
                 # response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
                 # pprint(response.json())

@@ -2,14 +2,14 @@ from locators.login_locators import LoginPageLocators
 from pages.base_page import BasePage
 import allure
 from tests.test_login_page.login_constant import LoginConstant
-from tests.constant import Messages, Constant
+from tests.constant import Messages, Links
 
 
 class LoginPage(BasePage):
     login = LoginConstant()
     locator = LoginPageLocators()
     message = Messages()
-    const = Constant()
+    link = Links()
 
     @allure.step(f"Проверка видимости заголовка {login.TEXT_LOGIN}")
     def get_title_login(self):
@@ -43,4 +43,4 @@ class LoginPage(BasePage):
 
     @allure.step('Ждать обновление страницы')
     def check_changed_url_login(self):
-        return self.wait_changed_url(self.const.LOGIN_PAGE)
+        return self.wait_changed_url(self.link.LOGIN_PAGE)

@@ -5,14 +5,14 @@ from locators.signup_locators import SignUpLocators
 from pages.base_page import BasePage
 import allure
 from tests.test_signup_page.constant import SignUpConstants
-from tests.constant import Messages, Constant
+from tests.constant import Messages, Links
 
 
 class SignUpPage(BasePage):
     signup = SignUpConstants()
     locator = SignUpLocators()
     message = Messages()
-    const = Constant()
+    const = Links()
 
     @staticmethod
     def get_confirm_signup_to_email(e_mail, passwrd):
@@ -25,7 +25,7 @@ class SignUpPage(BasePage):
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
             raw_email = str(data_id[0][1])
             mail.logout()
-            first = raw_email.find(Constant.MAIN_PAGE)
+            first = raw_email.find(Links.MAIN_PAGE)
             end = raw_email[first:].find('"')
             link = raw_email[first:first + end]
             return link

@@ -6,12 +6,14 @@ from faker import Faker
 import requests
 from data import email1, password0
 from tests.test_api.api_constant import ApiConstant
+from tests.constant import Links
 
 faker = Faker('En')
 Faker.seed()
 
 
 class ApiBase:
+    link = Links
 
     @staticmethod
     def get_root_path():
@@ -81,7 +83,7 @@ class ApiBase:
     @staticmethod
     def create_jwt(e_mail, passwrd):
         with allure.step('Получить access токен пользователя на емайл'):
-            url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
+            url = f'{Links.BASE_URL}auth/jwt/create/'
             response = requests.post(url, json={"email": e_mail, "password": passwrd})
             jwt = f"JWT {response.json()['access']}"
             return jwt
@@ -89,7 +91,7 @@ class ApiBase:
     @staticmethod
     def create_refresh(e_mail, passwrd):
         with allure.step('Получить refresh токен пользователя на емайл'):
-            url = f'{ApiConstant.BASE_URL}auth/jwt/create/'
+            url = f'{Links.BASE_URL}auth/jwt/create/'
             response = requests.post(url, json={"email": e_mail, "password": passwrd})
             refresh = f"{response.json()['refresh']}"
             return refresh
@@ -131,7 +133,7 @@ class ApiBase:
     def get_auth_user_id(self):
         with allure.step("Получить id авторизованного пользователя"):
             jwt = self.create_jwt(email1, password0)
-            url = f'{ApiConstant.BASE_URL}auth/users/me/'
+            url = f'{self.link.BASE_URL}auth/users/me/'
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
             user_id = response.json()['id']
             return user_id
@@ -139,7 +141,7 @@ class ApiBase:
     def get_workspace_id(self):
         with allure.step("Получить id рабочего пространства"):
             jwt = self.create_jwt(email1, password0)
-            url = f'{ApiConstant.BASE_URL}api/workspace/'
+            url = f'{self.link.BASE_URL}api/workspace/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                      json=ApiConstant.WORKSPACE)
             workspaces_id = [item['id'] for item in response.json()]
@@ -150,7 +152,7 @@ class ApiBase:
         with allure.step("Получить id доски"):
             jwt = self.create_jwt(email1, password0)
             workspace_id = self.get_workspace_id()
-            url = f'{ApiConstant.BASE_URL}api/workspace/{workspace_id}/boards/'
+            url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/boards/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json={"name": faker.job()[:50], "work_space": f"{workspace_id}"})
             # print(response.json())
@@ -161,7 +163,7 @@ class ApiBase:
         with allure.step("Получить id колонки"):
             jwt = self.create_jwt(email1, password0)
             workspace_id, board_id = self.get_board_id()
-            url = f'{ApiConstant.BASE_URL}api/boards/{board_id}/column/'
+            url = f'{self.link.BASE_URL}api/boards/{board_id}/column/'
             requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                           json=ApiConstant.BOARD_CREATE)
             response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
@@ -175,7 +177,7 @@ class ApiBase:
         with allure.step("Получить id задачи"):
             jwt = self.create_jwt(email1, password0)
             board_id, column_id = self.get_board_column_id()
-            url = f'{ApiConstant.BASE_URL}api/column/{column_id}/task/'
+            url = f'{self.link.BASE_URL}api/column/{column_id}/task/'
             response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                      json=ApiConstant.CREATE_TASK)
             # print(response.json())

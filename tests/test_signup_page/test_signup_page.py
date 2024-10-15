@@ -4,14 +4,14 @@ import pytest
 from pages.base_page import BasePage
 from data import *
 from pages.workspace_page import WorkspacePage
-from tests.constant import Constant, Messages, TestData
+from tests.constant import Links, Messages, TestData
 from tests.test_signup_page.constant import SignUpConstants
 
 
-@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
+@pytest.mark.parametrize('browser', Links.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{SignUpConstants.TEXT_SIGNUP}'")
 class TestSignupPage:
-    const = Constant
+    const = Links
     signup = SignUpConstants
     msg = Messages
     base = BasePage

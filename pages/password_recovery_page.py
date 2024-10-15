@@ -4,14 +4,14 @@ from locators.password_recovery_locators import PasswordRecoveryLocators
 from pages.base_page import BasePage
 import allure
 from tests.test_password_recovery.constant import PasswordRecoveryConstant
-from tests.constant import Messages, Constant
+from tests.constant import Messages, Links
 
 
 class PasswordRecoveryPage(BasePage):
     recovery = PasswordRecoveryConstant()
     locator = PasswordRecoveryLocators()
     message = Messages()
-    const = Constant()
+    const = Links()
 
     @staticmethod
     def get_link_recovery_password_by_email():
@@ -24,7 +24,7 @@ class PasswordRecoveryPage(BasePage):
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
             raw_email = str(data_id[0][1])
             mail.logout()
-            first = raw_email.find(Constant.MAIN_PAGE)
+            first = raw_email.find(Links.MAIN_PAGE)
             end = raw_email[first:].find('"')
             link = raw_email[first:first + end]
             return link

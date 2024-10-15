@@ -1,14 +1,14 @@
 import allure
 import pytest
-from tests.constant import Constant
+from tests.constant import Links
 from tests.test_main_page.constant import MainConstant
 
 
-@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
+@pytest.mark.parametrize('browser', Links.SET_OF_BROWSERS)
 @allure.epic("Тестирование Главной страницы")
 class TestMainPage:
     main = MainConstant()
-    const = Constant()
+    const = Links()
 
     @allure.title(f"1.1 Проверка перехода на страницу {const.SIGNUP_PAGE} по кнопке '{main.TEXT_SIGNUP}'")
     @pytest.mark.smoke

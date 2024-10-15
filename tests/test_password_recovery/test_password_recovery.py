@@ -2,15 +2,15 @@ import time
 import allure
 import pytest
 from data import email_auth, password0, emailx
-from tests.constant import Constant, Messages
+from tests.constant import Links, Messages
 from tests.test_password_recovery.constant import PasswordRecoveryConstant
 from pages.password_recovery_page import PasswordRecoveryPage
 
 
-@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
+@pytest.mark.parametrize('browser', Links.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{PasswordRecoveryConstant.RECOVERY_PAGE_TITLE}'")
 class TestPasswordRecoveryPage:
-    const = Constant()
+    const = Links()
     recovery = PasswordRecoveryConstant()
     message = Messages()
     page = PasswordRecoveryPage

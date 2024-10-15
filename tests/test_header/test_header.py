@@ -1,14 +1,14 @@
 import allure
 import pytest
-from tests.constant import Constant
+from tests.constant import Links
 from tests.test_header.constant import HeaderConstant
 
 
-@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
+@pytest.mark.parametrize('browser', Links.SET_OF_BROWSERS)
 @allure.epic("Тестирование Хедера")
 class TestHeader:
     header = HeaderConstant()
-    const = Constant()
+    const = Links()
 
     @pytest.mark.parametrize('url', [const.MAIN_PAGE])
     @allure.title("Проверка некликабельности логотипа на Главной странице")

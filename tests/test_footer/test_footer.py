@@ -1,15 +1,15 @@
 import allure
 import pytest
 from pages.footer import FooterPage
-from tests.constant import Constant
+from tests.constant import Links
 from tests.test_footer.constant import FooterConstant
 
 
-@pytest.mark.parametrize('browser', Constant.SET_OF_BROWSERS)
+@pytest.mark.parametrize('browser', Links.SET_OF_BROWSERS)
 @allure.epic("Тестирование Футера")
 class TestFooter:
     footer = FooterConstant()
-    const = Constant()
+    const = Links()
 
     @pytest.mark.parametrize('url', FooterConstant.PAGES)
     @pytest.mark.smoke

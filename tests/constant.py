@@ -1,4 +1,4 @@
-class Constant:
+class Links:
 
     # MAIN_PAGE = 'https://web.dev.pulsewave.ru/'
     MAIN_PAGE = 'https://pulsewave.ru/'
@@ -10,6 +10,9 @@ class Constant:
     PULSEWAVE_PRIVACY = f'{MAIN_PAGE}documents/privacy'
     PASSWORD_RECOVERY = f'{MAIN_PAGE}auth/password?email='
     SET_OF_BROWSERS = ['chrome']
+    # BASE_URL = "https://api.dev.pulsewave.ru/"
+    BASE_URL = 'https://api.pulsewave.ru/'
+    MAIL_URL = 'https://mail.ru/'
 
 
 class Messages:

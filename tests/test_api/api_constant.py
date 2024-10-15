@@ -17,10 +17,6 @@ class StatusCode:
 
 class ApiConstant:
 
-    # BASE_URL = "https://api.dev.pulsewave.ru/"
-    BASE_URL = 'https://api.pulsewave.ru/'
-    MAIL_URL = 'https://mail.ru/'
-
     COLOR_STICKER = ['#FF5E5E', '#FF9A3C', '#FFC727', '#67A700', '#5ED8FF', '#0069B4', '#7849FF', '#C852FF']
 
     CREATE_USER = {
