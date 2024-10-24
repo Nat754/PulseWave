@@ -620,7 +620,7 @@ class TestAPI:
             "re_password": password
         })
         # print(response.status_code)
-        # print(response.json())
+        # print(password, response.json())
         Assertions.assert_status_code(response, self.code.STATUS_400)
 
     @pytest.mark.skip('Только для ручного запуска')

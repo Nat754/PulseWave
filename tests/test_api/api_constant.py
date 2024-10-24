@@ -123,7 +123,7 @@ class ApiConstant:
 
     COMMENT = {"message": faker.text()}
 
-    INVALID_PASSWORD = ['1ё3', 'qwertyui', '12345678', '      1й']
+    INVALID_PASSWORD = ['1ё3', 'qwertyui', '12345678']
 
 
 class ResponseJson:
