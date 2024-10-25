@@ -226,6 +226,7 @@ class TestSignupPage:
             assert element.value_of_css_property('font-family') == self.signup.AGREEMENT_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
+    @pytest.mark.skip(reason='Отключили переход на Условия пользования')
     @allure.title(f"1.29 Окно регистрации сообщение '{msg.AGREEMENT_MSG}' проверка корректности перехода по ссылке "
                   f"'{msg.AGREEMENT_MSG[54:83]}'")
     @pytest.mark.smoke
@@ -234,6 +235,7 @@ class TestSignupPage:
         url = signup_page_open.check_agreement_message_policy_service()
         assert url == self.const.PULSEWAVE_PRIVACY, f'Нет перехода на: "{self.const.PULSEWAVE_PRIVACY}"'
 
+    @pytest.mark.skip(reason='Отключили переход на Условия пользования')
     @allure.title(f"1.30 Окно регистрации сообщение '{msg.AGREEMENT_MSG}', проверка корректности перехода по ссылке "
                   f"'{msg.AGREEMENT_MSG[30:51]}'")
     @pytest.mark.smoke

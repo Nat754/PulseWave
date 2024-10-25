@@ -25,6 +25,7 @@ class TestFooter:
         link = driver.current_url
         assert link == self.footer.COOKIES, f"Неверный url '{link}'"
 
+    @pytest.mark.skip(reason='Отключили переход на Лицензионное соглашение')
     @pytest.mark.smoke
     @pytest.mark.parametrize('url', footer.PAGES)
     def test_get_footer_link(self, footer_open, driver, url):
