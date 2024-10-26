@@ -1,0 +1,291 @@
+{
+  "uid" : "1936d86aa2fb1cf3",
+  "name" : "W9. Проверка возможности изменить цвет переключателя 'Непрочитанные'",
+  "fullName" : "tests.test_workspace_page.test_workspace_page.TestWorkspacePage#test_check_toggle_read",
+  "historyId" : "044bbdba2cea772ae894b145c678616f",
+  "time" : {
+    "start" : 1729970613184,
+    "stop" : 1729970613358,
+    "duration" : 174
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Не сменился цвет переключателя уведомлений\nassert 'rgba(252, 224, 88, 1)' != 'rgba(252, 224, 88, 1)'",
+  "statusTrace" : "self = <tests.test_workspace_page.test_workspace_page.TestWorkspacePage object at 0x7f8f09573260>\nauth_user = <pages.login_page.LoginPage object at 0x7f8f095a1af0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"c8cc269420dfb3c7aeb9d5b6dcbc6799\")>\n\n    @allure.title(\"W9. Проверка возможности изменить цвет переключателя 'Непрочитанные'\")\n    @pytest.mark.regress\n    def test_check_toggle_read(self, auth_user, driver):\n        page = WorkspacePage(driver)\n        page.get_notify_button_is_visible().click()\n        toggle = page.get_toggle_is_visible()\n        color_old = toggle.value_of_css_property('background-color')\n        toggle.click()\n        color_new = toggle.value_of_css_property('background-color')\n>       assert color_old != color_new, 'Не сменился цвет переключателя уведомлений'\nE       AssertionError: Не сменился цвет переключателя уведомлений\nE       assert 'rgba(252, 224, 88, 1)' != 'rgba(252, 224, 88, 1)'\n\ntests/test_workspace_page/test_workspace_page.py:96: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "auth_user",
+    "time" : {
+      "start" : 1729970608037,
+      "stop" : 1729970613184,
+      "duration" : 5147
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю все' в сообщении о принятии файлов cookie",
+      "time" : {
+        "start" : 1729970611334,
+        "stop" : 1729970611362,
+        "duration" : 28
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Нажать кнопку 'Войти'",
+      "time" : {
+        "start" : 1729970611554,
+        "stop" : 1729970611645,
+        "duration" : 91
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Ждать обновление страницы",
+      "time" : {
+        "start" : 1729970611646,
+        "stop" : 1729970613166,
+        "duration" : 1520
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Проверка отсутствия лоадера",
+      "time" : {
+        "start" : 1729970613167,
+        "stop" : 1729970613184,
+        "duration" : 17
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1729970607753,
+      "stop" : 1729970608036,
+      "duration" : 283
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1729969483352,
+      "stop" : 1729969483370,
+      "duration" : 18
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1729969483370,
+      "stop" : 1729969483370,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Не сменился цвет переключателя уведомлений\nassert 'rgba(252, 224, 88, 1)' != 'rgba(252, 224, 88, 1)'",
+    "statusTrace" : "self = <tests.test_workspace_page.test_workspace_page.TestWorkspacePage object at 0x7f8f09573260>\nauth_user = <pages.login_page.LoginPage object at 0x7f8f095a1af0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"c8cc269420dfb3c7aeb9d5b6dcbc6799\")>\n\n    @allure.title(\"W9. Проверка возможности изменить цвет переключателя 'Непрочитанные'\")\n    @pytest.mark.regress\n    def test_check_toggle_read(self, auth_user, driver):\n        page = WorkspacePage(driver)\n        page.get_notify_button_is_visible().click()\n        toggle = page.get_toggle_is_visible()\n        color_old = toggle.value_of_css_property('background-color')\n        toggle.click()\n        color_new = toggle.value_of_css_property('background-color')\n>       assert color_old != color_new, 'Не сменился цвет переключателя уведомлений'\nE       AssertionError: Не сменился цвет переключателя уведомлений\nE       assert 'rgba(252, 224, 88, 1)' != 'rgba(252, 224, 88, 1)'\n\ntests/test_workspace_page/test_workspace_page.py:96: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости колокольчика уведомлений на главной странице",
+      "time" : {
+        "start" : 1729970613184,
+        "stop" : 1729970613229,
+        "duration" : 45
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Проверка видимости и кликабельности переключателя 'Непрочитанные'",
+      "time" : {
+        "start" : 1729970613261,
+        "stop" : 1729970613309,
+        "duration" : 48
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ {
+      "uid" : "35316c9ee8d77682",
+      "name" : "Screenshot",
+      "source" : "35316c9ee8d77682.png",
+      "type" : "image/png",
+      "size" : 108096
+    }, {
+      "uid" : "748dc91f2a772d03",
+      "name" : "HTML source",
+      "source" : "748dc91f2a772d03.html",
+      "type" : "text/html",
+      "size" : 39385
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1729970613593,
+      "stop" : 1729970613660,
+      "duration" : 67
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование страницы 'Рабочие пространства'"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_workspace_page"
+  }, {
+    "name" : "suite",
+    "value" : "test_workspace_page"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestWorkspacePage"
+  }, {
+    "name" : "host",
+    "value" : "fv-az1766-28"
+  }, {
+    "name" : "thread",
+    "value" : "2229-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_workspace_page.test_workspace_page"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 3,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 3
+      },
+      "items" : [ {
+        "uid" : "22a08142f554da6e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/222//#testresult/22a08142f554da6e",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Не сменился цвет переключателя уведомлений\nassert 'rgba(252, 224, 88, 1)' != 'rgba(252, 224, 88, 1)'",
+        "time" : {
+          "start" : 1729968662792,
+          "stop" : 1729968662961,
+          "duration" : 169
+        }
+      }, {
+        "uid" : "a175ccdd032d8076",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/222//#testresult/a175ccdd032d8076",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Не сменился цвет переключателя уведомлений\nassert 'rgba(252, 224, 88, 1)' != 'rgba(252, 224, 88, 1)'",
+        "time" : {
+          "start" : 1729967203502,
+          "stop" : 1729967203676,
+          "duration" : 174
+        }
+      } ]
+    },
+    "tags" : [ "regress" ]
+  },
+  "source" : "1936d86aa2fb1cf3.json",
+  "parameterValues" : [ "'chrome'" ]
+}
