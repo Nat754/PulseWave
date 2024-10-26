@@ -14,3 +14,5 @@ class WorkspaceLocators:
     TO_MAIM_LINK = (By.CLASS_NAME, 'navigat__item-home')
     RIGHT_TITLE = (By.CSS_SELECTOR, '.workspaces__content h2.title')
     LOADER = (By.CSS_SELECTOR, '.loader .icon')
+    NOTIFY = (By.CLASS_NAME, 'notify')
+    READ_ALL_BUTTON = (By.CLASS_NAME, 'read-all')

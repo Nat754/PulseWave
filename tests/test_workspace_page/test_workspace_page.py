@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 from pages.signup_page import SignUpPage
@@ -71,3 +73,11 @@ class TestWorkspacePage:
         title = page.get_title_main_workspace().text
         with allure.step('Проверить заголовок "Ваши рабочие пространства"'):
             assert title == self.wsconst.MAIN_WORKSPACE_TITLE, 'Не отображается заголовок "Ваши рабочие пространства"'
+
+    @allure.title(f"Проверка видимости  кнопки '{wsconst.READ_ALL_BUTTON_TEXT}'")
+    @pytest.mark.regress
+    def test_check_read_all_button(self, auth_user, driver):
+        page = WorkspacePage(driver)
+        page.get_notify_button_is_visible().click()
+        text = page.get_read_all_button_is_visible().text
+        assert text == self.wsconst.READ_ALL_BUTTON_TEXT, f'Не отображается "{self.wsconst.READ_ALL_BUTTON_TEXT}"'

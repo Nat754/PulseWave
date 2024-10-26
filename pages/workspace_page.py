@@ -21,3 +21,12 @@ class WorkspacePage(BasePage):
     @allure.step(f"Проверка отсутствия лоадера")
     def loader_is_not_visible(self):
         return self.element_is_not_visible(self.locator.LOADER)
+
+    @allure.step(f"Проверка видимости колокольчика уведомлений на главной странице")
+    def get_notify_button_is_visible(self):
+        self.element_is_present(self.locator.NOTIFY)
+        return self.element_is_clickable(self.locator.NOTIFY)
+
+    @allure.step(f"Проверка видимости кнопки 'Отметить все как прочитанные'")
+    def get_read_all_button_is_visible(self):
+        return self.element_is_present(self.locator.READ_ALL_BUTTON)
