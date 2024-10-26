@@ -30,3 +30,21 @@ class WorkspacePage(BasePage):
     @allure.step(f"Проверка видимости кнопки 'Отметить все как прочитанные'")
     def get_read_all_button_is_visible(self):
         return self.element_is_present(self.locator.READ_ALL_BUTTON)
+
+    @allure.step("Проверка видимости и кликабельности переключателя 'Непрочитанные'")
+    def get_toggle_is_visible(self):
+        self.element_is_present(self.locator.TOGGLE)
+        return self.element_is_clickable(self.locator.TOGGLE)
+
+    @allure.step("Проверка видимости сообщений")
+    def get_notifications_are_visible(self):
+        self.timeout = 2
+        return self.elements_are_present(self.locator.NOTIFICATIONS)
+
+    @allure.step("Проверка видимости сообщения 'Нет уведомлений'")
+    def get_no_notifications_is_visible(self):
+        return self.element_is_present(self.locator.NO_NOTIFICATIONS)
+
+    @allure.step("Проверка невидимости кнопки 'Отметить все как прочитанные'")
+    def get_read_all_button_is_not_visible(self):
+        return self.element_is_not_visible(self.locator.READ_ALL_BUTTON)

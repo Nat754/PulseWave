@@ -16,3 +16,6 @@ class WorkspaceLocators:
     LOADER = (By.CSS_SELECTOR, '.loader .icon')
     NOTIFY = (By.CLASS_NAME, 'notify')
     READ_ALL_BUTTON = (By.CLASS_NAME, 'read-all')
+    TOGGLE = (By.CLASS_NAME, 'styled-toggle')
+    NOTIFICATIONS = (By.CLASS_NAME, 'notification__text')
+    NO_NOTIFICATIONS = (By.CLASS_NAME, 'no-notifications')

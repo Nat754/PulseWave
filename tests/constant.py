@@ -12,7 +12,6 @@ class Links:
     PULSEWAVE_PRIVACY = f'{MAIN_PAGE}documents/privacy'
     PASSWORD_RECOVERY = f'{MAIN_PAGE}auth/password?email='
     SET_OF_BROWSERS = ['chrome']
-
     MAIL_URL = 'https://mail.ru/'
 
 

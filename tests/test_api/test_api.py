@@ -631,7 +631,7 @@ class TestAPI:
         приоритетом
         """
         n, m = 5, 20
-        workspace_id, board_id = 192, 322
+        workspace_id, board_id = 4443, 6831
         # workspace_id, board_id = 386, 457
         jwt = use_api_base.create_jwt(email_auth, password0)
         for _ in range(n):
@@ -641,7 +641,7 @@ class TestAPI:
                           json={"name": faker.job()})
             for _ in range(m):
                 # получить id случайной колонки
-                url = f'{self.link.BASE_URL.BASE_URL}api/boards/{board_id}/column/'
+                url = f'{self.link.BASE_URL}api/boards/{board_id}/column/'
                 response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
                 columns_id = [i['id'] for i in response.json()]
                 column_id = random.choice(columns_id)
