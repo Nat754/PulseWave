@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 from selenium.common import TimeoutException
@@ -92,6 +94,8 @@ class TestWorkspacePage:
         toggle = page.get_toggle_is_visible()
         color_old = toggle.value_of_css_property('background-color')
         toggle.click()
+        time.sleep(1)
+        toggle = page.get_toggle_is_visible()
         color_new = toggle.value_of_css_property('background-color')
         assert color_old != color_new, 'Не сменился цвет переключателя уведомлений'
 
