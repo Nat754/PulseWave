@@ -1,0 +1,391 @@
+{
+  "uid" : "ed45efc3f64000ad",
+  "name" : "POST Подтверждение приглашения в РП",
+  "fullName" : "tests.test_api.test_api.TestAPI#test_post_api_workspace_confirm_invite",
+  "historyId" : "c23dd85bddb9dc1409aaef04feeefb24",
+  "time" : {
+    "start" : 1730924773878,
+    "stop" : 1730924790931,
+    "duration" : 17053
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Unexpected status code. Expected: 204. Actual: 400",
+  "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f28baa995b0>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f28baad1a30>\n\n    @allure.title(\"POST Подтверждение приглашения в РП\")\n    def test_post_api_workspace_confirm_invite(self, use_api_base):\n        jwt = use_api_base.create_jwt(email1, password0)\n        workspace_id = use_api_base.get_workspace_id()\n        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/invite_user/'\n        requests.post(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"},\n                      json=self.constant.INVITE_USER)\n        time.sleep(10)\n        token = use_api_base.confirm_invite_token(email_auth, password_auth_email)\n        url = f'{self.link.BASE_URL}api/workspace/confirm_invite/'\n        response = requests.post(url, headers={'accept': 'application/json'},\n                                 json={\"token\": token})\n>       Assertions.assert_status_code(response, self.code.STATUS_204)\n\ntests/test_api/test_api.py:194: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nresponse = <Response [400]>, expected_status_code = 204\n\n    @staticmethod\n    def assert_status_code(response: Response, expected_status_code: int):\n        actual_status_code = response.status_code\n        with allure.step(f\"Expected status {expected_status_code}\"):\n>           assert actual_status_code == expected_status_code, \\\n                f\"Unexpected status code. Expected: {expected_status_code}. Actual: {actual_status_code}\"\nE           AssertionError: Unexpected status code. Expected: 204. Actual: 400\n\napi_testing/assertions.py:11: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1730924722925,
+      "stop" : 1730924722943,
+      "duration" : 18
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1730924773878,
+      "stop" : 1730924773878,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1730924722943,
+      "stop" : 1730924722943,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Unexpected status code. Expected: 204. Actual: 400",
+    "statusTrace" : "self = <tests.test_api.test_api.TestAPI object at 0x7f28baa995b0>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f28baad1a30>\n\n    @allure.title(\"POST Подтверждение приглашения в РП\")\n    def test_post_api_workspace_confirm_invite(self, use_api_base):\n        jwt = use_api_base.create_jwt(email1, password0)\n        workspace_id = use_api_base.get_workspace_id()\n        url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/invite_user/'\n        requests.post(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"},\n                      json=self.constant.INVITE_USER)\n        time.sleep(10)\n        token = use_api_base.confirm_invite_token(email_auth, password_auth_email)\n        url = f'{self.link.BASE_URL}api/workspace/confirm_invite/'\n        response = requests.post(url, headers={'accept': 'application/json'},\n                                 json={\"token\": token})\n>       Assertions.assert_status_code(response, self.code.STATUS_204)\n\ntests/test_api/test_api.py:194: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nresponse = <Response [400]>, expected_status_code = 204\n\n    @staticmethod\n    def assert_status_code(response: Response, expected_status_code: int):\n        actual_status_code = response.status_code\n        with allure.step(f\"Expected status {expected_status_code}\"):\n>           assert actual_status_code == expected_status_code, \\\n                f\"Unexpected status code. Expected: {expected_status_code}. Actual: {actual_status_code}\"\nE           AssertionError: Unexpected status code. Expected: 204. Actual: 400\n\napi_testing/assertions.py:11: AssertionError",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя на емайл",
+      "time" : {
+        "start" : 1730924773879,
+        "stop" : 1730924775601,
+        "duration" : 1722
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Получить id рабочего пространства",
+      "time" : {
+        "start" : 1730924775602,
+        "stop" : 1730924777286,
+        "duration" : 1684
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Получить access токен пользователя на емайл",
+        "time" : {
+          "start" : 1730924775602,
+          "stop" : 1730924776727,
+          "duration" : 1125
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : false
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Получить токен подтверждения приглашения на емайл",
+      "time" : {
+        "start" : 1730924788247,
+        "stop" : 1730924790391,
+        "duration" : 2144
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Expected status 204",
+      "time" : {
+        "start" : 1730924790931,
+        "stop" : 1730924790931,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Unexpected status code. Expected: 204. Actual: 400\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/assertions.py\", line 11, in assert_status_code\n    assert actual_status_code == expected_status_code, \\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_api"
+  }, {
+    "name" : "suite",
+    "value" : "test_api"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "fv-az665-398"
+  }, {
+    "name" : "thread",
+    "value" : "2216-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_api.test_api"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 24,
+        "skipped" : 0,
+        "passed" : 199,
+        "unknown" : 0,
+        "total" : 224
+      },
+      "items" : [ {
+        "uid" : "a0a4231b2310d496",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/200//#testresult/a0a4231b2310d496",
+        "status" : "passed",
+        "time" : {
+          "start" : 1730860897291,
+          "stop" : 1730860919689,
+          "duration" : 22398
+        }
+      }, {
+        "uid" : "e5f8a8e708182c0d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/199//#testresult/e5f8a8e708182c0d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1730778893692,
+          "stop" : 1730778914994,
+          "duration" : 21302
+        }
+      }, {
+        "uid" : "c64b385d552db2aa",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/191//#testresult/c64b385d552db2aa",
+        "status" : "passed",
+        "time" : {
+          "start" : 1730083883355,
+          "stop" : 1730083902338,
+          "duration" : 18983
+        }
+      }, {
+        "uid" : "8e2023924951efb0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/190//#testresult/8e2023924951efb0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729997465748,
+          "stop" : 1729997484189,
+          "duration" : 18441
+        }
+      }, {
+        "uid" : "8d35699bb4b60783",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/223//#testresult/8d35699bb4b60783",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729974247874,
+          "stop" : 1729974265229,
+          "duration" : 17355
+        }
+      }, {
+        "uid" : "cb0564b739ba28e6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/222//#testresult/cb0564b739ba28e6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729969546292,
+          "stop" : 1729969565128,
+          "duration" : 18836
+        }
+      }, {
+        "uid" : "c65a7cf03b34a742",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/222//#testresult/c65a7cf03b34a742",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729967579325,
+          "stop" : 1729967602094,
+          "duration" : 22769
+        }
+      }, {
+        "uid" : "c23afa74d856155a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/222//#testresult/c23afa74d856155a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729966350334,
+          "stop" : 1729966370978,
+          "duration" : 20644
+        }
+      }, {
+        "uid" : "f50a9593b7d8dcbe",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/221//#testresult/f50a9593b7d8dcbe",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729941700317,
+          "stop" : 1729941719794,
+          "duration" : 19477
+        }
+      }, {
+        "uid" : "288acdc2f35a0ac5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/220//#testresult/288acdc2f35a0ac5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729936756527,
+          "stop" : 1729936773780,
+          "duration" : 17253
+        }
+      }, {
+        "uid" : "edf5c3816920e52a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/189//#testresult/edf5c3816920e52a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729910484611,
+          "stop" : 1729910501472,
+          "duration" : 16861
+        }
+      }, {
+        "uid" : "255def137eeac479",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/219//#testresult/255def137eeac479",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729879692951,
+          "stop" : 1729879710446,
+          "duration" : 17495
+        }
+      }, {
+        "uid" : "37936ebdc5337132",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/188//#testresult/37936ebdc5337132",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729824366523,
+          "stop" : 1729824392422,
+          "duration" : 25899
+        }
+      }, {
+        "uid" : "6fd574cf4912d590",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/218//#testresult/6fd574cf4912d590",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729790023441,
+          "stop" : 1729790040393,
+          "duration" : 16952
+        }
+      }, {
+        "uid" : "6d1e5e5121ba7de9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/218//#testresult/6d1e5e5121ba7de9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729773658758,
+          "stop" : 1729773677951,
+          "duration" : 19193
+        }
+      }, {
+        "uid" : "79eb86c96eaa354c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/187//#testresult/79eb86c96eaa354c",
+        "status" : "broken",
+        "statusDetails" : "KeyError: 'access'",
+        "time" : {
+          "start" : 1729737844273,
+          "stop" : 1729737845624,
+          "duration" : 1351
+        }
+      }, {
+        "uid" : "16cb101cda634068",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/186//#testresult/16cb101cda634068",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729651474262,
+          "stop" : 1729651491068,
+          "duration" : 16806
+        }
+      }, {
+        "uid" : "bf353bfbd4dd115a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/185//#testresult/bf353bfbd4dd115a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729565146642,
+          "stop" : 1729565163996,
+          "duration" : 17354
+        }
+      }, {
+        "uid" : "503a98c3efafac40",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/184//#testresult/503a98c3efafac40",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729478932412,
+          "stop" : 1729478949381,
+          "duration" : 16969
+        }
+      }, {
+        "uid" : "ecae6d79d62b7087",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/183//#testresult/ecae6d79d62b7087",
+        "status" : "passed",
+        "time" : {
+          "start" : 1729392721113,
+          "stop" : 1729392737837,
+          "duration" : 16724
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "ed45efc3f64000ad.json",
+  "parameterValues" : [ ]
+}
