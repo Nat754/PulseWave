@@ -110,3 +110,14 @@ class TestLoginPage:
             login_page_open.input_email(email_auth)
         login_page_open.input_password('')
         assert login_page_open.button_login_not_active(), 'Нет проверки на заполнение обязательного поля пароль'
+
+    @allure.title("Авторизация с логином заглавными буквами")
+    @pytest.mark.smoke
+    def test_login_caps(self, login_page_open, driver):
+        with allure.step('Ввести в поле емайл корректные данные заглавными'):
+            login_page_open.input_email(email_auth.upper())
+        with allure.step('Ввести в поле пароль корректные данные'):
+            login_page_open.input_password(password0)
+        login_page_open.click_submit()
+        login_page_open.check_changed_url_login()
+        assert driver.current_url == self.const.WORKSPACE, 'Не прошла авторизация с заглавными буквами'
