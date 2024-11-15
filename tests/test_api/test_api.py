@@ -36,6 +36,7 @@ class TestAPI:
         url = f'{self.link.BASE_URL}auth/users/activation/'
         user_token = use_api_base.get_activate_email_tokens(email1, password1)
         response = requests.post(url, json=user_token)
+        # print(response.text)
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Пригласить пользователя по email")

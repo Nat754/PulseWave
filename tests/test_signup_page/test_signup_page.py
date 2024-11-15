@@ -210,6 +210,7 @@ class TestSignupPage:
             assert element.value_of_css_property('font-family') == self.signup.PULSEWAVE_POLICY_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
+    @pytest.mark.skip(reason='Отключили переход на Условия пользования')
     @allure.title(f"1.28 Окно регистрации сообщение '{msg.AGREEMENT_MSG}'")
     @pytest.mark.smoke
     def test_signup_message_agreement(self, signup_page_open):

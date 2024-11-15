@@ -47,7 +47,7 @@ class TestFooter:
         link = footer_open.get_footer_email_hover().get_attribute("href")
         assert link == self.footer.EMAIL_TEXT_HOVER, f"Неверный вызов '{link}'"
 
-    @allure.title(f"Проверка года © PulseWave, {footer.YEAR_COOPERATION} в хедере")
+    @allure.title(f"Проверка года © PulseWave, {footer.YEAR_COOPERATION} в футере")
     @pytest.mark.parametrize('url', footer.PAGES)
     @pytest.mark.smoke
     def test_get_year_cooperation(self, footer_open, url):
@@ -56,6 +56,7 @@ class TestFooter:
             assert year == self.footer.YEAR_COOPERATION, f"Пора поменять год '{year}', \
                 уже '{self.footer.YEAR_COOPERATION}'"
 
+    @pytest.mark.skip(reason='Отключили видимость надписи Лицензионное соглашение')
     @pytest.mark.parametrize('url', footer.PAGES)
     @pytest.mark.parametrize('css_property, figma, name', footer.CHECK_TEXT)
     @pytest.mark.regress

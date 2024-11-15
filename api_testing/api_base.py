@@ -55,6 +55,7 @@ class ApiBase:
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
             raw_email = str(data_id[0][1])
             mail.logout()
+            # print(raw_email)
             first = raw_email.find('activate')
             start = first + 9
             end = raw_email[start:].find('"')
