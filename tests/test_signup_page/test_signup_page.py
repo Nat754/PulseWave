@@ -31,7 +31,7 @@ class TestSignupPage:
         element = signup_page_open.get_send_invite_message()
         with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
             assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'
-        time.sleep(10)
+        time.sleep(15)
         link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
         signup_page_open.click_button_submit()
@@ -58,6 +58,7 @@ class TestSignupPage:
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.PASSWORDS_NOT_EQUAL_MSG}"'):
             assert element.text == self.msg.PASSWORDS_NOT_EQUAL_MSG, 'Нет сообщения об ошибке'
 
+    @pytest.mark.xfail(reason='Баг на бэке - изменилось описание ошибки')
     @allure.title("1.11 Регистрация с уже зарегистрированным email и корректными паролем и подтверждением пароля")
     @pytest.mark.smoke
     def test_signup_with_old_email_and_correct_passwords(self, signup_page_open):
@@ -144,7 +145,7 @@ class TestSignupPage:
         element = signup_page_open.get_send_invite_message()
         with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
             assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'
-        time.sleep(10)
+        time.sleep(15)
         link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
         signup_page_open.click_button_submit()

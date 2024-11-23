@@ -1,3 +1,5 @@
+import base64
+import email
 import imaplib
 import os
 import random
@@ -45,45 +47,29 @@ class ApiBase:
                 print(f"Удален файл: {file_to_delete}")
 
     @staticmethod
-    def get_activate_email_tokens(e_mail, passwrd):
+    def get_tokens_on_email(e_mail, passwrd, trigger):
         with allure.step('Получить токен активации пользователя на емайл'):
-            mail = imaplib.IMAP4_SSL('imap.mail.ru')
-            mail.login(e_mail, passwrd)
-            mail.select('INBOX')
-            result, data_id = mail.search(None, 'UNSEEN')
-            message_ids = data_id[0].split()
-            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-            raw_email = str(data_id[0][1])
-            mail.logout()
-            # print(raw_email)
-            first = raw_email.find('activate')
-            start = first + 9
-            end = raw_email[start:].find('"')
-            link = raw_email[start:start + end].split('/')
-            tokens = {"uid": link[0], "token": link[1]}
-            return tokens
-
-    @staticmethod
-    def get_confirm_email_tokens(e_mail, passwrd):
-        with allure.step('Получить токен подтверждения пользователя на емайл'):
             mail = imaplib.IMAP4_SSL('imap.mail.ru')
             mail.login(e_mail, passwrd)
             mail.select('INBOX')
             result, data_id = mail.search(None, 'ALL')
             message_ids = data_id[0].split()
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-            raw_email = str(data_id[0][1])
             mail.logout()
-            first = raw_email.find('confirm')
-            start = first + 8
-            end = raw_email[start:].find('"')
-            link = raw_email[start:start + end].split('/')
+            msg = email.message_from_bytes(data_id[0][1])
+            for part in msg.walk():
+                if part.get_content_maintype() == 'text':
+                    msg = base64.b64decode(part.get_payload()).decode()
+            first = msg.find(trigger)
+            start = first + len(trigger)
+            end = msg[start:].find('"')
+            link = msg[start:start + end].split('/')
             tokens = {"uid": link[0], "token": link[1]}
             return tokens
 
     @staticmethod
     def create_jwt(e_mail, passwrd):
-        with allure.step('Получить access токен пользователя на емайл'):
+        with allure.step('Получить access токен пользователя'):
             url = f'{Links.BASE_URL}auth/jwt/create/'
             response = requests.post(url, json={"email": e_mail, "password": passwrd})
             jwt = f"JWT {response.json()['access']}"
@@ -91,44 +77,30 @@ class ApiBase:
 
     @staticmethod
     def create_refresh(e_mail, passwrd):
-        with allure.step('Получить refresh токен пользователя на емайл'):
+        with allure.step('Получить refresh токен пользователя'):
             url = f'{Links.BASE_URL}auth/jwt/create/'
             response = requests.post(url, json={"email": e_mail, "password": passwrd})
             refresh = f"{response.json()['refresh']}"
             return refresh
 
     @staticmethod
-    def change_email_confirm_token(e_mail, passwrd):
+    def get_token_on_email(e_mail, passwrd, trigger):
         with allure.step("Получить подтверждение смены почты пользователя на емайл"):
             mail = imaplib.IMAP4_SSL('imap.mail.ru')
             mail.login(e_mail, passwrd)
             mail.select('INBOX')
-            result, data_id = mail.search(None, 'UNSEEN')
+            result, data_id = mail.search(None, 'ALL')
             message_ids = data_id[0].split()
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-            raw_email = str(data_id[0][1])
-            first = raw_email.find('token=')
-            start = first + 6
-            end = raw_email[start:].find('"')
-            token = raw_email[start:start + end]
             mail.logout()
-            return token
-
-    @staticmethod
-    def confirm_invite_token(e_mail, passwrd):
-        with allure.step("Получить токен подтверждения приглашения на емайл"):
-            mail = imaplib.IMAP4_SSL('imap.mail.ru')
-            mail.login(e_mail, passwrd)
-            mail.select('INBOX')
-            result, data_id = mail.search(None, 'UNSEEN')
-            message_ids = data_id[0].split()
-            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-            raw_email = str(data_id[0][1])
-            first = raw_email.find('invite/workspace/')
-            start = first + 17
-            end = raw_email[start:].find('"')
-            token = raw_email[start:start + end]
-            mail.logout()
+            msg = email.message_from_bytes(data_id[0][1])
+            for part in msg.walk():
+                if part.get_content_maintype() == 'text':
+                    msg = base64.b64decode(part.get_payload()).decode()
+            first = msg.find(trigger)
+            start = first + len(trigger)
+            end = msg[start:].find('"')
+            token = msg[start:start + end] if msg[start:start + end][-1] != '/' else msg[start:start + end - 1]
             return token
 
     def get_auth_user_id(self):

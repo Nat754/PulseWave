@@ -1,3 +1,5 @@
+import base64
+import email
 import imaplib
 from data import email_auth, password_auth_email
 from locators.password_recovery_locators import PasswordRecoveryLocators
@@ -22,11 +24,14 @@ class PasswordRecoveryPage(BasePage):
             result, data_id = mail.search(None, 'ALL')
             message_ids = data_id[0].split()
             result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-            raw_email = str(data_id[0][1])
+            msg = email.message_from_bytes(data_id[0][1])
             mail.logout()
-            first = raw_email.find(Links.MAIN_PAGE)
-            end = raw_email[first:].find('"')
-            link = raw_email[first:first + end]
+            for part in msg.walk():
+                if part.get_content_maintype() == 'text':
+                    msg = base64.b64decode(part.get_payload()).decode()
+            first = msg.find(Links.MAIN_PAGE)
+            end = msg[first:].find('"')
+            link = msg[first:first + end]
             return link
 
     @allure.step(f"Проверка видимости заголовка {recovery.RECOVERY_PAGE_TITLE}")

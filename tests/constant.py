@@ -1,9 +1,9 @@
 class Links:
 
-    # MAIN_PAGE = 'https://web.dev.pulsewave.ru/'
-    # BASE_URL = "https://api.dev.pulsewave.ru/"
-    MAIN_PAGE = 'https://pulsewave.ru/'
-    BASE_URL = 'https://api.pulsewave.ru/'
+    MAIN_PAGE = 'https://web.dev.pulsewave.ru/'
+    BASE_URL = "https://api.dev.pulsewave.ru/"
+    # MAIN_PAGE = 'https://pulsewave.ru/'
+    # BASE_URL = 'https://api.pulsewave.ru/'
     # MAIN_PAGE_HOME = f'{MAIN_PAGE}home'
     LOGIN_PAGE = f'{MAIN_PAGE}auth/login'
     SIGNUP_PAGE = f'{MAIN_PAGE}auth/signup'
