@@ -1,5 +1,107 @@
 {
   "uid" : "4b4757e66a1912dae1a509f688f20b0f",
-  "children" : [ ],
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Unexpected status code. Expected: 204. Actual: 400",
+      "children" : [ {
+        "name" : "POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.",
+        "uid" : "7a9e640348f5a336",
+        "parentUid" : "6f86f2d31a28a1d32d4d50bbd4d6ce5f",
+        "status" : "failed",
+        "time" : {
+          "start" : 1732417138055,
+          "stop" : 1732417141875,
+          "duration" : 3820
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "6f86f2d31a28a1d32d4d50bbd4d6ce5f"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+      "children" : [ {
+        "name" : "POST Регистрация пользователя без подтверждения подписки",
+        "uid" : "d6b734903cabf168",
+        "parentUid" : "5820fa51546e1e6b8c308e8822d39993",
+        "status" : "failed",
+        "time" : {
+          "start" : 1732417144529,
+          "stop" : 1732417160061,
+          "duration" : 15532
+        },
+        "flaky" : true,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5820fa51546e1e6b8c308e8822d39993"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "KeyError: 'access'",
+      "children" : [ {
+        "name" : "POST Сброс пароля",
+        "uid" : "a74f46f607a18634",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1732417141922,
+          "stop" : 1732417142434,
+          "duration" : 512
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке     auth/password/reset/confirm/{uid}/{token}",
+        "uid" : "d911f0e8119e240d",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1732417142449,
+          "stop" : 1732417142967,
+          "duration" : 518
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Удалить авторизованного пользователя",
+        "uid" : "bdad2b1db21fe191",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1732417142982,
+          "stop" : 1732417143514,
+          "duration" : 532
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c0db57c4a80d04e81137955fc8cd39c0"
+    }, {
+      "name" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=131.0.6778.69); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x55a8ce31b4ca <unknown>\n#1 0x55a8cde2e620 <unknown>\n#2 0x55a8cde343e3 <unknown>\n#3 0x55a8cde36b7e <unknown>\n#4 0x55a8cdec0e6c <unknown>\n#5 0x55a8cdea1372 <unknown>\n#6 0x55a8cdebfde0 <unknown>\n#7 0x55a8cdea1113 <unknown>\n#8 0x55a8cde6fbe0 <unknown>\n#9 0x55a8cde70bbe <unknown>\n#10 0x55a8ce2e7e4b <unknown>\n#11 0x55a8ce2ebde2 <unknown>\n#12 0x55a8ce2d4d2c <unknown>\n#13 0x55a8ce2ec957 <unknown>\n#14 0x55a8ce2ba4bf <unknown>\n#15 0x55a8ce30a348 <unknown>\n#16 0x55a8ce30a510 <unknown>\n#17 0x55a8ce31a346 <unknown>\n#18 0x7f24d5894ac3 <unknown>",
+      "children" : [ {
+        "name" : "3.2, 3.2.1 Восстановить пароль на корректный емайл",
+        "uid" : "408d1c3161f3fce1",
+        "parentUid" : "2161bc367b388d4f6acbef715265d6a8",
+        "status" : "broken",
+        "time" : {
+          "start" : 1732417561965,
+          "stop" : 1732417580819,
+          "duration" : 18854
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "2161bc367b388d4f6acbef715265d6a8"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
   "name" : "categories"
 }
