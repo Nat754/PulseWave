@@ -22,14 +22,20 @@ class TestAPI:
     code = StatusCode
     test_data = TestData
 
-    @allure.title("POST Создать пользователя с корректными данными")
+    @allure.title("1.1 GET Проверка доступности API")
+    def test_get_api_healthcheck(self):
+        url = f'{self.link.BASE_URL}api/healthcheck/'
+        response = requests.get(url, json=self.constant.CREATE_USER)
+        Assertions.assert_status_code(response, self.code.STATUS_200)
+
+    @allure.title("2.1 POST Создать пользователя с корректными данными")
     def test_post_auth_user(self):
         url = f'{self.link.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER)
         time.sleep(15)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
-    @allure.title("POST Активация пользователя с корректными данными")
+    @allure.title("2.2 POST Активация пользователя с корректными данными")
     def test_post_users_activation(self, use_api_base):
         url = f'{self.link.BASE_URL}auth/users/activation/'
         user_token = use_api_base.get_tokens_on_email(email1, password1, 'activate/')
@@ -166,7 +172,7 @@ class TestAPI:
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
-    @allure.title("POST Обновить JWT access_token авторизованного пользователя")
+    @allure.title("POST Обновить JWT refresh token авторизованного пользователя")
     def test_post_auth_jwt_refresh(self, use_api_base):
         url = f'{self.link.BASE_URL}auth/jwt/refresh/'
         refresh = use_api_base.create_refresh(email1, password0)
