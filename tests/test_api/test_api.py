@@ -1,4 +1,3 @@
-import time
 from tests.constant import TestData
 import pytest
 import requests
@@ -32,7 +31,6 @@ class TestAPI:
     def test_post_auth_user(self):
         url = f'{self.link.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER)
-        time.sleep(15)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("2.2 POST Активация пользователя с корректными данными")
@@ -45,7 +43,7 @@ class TestAPI:
     @allure.title("POST Пригласить пользователя по email")
     def test_post_api_workspace_id_invite_user(self, use_api_base):
         """Пользователи добавляются по одному. Если пользователя не существует, он будет создан"""
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         workspaces_id = [item['id'] for item in response.json()]
@@ -54,10 +52,12 @@ class TestAPI:
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.INVITE_USER)
         Assertions.assert_status_code(response, self.code.STATUS_200)
+        msg = use_api_base.read_email(email_auth, password_auth_email)
+        assert msg
 
     @allure.title("POST Повторная отправка ссылки с приглашением пользователя")
     def test_post_api_workspace_id_resend_invite(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         workspaces_id = [item['id'] for item in response.json()]
@@ -67,11 +67,13 @@ class TestAPI:
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"user_id": invite_user_id})
         Assertions.assert_status_code(response, self.code.STATUS_204)
+        msg = use_api_base.read_email(email_auth, password_auth_email)
+        assert msg
 
     @allure.title("POST Удаление приглашенного пользователей из РП")
     def test_post_api_workspace_id_kick_user(self, use_api_base):
         """Удаление как из участников так и из приглашенных"""
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         workspaces_id = [item['id'] for item in response.json()]
@@ -96,14 +98,14 @@ class TestAPI:
 
     @allure.title("GET Получить список всех Рабочих пространств авторизованного пользователя")
     def test_get_api_workspace(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Информация о конкретном рабочем пространстве")
     def test_get_api_workspace_id(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         workspace_id = use_api_base.get_workspace_id()
         url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
@@ -111,7 +113,7 @@ class TestAPI:
 
     @allure.title("PATCH Частично обновить данные РП (на данный момент только имя)")
     def test_patch_api_workspace_id(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         workspace_id = use_api_base.get_workspace_id()
         url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/'
         response = requests.patch(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
@@ -120,7 +122,7 @@ class TestAPI:
 
     @allure.title("DELETE Удалить РП")
     def test_delete_api_workspace_id(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         workspace_id = use_api_base.get_workspace_id()
         url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
@@ -128,12 +130,11 @@ class TestAPI:
 
     @allure.title("POST Подтверждение приглашения в РП")
     def test_post_api_workspace_confirm_invite(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         workspace_id = use_api_base.get_workspace_id()
         url = f'{self.link.BASE_URL}api/workspace/{workspace_id}/invite_user/'
         requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                       json=self.constant.INVITE_USER)
-        time.sleep(15)
         token = use_api_base.get_token_on_email(email_auth, password_auth_email, 'invite/workspace/')
         url = f'{self.link.BASE_URL}api/workspace/confirm_invite/'
         response = requests.post(url, headers={'accept': 'application/json'},
@@ -143,7 +144,7 @@ class TestAPI:
     @allure.title("POST Создать доску без указания РП")
     def test_post_api_board_create(self, use_api_base):
         """Создание доски без указания РП, будет создано дефолтное РП для этой доски"""
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}api/board_create/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""},
                                  json=self.constant.BOARD_CREATE)
@@ -151,7 +152,7 @@ class TestAPI:
 
     @allure.title("GET Список всех пользователей доски для назначения ответственных")
     def test_get_api_board_users(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         workspace_id = use_api_base.get_workspace_id()
         url = f'{self.link.BASE_URL}api/board_users/?workspace={workspace_id}'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"""{jwt}"""})
@@ -159,7 +160,7 @@ class TestAPI:
 
     @allure.title("POST Создать Рабочее пространство")
     def test_post_api_workspace(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}api/workspace/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.WORKSPACE)
@@ -167,7 +168,7 @@ class TestAPI:
 
     @allure.title("GET Получить список всех пользователей для поиска")
     def test_get_api_user_list(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}api/user_list/?users=tes'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
@@ -175,29 +176,28 @@ class TestAPI:
     @allure.title("POST Обновить JWT refresh token авторизованного пользователя")
     def test_post_auth_jwt_refresh(self, use_api_base):
         url = f'{self.link.BASE_URL}auth/jwt/refresh/'
-        refresh = use_api_base.create_refresh(email1, password0)
+        refresh = use_api_base.create_tokens(email1, password0)[1]
         response = requests.post(url, json={"refresh": refresh})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("GET Получить данные авторизованного пользователя me")
     def test_get_auth_user_me(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}auth/users/me/'
         response = requests.get(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"})
         Assertions.assert_status_code(response, self.code.STATUS_200)
 
     @allure.title("POST Запрос на смену почты")
     def test_post_auth_change_email(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}auth/change_email/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json=self.constant.NEW_EMAIL)
-        time.sleep(15)
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.")
     def test_post_auth_change_email_confirm(self, use_api_base):
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}auth/change_email_confirm/'
         token_email = use_api_base.get_token_on_email(email2, password2, 'token=')
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
@@ -206,17 +206,16 @@ class TestAPI:
 
     @allure.title("POST Сброс пароля")
     def test_post_auth_users_reset_password(self, use_api_base):
-        jwt = use_api_base.create_jwt(email2, password0)
+        jwt = use_api_base.create_tokens(email2, password0)[0]
         url = f'{self.link.BASE_URL}auth/users/reset_password/'
         response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                  json={"email": email2})
-        time.sleep(15)
         Assertions.assert_status_code(response, self.code.STATUS_204)
 
     @allure.title("POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке \
     auth/password/reset/confirm/{uid}/{token}")
     def test_post_auth_users_reset_password_confirm(self, use_api_base):
-        jwt = use_api_base.create_jwt(email2, password0)
+        jwt = use_api_base.create_tokens(email2, password0)[0]
         page = ApiBase()
         url = f'{self.link.BASE_URL}auth/users/reset_password_confirm/'
         tokens = page.get_tokens_on_email(email2, password2, 'confirm/')
@@ -226,7 +225,7 @@ class TestAPI:
 
     @allure.title("DELETE Удалить авторизованного пользователя")
     def test_delete_auth_users_me(self, use_api_base):
-        jwt = use_api_base.create_jwt(email2, password3)
+        jwt = use_api_base.create_tokens(email2, password3)[0]
         url = f'{self.link.BASE_URL}auth/users/me/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                    json={"current_password": password3})
@@ -254,16 +253,14 @@ class TestAPI:
     def test_post_create_user_no_subscriber(self, use_api_base):
         url = f'{self.link.BASE_URL}auth/users/'
         response = requests.post(url, json=self.constant.CREATE_USER_NO_SUBSCRIBER)
-        time.sleep(15)
         Assertions.assert_status_code(response, self.code.STATUS_201)
 
     @allure.title("DELETE Активировать и удалить авторизованного пользователя")
     def test_delete_auth_users_me_new(self, use_api_base):
         url = f'{self.link.BASE_URL}auth/users/activation/'
-        time.sleep(15)
         user_token = use_api_base.get_tokens_on_email(email1, password1, 'activate/')
         requests.post(url, json=user_token)
-        jwt = use_api_base.create_jwt(email1, password0)
+        jwt = use_api_base.create_tokens(email1, password0)[0]
         url = f'{self.link.BASE_URL}auth/users/me/'
         response = requests.delete(url, headers={'accept': 'application/json', 'Authorization': f"{jwt}"},
                                    json={"current_password": password0})

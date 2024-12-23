@@ -1,12 +1,10 @@
-import base64
-import email
-import imaplib
 from data import email_auth, password_auth_email
 from locators.password_recovery_locators import PasswordRecoveryLocators
 from pages.base_page import BasePage
 import allure
 from tests.test_password_recovery.constant import PasswordRecoveryConstant
 from tests.constant import Messages, Links
+from api_testing.api_base import ApiBase
 
 
 class PasswordRecoveryPage(BasePage):
@@ -16,23 +14,13 @@ class PasswordRecoveryPage(BasePage):
     const = Links()
 
     @staticmethod
+    @allure.step('Получить ссылку для смены пароля на email')
     def get_link_recovery_password_by_email():
-        with allure.step('Получить ссылку для смены пароля на email'):
-            mail = imaplib.IMAP4_SSL('imap.mail.ru')
-            mail.login(email_auth, password_auth_email)
-            mail.select('INBOX')
-            result, data_id = mail.search(None, 'ALL')
-            message_ids = data_id[0].split()
-            result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
-            msg = email.message_from_bytes(data_id[0][1])
-            mail.logout()
-            for part in msg.walk():
-                if part.get_content_maintype() == 'text':
-                    msg = base64.b64decode(part.get_payload()).decode()
-            first = msg.find(Links.MAIN_PAGE)
-            end = msg[first:].find('"')
-            link = msg[first:first + end]
-            return link
+        msg = ApiBase.read_email(email_auth, password_auth_email)
+        first = msg.find(Links.MAIN_PAGE)
+        end = msg[first:].find('"')
+        link = msg[first:first + end]
+        return link
 
     @allure.step(f"Проверка видимости заголовка {recovery.RECOVERY_PAGE_TITLE}")
     def get_title_recovery(self):

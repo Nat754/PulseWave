@@ -1,7 +1,9 @@
 import time
 import allure
 import pytest
-from data import email_auth, password0, emailx
+
+from api_testing.api_base import ApiBase
+from data import email_auth, password0, emailx, password_auth_email
 from tests.constant import Links, Messages
 from tests.test_password_recovery.constant import PasswordRecoveryConstant
 from pages.password_recovery_page import PasswordRecoveryPage
@@ -44,6 +46,7 @@ class TestPasswordRecoveryPage:
         with allure.step("Нажать кнопку 'Продолжить'"):
             recovery_page_open.click_resume_button()
         text = recovery_page_open.get_message_text()
+        ApiBase.read_email(email_auth, password_auth_email)
         assert text == f'{self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}', \
             f"ОР: {self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}, ФР: {text}"
 
@@ -54,7 +57,7 @@ class TestPasswordRecoveryPage:
             recovery_page_open.fill_email_to_recovery_password(email_auth)
         with allure.step("Нажать кнопку 'Продолжить'"):
             recovery_page_open.click_resume_button()
-        time.sleep(15)  # Получить ссылку на емайл
+        # time.sleep(15)  # Получить ссылку на емайл
         link = self.page.get_link_recovery_password_by_email()
         driver.get(link)
         with allure.step('Ввести пароль в поле пароль'):
