@@ -1,4 +1,3 @@
-import time
 import allure
 import pytest
 
@@ -57,7 +56,6 @@ class TestPasswordRecoveryPage:
             recovery_page_open.fill_email_to_recovery_password(email_auth)
         with allure.step("Нажать кнопку 'Продолжить'"):
             recovery_page_open.click_resume_button()
-        # time.sleep(15)  # Получить ссылку на емайл
         link = self.page.get_link_recovery_password_by_email()
         driver.get(link)
         with allure.step('Ввести пароль в поле пароль'):

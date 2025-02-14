@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 
 class WorkspaceLocators:
 
-    AVATAR_ICON = (By.CLASS_NAME, 'avatar__icon')
+    AVATAR_ICON = (By.CLASS_NAME, 'avatar')
     DROP_WORKSPACES = (By.CLASS_NAME, 'desctop')
     DROP_CREATE = (By.CLASS_NAME, 'create')
     LEFT_MENU_TITLE = (By.CLASS_NAME, 'title-wrapper')
