@@ -1,5 +1,7 @@
 import allure
 import pytest
+
+from pages.main_page import MainPage
 from tests.constant import Links
 from tests.test_main_page.constant import MainConstant
 
@@ -117,3 +119,10 @@ class TestMainPage:
     def test_get_text_body_main_subtitle(self, main_page_open):
         text = main_page_open.get_body_main_subtitle().text
         assert text == self.main.ONE_APP, f"Текст элемента '{self.main.ONE_APP}' не соответствует макету"
+
+    @allure.title("Проверка редиректа на Главную страницу")
+    @pytest.mark.regress
+    def test_get_redirect_to_main(self, driver):
+        driver.get(Links.MAIN_PAGE_HOME)
+        url = driver.current_url
+        assert url == self.const.MAIN_PAGE, "Не произошел редирект"
