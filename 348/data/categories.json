@@ -1,0 +1,468 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /api/healthcheck/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abfc9a90>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "1.1 GET Проверка доступности API",
+        "uid" : "fbfca065ff5b33d0",
+        "parentUid" : "8c161331c627b1f308b42a1e82c4bcc1",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743703862303,
+          "stop" : 1743703862912,
+          "duration" : 609
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "8c161331c627b1f308b42a1e82c4bcc1"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/users/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abfccc80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "2.1 POST Создать пользователя с корректными данными",
+        "uid" : "4bd0d4727d0a0095",
+        "parentUid" : "308a87ebdb908f52083580a4810a9c5c",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743703863032,
+          "stop" : 1743703863518,
+          "duration" : 486
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "308a87ebdb908f52083580a4810a9c5c"
+    }, {
+      "name" : "imaplib.IMAP4.abort: command: CAPABILITY => socket error: EOF",
+      "children" : [ {
+        "name" : "2.2 POST Активация пользователя с корректными данными",
+        "uid" : "61c045db79179211",
+        "parentUid" : "b9e78e5080846b91240356f7f8e742be",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743703863601,
+          "stop" : 1743709462518,
+          "duration" : 5598917
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "b9e78e5080846b91240356f7f8e742be"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abfe4980>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Пригласить пользователя по email",
+        "uid" : "e1094e9d84b7428f",
+        "parentUid" : "053697d59ae83a84a81cd4a736779da0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709462620,
+          "stop" : 1743709463226,
+          "duration" : 606
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "053697d59ae83a84a81cd4a736779da0"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abfee270>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Повторная отправка ссылки с приглашением пользователя",
+        "uid" : "c435430376ec5d51",
+        "parentUid" : "c27405ac1ba326faa9eeaea0132089f1",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709463314,
+          "stop" : 1743709463927,
+          "duration" : 613
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c27405ac1ba326faa9eeaea0132089f1"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abfeea80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Удаление приглашенного пользователей из РП",
+        "uid" : "84afe2950595fe9a",
+        "parentUid" : "45f2aebd2328872d403370a02cfce223",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709464015,
+          "stop" : 1743709464511,
+          "duration" : 496
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "45f2aebd2328872d403370a02cfce223"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/users/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abff29f0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Регистрация ранее зарегистрированного пользователя",
+        "uid" : "ef5389fd2c9a24ce",
+        "parentUid" : "09a0519afa5736dcfde54809dcacd649",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709464601,
+          "stop" : 1743709464756,
+          "duration" : 155
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "09a0519afa5736dcfde54809dcacd649"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abff06e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Создать пару токенов access и refresh",
+        "uid" : "6aa9e55a3bb17e69",
+        "parentUid" : "bac55609a726203dc1b00500ba279cb3",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709464843,
+          "stop" : 1743709465464,
+          "duration" : 621
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "bac55609a726203dc1b00500ba279cb3"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abff1c70>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "GET Получить список всех Рабочих пространств авторизованного пользователя",
+        "uid" : "2828f8d6d41cc271",
+        "parentUid" : "50178960afc77600f39e3b4a492170c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709465551,
+          "stop" : 1743709466185,
+          "duration" : 634
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "50178960afc77600f39e3b4a492170c0"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abfc1a90>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "GET Информация о конкретном рабочем пространстве",
+        "uid" : "9bfe14de3b2c6308",
+        "parentUid" : "c29cc38eb50f8bf4d0b60c3dbfc0d59a",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709466298,
+          "stop" : 1743709466788,
+          "duration" : 490
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c29cc38eb50f8bf4d0b60c3dbfc0d59a"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abfe5190>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "PATCH Частично обновить данные РП (на данный момент только имя)",
+        "uid" : "a24671da3dd06781",
+        "parentUid" : "130d6de5c832686f35fc244e9113cfa4",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709466876,
+          "stop" : 1743709467503,
+          "duration" : 627
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "130d6de5c832686f35fc244e9113cfa4"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abfcb590>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "DELETE Удалить РП",
+        "uid" : "50ca96b9074f19a0",
+        "parentUid" : "c71be41d226b888cb9d0e665e0737d2d",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709467593,
+          "stop" : 1743709467747,
+          "duration" : 154
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c71be41d226b888cb9d0e665e0737d2d"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abff5e80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Подтверждение приглашения в РП",
+        "uid" : "bec9532782fac0da",
+        "parentUid" : "92a39fd354478eb85c5669de1577ab5e",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709467839,
+          "stop" : 1743709467991,
+          "duration" : 152
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "92a39fd354478eb85c5669de1577ab5e"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abff95b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Создать доску без указания РП",
+        "uid" : "fb64da641bbbd4f5",
+        "parentUid" : "b94e850bbf563545ee93c1e24754a47b",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709468079,
+          "stop" : 1743709468826,
+          "duration" : 747
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "b94e850bbf563545ee93c1e24754a47b"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abffa210>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "GET Список всех пользователей доски для назначения ответственных",
+        "uid" : "9dad01403a48d318",
+        "parentUid" : "a25e713a4c7937a88e6b61173437638d",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709468917,
+          "stop" : 1743709469083,
+          "duration" : 166
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "a25e713a4c7937a88e6b61173437638d"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abffda00>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Создать Рабочее пространство",
+        "uid" : "fbbaf20554c98afd",
+        "parentUid" : "5c59176a404ab567d28e9f396279aa63",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709469175,
+          "stop" : 1743709469338,
+          "duration" : 163
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5c59176a404ab567d28e9f396279aa63"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80abffe930>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "GET Получить список всех пользователей для поиска",
+        "uid" : "22e4269f4f46decb",
+        "parentUid" : "af20ae231b9015d9d1952b2cbfa553a0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709469427,
+          "stop" : 1743709469581,
+          "duration" : 154
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "af20ae231b9015d9d1952b2cbfa553a0"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac005dc0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Обновить JWT refresh token авторизованного пользователя",
+        "uid" : "ccdd2fadfbfcb23a",
+        "parentUid" : "07ec9d91b238cb4ffe6d6522a70a9003",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709469672,
+          "stop" : 1743709470296,
+          "duration" : 624
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "07ec9d91b238cb4ffe6d6522a70a9003"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac007440>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "GET Получить данные авторизованного пользователя me",
+        "uid" : "2646944aead0375e",
+        "parentUid" : "6ff6d5986bf908b5da30bfe32346cf09",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709470388,
+          "stop" : 1743709470555,
+          "duration" : 167
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "6ff6d5986bf908b5da30bfe32346cf09"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac008f20>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Запрос на смену почты",
+        "uid" : "7588bb34ee3d09dd",
+        "parentUid" : "ce2a1ef33d5985ef6690598d553c59aa",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709470646,
+          "stop" : 1743709470797,
+          "duration" : 151
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "ce2a1ef33d5985ef6690598d553c59aa"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac00a4e0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.",
+        "uid" : "8867483b059cef48",
+        "parentUid" : "f12f0c077f7628a45b811e38d2c9a3a9",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709470890,
+          "stop" : 1743709471516,
+          "duration" : 626
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "f12f0c077f7628a45b811e38d2c9a3a9"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac00fc50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Сброс пароля",
+        "uid" : "c824621197483d70",
+        "parentUid" : "9422501a8f528f8cac55a3c8b74c8577",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709471608,
+          "stop" : 1743709472100,
+          "duration" : 492
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "9422501a8f528f8cac55a3c8b74c8577"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac011e50>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке     auth/password/reset/confirm/{uid}/{token}",
+        "uid" : "15bfc6459291f7b2",
+        "parentUid" : "6bb0c1d7b148dd030fcfea233dea9e4b",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709472189,
+          "stop" : 1743709472342,
+          "duration" : 153
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "6bb0c1d7b148dd030fcfea233dea9e4b"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/jwt/create/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac011e80>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "DELETE Удалить авторизованного пользователя",
+        "uid" : "a65da8bf2197d429",
+        "parentUid" : "c6b125ac75bb1a0a2bd7826652096040",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709472433,
+          "stop" : 1743709472586,
+          "duration" : 153
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c6b125ac75bb1a0a2bd7826652096040"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/users/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac0131a0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Регистрация пользователя без электронной почты",
+        "uid" : "ead8fd2b42cc164b",
+        "parentUid" : "291f00cca7bc4ac0050a18f3972687fc",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709472678,
+          "stop" : 1743709473156,
+          "duration" : 478
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "291f00cca7bc4ac0050a18f3972687fc"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/users/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac0183b0>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Регистрация пользователя без пароля",
+        "uid" : "6b0bb9dde0dfff49",
+        "parentUid" : "d6820e697f71b03f8de757c81abebbab",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709473242,
+          "stop" : 1743709473395,
+          "duration" : 153
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "d6820e697f71b03f8de757c81abebbab"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/users/ (Caused by NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x7f80ac00a480>: Failed to establish a new connection: [Errno 111] Connection refused'))",
+      "children" : [ {
+        "name" : "POST Регистрация пользователя без подтверждения подписки",
+        "uid" : "61b3064b0f784832",
+        "parentUid" : "1ecabae758bedba9d84086f0c3640c15",
+        "status" : "broken",
+        "time" : {
+          "start" : 1743709473507,
+          "stop" : 1743709473659,
+          "duration" : 152
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "1ecabae758bedba9d84086f0c3640c15"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
