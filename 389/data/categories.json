@@ -1,0 +1,379 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+      "children" : [ {
+        "name" : "2.1 POST Создать пользователя с корректными данными",
+        "uid" : "e6f8bb90b00e69df",
+        "parentUid" : "5820fa51546e1e6b8c308e8822d39993",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747246277833,
+          "stop" : 1747246278598,
+          "duration" : 765
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5820fa51546e1e6b8c308e8822d39993"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 204. Actual: 500",
+      "children" : [ {
+        "name" : "POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке     auth/password/reset/confirm/{uid}/{token}",
+        "uid" : "d0c4e194c1599011",
+        "parentUid" : "961760a297de4546ab90b609bb79591c",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260102338,
+          "stop" : 1747260106429,
+          "duration" : 4091
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "961760a297de4546ab90b609bb79591c"
+    }, {
+      "name" : "AssertionError: Неверный url 'https://pulsewave.ru/'\nassert 'https://pulsewave.ru/' == 'https://puls...ments/cookies'\n  \n  - https://pulsewave.ru/documents/cookies\n  + https://pulsewave.ru/",
+      "children" : [ {
+        "name" : "Проверка попапа о принятии файлов cookie на странице https://pulsewave.ru/",
+        "uid" : "a2b95e1d6888419e",
+        "parentUid" : "2e4a952b7e5f128995981faf602d0f94",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260123408,
+          "stop" : 1747260127576,
+          "duration" : 4168
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/'" ]
+      } ],
+      "uid" : "2e4a952b7e5f128995981faf602d0f94"
+    }, {
+      "name" : "AssertionError: Неверный url 'https://pulsewave.ru/auth/login'\nassert 'https://puls...ru/auth/login' == 'https://puls...ments/cookies'\n  \n  - https://pulsewave.ru/documents/cookies\n  + https://pulsewave.ru/auth/login",
+      "children" : [ {
+        "name" : "Проверка попапа о принятии файлов cookie на странице https://pulsewave.ru/auth/login",
+        "uid" : "e4249877b538e83c",
+        "parentUid" : "0e5cca489e7e893b6afb756d70768e5b",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260128158,
+          "stop" : 1747260131196,
+          "duration" : 3038
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/login'" ]
+      } ],
+      "uid" : "0e5cca489e7e893b6afb756d70768e5b"
+    }, {
+      "name" : "AssertionError: Неверный url 'https://pulsewave.ru/auth/signup'\nassert 'https://puls...u/auth/signup' == 'https://puls...ments/cookies'\n  \n  - https://pulsewave.ru/documents/cookies\n  + https://pulsewave.ru/auth/signup",
+      "children" : [ {
+        "name" : "Проверка попапа о принятии файлов cookie на странице https://pulsewave.ru/auth/signup",
+        "uid" : "1fa96a3896ed8d9b",
+        "parentUid" : "a8366c42445541e5e8d0af0520302720",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260131743,
+          "stop" : 1747260135193,
+          "duration" : 3450
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/signup'" ]
+      } ],
+      "uid" : "a8366c42445541e5e8d0af0520302720"
+    }, {
+      "name" : "AssertionError: Неверный url 'https://pulsewave.ru/auth/password?email='\nassert 'https://puls...ssword?email=' == 'https://puls...ments/cookies'\n  \n  - https://pulsewave.ru/documents/cookies\n  + https://pulsewave.ru/auth/password?email=",
+      "children" : [ {
+        "name" : "Проверка попапа о принятии файлов cookie на странице https://pulsewave.ru/auth/password?email=",
+        "uid" : "c4bc2c04a7c51778",
+        "parentUid" : "7f1641172d8383a82e2e46cbc3320254",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260135723,
+          "stop" : 1747260139006,
+          "duration" : 3283
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/password?email='" ]
+      } ],
+      "uid" : "7f1641172d8383a82e2e46cbc3320254"
+    }, {
+      "name" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://puls...ru/auth/login' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/auth/login\n  ?                      ++++++++++",
+      "children" : [ {
+        "name" : "1.13 Проверка редиректа на главную страницу при клике на логотип",
+        "uid" : "3b6213592a291feb",
+        "parentUid" : "447e3d5fea6cdf599792bd1e2dd53bd5",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260263177,
+          "stop" : 1747260263256,
+          "duration" : 79
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/login'" ]
+      } ],
+      "uid" : "447e3d5fea6cdf599792bd1e2dd53bd5"
+    }, {
+      "name" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://puls...u/auth/signup' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/auth/signup\n  ?                      +++++++++++",
+      "children" : [ {
+        "name" : "1.13 Проверка редиректа на главную страницу при клике на логотип",
+        "uid" : "99154a4fca9ebde5",
+        "parentUid" : "799ed586e3e7db3bb48aa3b2d4ad554d",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260267182,
+          "stop" : 1747260267261,
+          "duration" : 79
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/signup'" ]
+      } ],
+      "uid" : "799ed586e3e7db3bb48aa3b2d4ad554d"
+    }, {
+      "name" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://puls...ssword?email=' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/auth/password?email=",
+      "children" : [ {
+        "name" : "1.13 Проверка редиректа на главную страницу при клике на логотип",
+        "uid" : "108c44460ef68474",
+        "parentUid" : "1a2816c29c3fd427771f685d417222e2",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260270657,
+          "stop" : 1747260270750,
+          "duration" : 93
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/password?email='" ]
+      } ],
+      "uid" : "1a2816c29c3fd427771f685d417222e2"
+    }, {
+      "name" : "AssertionError: Произошел переход на страницу 'https://pulsewave.ru/'\nassert 'https://pulsewave.ru/' == 'https://puls...ru/auth/login'\n  \n  - https://pulsewave.ru/auth/login\n  ?                      ----------\n  + https://pulsewave.ru/",
+      "children" : [ {
+        "name" : "Проверка перехода на страницу 'https://pulsewave.ru/auth/login' по кнопке 'Войти'",
+        "uid" : "50f8e7a238a5e311",
+        "parentUid" : "7cd2c0bd30d76d665e6d3f2e20cc8a36",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260295342,
+          "stop" : 1747260295448,
+          "duration" : 106
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/'" ]
+      } ],
+      "uid" : "7cd2c0bd30d76d665e6d3f2e20cc8a36"
+    }, {
+      "name" : "AssertionError: Произошел переход на страницу 'https://pulsewave.ru/auth/signup'\nassert 'https://puls...u/auth/signup' == 'https://puls...ru/auth/login'\n  \n  - https://pulsewave.ru/auth/login\n  ?                           ^^ -\n  + https://pulsewave.ru/auth/signup\n  ?                           ^^  ++",
+      "children" : [ {
+        "name" : "Проверка перехода на страницу 'https://pulsewave.ru/auth/login' по кнопке 'Войти'",
+        "uid" : "c204a0eca28e306b",
+        "parentUid" : "29126ce9ba23fd928cae14cf7cc4b9b0",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260298909,
+          "stop" : 1747260299032,
+          "duration" : 123
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/signup'" ]
+      } ],
+      "uid" : "29126ce9ba23fd928cae14cf7cc4b9b0"
+    }, {
+      "name" : "AssertionError: Произошел переход на страницу 'https://pulsewave.ru/auth/password?email='\nassert 'https://puls...ssword?email=' == 'https://puls...ru/auth/login'\n  \n  - https://pulsewave.ru/auth/login\n  ?                            ^^^^\n  + https://pulsewave.ru/auth/password?email=\n  ?                           +++++++++++++ ^",
+      "children" : [ {
+        "name" : "Проверка перехода на страницу 'https://pulsewave.ru/auth/login' по кнопке 'Войти'",
+        "uid" : "603e8c4f3c88cd7f",
+        "parentUid" : "14f34817f9d856e58ad2741c780ffbb8",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260302258,
+          "stop" : 1747260302371,
+          "duration" : 113
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/password?email='" ]
+      } ],
+      "uid" : "14f34817f9d856e58ad2741c780ffbb8"
+    }, {
+      "name" : "AssertionError: Произошел переход на страницу 'https://pulsewave.ru/'\nassert 'https://pulsewave.ru/' == 'https://puls...u/auth/signup'\n  \n  - https://pulsewave.ru/auth/signup\n  ?                      -----------\n  + https://pulsewave.ru/",
+      "children" : [ {
+        "name" : "1.2 Проверка перехода на страницу 'https://pulsewave.ru/auth/signup' по кнопке 'Регистрация'",
+        "uid" : "bb8e155566e20d6f",
+        "parentUid" : "3f524818c1f745312862df393bfe462a",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260306090,
+          "stop" : 1747260306183,
+          "duration" : 93
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/'" ]
+      }, {
+        "name" : "1.1 Проверка перехода на страницу https://pulsewave.ru/auth/signup по кнопке 'Зарегистрироваться'",
+        "uid" : "593fdb1b4d4998a0",
+        "parentUid" : "3f524818c1f745312862df393bfe462a",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260476542,
+          "stop" : 1747260476633,
+          "duration" : 91
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "3f524818c1f745312862df393bfe462a"
+    }, {
+      "name" : "AssertionError: Произошел переход на страницу 'https://pulsewave.ru/auth/login'\nassert 'https://puls...ru/auth/login' == 'https://puls...u/auth/signup'\n  \n  - https://pulsewave.ru/auth/signup\n  ?                           ^ - --\n  + https://pulsewave.ru/auth/login\n  ?                           ^^^",
+      "children" : [ {
+        "name" : "1.2 Проверка перехода на страницу 'https://pulsewave.ru/auth/signup' по кнопке 'Регистрация'",
+        "uid" : "87a8fa01d6730ebf",
+        "parentUid" : "890c9cd6446d4eb07775bc3fa6a33515",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260309890,
+          "stop" : 1747260309977,
+          "duration" : 87
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/login'" ]
+      } ],
+      "uid" : "890c9cd6446d4eb07775bc3fa6a33515"
+    }, {
+      "name" : "AssertionError: Произошел переход на страницу 'https://pulsewave.ru/auth/password?email='\nassert 'https://puls...ssword?email=' == 'https://puls...u/auth/signup'\n  \n  - https://pulsewave.ru/auth/signup\n  ?                             ^^^^\n  + https://pulsewave.ru/auth/password?email=\n  ?                           ++ +++++++++ ^^",
+      "children" : [ {
+        "name" : "1.2 Проверка перехода на страницу 'https://pulsewave.ru/auth/signup' по кнопке 'Регистрация'",
+        "uid" : "a590bfba917e17c6",
+        "parentUid" : "695a2d8c3b7e43aad4c491c426da4ea2",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260313561,
+          "stop" : 1747260313647,
+          "duration" : 86
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'", "'https://pulsewave.ru/auth/password?email='" ]
+      } ],
+      "uid" : "695a2d8c3b7e43aad4c491c426da4ea2"
+    }, {
+      "name" : "AssertionError: Не произошел переход на страницу восстановления пароля\nassert 'https://puls...ru/auth/login' == 'https://puls...ssword?email='\n  \n  - https://pulsewave.ru/auth/password?email=\n  ?                           ^^^^^ ^^^^^^ ^^\n  + https://pulsewave.ru/auth/login\n  ?                           ^ ^ ^",
+      "children" : [ {
+        "name" : "Проверка редиректа на страницу восстановления пароля при клике на ссылку 'Забыли пароль?'",
+        "uid" : "6dfa1dd30d8f3274",
+        "parentUid" : "3fbfe12f3d4fc5de0fcf7531c68cfdd1",
+        "status" : "failed",
+        "time" : {
+          "start" : 1747260417229,
+          "stop" : 1747260417315,
+          "duration" : 86
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "3fbfe12f3d4fc5de0fcf7531c68cfdd1"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  }, {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "ConnectionResetError: [Errno 104] Connection reset by peer",
+      "children" : [ {
+        "name" : "2.2 POST Активация пользователя с корректными данными",
+        "uid" : "d9a2fd907c3485fd",
+        "parentUid" : "bfc67d31f8c3f9537b3d8fc1009e4224",
+        "status" : "broken",
+        "time" : {
+          "start" : 1747246278641,
+          "stop" : 1747260045773,
+          "duration" : 13767132
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "bfc67d31f8c3f9537b3d8fc1009e4224"
+    }, {
+      "name" : "IndexError: list index out of range",
+      "children" : [ {
+        "name" : "POST Повторная отправка ссылки с приглашением пользователя",
+        "uid" : "a9d94dce17092762",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1747260051573,
+          "stop" : 1747260054221,
+          "duration" : 2648
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Удаление приглашенного пользователей из РП",
+        "uid" : "b0971311b7c29222",
+        "parentUid" : "cbf21ee610ffd376e0ce643a364ade80",
+        "status" : "broken",
+        "time" : {
+          "start" : 1747260054230,
+          "stop" : 1747260055939,
+          "duration" : 1709
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "cbf21ee610ffd376e0ce643a364ade80"
+    }, {
+      "name" : "KeyError: 'access'",
+      "children" : [ {
+        "name" : "DELETE Удалить авторизованного пользователя",
+        "uid" : "90eafa3c75342e34",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1747260106439,
+          "stop" : 1747260107379,
+          "duration" : 940
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c0db57c4a80d04e81137955fc8cd39c0"
+    }, {
+      "name" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55822649f78a <unknown>\n#1 0x558225f420a0 <unknown>\n#2 0x558225f939b0 <unknown>\n#3 0x558225f93ba1 <unknown>\n#4 0x558225fe1ea4 <unknown>\n#5 0x558225fb93cd <unknown>\n#6 0x558225fdf2a0 <unknown>\n#7 0x558225fb9173 <unknown>\n#8 0x558225f85d4b <unknown>\n#9 0x558225f869b1 <unknown>\n#10 0x55822646493b <unknown>\n#11 0x55822646883a <unknown>\n#12 0x55822644c692 <unknown>\n#13 0x5582264693c4 <unknown>\n#14 0x5582264314cf <unknown>\n#15 0x55822648d568 <unknown>\n#16 0x55822648d746 <unknown>\n#17 0x55822649e5f6 <unknown>\n#18 0x7ff21f09caa4 <unknown>\n#19 0x7ff21f129c3c <unknown>",
+      "children" : [ {
+        "name" : "Авторизация с некорректным емайл",
+        "uid" : "2debe9448d4d454",
+        "parentUid" : "370d091db5c5f52030a75cddd55e7f2d",
+        "status" : "broken",
+        "time" : {
+          "start" : 1747260435755,
+          "stop" : 1747260456057,
+          "duration" : 20302
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'chrome'" ]
+      } ],
+      "uid" : "370d091db5c5f52030a75cddd55e7f2d"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  } ],
+  "name" : "categories"
+}
