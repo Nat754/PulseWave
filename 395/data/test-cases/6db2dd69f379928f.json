@@ -1,0 +1,414 @@
+{
+  "uid" : "6db2dd69f379928f",
+  "name" : "1.13 Проверка редиректа на главную страницу при клике на логотип",
+  "fullName" : "tests.test_header.test_header.TestHeader#test_redirect_logo_login",
+  "historyId" : "0fdaeaa112733d87337f00f659e16d26",
+  "time" : {
+    "start" : 1747765012230,
+    "stop" : 1747765012310,
+    "duration" : 80
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://puls...ssword?email=' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/auth/password?email=",
+  "statusTrace" : "self = <tests.test_header.test_header.TestHeader object at 0x7f86752bc7a0>\nheader_open = <pages.header.HeaderPage object at 0x7f86752f5c70>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"97d130279c31b9ca2db6778b73aa2c81\")>\nurl = 'https://pulsewave.ru/auth/password?email='\n\n    @pytest.mark.parametrize('url', [const.LOGIN_PAGE, const.SIGNUP_PAGE, const.PASSWORD_RECOVERY])\n    @allure.title(f\"1.13 Проверка редиректа на главную страницу при клике на логотип\")\n    @pytest.mark.smoke\n    def test_redirect_logo_login(self, header_open, driver, url):\n        header_open.get_header_logo().click()\n        with allure.step(\"Произошел переход на Главную страницу\"):\n>           assert driver.current_url == self.const.MAIN_PAGE, \\\n                'Не произошел переход на главную страницу при клике на лого'\nE           AssertionError: Не произошел переход на главную страницу при клике на лого\nE           assert 'https://puls...ssword?email=' == 'https://pulsewave.ru/'\nE             \nE             - https://pulsewave.ru/\nE             + https://pulsewave.ru/auth/password?email=\n\ntests/test_header/test_header.py:28: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "header_open",
+    "time" : {
+      "start" : 1747765008662,
+      "stop" : 1747765012230,
+      "duration" : 3568
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Принимаю всё' в сообщении о принятии файлов cookie на Главной странице",
+      "time" : {
+        "start" : 1747765012131,
+        "stop" : 1747765012177,
+        "duration" : 46
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1747765008316,
+      "stop" : 1747765008661,
+      "duration" : 345
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1747764738130,
+      "stop" : 1747764738130,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1747764738116,
+      "stop" : 1747764738130,
+      "duration" : 14
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://puls...ssword?email=' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/auth/password?email=",
+    "statusTrace" : "self = <tests.test_header.test_header.TestHeader object at 0x7f86752bc7a0>\nheader_open = <pages.header.HeaderPage object at 0x7f86752f5c70>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"97d130279c31b9ca2db6778b73aa2c81\")>\nurl = 'https://pulsewave.ru/auth/password?email='\n\n    @pytest.mark.parametrize('url', [const.LOGIN_PAGE, const.SIGNUP_PAGE, const.PASSWORD_RECOVERY])\n    @allure.title(f\"1.13 Проверка редиректа на главную страницу при клике на логотип\")\n    @pytest.mark.smoke\n    def test_redirect_logo_login(self, header_open, driver, url):\n        header_open.get_header_logo().click()\n        with allure.step(\"Произошел переход на Главную страницу\"):\n>           assert driver.current_url == self.const.MAIN_PAGE, \\\n                'Не произошел переход на главную страницу при клике на лого'\nE           AssertionError: Не произошел переход на главную страницу при клике на лого\nE           assert 'https://puls...ssword?email=' == 'https://pulsewave.ru/'\nE             \nE             - https://pulsewave.ru/\nE             + https://pulsewave.ru/auth/password?email=\n\ntests/test_header/test_header.py:28: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости логотипа в хедере",
+      "time" : {
+        "start" : 1747765012231,
+        "stop" : 1747765012261,
+        "duration" : 30
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Произошел переход на Главную страницу",
+      "time" : {
+        "start" : 1747765012307,
+        "stop" : 1747765012310,
+        "duration" : 3
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://puls...ssword?email=' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/auth/password?email=\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/tests/test_header/test_header.py\", line 28, in test_redirect_logo_login\n    assert driver.current_url == self.const.MAIN_PAGE, \\\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "c8aeabf8c6a67a",
+      "name" : "Screenshot",
+      "source" : "c8aeabf8c6a67a.png",
+      "type" : "image/png",
+      "size" : 72772
+    }, {
+      "uid" : "2e800b2cb2bc96b0",
+      "name" : "HTML source",
+      "source" : "2e800b2cb2bc96b0.html",
+      "type" : "text/html",
+      "size" : 99095
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1747765012438,
+      "stop" : 1747765012498,
+      "duration" : 60
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Хедера"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_header"
+  }, {
+    "name" : "suite",
+    "value" : "test_header"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestHeader"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmf6wy0o8zjz"
+  }, {
+    "name" : "thread",
+    "value" : "2615-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_header.test_header"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  }, {
+    "name" : "url",
+    "value" : "'https://pulsewave.ru/auth/password?email='"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 4,
+        "broken" : 3,
+        "skipped" : 0,
+        "passed" : 419,
+        "unknown" : 0,
+        "total" : 426
+      },
+      "items" : [ {
+        "uid" : "2bc5e737747bcd1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/394//#testresult/2bc5e737747bcd1",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://puls...ssword?email=' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/auth/password?email=",
+        "time" : {
+          "start" : 1747689285922,
+          "stop" : 1747689285997,
+          "duration" : 75
+        }
+      }, {
+        "uid" : "108c44460ef68474",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/389//#testresult/108c44460ef68474",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://puls...ssword?email=' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/auth/password?email=",
+        "time" : {
+          "start" : 1747260270657,
+          "stop" : 1747260270750,
+          "duration" : 93
+        }
+      }, {
+        "uid" : "3469202cc4890cbd",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/386//#testresult/3469202cc4890cbd",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://puls...ssword?email=' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/auth/password?email=",
+        "time" : {
+          "start" : 1746987270969,
+          "stop" : 1746987271045,
+          "duration" : 76
+        }
+      }, {
+        "uid" : "fd285a3005cca82c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/385//#testresult/fd285a3005cca82c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746900849123,
+          "stop" : 1746900849245,
+          "duration" : 122
+        }
+      }, {
+        "uid" : "35c5ed8201a6c32a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/384//#testresult/35c5ed8201a6c32a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746814512414,
+          "stop" : 1746814512503,
+          "duration" : 89
+        }
+      }, {
+        "uid" : "ccc9ae740383c9dc",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/383//#testresult/ccc9ae740383c9dc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746728105597,
+          "stop" : 1746728105684,
+          "duration" : 87
+        }
+      }, {
+        "uid" : "b70aad16ded3dda5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/382//#testresult/b70aad16ded3dda5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746641753643,
+          "stop" : 1746641753740,
+          "duration" : 97
+        }
+      }, {
+        "uid" : "a5f81d4cd88b28af",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/381//#testresult/a5f81d4cd88b28af",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746555320798,
+          "stop" : 1746555320889,
+          "duration" : 91
+        }
+      }, {
+        "uid" : "26cca2ea05907db2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/380//#testresult/26cca2ea05907db2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746468791884,
+          "stop" : 1746468791984,
+          "duration" : 100
+        }
+      }, {
+        "uid" : "732d278f3955c7bf",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/379//#testresult/732d278f3955c7bf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746428606815,
+          "stop" : 1746428606901,
+          "duration" : 86
+        }
+      }, {
+        "uid" : "b5c4a5925319ac66",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/379//#testresult/b5c4a5925319ac66",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746422934727,
+          "stop" : 1746422934807,
+          "duration" : 80
+        }
+      }, {
+        "uid" : "3056608dd559710f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/379//#testresult/3056608dd559710f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746382406389,
+          "stop" : 1746382406485,
+          "duration" : 96
+        }
+      }, {
+        "uid" : "80055ab65fe8701f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/378//#testresult/80055ab65fe8701f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746296044169,
+          "stop" : 1746296044274,
+          "duration" : 105
+        }
+      }, {
+        "uid" : "27239ca8bac85e9a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/377//#testresult/27239ca8bac85e9a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746209772729,
+          "stop" : 1746209772811,
+          "duration" : 82
+        }
+      }, {
+        "uid" : "1f079610eb8c5ee9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/376//#testresult/1f079610eb8c5ee9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746123353537,
+          "stop" : 1746123353623,
+          "duration" : 86
+        }
+      }, {
+        "uid" : "86180c46bebc28b6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/375//#testresult/86180c46bebc28b6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1746077985601,
+          "stop" : 1746077985683,
+          "duration" : 82
+        }
+      }, {
+        "uid" : "2385bcf3003dc922",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/374//#testresult/2385bcf3003dc922",
+        "status" : "passed",
+        "time" : {
+          "start" : 1745950552574,
+          "stop" : 1745950552662,
+          "duration" : 88
+        }
+      }, {
+        "uid" : "ee2406fb0387b75c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/373//#testresult/ee2406fb0387b75c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1745864169797,
+          "stop" : 1745864169908,
+          "duration" : 111
+        }
+      }, {
+        "uid" : "80059de002a20e60",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/372//#testresult/80059de002a20e60",
+        "status" : "passed",
+        "time" : {
+          "start" : 1745777583621,
+          "stop" : 1745777583720,
+          "duration" : 99
+        }
+      }, {
+        "uid" : "123edf87a0ebbb51",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/371//#testresult/123edf87a0ebbb51",
+        "status" : "passed",
+        "time" : {
+          "start" : 1745691219259,
+          "stop" : 1745691219362,
+          "duration" : 103
+        }
+      } ]
+    },
+    "tags" : [ "smoke" ]
+  },
+  "source" : "6db2dd69f379928f.json",
+  "parameterValues" : [ "'chrome'", "'https://pulsewave.ru/auth/password?email='" ]
+}
