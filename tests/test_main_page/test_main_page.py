@@ -1,7 +1,5 @@
 import allure
 import pytest
-
-from pages.main_page import MainPage
 from tests.constant import Links
 from tests.test_main_page.constant import MainConstant
 
@@ -15,7 +13,9 @@ class TestMainPage:
     @allure.title(f"1.1 Проверка перехода на страницу {const.SIGNUP_PAGE} по кнопке '{main.TEXT_SIGNUP}'")
     @pytest.mark.smoke
     def test_get_body_auth_signup(self, main_page_open, driver):
+        link = driver.current_url
         main_page_open.get_body_auth_signup().click()
+        main_page_open.wait_changed_url(link)
         assert driver.current_url == self.const.SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
     @pytest.mark.parametrize('css_property, figma, name', main.CHECK_TITLE)

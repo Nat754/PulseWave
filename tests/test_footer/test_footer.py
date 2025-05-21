@@ -21,7 +21,9 @@ class TestFooter:
         assert text == self.footer.COOKIES_TEXT, f"Неверный текст '{text}'"
         button_text = page.get_allow_all_cookies()
         assert button_text == self.footer.COOKIES_BUTTON, f"Неверный текст '{button_text}'"
+        link = driver.current_url
         page.get_cookies_link()
+        page.wait_changed_url(link)
         link = driver.current_url
         assert link == self.footer.COOKIES, f"Неверный url '{link}'"
 

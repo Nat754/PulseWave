@@ -30,7 +30,9 @@ class TestLoginPage:
                   f"\'{message.FORGOT_PASSWORD_MSG}'")
     @pytest.mark.smoke
     def test_redirect_password_recovery(self, login_page_open, driver):
+        link = driver.current_url
         login_page_open.check_forgot_password_message().click()
+        login_page_open.wait_changed_url(link)
         assert driver.current_url == self.const.PASSWORD_RECOVERY, \
             'Не произошел переход на страницу восстановления пароля'
 

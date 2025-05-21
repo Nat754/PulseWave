@@ -23,7 +23,9 @@ class TestHeader:
     @allure.title(f"1.13 Проверка редиректа на главную страницу при клике на логотип")
     @pytest.mark.smoke
     def test_redirect_logo_login(self, header_open, driver, url):
+        link = driver.current_url
         header_open.get_header_logo().click()
+        header_open.wait_changed_url(link)
         with allure.step("Произошел переход на Главную страницу"):
             assert driver.current_url == self.const.MAIN_PAGE, \
                 'Не произошел переход на главную страницу при клике на лого'
@@ -49,7 +51,9 @@ class TestHeader:
     @allure.title(f"Проверка перехода на страницу '{const.LOGIN_PAGE}' по кнопке '{header.TEXT_LOGIN}'")
     @pytest.mark.smoke
     def test_get_header_auth_login(self, header_open, driver, url):
+        link = driver.current_url
         header_open.get_header_auth_login().click()
+        header_open.wait_changed_url(link)
         with allure.step(f"Произошел переход на страницу '{self.const.LOGIN_PAGE}'"):
             assert driver.current_url == self.const.LOGIN_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
@@ -57,7 +61,9 @@ class TestHeader:
     @allure.title(f"1.2 Проверка перехода на страницу '{const.SIGNUP_PAGE}' по кнопке '{header.TEXT_SIGNUP}'")
     @pytest.mark.smoke
     def test_get_header_auth_signup(self, header_open, driver, url):
+        link = driver.current_url
         header_open.get_header_auth_signup().click()
+        header_open.wait_changed_url(link)
         with allure.step(f"Произошел переход на страницу '{self.const.SIGNUP_PAGE}'"):
             assert driver.current_url == self.const.SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
 
