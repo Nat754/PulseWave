@@ -1,0 +1,366 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /api/healthcheck/ (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7f519351a4e0>: Failed to resolve 'api.pulsewave.ru' ([Errno -3] Temporary failure in name resolution)\"))",
+      "children" : [ {
+        "name" : "1.1 GET Проверка доступности API",
+        "uid" : "e9c01709b7fedde0",
+        "parentUid" : "87ceefbbb58e23f3b5a589ffb9dd20c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749406210628,
+          "stop" : 1749406220644,
+          "duration" : 10016
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "87ceefbbb58e23f3b5a589ffb9dd20c0"
+    }, {
+      "name" : "requests.exceptions.ConnectionError: HTTPSConnectionPool(host='api.pulsewave.ru', port=443): Max retries exceeded with url: /auth/users/ (Caused by NameResolutionError(\"<urllib3.connection.HTTPSConnection object at 0x7f5193021070>: Failed to resolve 'api.pulsewave.ru' ([Errno -3] Temporary failure in name resolution)\"))",
+      "children" : [ {
+        "name" : "2.1 POST Создать пользователя с корректными данными",
+        "uid" : "1b02070875dbfeb1",
+        "parentUid" : "c70f797fbd2f5b308a6c5d3fa87cc160",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749406220784,
+          "stop" : 1749406230800,
+          "duration" : 10016
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c70f797fbd2f5b308a6c5d3fa87cc160"
+    }, {
+      "name" : "imaplib.IMAP4.abort: command: SEARCH => socket error: EOF",
+      "children" : [ {
+        "name" : "2.2 POST Активация пользователя с корректными данными",
+        "uid" : "8867c69ef96bd4ab",
+        "parentUid" : "4e7e057144f7649a3c8a055a991e9182",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749406230894,
+          "stop" : 1749409880025,
+          "duration" : 3649131
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "4e7e057144f7649a3c8a055a991e9182"
+    }, {
+      "name" : "KeyError: 'access'",
+      "children" : [ {
+        "name" : "POST Пригласить пользователя по email",
+        "uid" : "d39bde28624cfbe0",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409880098,
+          "stop" : 1749409880872,
+          "duration" : 774
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Повторная отправка ссылки с приглашением пользователя",
+        "uid" : "652810ded6b80e82",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409880884,
+          "stop" : 1749409881762,
+          "duration" : 878
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Удаление приглашенного пользователей из РП",
+        "uid" : "c44aab0a2058aa4a",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409881773,
+          "stop" : 1749409882543,
+          "duration" : 770
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Получить список всех Рабочих пространств авторизованного пользователя",
+        "uid" : "a5a82e824940b5f1",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409884846,
+          "stop" : 1749409885860,
+          "duration" : 1014
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Информация о конкретном рабочем пространстве",
+        "uid" : "a94ae11c25e6a053",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409885872,
+          "stop" : 1749409886965,
+          "duration" : 1093
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "PATCH Частично обновить данные РП (на данный момент только имя)",
+        "uid" : "f55b091ab40cda81",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409886977,
+          "stop" : 1749409887732,
+          "duration" : 755
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Удалить РП",
+        "uid" : "fb36f16ad195bb47",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409887744,
+          "stop" : 1749409888980,
+          "duration" : 1236
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Подтверждение приглашения в РП",
+        "uid" : "d331610e37c8ab7e",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409888992,
+          "stop" : 1749409890112,
+          "duration" : 1120
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Создать доску без указания РП",
+        "uid" : "319a312a28baac58",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409890125,
+          "stop" : 1749409891146,
+          "duration" : 1021
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Список всех пользователей доски для назначения ответственных",
+        "uid" : "bc0380c53db58f41",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409891158,
+          "stop" : 1749409892245,
+          "duration" : 1087
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Создать Рабочее пространство",
+        "uid" : "6807ea7ff2543b8b",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409892257,
+          "stop" : 1749409893016,
+          "duration" : 759
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Получить список всех пользователей для поиска",
+        "uid" : "3bb8004e5808b322",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409893028,
+          "stop" : 1749409893833,
+          "duration" : 805
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Обновить JWT refresh token авторизованного пользователя",
+        "uid" : "5a979d5b66efd20b",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409893845,
+          "stop" : 1749409894594,
+          "duration" : 749
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "GET Получить данные авторизованного пользователя me",
+        "uid" : "1c05059449294d24",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409894606,
+          "stop" : 1749409895391,
+          "duration" : 785
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Запрос на смену почты",
+        "uid" : "6603625491fcb600",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409895404,
+          "stop" : 1749409896529,
+          "duration" : 1125
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Подтверждение смены почты пользователя. Токен получить из ссылки auth/change_email/{token}.",
+        "uid" : "421390cf16fb7c60",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409896541,
+          "stop" : 1749409897319,
+          "duration" : 778
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Сброс пароля",
+        "uid" : "2288b0a31027301b",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409897331,
+          "stop" : 1749409897839,
+          "duration" : 508
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке     auth/password/reset/confirm/{uid}/{token}",
+        "uid" : "4088e3e5be7a5f0f",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409897851,
+          "stop" : 1749409898358,
+          "duration" : 507
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      }, {
+        "name" : "DELETE Удалить авторизованного пользователя",
+        "uid" : "d3f79e1a6b91fcd2",
+        "parentUid" : "c0db57c4a80d04e81137955fc8cd39c0",
+        "status" : "broken",
+        "time" : {
+          "start" : 1749409898370,
+          "stop" : 1749409898886,
+          "duration" : 516
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "c0db57c4a80d04e81137955fc8cd39c0"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  }, {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Unexpected status code. Expected: 400. Actual: 201",
+      "children" : [ {
+        "name" : "POST Регистрация ранее зарегистрированного пользователя",
+        "uid" : "b127a796885765fc",
+        "parentUid" : "7adb99b612f5ce8639f4e91065c87977",
+        "status" : "failed",
+        "time" : {
+          "start" : 1749409882555,
+          "stop" : 1749409883692,
+          "duration" : 1137
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "7adb99b612f5ce8639f4e91065c87977"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 200. Actual: 401",
+      "children" : [ {
+        "name" : "POST Создать пару токенов access и refresh",
+        "uid" : "f1d0d404a8049c28",
+        "parentUid" : "7beaa34d4756c5b63e91bf8aaf8411b0",
+        "status" : "failed",
+        "time" : {
+          "start" : 1749409883701,
+          "stop" : 1749409884836,
+          "duration" : 1135
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "7beaa34d4756c5b63e91bf8aaf8411b0"
+    }, {
+      "name" : "AssertionError: Unexpected status code. Expected: 201. Actual: 400",
+      "children" : [ {
+        "name" : "POST Регистрация пользователя без подтверждения подписки",
+        "uid" : "b5cdaa0ebcf6f6f7",
+        "parentUid" : "5820fa51546e1e6b8c308e8822d39993",
+        "status" : "failed",
+        "time" : {
+          "start" : 1749409900244,
+          "stop" : 1749409900751,
+          "duration" : 507
+        },
+        "flaky" : false,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "5820fa51546e1e6b8c308e8822d39993"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
+  "name" : "categories"
+}
