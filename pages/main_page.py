@@ -1,7 +1,7 @@
 from pages.base_page import BasePage
 import allure
-from tests.test_footer.constant import FooterConstant
-from tests.test_main_page.constant import MainConstant
+from tests.constant import FooterConstant
+from tests.constant import MainConstant
 from locators.main_locators import MainPageLocators
 
 

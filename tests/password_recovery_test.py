@@ -3,18 +3,14 @@ import pytest
 
 from api_testing.api_base import ApiBase
 from data import email_auth, password0, emailx, password_auth_email
-from tests.constant import Links, Messages
-from tests.test_password_recovery.constant import PasswordRecoveryConstant
-from pages.password_recovery_page import PasswordRecoveryPage
+from tests.constant import Links, Messages, PasswordRecoveryConstant
 
 
-@pytest.mark.parametrize('browser', Links.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{PasswordRecoveryConstant.RECOVERY_PAGE_TITLE}'")
 class TestPasswordRecoveryPage:
-    const = Links()
-    recovery = PasswordRecoveryConstant()
-    message = Messages()
-    page = PasswordRecoveryPage
+    const = Links
+    recovery = PasswordRecoveryConstant
+    message = Messages
 
     @allure.title(f"Проверка текста заголовка '{recovery.RECOVERY_PAGE_TITLE}'")
     @pytest.mark.regress
@@ -56,7 +52,7 @@ class TestPasswordRecoveryPage:
             recovery_page_open.fill_email_to_recovery_password(email_auth)
         with allure.step("Нажать кнопку 'Продолжить'"):
             recovery_page_open.click_resume_button()
-        link = self.page.get_link_recovery_password_by_email()
+        link = recovery_page_open.get_link_recovery_password_by_email()
         driver.get(link)
         with allure.step('Ввести пароль в поле пароль'):
             recovery_page_open.fill_password_recovery(password0)

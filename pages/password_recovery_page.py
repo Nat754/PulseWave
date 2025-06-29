@@ -2,7 +2,7 @@ from data import email_auth, password_auth_email
 from locators.password_recovery_locators import PasswordRecoveryLocators
 from pages.base_page import BasePage
 import allure
-from tests.test_password_recovery.constant import PasswordRecoveryConstant
+from tests.constant import PasswordRecoveryConstant
 from tests.constant import Messages, Links
 from api_testing.api_base import ApiBase
 

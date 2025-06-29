@@ -8,7 +8,7 @@ from data import password0
 from locators.signup_locators import SignUpLocators
 from pages.base_page import BasePage
 import allure
-from tests.test_signup_page.constant import SignUpConstants
+from tests.constant import SignUpConstants
 from tests.constant import Messages, Links
 
 

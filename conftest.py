@@ -4,29 +4,18 @@ import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from selenium.webdriver.edge.options import Options as EdgeOptions
 
 
-@pytest.fixture(scope='function')
-def driver(browser):
-    print(f'\nstart {browser} browser...')
-    if browser == "chrome":
-        chrome_options = ChromeOptions()
-        chrome_options.add_argument('--headless')
-        # chrome_options.add_argument('--start-maximized')
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.set_window_size(1920, 1080)
-    elif browser == "firefox":
-        firefox_options = FirefoxOptions()
-        firefox_options.add_argument('--headless')
-        driver = webdriver.Firefox(options=firefox_options)
-    elif browser == "edge":
-        edge_options = EdgeOptions()
-        edge_options.add_argument('--headless')
-        driver = webdriver.Edge(options=edge_options)
+@pytest.fixture()
+def driver():
+    print(f'\nstart chrome browser...')
+    chrome_options = ChromeOptions()
+    chrome_options.add_argument('--headless')
+    # chrome_options.add_argument('--start-maximized')
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.set_window_size(1920, 1080)
     yield driver
-    print(f'\nquit {browser} browser...')
+    print(f'\nquit chrome browser...')
     driver.quit()
 
 

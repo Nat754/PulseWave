@@ -1,15 +1,13 @@
 import time
-
 import allure
 import pytest
 from selenium.common import TimeoutException
 from pages.signup_page import SignUpPage
 from tests.constant import Links, Messages
-from tests.test_workspace_page.constant import WorkspaceConstant
+from tests.constant import WorkspaceConstant
 from pages.workspace_page import WorkspacePage
 
 
-@pytest.mark.parametrize('browser', Links.SET_OF_BROWSERS)
 @allure.epic(f"Тестирование страницы '{WorkspaceConstant.WORKSPACE_TITLE}'")
 class TestWorkspacePage:
     const = Links()

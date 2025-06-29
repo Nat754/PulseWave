@@ -1,7 +1,7 @@
 from locators.login_locators import LoginPageLocators
 from pages.base_page import BasePage
 import allure
-from tests.test_login_page.login_constant import LoginConstant
+from tests.constant import LoginConstant
 from tests.constant import Messages, Links
 
 
