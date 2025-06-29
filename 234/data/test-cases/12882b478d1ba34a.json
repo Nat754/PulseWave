@@ -1,0 +1,152 @@
+{
+  "uid" : "12882b478d1ba34a",
+  "name" : "Проверка редиректа на Главную страницу",
+  "fullName" : "tests.main_page_test.TestMainPage#test_get_redirect_to_main",
+  "historyId" : "1eb2a29932143d1f96d2657f10e07e20",
+  "time" : {
+    "start" : 1751236217336,
+    "stop" : 1751236219042,
+    "duration" : 1706
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Не произошел редирект\nassert 'https://pulsewave.ru/home' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/home\n  ?                      ++++",
+  "statusTrace" : "self = <tests.main_page_test.TestMainPage object at 0x7f2f78865cd0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"6806247a4aa306e162a51bc9b84f67fd\")>\n\n    @allure.title(\"Проверка редиректа на Главную страницу\")\n    @pytest.mark.regress\n    def test_get_redirect_to_main(self, driver):\n        driver.get(Links.MAIN_PAGE_HOME)\n        url = driver.current_url\n>       assert url == self.const.START_PAGE, \"Не произошел редирект\"\nE       AssertionError: Не произошел редирект\nE       assert 'https://pulsewave.ru/home' == 'https://pulsewave.ru/'\nE         \nE         - https://pulsewave.ru/\nE         + https://pulsewave.ru/home\nE         ?                      ++++\n\ntests/main_page_test.py:16: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1751234930160,
+      "stop" : 1751234930175,
+      "duration" : 15
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1751236217001,
+      "stop" : 1751236217336,
+      "duration" : 335
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1751234930175,
+      "stop" : 1751234930175,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Не произошел редирект\nassert 'https://pulsewave.ru/home' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/home\n  ?                      ++++",
+    "statusTrace" : "self = <tests.main_page_test.TestMainPage object at 0x7f2f78865cd0>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"6806247a4aa306e162a51bc9b84f67fd\")>\n\n    @allure.title(\"Проверка редиректа на Главную страницу\")\n    @pytest.mark.regress\n    def test_get_redirect_to_main(self, driver):\n        driver.get(Links.MAIN_PAGE_HOME)\n        url = driver.current_url\n>       assert url == self.const.START_PAGE, \"Не произошел редирект\"\nE       AssertionError: Не произошел редирект\nE       assert 'https://pulsewave.ru/home' == 'https://pulsewave.ru/'\nE         \nE         - https://pulsewave.ru/\nE         + https://pulsewave.ru/home\nE         ?                      ++++\n\ntests/main_page_test.py:16: AssertionError",
+    "steps" : [ ],
+    "attachments" : [ {
+      "uid" : "ddbb77508e657983",
+      "name" : "Screenshot",
+      "source" : "ddbb77508e657983.png",
+      "type" : "image/png",
+      "size" : 274554
+    }, {
+      "uid" : "7192b72fd66e77af",
+      "name" : "HTML source",
+      "source" : "7192b72fd66e77af.html",
+      "type" : "text/html",
+      "size" : 1504839
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1751236219412,
+      "stop" : 1751236219472,
+      "duration" : 60
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "main_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMainPage"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmbietmlfzoi"
+  }, {
+    "name" : "thread",
+    "value" : "2637-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.main_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ "regress" ]
+  },
+  "source" : "12882b478d1ba34a.json",
+  "parameterValues" : [ ]
+}
