@@ -1,0 +1,368 @@
+{
+  "uid" : "efa90f4260331986",
+  "name" : "test_get_css_property_footer_cooperation[font-family-Mulish, sans-serif-\\u0448\\u0440\\u0438\\u0444\\u0442\\u0430-https://pulsewave.ru/auth/login-chrome]",
+  "fullName" : "tests.test_footer.test_footer.TestFooter#test_get_css_property_footer_cooperation",
+  "historyId" : "f0d7052ebd24c219a7fda3567fb99846",
+  "time" : {
+    "start" : 1751221463480,
+    "stop" : 1751221463480,
+    "duration" : 0
+  },
+  "status" : "broken",
+  "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x563278e7f45a <unknown>\n#1 0x563278924760 <unknown>\n#2 0x563278976127 <unknown>\n#3 0x563278976321 <unknown>\n#4 0x5632789c4e94 <unknown>\n#5 0x56327899be7d <unknown>\n#6 0x5632789c230b <unknown>\n#7 0x56327899bc23 <unknown>\n#8 0x5632789684a5 <unknown>\n#9 0x563278969111 <unknown>\n#10 0x563278e43f1b <unknown>\n#11 0x563278e47e19 <unknown>\n#12 0x563278e2aac9 <unknown>\n#13 0x563278e489c8 <unknown>\n#14 0x563278e0f34f <unknown>\n#15 0x563278e6ca28 <unknown>\n#16 0x563278e6cc06 <unknown>\n#17 0x563278e7e336 <unknown>\n#18 0x7f0a3449caa4 <unknown>\n#19 0x7f0a34529c3c <unknown>",
+  "statusTrace" : "driver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"aff061c018c6faee44993796bffbaab8\")>\nurl = 'https://pulsewave.ru/auth/login'\n\n    @pytest.fixture()\n    def footer_open(driver, url):\n        page = FooterPage(driver)\n        driver.get(url)\n>       page.get_cookies_link()\n\ntests/test_footer/conftest.py:9: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/footer.py:44: in get_cookies_link\n    return self.element_is_visible(self.locator.COOKIES_LINK).click()\npages/base_page.py:19: in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\npages/base_page.py:35: in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"aff061c018c6faee44993796bffbaab8\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7fd948c8cae0>\nmessage = ''\n\n    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = \"\") -> T:\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: \nE       Stacktrace:\nE       #0 0x563278e7f45a <unknown>\nE       #1 0x563278924760 <unknown>\nE       #2 0x563278976127 <unknown>\nE       #3 0x563278976321 <unknown>\nE       #4 0x5632789c4e94 <unknown>\nE       #5 0x56327899be7d <unknown>\nE       #6 0x5632789c230b <unknown>\nE       #7 0x56327899bc23 <unknown>\nE       #8 0x5632789684a5 <unknown>\nE       #9 0x563278969111 <unknown>\nE       #10 0x563278e43f1b <unknown>\nE       #11 0x563278e47e19 <unknown>\nE       #12 0x563278e2aac9 <unknown>\nE       #13 0x563278e489c8 <unknown>\nE       #14 0x563278e0f34f <unknown>\nE       #15 0x563278e6ca28 <unknown>\nE       #16 0x563278e6cc06 <unknown>\nE       #17 0x563278e7e336 <unknown>\nE       #18 0x7f0a3449caa4 <unknown>\nE       #19 0x7f0a34529c3c <unknown>\n\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:105: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1751221463480,
+      "stop" : 1751221463817,
+      "duration" : 337
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "footer_open",
+    "time" : {
+      "start" : 1751221463817,
+      "stop" : 1751221485712,
+      "duration" : 21895
+    },
+    "status" : "broken",
+    "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x563278e7f45a <unknown>\n#1 0x563278924760 <unknown>\n#2 0x563278976127 <unknown>\n#3 0x563278976321 <unknown>\n#4 0x5632789c4e94 <unknown>\n#5 0x56327899be7d <unknown>\n#6 0x5632789c230b <unknown>\n#7 0x56327899bc23 <unknown>\n#8 0x5632789684a5 <unknown>\n#9 0x563278969111 <unknown>\n#10 0x563278e43f1b <unknown>\n#11 0x563278e47e19 <unknown>\n#12 0x563278e2aac9 <unknown>\n#13 0x563278e489c8 <unknown>\n#14 0x563278e0f34f <unknown>\n#15 0x563278e6ca28 <unknown>\n#16 0x563278e6cc06 <unknown>\n#17 0x563278e7e336 <unknown>\n#18 0x7f0a3449caa4 <unknown>\n#19 0x7f0a34529c3c <unknown>\n\n",
+    "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/pluggy/_callers.py\", line 38, in run_old_style_hookwrapper\n    res = yield\n          ^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/pluggy/_callers.py\", line 139, in _multicall\n    teardown.throw(exception)\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/_pytest/setuponly.py\", line 36, in pytest_fixture_setup\n    return (yield)\n            ^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/pluggy/_callers.py\", line 121, in _multicall\n    res = hook_impl.function(*args)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/_pytest/fixtures.py\", line 1140, in pytest_fixture_setup\n    result = call_fixture_func(fixturefunc, request, kwargs)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/_pytest/fixtures.py\", line 917, in call_fixture_func\n    fixture_result = fixturefunc(**kwargs)\n                     ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/tests/test_footer/conftest.py\", line 9, in footer_open\n    page.get_cookies_link()\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/footer.py\", line 44, in get_cookies_link\n    return self.element_is_visible(self.locator.COOKIES_LINK).click()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 19, in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 35, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+    "steps" : [ {
+      "name" : "Проверка перехода по ссылке для просмотра информации о файлах cookie на Главной странице",
+      "time" : {
+        "start" : 1751221465228,
+        "stop" : 1751221485711,
+        "duration" : 20483
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x563278e7f45a <unknown>\n#1 0x563278924760 <unknown>\n#2 0x563278976127 <unknown>\n#3 0x563278976321 <unknown>\n#4 0x5632789c4e94 <unknown>\n#5 0x56327899be7d <unknown>\n#6 0x5632789c230b <unknown>\n#7 0x56327899bc23 <unknown>\n#8 0x5632789684a5 <unknown>\n#9 0x563278969111 <unknown>\n#10 0x563278e43f1b <unknown>\n#11 0x563278e47e19 <unknown>\n#12 0x563278e2aac9 <unknown>\n#13 0x563278e489c8 <unknown>\n#14 0x563278e0f34f <unknown>\n#15 0x563278e6ca28 <unknown>\n#16 0x563278e6cc06 <unknown>\n#17 0x563278e7e336 <unknown>\n#18 0x7f0a3449caa4 <unknown>\n#19 0x7f0a34529c3c <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/footer.py\", line 44, in get_cookies_link\n    return self.element_is_visible(self.locator.COOKIES_LINK).click()\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 19, in element_is_visible\n    self.go_to_element(self.element_is_present(locator))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 35, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1751220637139,
+      "stop" : 1751220637155,
+      "duration" : 16
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1751220637155,
+      "stop" : 1751220637155,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1751221485724,
+      "stop" : 1751221485788,
+      "duration" : 64
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Футера"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.test_footer"
+  }, {
+    "name" : "suite",
+    "value" : "test_footer"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestFooter"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmbietmlfzoi"
+  }, {
+    "name" : "thread",
+    "value" : "2672-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_footer.test_footer"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "browser",
+    "value" : "'chrome'"
+  }, {
+    "name" : "css_property",
+    "value" : "'font-family'"
+  }, {
+    "name" : "figma",
+    "value" : "'Mulish, sans-serif'"
+  }, {
+    "name" : "name",
+    "value" : "'шрифта'"
+  }, {
+    "name" : "url",
+    "value" : "'https://pulsewave.ru/auth/login'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 5,
+        "skipped" : 0,
+        "passed" : 469,
+        "unknown" : 0,
+        "total" : 474
+      },
+      "items" : [ {
+        "uid" : "fe893118534c76cc",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/434//#testresult/fe893118534c76cc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1751174655375,
+          "stop" : 1751174655417,
+          "duration" : 42
+        }
+      }, {
+        "uid" : "cad304ada3c867df",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/434//#testresult/cad304ada3c867df",
+        "status" : "passed",
+        "time" : {
+          "start" : 1751145261770,
+          "stop" : 1751145261811,
+          "duration" : 41
+        }
+      }, {
+        "uid" : "b3da33d87715431",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/434//#testresult/b3da33d87715431",
+        "status" : "passed",
+        "time" : {
+          "start" : 1751134491364,
+          "stop" : 1751134491400,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "248404a43ff3d331",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/433//#testresult/248404a43ff3d331",
+        "status" : "passed",
+        "time" : {
+          "start" : 1751048104994,
+          "stop" : 1751048105029,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "9e51215711da326f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/432//#testresult/9e51215711da326f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750961738384,
+          "stop" : 1750961738422,
+          "duration" : 38
+        }
+      }, {
+        "uid" : "6b55786e5bfd9ff6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/431//#testresult/6b55786e5bfd9ff6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750877079303,
+          "stop" : 1750877079337,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "bc44888f8eaa66b7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/431//#testresult/bc44888f8eaa66b7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750875363659,
+          "stop" : 1750875363697,
+          "duration" : 38
+        }
+      }, {
+        "uid" : "f246839d23c9a231",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/430//#testresult/f246839d23c9a231",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750788935181,
+          "stop" : 1750788935220,
+          "duration" : 39
+        }
+      }, {
+        "uid" : "9a1aff37067d2a40",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/429//#testresult/9a1aff37067d2a40",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750702558281,
+          "stop" : 1750702558317,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "47eae94c6326c28c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/428//#testresult/47eae94c6326c28c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750616013631,
+          "stop" : 1750616013667,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "abd362ee586dcc9f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/427//#testresult/abd362ee586dcc9f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750529586422,
+          "stop" : 1750529586458,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "2c2829e0ee11d255",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/426//#testresult/2c2829e0ee11d255",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750443302328,
+          "stop" : 1750443302364,
+          "duration" : 36
+        }
+      }, {
+        "uid" : "7355fe125f2e71e5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/425//#testresult/7355fe125f2e71e5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750393525834,
+          "stop" : 1750393525869,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "7c215d7dfd43cb71",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/425//#testresult/7c215d7dfd43cb71",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750376103464,
+          "stop" : 1750376103498,
+          "duration" : 34
+        }
+      }, {
+        "uid" : "b9fbc93373e6a83a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/424//#testresult/b9fbc93373e6a83a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750284431772,
+          "stop" : 1750284431811,
+          "duration" : 39
+        }
+      }, {
+        "uid" : "f702eb21594d88f0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/423//#testresult/f702eb21594d88f0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750184113735,
+          "stop" : 1750184113773,
+          "duration" : 38
+        }
+      }, {
+        "uid" : "f03f5367aa5ba93d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/422//#testresult/f03f5367aa5ba93d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750097794182,
+          "stop" : 1750097794227,
+          "duration" : 45
+        }
+      }, {
+        "uid" : "1d8521312be59da3",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/421//#testresult/1d8521312be59da3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1750011310378,
+          "stop" : 1750011310415,
+          "duration" : 37
+        }
+      }, {
+        "uid" : "1f8b48a6a3be9d0f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/420//#testresult/1f8b48a6a3be9d0f",
+        "status" : "passed",
+        "time" : {
+          "start" : 1749924861119,
+          "stop" : 1749924861159,
+          "duration" : 40
+        }
+      }, {
+        "uid" : "989a82986c9fc27d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/419//#testresult/989a82986c9fc27d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1749838597007,
+          "stop" : 1749838597055,
+          "duration" : 48
+        }
+      } ]
+    },
+    "tags" : [ "regress" ]
+  },
+  "source" : "efa90f4260331986.json",
+  "parameterValues" : [ "'chrome'", "'font-family'", "'Mulish, sans-serif'", "'шрифта'", "'https://pulsewave.ru/auth/login'" ]
+}
