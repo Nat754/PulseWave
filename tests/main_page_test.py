@@ -1,16 +1,20 @@
 import allure
 import pytest
 from tests.constant import Links, MainConstant
+from pages.main_page import MainPage
 
 
 @allure.epic("Тестирование Главной страницы")
 class TestMainPage:
-    main = MainConstant()
-    const = Links()
+    const = MainConstant
+    link = Links
 
-    @allure.title("Проверка редиректа на Главную страницу")
+    @allure.title("Проверка редиректа с /home на Главную страницу")
     @pytest.mark.regress
     def test_get_redirect_to_main(self, driver):
-        driver.get(Links.MAIN_PAGE_HOME)
+        page = MainPage(driver)
+        url = self.link.MAIN_PAGE_HOME
+        driver.get(url)
+        page.wait_changed_url(url)
         url = driver.current_url
-        assert url == self.const.START_PAGE, "Не произошел редирект"
+        assert url == self.link.START_PAGE, "Не произошел редирект на Главную страницу"

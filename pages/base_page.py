@@ -100,7 +100,7 @@ class BasePage:
             Wait(self.driver, self.timeout).until(es.url_changes(url))
             return self.driver.current_url
         except TimeoutException:
-            return False
+            return self.driver.current_url
 
     @allure.step('Проверка некликабельности видимого элемента')
     def element_is_not_clickable(self, locator):
