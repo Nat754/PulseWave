@@ -1,0 +1,171 @@
+{
+  "uid" : "5937119e3c86ad7f",
+  "name" : "Проверка редиректа с /home на Главную страницу",
+  "fullName" : "tests.main_page_test.TestMainPage#test_get_redirect_to_main",
+  "historyId" : "1eb2a29932143d1f96d2657f10e07e20",
+  "time" : {
+    "start" : 1751273291922,
+    "stop" : 1751273296719,
+    "duration" : 4797
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1751271792010,
+      "stop" : 1751271792026,
+      "duration" : 16
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1751271792026,
+      "stop" : 1751271792026,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1751273291578,
+      "stop" : 1751273291921,
+      "duration" : 343
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Проверка смены url",
+      "time" : {
+        "start" : 1751273296201,
+        "stop" : 1751273296716,
+        "duration" : 515
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "url",
+        "value" : "'https://pulsewave.ru/home'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1751273296720,
+      "stop" : 1751273296779,
+      "duration" : 59
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Главной страницы"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "main_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestMainPage"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmbietmlfzoi"
+  }, {
+    "name" : "thread",
+    "value" : "2524-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.main_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 1,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 1,
+        "unknown" : 0,
+        "total" : 2
+      },
+      "items" : [ {
+        "uid" : "12882b478d1ba34a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/234//#testresult/12882b478d1ba34a",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Не произошел редирект\nassert 'https://pulsewave.ru/home' == 'https://pulsewave.ru/'\n  \n  - https://pulsewave.ru/\n  + https://pulsewave.ru/home\n  ?                      ++++",
+        "time" : {
+          "start" : 1751236217336,
+          "stop" : 1751236219042,
+          "duration" : 1706
+        }
+      } ]
+    },
+    "tags" : [ "regress" ]
+  },
+  "source" : "5937119e3c86ad7f.json",
+  "parameterValues" : [ ]
+}
