@@ -3,8 +3,7 @@ import allure
 import pytest
 from selenium.common import TimeoutException
 from pages.signup_page import SignUpPage
-from tests.constant import Links, Messages
-from tests.constant import WorkspaceConstant
+from tests.constant import Links, Messages, WorkspaceConstant
 from pages.workspace_page import WorkspacePage
 
 

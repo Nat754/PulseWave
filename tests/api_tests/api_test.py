@@ -7,7 +7,7 @@ from faker import Faker
 from data import email1, password0, email2, password3, password1, password2, email_auth, password_auth_email
 from api_testing.api_base import ApiBase
 from api_testing.assertions import Assertions
-from tests.test_api.api_constant import ApiConstant, StatusCode
+from tests.api_tests.api_constant import ApiConstant, StatusCode
 from tests.constant import Links
 
 faker = Faker('En')

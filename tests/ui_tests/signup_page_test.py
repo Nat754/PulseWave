@@ -3,8 +3,7 @@ import pytest
 from pages.base_page import BasePage
 from data import *
 from pages.workspace_page import WorkspacePage
-from tests.constant import Links, Messages, TestData
-from tests.constant import SignUpConstants
+from tests.constant import Links, Messages, TestData, SignUpConstants
 
 
 @allure.epic(f"Тестирование страницы '{SignUpConstants.TEXT_SIGNUP}'")

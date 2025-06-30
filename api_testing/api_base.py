@@ -7,7 +7,7 @@ import allure
 from faker import Faker
 import requests
 from data import email1, password0
-from tests.test_api.api_constant import ApiConstant
+from tests.api_tests.api_constant import ApiConstant
 from tests.constant import Links
 
 faker = Faker('En')
