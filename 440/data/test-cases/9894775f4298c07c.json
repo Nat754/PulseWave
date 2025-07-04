@@ -1,0 +1,437 @@
+{
+  "uid" : "9894775f4298c07c",
+  "name" : "Проверка цвета кнопки 'Войти' в хедере https://app.pulsewave.ru/auth/password?email=",
+  "fullName" : "tests.ui_tests.header_test.TestHeader#test_get_css_property_header_auth_login",
+  "historyId" : "db03190bf09d4e7f616e13ec2abb412c",
+  "time" : {
+    "start" : 1751653906216,
+    "stop" : 1751653906253,
+    "duration" : 37
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nAssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nassert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  + rgba(0, 0, 0, 0)",
+  "statusTrace" : "self = <tests.ui_tests.header_test.TestHeader object at 0x7f24fbb5d970>\nheader_open = <pages.header.HeaderPage object at 0x7f24fbb889b0>\ncss_property = 'background-color', figma = 'rgba(252, 224, 88, 1)'\nname = 'цвета', url = 'https://app.pulsewave.ru/auth/password?email='\n\n    @pytest.mark.xfail\n    @pytest.mark.parametrize('url', [link.SIGNUP_PAGE, link.PASSWORD_RECOVERY])\n    @pytest.mark.parametrize('css_property, figma, name', const.CHECK_BUTTON)\n    @pytest.mark.regress\n    def test_get_css_property_header_auth_login(self, header_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"Проверка {name} кнопки '{self.const.TEXT_LOGIN}' в хедере {url}\")\n        element = header_open.get_header_auth_login()\n        mean_css = element.value_of_css_property(css_property)\n        with allure.step(f\"Прошла проверка соответствия {name} кнопки '{self.const.TEXT_LOGIN}' макету\"):\n>           assert mean_css == figma, f\"Не прошла проверка соответствия {name} кнопки '{self.const.TEXT_LOGIN}' макету\"\nE           AssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nE           assert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\nE             \nE             - rgba(252, 224, 88, 1)\nE             + rgba(0, 0, 0, 0)\n\ntests/ui_tests/header_test.py:78: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1751653903436,
+      "stop" : 1751653903772,
+      "duration" : 336
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "header_open",
+    "time" : {
+      "start" : 1751653903772,
+      "stop" : 1751653906216,
+      "duration" : 2444
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Открыть страницу 'https://app.pulsewave.ru/auth/password?email='",
+      "time" : {
+        "start" : 1751653903772,
+        "stop" : 1751653906215,
+        "duration" : 2443
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Согласиться с использованием файлов cookies, если высветилось окно",
+        "time" : {
+          "start" : 1751653906139,
+          "stop" : 1751653906215,
+          "duration" : 76
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Получить кнопку 'Принимаю всё' в сообщении о принятии файлов cookie на Главной странице",
+          "time" : {
+            "start" : 1751653906140,
+            "stop" : 1751653906169,
+            "duration" : 29
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Проверить видимость элемента",
+            "time" : {
+              "start" : 1751653906140,
+              "stop" : 1751653906169,
+              "duration" : 29
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Проверить присутствие элемента в DOM",
+              "time" : {
+                "start" : 1751653906140,
+                "stop" : 1751653906149,
+                "duration" : 9
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ {
+                "name" : "locator",
+                "value" : "('css selector', '.cookies__body .button__small')"
+              } ],
+              "stepsCount" : 0,
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "hasContent" : true
+            }, {
+              "name" : "Проскролить до элемента",
+              "time" : {
+                "start" : 1751653906149,
+                "stop" : 1751653906154,
+                "duration" : 5
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ {
+                "name" : "element",
+                "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"c0afafd2c56b1b86e89f287781be5424\", element=\"f.784FC79BCE9A254C42B6009752211DC0.d.05B17D70496159F1078CF84C9A029CD3.e.11\")>"
+              } ],
+              "stepsCount" : 0,
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "hasContent" : true
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('css selector', '.cookies__body .button__small')"
+            } ],
+            "stepsCount" : 2,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 3,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "driver",
+          "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"c0afafd2c56b1b86e89f287781be5424\")>"
+        } ],
+        "stepsCount" : 4,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 5,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 6,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1751652711133,
+      "stop" : 1751652711133,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1751652711117,
+      "stop" : 1751652711133,
+      "duration" : 16
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nAssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nassert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  + rgba(0, 0, 0, 0)",
+    "statusTrace" : "self = <tests.ui_tests.header_test.TestHeader object at 0x7f24fbb5d970>\nheader_open = <pages.header.HeaderPage object at 0x7f24fbb889b0>\ncss_property = 'background-color', figma = 'rgba(252, 224, 88, 1)'\nname = 'цвета', url = 'https://app.pulsewave.ru/auth/password?email='\n\n    @pytest.mark.xfail\n    @pytest.mark.parametrize('url', [link.SIGNUP_PAGE, link.PASSWORD_RECOVERY])\n    @pytest.mark.parametrize('css_property, figma, name', const.CHECK_BUTTON)\n    @pytest.mark.regress\n    def test_get_css_property_header_auth_login(self, header_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"Проверка {name} кнопки '{self.const.TEXT_LOGIN}' в хедере {url}\")\n        element = header_open.get_header_auth_login()\n        mean_css = element.value_of_css_property(css_property)\n        with allure.step(f\"Прошла проверка соответствия {name} кнопки '{self.const.TEXT_LOGIN}' макету\"):\n>           assert mean_css == figma, f\"Не прошла проверка соответствия {name} кнопки '{self.const.TEXT_LOGIN}' макету\"\nE           AssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nE           assert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\nE             \nE             - rgba(252, 224, 88, 1)\nE             + rgba(0, 0, 0, 0)\n\ntests/ui_tests/header_test.py:78: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Войти' в хэдере",
+      "time" : {
+        "start" : 1751653906216,
+        "stop" : 1751653906244,
+        "duration" : 28
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1751653906216,
+          "stop" : 1751653906244,
+          "duration" : 28
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1751653906216,
+            "stop" : 1751653906227,
+            "duration" : 11
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//*[text()=\" Войти \"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1751653906227,
+            "stop" : 1751653906230,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"c0afafd2c56b1b86e89f287781be5424\", element=\"f.784FC79BCE9A254C42B6009752211DC0.d.05B17D70496159F1078CF84C9A029CD3.e.12\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//*[text()=\" Войти \"]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Прошла проверка соответствия цвета кнопки 'Войти' макету",
+      "time" : {
+        "start" : 1751653906253,
+        "stop" : 1751653906253,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nassert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  + rgba(0, 0, 0, 0)\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/tests/ui_tests/header_test.py\", line 78, in test_get_css_property_header_auth_login\n    assert mean_css == figma, f\"Не прошла проверка соответствия {name} кнопки '{self.const.TEXT_LOGIN}' макету\"\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "9d0d7ae452a0d3a4",
+      "name" : "Screenshot",
+      "source" : "9d0d7ae452a0d3a4.png",
+      "type" : "image/png",
+      "size" : 61200
+    }, {
+      "uid" : "9531383ba6f02857",
+      "name" : "HTML source",
+      "source" : "9531383ba6f02857.html",
+      "type" : "text/html",
+      "size" : 38834
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1751653906385,
+      "stop" : 1751653906445,
+      "duration" : 60
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Хедера"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.ui_tests"
+  }, {
+    "name" : "suite",
+    "value" : "header_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestHeader"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmbietmlfzoi"
+  }, {
+    "name" : "thread",
+    "value" : "2548-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.ui_tests.header_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "css_property",
+    "value" : "'background-color'"
+  }, {
+    "name" : "figma",
+    "value" : "'rgba(252, 224, 88, 1)'"
+  }, {
+    "name" : "name",
+    "value" : "'цвета'"
+  }, {
+    "name" : "url",
+    "value" : "'https://app.pulsewave.ru/auth/password?email='"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 7,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 7
+      },
+      "items" : [ {
+        "uid" : "a9346acf54c60128",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/439//#testresult/a9346acf54c60128",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nassert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  + rgba(0, 0, 0, 0)",
+        "time" : {
+          "start" : 1751567551052,
+          "stop" : 1751567551101,
+          "duration" : 49
+        }
+      }, {
+        "uid" : "16207689d6420cb2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/438//#testresult/16207689d6420cb2",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nassert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  + rgba(0, 0, 0, 0)",
+        "time" : {
+          "start" : 1751492082661,
+          "stop" : 1751492082699,
+          "duration" : 38
+        }
+      }, {
+        "uid" : "439b59f982954739",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/438//#testresult/439b59f982954739",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nassert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  + rgba(0, 0, 0, 0)",
+        "time" : {
+          "start" : 1751481256264,
+          "stop" : 1751481256302,
+          "duration" : 38
+        }
+      }, {
+        "uid" : "70b00c61a94e5ac",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/437//#testresult/70b00c61a94e5ac",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nassert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  + rgba(0, 0, 0, 0)",
+        "time" : {
+          "start" : 1751394818049,
+          "stop" : 1751394818088,
+          "duration" : 39
+        }
+      }, {
+        "uid" : "ab2d151beb74a5e5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/436//#testresult/ab2d151beb74a5e5",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nassert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  + rgba(0, 0, 0, 0)",
+        "time" : {
+          "start" : 1751308411644,
+          "stop" : 1751308411692,
+          "duration" : 48
+        }
+      }, {
+        "uid" : "9404447daed597df",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/236//#testresult/9404447daed597df",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Не прошла проверка соответствия цвета кнопки 'Войти' макету\nassert 'rgba(0, 0, 0, 0)' == 'rgba(252, 224, 88, 1)'\n  \n  - rgba(252, 224, 88, 1)\n  + rgba(0, 0, 0, 0)",
+        "time" : {
+          "start" : 1751291079649,
+          "stop" : 1751291079686,
+          "duration" : 37
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail", "regress" ]
+  },
+  "source" : "9894775f4298c07c.json",
+  "parameterValues" : [ "'background-color'", "'rgba(252, 224, 88, 1)'", "'цвета'", "'https://app.pulsewave.ru/auth/password?email='" ]
+}
