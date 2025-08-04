@@ -1,0 +1,548 @@
+{
+  "uid" : "947db8ce673d5fbd",
+  "name" : "Проверка шрифта кнопки 'Регистрация в хедере https://app.pulsewave.ru/auth/login'",
+  "fullName" : "tests.ui_tests.header_test.TestHeader#test_get_css_property_header_auth_signup",
+  "historyId" : "6607896aca32ead48bc0d67f2ef753cd",
+  "time" : {
+    "start" : 1754332626477,
+    "stop" : 1754332686963,
+    "duration" : 60486
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x555d5ec6787a <unknown>\n#1 0x555d5e70c2e0 <unknown>\n#2 0x555d5e75de00 <unknown>\n#3 0x555d5e75dff1 <unknown>\n#4 0x555d5e7ac324 <unknown>\n#5 0x555d5e7838dd <unknown>\n#6 0x555d5e7a971c <unknown>\n#7 0x555d5e783683 <unknown>\n#8 0x555d5e74fb5b <unknown>\n#9 0x555d5e750f31 <unknown>\n#10 0x555d5ec2c7cb <unknown>\n#11 0x555d5ec305d4 <unknown>\n#12 0x555d5ec132c9 <unknown>\n#13 0x555d5ec31178 <unknown>\n#14 0x555d5ebf76bf <unknown>\n#15 0x555d5ec54e78 <unknown>\n#16 0x555d5ec55056 <unknown>\n#17 0x555d5ec66b96 <unknown>\n#18 0x7ff93449caa4 <unknown>\n#19 0x7ff934529c3c <unknown>",
+  "statusTrace" : "self = <tests.ui_tests.header_test.TestHeader object at 0x7f528e55da60>\nheader_open = <pages.header.HeaderPage object at 0x7f528e58b380>\ncss_property = 'font-family', figma = 'Mulish, sans-serif', name = 'шрифта'\nurl = 'https://app.pulsewave.ru/auth/login'\n\n    @pytest.mark.xfail\n    @pytest.mark.parametrize('url', [link.LOGIN_PAGE, link.PASSWORD_RECOVERY])\n    @pytest.mark.parametrize('css_property, figma, name', const.CHECK_BUTTON)\n    @pytest.mark.regress\n    def test_get_css_property_header_auth_signup(self, header_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"Проверка {name} кнопки '{self.const.TEXT_SIGNUP} в хедере {url}'\")\n>       element = header_open.get_header_auth_login()\n\ntests/ui_tests/header_test.py:86: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/header.py:23: in get_header_auth_login\n    return self.element_is_visible(self.locator.AUTH_LOGIN)\npages/base_page.py:20: in element_is_visible\n    element = self.element_is_present(locator)\npages/base_page.py:39: in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"913579ada4deeb552eaef7c0d7d644e3\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7f528e6bfe20>\nmessage = ''\n\n    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = \"\") -> T:\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: \nE       Stacktrace:\nE       #0 0x555d5ec6787a <unknown>\nE       #1 0x555d5e70c2e0 <unknown>\nE       #2 0x555d5e75de00 <unknown>\nE       #3 0x555d5e75dff1 <unknown>\nE       #4 0x555d5e7ac324 <unknown>\nE       #5 0x555d5e7838dd <unknown>\nE       #6 0x555d5e7a971c <unknown>\nE       #7 0x555d5e783683 <unknown>\nE       #8 0x555d5e74fb5b <unknown>\nE       #9 0x555d5e750f31 <unknown>\nE       #10 0x555d5ec2c7cb <unknown>\nE       #11 0x555d5ec305d4 <unknown>\nE       #12 0x555d5ec132c9 <unknown>\nE       #13 0x555d5ec31178 <unknown>\nE       #14 0x555d5ebf76bf <unknown>\nE       #15 0x555d5ec54e78 <unknown>\nE       #16 0x555d5ec55056 <unknown>\nE       #17 0x555d5ec66b96 <unknown>\nE       #18 0x7ff93449caa4 <unknown>\nE       #19 0x7ff934529c3c <unknown>\n\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:105: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "clear_allure_results_folder",
+    "time" : {
+      "start" : 1754331235869,
+      "stop" : 1754331235869,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "header_open",
+    "time" : {
+      "start" : 1754332623475,
+      "stop" : 1754332626477,
+      "duration" : 3002
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Открыть страницу 'https://app.pulsewave.ru/auth/login'",
+      "time" : {
+        "start" : 1754332623475,
+        "stop" : 1754332626476,
+        "duration" : 3001
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Согласиться с использованием файлов cookies, если высветилось окно",
+        "time" : {
+          "start" : 1754332626381,
+          "stop" : 1754332626476,
+          "duration" : 95
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Получить кнопку 'Принимаю всё' в сообщении о принятии файлов cookie на Главной странице",
+          "time" : {
+            "start" : 1754332626381,
+            "stop" : 1754332626411,
+            "duration" : 30
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Проверить видимость элемента",
+            "time" : {
+              "start" : 1754332626382,
+              "stop" : 1754332626411,
+              "duration" : 29
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Проверить присутствие элемента в DOM",
+              "time" : {
+                "start" : 1754332626382,
+                "stop" : 1754332626392,
+                "duration" : 10
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ {
+                "name" : "locator",
+                "value" : "('css selector', '.cookies__body .button__small')"
+              } ],
+              "stepsCount" : 0,
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "hasContent" : true
+            }, {
+              "name" : "Проскролить до элемента",
+              "time" : {
+                "start" : 1754332626392,
+                "stop" : 1754332626396,
+                "duration" : 4
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ {
+                "name" : "element",
+                "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"913579ada4deeb552eaef7c0d7d644e3\", element=\"f.DD15CD0F28FA28C3626FEE0EC1F3B955.d.20AA805B0668EF501D614A5460B3CB00.e.14\")>"
+              } ],
+              "stepsCount" : 0,
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "hasContent" : true
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('css selector', '.cookies__body .button__small')"
+            } ],
+            "stepsCount" : 2,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 3,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "driver",
+          "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"913579ada4deeb552eaef7c0d7d644e3\")>"
+        } ],
+        "stepsCount" : 4,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 5,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 6,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1754332623122,
+      "stop" : 1754332623475,
+      "duration" : 353
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1754331235854,
+      "stop" : 1754331235868,
+      "duration" : 14
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x555d5ec6787a <unknown>\n#1 0x555d5e70c2e0 <unknown>\n#2 0x555d5e75de00 <unknown>\n#3 0x555d5e75dff1 <unknown>\n#4 0x555d5e7ac324 <unknown>\n#5 0x555d5e7838dd <unknown>\n#6 0x555d5e7a971c <unknown>\n#7 0x555d5e783683 <unknown>\n#8 0x555d5e74fb5b <unknown>\n#9 0x555d5e750f31 <unknown>\n#10 0x555d5ec2c7cb <unknown>\n#11 0x555d5ec305d4 <unknown>\n#12 0x555d5ec132c9 <unknown>\n#13 0x555d5ec31178 <unknown>\n#14 0x555d5ebf76bf <unknown>\n#15 0x555d5ec54e78 <unknown>\n#16 0x555d5ec55056 <unknown>\n#17 0x555d5ec66b96 <unknown>\n#18 0x7ff93449caa4 <unknown>\n#19 0x7ff934529c3c <unknown>",
+    "statusTrace" : "self = <tests.ui_tests.header_test.TestHeader object at 0x7f528e55da60>\nheader_open = <pages.header.HeaderPage object at 0x7f528e58b380>\ncss_property = 'font-family', figma = 'Mulish, sans-serif', name = 'шрифта'\nurl = 'https://app.pulsewave.ru/auth/login'\n\n    @pytest.mark.xfail\n    @pytest.mark.parametrize('url', [link.LOGIN_PAGE, link.PASSWORD_RECOVERY])\n    @pytest.mark.parametrize('css_property, figma, name', const.CHECK_BUTTON)\n    @pytest.mark.regress\n    def test_get_css_property_header_auth_signup(self, header_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"Проверка {name} кнопки '{self.const.TEXT_SIGNUP} в хедере {url}'\")\n>       element = header_open.get_header_auth_login()\n\ntests/ui_tests/header_test.py:86: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/header.py:23: in get_header_auth_login\n    return self.element_is_visible(self.locator.AUTH_LOGIN)\npages/base_page.py:20: in element_is_visible\n    element = self.element_is_present(locator)\npages/base_page.py:39: in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"913579ada4deeb552eaef7c0d7d644e3\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7f528e6bfe20>\nmessage = ''\n\n    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = \"\") -> T:\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: \nE       Stacktrace:\nE       #0 0x555d5ec6787a <unknown>\nE       #1 0x555d5e70c2e0 <unknown>\nE       #2 0x555d5e75de00 <unknown>\nE       #3 0x555d5e75dff1 <unknown>\nE       #4 0x555d5e7ac324 <unknown>\nE       #5 0x555d5e7838dd <unknown>\nE       #6 0x555d5e7a971c <unknown>\nE       #7 0x555d5e783683 <unknown>\nE       #8 0x555d5e74fb5b <unknown>\nE       #9 0x555d5e750f31 <unknown>\nE       #10 0x555d5ec2c7cb <unknown>\nE       #11 0x555d5ec305d4 <unknown>\nE       #12 0x555d5ec132c9 <unknown>\nE       #13 0x555d5ec31178 <unknown>\nE       #14 0x555d5ebf76bf <unknown>\nE       #15 0x555d5ec54e78 <unknown>\nE       #16 0x555d5ec55056 <unknown>\nE       #17 0x555d5ec66b96 <unknown>\nE       #18 0x7ff93449caa4 <unknown>\nE       #19 0x7ff934529c3c <unknown>\n\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:105: TimeoutException",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Войти' в хэдере",
+      "time" : {
+        "start" : 1754332626477,
+        "stop" : 1754332686962,
+        "duration" : 60485
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x555d5ec6787a <unknown>\n#1 0x555d5e70c2e0 <unknown>\n#2 0x555d5e75de00 <unknown>\n#3 0x555d5e75dff1 <unknown>\n#4 0x555d5e7ac324 <unknown>\n#5 0x555d5e7838dd <unknown>\n#6 0x555d5e7a971c <unknown>\n#7 0x555d5e783683 <unknown>\n#8 0x555d5e74fb5b <unknown>\n#9 0x555d5e750f31 <unknown>\n#10 0x555d5ec2c7cb <unknown>\n#11 0x555d5ec305d4 <unknown>\n#12 0x555d5ec132c9 <unknown>\n#13 0x555d5ec31178 <unknown>\n#14 0x555d5ebf76bf <unknown>\n#15 0x555d5ec54e78 <unknown>\n#16 0x555d5ec55056 <unknown>\n#17 0x555d5ec66b96 <unknown>\n#18 0x7ff93449caa4 <unknown>\n#19 0x7ff934529c3c <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/header.py\", line 23, in get_header_auth_login\n    return self.element_is_visible(self.locator.AUTH_LOGIN)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 20, in element_is_visible\n    element = self.element_is_present(locator)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1754332626477,
+          "stop" : 1754332686962,
+          "duration" : 60485
+        },
+        "status" : "broken",
+        "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x555d5ec6787a <unknown>\n#1 0x555d5e70c2e0 <unknown>\n#2 0x555d5e75de00 <unknown>\n#3 0x555d5e75dff1 <unknown>\n#4 0x555d5e7ac324 <unknown>\n#5 0x555d5e7838dd <unknown>\n#6 0x555d5e7a971c <unknown>\n#7 0x555d5e783683 <unknown>\n#8 0x555d5e74fb5b <unknown>\n#9 0x555d5e750f31 <unknown>\n#10 0x555d5ec2c7cb <unknown>\n#11 0x555d5ec305d4 <unknown>\n#12 0x555d5ec132c9 <unknown>\n#13 0x555d5ec31178 <unknown>\n#14 0x555d5ebf76bf <unknown>\n#15 0x555d5ec54e78 <unknown>\n#16 0x555d5ec55056 <unknown>\n#17 0x555d5ec66b96 <unknown>\n#18 0x7ff93449caa4 <unknown>\n#19 0x7ff934529c3c <unknown>\n\n",
+        "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 20, in element_is_visible\n    element = self.element_is_present(locator)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1754332626478,
+            "stop" : 1754332686961,
+            "duration" : 60483
+          },
+          "status" : "broken",
+          "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x555d5ec6787a <unknown>\n#1 0x555d5e70c2e0 <unknown>\n#2 0x555d5e75de00 <unknown>\n#3 0x555d5e75dff1 <unknown>\n#4 0x555d5e7ac324 <unknown>\n#5 0x555d5e7838dd <unknown>\n#6 0x555d5e7a971c <unknown>\n#7 0x555d5e783683 <unknown>\n#8 0x555d5e74fb5b <unknown>\n#9 0x555d5e750f31 <unknown>\n#10 0x555d5ec2c7cb <unknown>\n#11 0x555d5ec305d4 <unknown>\n#12 0x555d5ec132c9 <unknown>\n#13 0x555d5ec31178 <unknown>\n#14 0x555d5ebf76bf <unknown>\n#15 0x555d5ec54e78 <unknown>\n#16 0x555d5ec55056 <unknown>\n#17 0x555d5ec66b96 <unknown>\n#18 0x7ff93449caa4 <unknown>\n#19 0x7ff934529c3c <unknown>\n\n",
+          "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//*[text()=\" Войти \"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : true,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//*[text()=\" Войти \"]')"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "6ff05cfd4ac81379",
+      "name" : "Screenshot",
+      "source" : "6ff05cfd4ac81379.png",
+      "type" : "image/png",
+      "size" : 57163
+    }, {
+      "uid" : "16153040654899cc",
+      "name" : "HTML source",
+      "source" : "16153040654899cc.html",
+      "type" : "text/html",
+      "size" : 39678
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1754332687080,
+      "stop" : 1754332687150,
+      "duration" : 70
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Хедера"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.ui_tests"
+  }, {
+    "name" : "suite",
+    "value" : "header_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestHeader"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmjbmru5nbw0"
+  }, {
+    "name" : "thread",
+    "value" : "2556-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.ui_tests.header_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "css_property",
+    "value" : "'font-family'"
+  }, {
+    "name" : "figma",
+    "value" : "'Mulish, sans-serif'"
+  }, {
+    "name" : "name",
+    "value" : "'шрифта'"
+  }, {
+    "name" : "url",
+    "value" : "'https://app.pulsewave.ru/auth/login'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 44,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 44
+      },
+      "items" : [ {
+        "uid" : "509174742336e11e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/470//#testresult/509174742336e11e",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55ece3f0d87a <unknown>\n#1 0x55ece39b22e0 <unknown>\n#2 0x55ece3a03e00 <unknown>\n#3 0x55ece3a03ff1 <unknown>\n#4 0x55ece3a52324 <unknown>\n#5 0x55ece3a298dd <unknown>\n#6 0x55ece3a4f71c <unknown>\n#7 0x55ece3a29683 <unknown>\n#8 0x55ece39f5b5b <unknown>\n#9 0x55ece39f6f31 <unknown>\n#10 0x55ece3ed27cb <unknown>\n#11 0x55ece3ed65d4 <unknown>\n#12 0x55ece3eb92c9 <unknown>\n#13 0x55ece3ed7178 <unknown>\n#14 0x55ece3e9d6bf <unknown>\n#15 0x55ece3efae78 <unknown>\n#16 0x55ece3efb056 <unknown>\n#17 0x55ece3f0cb96 <unknown>\n#18 0x7f97f749caa4 <unknown>\n#19 0x7f97f7529c3c <unknown>",
+        "time" : {
+          "start" : 1754246122254,
+          "stop" : 1754246182751,
+          "duration" : 60497
+        }
+      }, {
+        "uid" : "1cc7348be0ddb8b1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/469//#testresult/1cc7348be0ddb8b1",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55a48f86587a <unknown>\n#1 0x55a48f30a2e0 <unknown>\n#2 0x55a48f35be00 <unknown>\n#3 0x55a48f35bff1 <unknown>\n#4 0x55a48f3aa324 <unknown>\n#5 0x55a48f3818dd <unknown>\n#6 0x55a48f3a771c <unknown>\n#7 0x55a48f381683 <unknown>\n#8 0x55a48f34db5b <unknown>\n#9 0x55a48f34ef31 <unknown>\n#10 0x55a48f82a7cb <unknown>\n#11 0x55a48f82e5d4 <unknown>\n#12 0x55a48f8112c9 <unknown>\n#13 0x55a48f82f178 <unknown>\n#14 0x55a48f7f56bf <unknown>\n#15 0x55a48f852e78 <unknown>\n#16 0x55a48f853056 <unknown>\n#17 0x55a48f864b96 <unknown>\n#18 0x7f9ae909caa4 <unknown>\n#19 0x7f9ae9129c3c <unknown>",
+        "time" : {
+          "start" : 1754159650002,
+          "stop" : 1754159710488,
+          "duration" : 60486
+        }
+      }, {
+        "uid" : "79e1c1e16f95d6fd",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/468//#testresult/79e1c1e16f95d6fd",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x564960c2d87a <unknown>\n#1 0x5649606d22e0 <unknown>\n#2 0x564960723e00 <unknown>\n#3 0x564960723ff1 <unknown>\n#4 0x564960772324 <unknown>\n#5 0x5649607498dd <unknown>\n#6 0x56496076f71c <unknown>\n#7 0x564960749683 <unknown>\n#8 0x564960715b5b <unknown>\n#9 0x564960716f31 <unknown>\n#10 0x564960bf27cb <unknown>\n#11 0x564960bf65d4 <unknown>\n#12 0x564960bd92c9 <unknown>\n#13 0x564960bf7178 <unknown>\n#14 0x564960bbd6bf <unknown>\n#15 0x564960c1ae78 <unknown>\n#16 0x564960c1b056 <unknown>\n#17 0x564960c2cb96 <unknown>\n#18 0x7f81bf49caa4 <unknown>\n#19 0x7f81bf529c3c <unknown>",
+        "time" : {
+          "start" : 1754073494216,
+          "stop" : 1754073554645,
+          "duration" : 60429
+        }
+      }, {
+        "uid" : "e2b67a40e34f1e8a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/467//#testresult/e2b67a40e34f1e8a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55ea32f2987a <unknown>\n#1 0x55ea329ce2e0 <unknown>\n#2 0x55ea32a1fe00 <unknown>\n#3 0x55ea32a1fff1 <unknown>\n#4 0x55ea32a6e324 <unknown>\n#5 0x55ea32a458dd <unknown>\n#6 0x55ea32a6b71c <unknown>\n#7 0x55ea32a45683 <unknown>\n#8 0x55ea32a11b5b <unknown>\n#9 0x55ea32a12f31 <unknown>\n#10 0x55ea32eee7cb <unknown>\n#11 0x55ea32ef25d4 <unknown>\n#12 0x55ea32ed52c9 <unknown>\n#13 0x55ea32ef3178 <unknown>\n#14 0x55ea32eb96bf <unknown>\n#15 0x55ea32f16e78 <unknown>\n#16 0x55ea32f17056 <unknown>\n#17 0x55ea32f28b96 <unknown>\n#18 0x7f78e229caa4 <unknown>\n#19 0x7f78e2329c3c <unknown>",
+        "time" : {
+          "start" : 1753987124409,
+          "stop" : 1753987184417,
+          "duration" : 60008
+        }
+      }, {
+        "uid" : "12e8f29b358eae68",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/466//#testresult/12e8f29b358eae68",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55b429b3987a <unknown>\n#1 0x55b4295de2e0 <unknown>\n#2 0x55b42962fe00 <unknown>\n#3 0x55b42962fff1 <unknown>\n#4 0x55b42967e324 <unknown>\n#5 0x55b4296558dd <unknown>\n#6 0x55b42967b71c <unknown>\n#7 0x55b429655683 <unknown>\n#8 0x55b429621b5b <unknown>\n#9 0x55b429622f31 <unknown>\n#10 0x55b429afe7cb <unknown>\n#11 0x55b429b025d4 <unknown>\n#12 0x55b429ae52c9 <unknown>\n#13 0x55b429b03178 <unknown>\n#14 0x55b429ac96bf <unknown>\n#15 0x55b429b26e78 <unknown>\n#16 0x55b429b27056 <unknown>\n#17 0x55b429b38b96 <unknown>\n#18 0x7f176c09caa4 <unknown>\n#19 0x7f176c129c3c <unknown>",
+        "time" : {
+          "start" : 1753937516118,
+          "stop" : 1753937576605,
+          "duration" : 60487
+        }
+      }, {
+        "uid" : "79806c07cec59c84",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/465//#testresult/79806c07cec59c84",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55adfc4f687a <unknown>\n#1 0x55adfbf9b2e0 <unknown>\n#2 0x55adfbfece00 <unknown>\n#3 0x55adfbfecff1 <unknown>\n#4 0x55adfc03b324 <unknown>\n#5 0x55adfc0128dd <unknown>\n#6 0x55adfc03871c <unknown>\n#7 0x55adfc012683 <unknown>\n#8 0x55adfbfdeb5b <unknown>\n#9 0x55adfbfdff31 <unknown>\n#10 0x55adfc4bb7cb <unknown>\n#11 0x55adfc4bf5d4 <unknown>\n#12 0x55adfc4a22c9 <unknown>\n#13 0x55adfc4c0178 <unknown>\n#14 0x55adfc4866bf <unknown>\n#15 0x55adfc4e3e78 <unknown>\n#16 0x55adfc4e4056 <unknown>\n#17 0x55adfc4f5b96 <unknown>\n#18 0x7fae5f69caa4 <unknown>\n#19 0x7fae5f729c3c <unknown>",
+        "time" : {
+          "start" : 1753825838823,
+          "stop" : 1753825899314,
+          "duration" : 60491
+        }
+      }, {
+        "uid" : "dde8acffd5a53218",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/465//#testresult/dde8acffd5a53218",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x558e8f3777da <unknown>\n#1 0x558e8ee1c2e0 <unknown>\n#2 0x558e8ee6de00 <unknown>\n#3 0x558e8ee6dff1 <unknown>\n#4 0x558e8eebc324 <unknown>\n#5 0x558e8ee938dd <unknown>\n#6 0x558e8eeb971c <unknown>\n#7 0x558e8ee93683 <unknown>\n#8 0x558e8ee5fb5b <unknown>\n#9 0x558e8ee60f31 <unknown>\n#10 0x558e8f33c72b <unknown>\n#11 0x558e8f340534 <unknown>\n#12 0x558e8f323229 <unknown>\n#13 0x558e8f3410d8 <unknown>\n#14 0x558e8f30761f <unknown>\n#15 0x558e8f364dd8 <unknown>\n#16 0x558e8f364fb6 <unknown>\n#17 0x558e8f376af6 <unknown>\n#18 0x7fa19509caa4 <unknown>\n#19 0x7fa195129c3c <unknown>",
+        "time" : {
+          "start" : 1753814238885,
+          "stop" : 1753814299303,
+          "duration" : 60418
+        }
+      }, {
+        "uid" : "626210e771618212",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/464//#testresult/626210e771618212",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55fd9a1897da <unknown>\n#1 0x55fd99c2e2e0 <unknown>\n#2 0x55fd99c7fe00 <unknown>\n#3 0x55fd99c7fff1 <unknown>\n#4 0x55fd99cce324 <unknown>\n#5 0x55fd99ca58dd <unknown>\n#6 0x55fd99ccb71c <unknown>\n#7 0x55fd99ca5683 <unknown>\n#8 0x55fd99c71b5b <unknown>\n#9 0x55fd99c72f31 <unknown>\n#10 0x55fd9a14e72b <unknown>\n#11 0x55fd9a152534 <unknown>\n#12 0x55fd9a135229 <unknown>\n#13 0x55fd9a1530d8 <unknown>\n#14 0x55fd9a11961f <unknown>\n#15 0x55fd9a176dd8 <unknown>\n#16 0x55fd9a176fb6 <unknown>\n#17 0x55fd9a188af6 <unknown>\n#18 0x7f8d31c9caa4 <unknown>\n#19 0x7f8d31d29c3c <unknown>",
+        "time" : {
+          "start" : 1753727836433,
+          "stop" : 1753727896918,
+          "duration" : 60485
+        }
+      }, {
+        "uid" : "258763d095ca7bb2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/463//#testresult/258763d095ca7bb2",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55a1f77307da <unknown>\n#1 0x55a1f71d52e0 <unknown>\n#2 0x55a1f7226e00 <unknown>\n#3 0x55a1f7226ff1 <unknown>\n#4 0x55a1f7275324 <unknown>\n#5 0x55a1f724c8dd <unknown>\n#6 0x55a1f727271c <unknown>\n#7 0x55a1f724c683 <unknown>\n#8 0x55a1f7218b5b <unknown>\n#9 0x55a1f7219f31 <unknown>\n#10 0x55a1f76f572b <unknown>\n#11 0x55a1f76f9534 <unknown>\n#12 0x55a1f76dc229 <unknown>\n#13 0x55a1f76fa0d8 <unknown>\n#14 0x55a1f76c061f <unknown>\n#15 0x55a1f771ddd8 <unknown>\n#16 0x55a1f771dfb6 <unknown>\n#17 0x55a1f772faf6 <unknown>\n#18 0x7f00d129caa4 <unknown>\n#19 0x7f00d1329c3c <unknown>",
+        "time" : {
+          "start" : 1753641356603,
+          "stop" : 1753641417106,
+          "duration" : 60503
+        }
+      }, {
+        "uid" : "8b078021173e4bcb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/462//#testresult/8b078021173e4bcb",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x56194a1377da <unknown>\n#1 0x561949bdc2e0 <unknown>\n#2 0x561949c2de00 <unknown>\n#3 0x561949c2dff1 <unknown>\n#4 0x561949c7c324 <unknown>\n#5 0x561949c538dd <unknown>\n#6 0x561949c7971c <unknown>\n#7 0x561949c53683 <unknown>\n#8 0x561949c1fb5b <unknown>\n#9 0x561949c20f31 <unknown>\n#10 0x56194a0fc72b <unknown>\n#11 0x56194a100534 <unknown>\n#12 0x56194a0e3229 <unknown>\n#13 0x56194a1010d8 <unknown>\n#14 0x56194a0c761f <unknown>\n#15 0x56194a124dd8 <unknown>\n#16 0x56194a124fb6 <unknown>\n#17 0x56194a136af6 <unknown>\n#18 0x7f5f08e9caa4 <unknown>\n#19 0x7f5f08f29c3c <unknown>",
+        "time" : {
+          "start" : 1753554927570,
+          "stop" : 1753554988024,
+          "duration" : 60454
+        }
+      }, {
+        "uid" : "8beaa9683ca4ab3",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/461//#testresult/8beaa9683ca4ab3",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55e8898327da <unknown>\n#1 0x55e8892d72e0 <unknown>\n#2 0x55e889328e00 <unknown>\n#3 0x55e889328ff1 <unknown>\n#4 0x55e889377324 <unknown>\n#5 0x55e88934e8dd <unknown>\n#6 0x55e88937471c <unknown>\n#7 0x55e88934e683 <unknown>\n#8 0x55e88931ab5b <unknown>\n#9 0x55e88931bf31 <unknown>\n#10 0x55e8897f772b <unknown>\n#11 0x55e8897fb534 <unknown>\n#12 0x55e8897de229 <unknown>\n#13 0x55e8897fc0d8 <unknown>\n#14 0x55e8897c261f <unknown>\n#15 0x55e88981fdd8 <unknown>\n#16 0x55e88981ffb6 <unknown>\n#17 0x55e889831af6 <unknown>\n#18 0x7fdacc89caa4 <unknown>\n#19 0x7fdacc929c3c <unknown>",
+        "time" : {
+          "start" : 1753468534131,
+          "stop" : 1753468594601,
+          "duration" : 60470
+        }
+      }, {
+        "uid" : "a8bc88f850f92f02",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/460//#testresult/a8bc88f850f92f02",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55da7e7fa7da <unknown>\n#1 0x55da7e29f2e0 <unknown>\n#2 0x55da7e2f0e00 <unknown>\n#3 0x55da7e2f0ff1 <unknown>\n#4 0x55da7e33f324 <unknown>\n#5 0x55da7e3168dd <unknown>\n#6 0x55da7e33c71c <unknown>\n#7 0x55da7e316683 <unknown>\n#8 0x55da7e2e2b5b <unknown>\n#9 0x55da7e2e3f31 <unknown>\n#10 0x55da7e7bf72b <unknown>\n#11 0x55da7e7c3534 <unknown>\n#12 0x55da7e7a6229 <unknown>\n#13 0x55da7e7c40d8 <unknown>\n#14 0x55da7e78a61f <unknown>\n#15 0x55da7e7e7dd8 <unknown>\n#16 0x55da7e7e7fb6 <unknown>\n#17 0x55da7e7f9af6 <unknown>\n#18 0x7f1b3389caa4 <unknown>\n#19 0x7f1b33929c3c <unknown>",
+        "time" : {
+          "start" : 1753382194412,
+          "stop" : 1753382254908,
+          "duration" : 60496
+        }
+      }, {
+        "uid" : "1b808ddcdb26a66f",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/459//#testresult/1b808ddcdb26a66f",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55acb7c527da <unknown>\n#1 0x55acb76f72e0 <unknown>\n#2 0x55acb7748e00 <unknown>\n#3 0x55acb7748ff1 <unknown>\n#4 0x55acb7797324 <unknown>\n#5 0x55acb776e8dd <unknown>\n#6 0x55acb779471c <unknown>\n#7 0x55acb776e683 <unknown>\n#8 0x55acb773ab5b <unknown>\n#9 0x55acb773bf31 <unknown>\n#10 0x55acb7c1772b <unknown>\n#11 0x55acb7c1b534 <unknown>\n#12 0x55acb7bfe229 <unknown>\n#13 0x55acb7c1c0d8 <unknown>\n#14 0x55acb7be261f <unknown>\n#15 0x55acb7c3fdd8 <unknown>\n#16 0x55acb7c3ffb6 <unknown>\n#17 0x55acb7c51af6 <unknown>\n#18 0x7fd3ffc9caa4 <unknown>\n#19 0x7fd3ffd29c3c <unknown>",
+        "time" : {
+          "start" : 1753295726204,
+          "stop" : 1753295786694,
+          "duration" : 60490
+        }
+      }, {
+        "uid" : "c85264481ad01454",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/458//#testresult/c85264481ad01454",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55a4a558223a <unknown>\n#1 0x55a4a502cab0 <unknown>\n#2 0x55a4a507e6f0 <unknown>\n#3 0x55a4a507e8e1 <unknown>\n#4 0x55a4a50ccb94 <unknown>\n#5 0x55a4a50a41cd <unknown>\n#6 0x55a4a50c9fee <unknown>\n#7 0x55a4a50a3f73 <unknown>\n#8 0x55a4a5070aeb <unknown>\n#9 0x55a4a5071751 <unknown>\n#10 0x55a4a5546b4b <unknown>\n#11 0x55a4a554a929 <unknown>\n#12 0x55a4a552d929 <unknown>\n#13 0x55a4a554b4e8 <unknown>\n#14 0x55a4a55120df <unknown>\n#15 0x55a4a556f8e8 <unknown>\n#16 0x55a4a556fac6 <unknown>\n#17 0x55a4a5581556 <unknown>\n#18 0x7fbcb7c9caa4 <unknown>\n#19 0x7fbcb7d29c3c <unknown>",
+        "time" : {
+          "start" : 1753209339228,
+          "stop" : 1753209399650,
+          "duration" : 60422
+        }
+      }, {
+        "uid" : "56760f5ab4b36ec0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/457//#testresult/56760f5ab4b36ec0",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55a3dd7e823a <unknown>\n#1 0x55a3dd292ab0 <unknown>\n#2 0x55a3dd2e46f0 <unknown>\n#3 0x55a3dd2e48e1 <unknown>\n#4 0x55a3dd332b94 <unknown>\n#5 0x55a3dd30a1cd <unknown>\n#6 0x55a3dd32ffee <unknown>\n#7 0x55a3dd309f73 <unknown>\n#8 0x55a3dd2d6aeb <unknown>\n#9 0x55a3dd2d7751 <unknown>\n#10 0x55a3dd7acb4b <unknown>\n#11 0x55a3dd7b0929 <unknown>\n#12 0x55a3dd793929 <unknown>\n#13 0x55a3dd7b14e8 <unknown>\n#14 0x55a3dd7780df <unknown>\n#15 0x55a3dd7d58e8 <unknown>\n#16 0x55a3dd7d5ac6 <unknown>\n#17 0x55a3dd7e7556 <unknown>\n#18 0x7fc41809caa4 <unknown>\n#19 0x7fc418129c3c <unknown>",
+        "time" : {
+          "start" : 1753123043342,
+          "stop" : 1753123103798,
+          "duration" : 60456
+        }
+      }, {
+        "uid" : "e9735615fe75676d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/456//#testresult/e9735615fe75676d",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x56269746523a <unknown>\n#1 0x562696f0fab0 <unknown>\n#2 0x562696f616f0 <unknown>\n#3 0x562696f618e1 <unknown>\n#4 0x562696fafb94 <unknown>\n#5 0x562696f871cd <unknown>\n#6 0x562696facfee <unknown>\n#7 0x562696f86f73 <unknown>\n#8 0x562696f53aeb <unknown>\n#9 0x562696f54751 <unknown>\n#10 0x562697429b4b <unknown>\n#11 0x56269742d929 <unknown>\n#12 0x562697410929 <unknown>\n#13 0x56269742e4e8 <unknown>\n#14 0x5626973f50df <unknown>\n#15 0x5626974528e8 <unknown>\n#16 0x562697452ac6 <unknown>\n#17 0x562697464556 <unknown>\n#18 0x7fc4cbc9caa4 <unknown>\n#19 0x7fc4cbd29c3c <unknown>",
+        "time" : {
+          "start" : 1753077135087,
+          "stop" : 1753077195468,
+          "duration" : 60381
+        }
+      }, {
+        "uid" : "377c1bb2e91f17dc",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/456//#testresult/377c1bb2e91f17dc",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x557d4180823a <unknown>\n#1 0x557d412b2ab0 <unknown>\n#2 0x557d413046f0 <unknown>\n#3 0x557d413048e1 <unknown>\n#4 0x557d41352b94 <unknown>\n#5 0x557d4132a1cd <unknown>\n#6 0x557d4134ffee <unknown>\n#7 0x557d41329f73 <unknown>\n#8 0x557d412f6aeb <unknown>\n#9 0x557d412f7751 <unknown>\n#10 0x557d417ccb4b <unknown>\n#11 0x557d417d0929 <unknown>\n#12 0x557d417b3929 <unknown>\n#13 0x557d417d14e8 <unknown>\n#14 0x557d417980df <unknown>\n#15 0x557d417f58e8 <unknown>\n#16 0x557d417f5ac6 <unknown>\n#17 0x557d41807556 <unknown>\n#18 0x7f8cc7c9caa4 <unknown>\n#19 0x7f8cc7d29c3c <unknown>",
+        "time" : {
+          "start" : 1753043635771,
+          "stop" : 1753043696240,
+          "duration" : 60469
+        }
+      }, {
+        "uid" : "5804e7c19df91665",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/456//#testresult/5804e7c19df91665",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55c9c1ea623a <unknown>\n#1 0x55c9c1950ab0 <unknown>\n#2 0x55c9c19a26f0 <unknown>\n#3 0x55c9c19a28e1 <unknown>\n#4 0x55c9c19f0b94 <unknown>\n#5 0x55c9c19c81cd <unknown>\n#6 0x55c9c19edfee <unknown>\n#7 0x55c9c19c7f73 <unknown>\n#8 0x55c9c1994aeb <unknown>\n#9 0x55c9c1995751 <unknown>\n#10 0x55c9c1e6ab4b <unknown>\n#11 0x55c9c1e6e929 <unknown>\n#12 0x55c9c1e51929 <unknown>\n#13 0x55c9c1e6f4e8 <unknown>\n#14 0x55c9c1e360df <unknown>\n#15 0x55c9c1e938e8 <unknown>\n#16 0x55c9c1e93ac6 <unknown>\n#17 0x55c9c1ea5556 <unknown>\n#18 0x7fabc769caa4 <unknown>\n#19 0x7fabc7729c3c <unknown>",
+        "time" : {
+          "start" : 1753040868777,
+          "stop" : 1753040929251,
+          "duration" : 60474
+        }
+      }, {
+        "uid" : "ebf7557a2e194291",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/456//#testresult/ebf7557a2e194291",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x5639e39df23a <unknown>\n#1 0x5639e3489ab0 <unknown>\n#2 0x5639e34db6f0 <unknown>\n#3 0x5639e34db8e1 <unknown>\n#4 0x5639e3529b94 <unknown>\n#5 0x5639e35011cd <unknown>\n#6 0x5639e3526fee <unknown>\n#7 0x5639e3500f73 <unknown>\n#8 0x5639e34cdaeb <unknown>\n#9 0x5639e34ce751 <unknown>\n#10 0x5639e39a3b4b <unknown>\n#11 0x5639e39a7929 <unknown>\n#12 0x5639e398a929 <unknown>\n#13 0x5639e39a84e8 <unknown>\n#14 0x5639e396f0df <unknown>\n#15 0x5639e39cc8e8 <unknown>\n#16 0x5639e39ccac6 <unknown>\n#17 0x5639e39de556 <unknown>\n#18 0x7f0040c9caa4 <unknown>\n#19 0x7f0040d29c3c <unknown>",
+        "time" : {
+          "start" : 1753036431107,
+          "stop" : 1753036491571,
+          "duration" : 60464
+        }
+      }, {
+        "uid" : "9af4a0a87450e85a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/455//#testresult/9af4a0a87450e85a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x56200871d23a <unknown>\n#1 0x5620081c7ab0 <unknown>\n#2 0x5620082196f0 <unknown>\n#3 0x5620082198e1 <unknown>\n#4 0x562008267b94 <unknown>\n#5 0x56200823f1cd <unknown>\n#6 0x562008264fee <unknown>\n#7 0x56200823ef73 <unknown>\n#8 0x56200820baeb <unknown>\n#9 0x56200820c751 <unknown>\n#10 0x5620086e1b4b <unknown>\n#11 0x5620086e5929 <unknown>\n#12 0x5620086c8929 <unknown>\n#13 0x5620086e64e8 <unknown>\n#14 0x5620086ad0df <unknown>\n#15 0x56200870a8e8 <unknown>\n#16 0x56200870aac6 <unknown>\n#17 0x56200871c556 <unknown>\n#18 0x7fd13c49caa4 <unknown>\n#19 0x7fd13c529c3c <unknown>",
+        "time" : {
+          "start" : 1752950088508,
+          "stop" : 1752950149007,
+          "duration" : 60499
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail", "regress" ]
+  },
+  "source" : "947db8ce673d5fbd.json",
+  "parameterValues" : [ "'font-family'", "'Mulish, sans-serif'", "'шрифта'", "'https://app.pulsewave.ru/auth/login'" ]
+}
