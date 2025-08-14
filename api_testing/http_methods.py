@@ -1,13 +1,13 @@
 import requests
-from tests.test_api.api_constant import ApiConstant
 from api_testing.logger import Logger
+from tests.constant import Links
 
 
 class BaseRequests:
 
     @staticmethod
     def _send(link: str, data: dict, headers: {}, cookies: {}, method: str):
-        url = f"""{ApiConstant.BASE_URL}{link}"""
+        url = f"""{Links.BASE_URL}{link}"""
 
         Logger.add_request(url, data, headers, cookies, method)
         if method == "GET":

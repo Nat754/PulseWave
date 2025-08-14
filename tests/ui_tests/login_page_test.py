@@ -10,7 +10,7 @@ class TestLoginPage:
     login = LoginConstant()
     message = Messages()
 
-    @allure.title(f"Проверка текста заголовка '{login.TEXT_LOGIN}'")
+    @allure.title(f"L.1 Проверка текста заголовка '{login.TEXT_LOGIN}'")
     @pytest.mark.regress
     def test_get_title_login(self, login_page_open):
         title = login_page_open.get_title_login().text
@@ -19,12 +19,12 @@ class TestLoginPage:
     @pytest.mark.parametrize('css_property, figma, name', login.CHECK_TITLE)
     @pytest.mark.regress
     def test_get_css_property(self, login_page_open, css_property, figma, name):
-        allure.dynamic.title(f"Проверка {name} заголовка '{self.login.TEXT_LOGIN}'")
+        allure.dynamic.title(f"L.2 Проверка {name} заголовка '{self.login.TEXT_LOGIN}'")
         element = login_page_open.get_title_login()
         mean_css = element.value_of_css_property(css_property)
         assert mean_css == figma, f"Не прошла проверка соответствия {name} заголовка '{self.login.TEXT_LOGIN}' макету"
 
-    @allure.title(f"Проверка редиректа на страницу восстановления пароля при клике на ссылку "
+    @allure.title(f"L.3 Проверка редиректа на страницу восстановления пароля при клике на ссылку "
                   f"\'{message.FORGOT_PASSWORD_MSG}'")
     @pytest.mark.smoke
     def test_redirect_password_recovery(self, login_page_open, driver):
@@ -34,7 +34,7 @@ class TestLoginPage:
         assert driver.current_url == self.const.PASSWORD_RECOVERY, \
             'Не произошел переход на страницу восстановления пароля'
 
-    @allure.title("Авторизация с корректными данными")
+    @allure.title("L.4 Авторизация с корректными данными")
     @pytest.mark.smoke
     def test_login(self, login_page_open, driver):
         with allure.step('Ввести в поле емайл корректные данные'):
@@ -45,7 +45,7 @@ class TestLoginPage:
         login_page_open.check_changed_url_login()
         assert driver.current_url == self.const.WORKSPACE, 'Не прошла авторизация с корректными данными'
 
-    @allure.title("Авторизация с некорректным паролем")
+    @allure.title("L.5 Авторизация с некорректным паролем")
     @pytest.mark.smoke
     def test_login_wrong_password(self, login_page_open):
         with allure.step('Ввести в поле емайл корректные данные'):
@@ -55,7 +55,7 @@ class TestLoginPage:
         login_page_open.click_submit()
         element = login_page_open.check_wrong_password_message()
         with allure.step(f'Проверить текст сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
-            assert element, f'Нет сообщения: "{self.message.WRONG_PASSWORD_MSG}"'
+            assert element.text == self.message.WRONG_PASSWORD_MSG, f'Нет сообщения: "{self.message.WRONG_PASSWORD_MSG}"'
         with allure.step(f'Проверить цвет шрифта сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
             assert element.value_of_css_property('color') == self.login.WRONG_PASSWORD_CSS['color'], \
                 f'Цвет сообщения {self.message.WRONG_PASSWORD_MSG} не соответствует макету'
@@ -66,7 +66,7 @@ class TestLoginPage:
             assert element.value_of_css_property('font-family') == self.login.WRONG_PASSWORD_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
-    @allure.title(f"Окно авторизации сообщение '{message.FORGOT_PASSWORD_MSG}'")
+    @allure.title(f"L.6 Окно авторизации сообщение '{message.FORGOT_PASSWORD_MSG}'")
     @pytest.mark.smoke
     def test_login_message_forgot_password(self, login_page_open):
         element = login_page_open.check_forgot_password_message()
@@ -82,19 +82,20 @@ class TestLoginPage:
             assert element.value_of_css_property('font-family') == self.login.FORGOT_PASSWORD_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
-    @allure.title("Авторизация с некорректным емайл")
-    @pytest.mark.smoke
+    @allure.title("L.7 Авторизация с некорректным емайл")
+    @pytest.mark.one_test
     def test_login_not_auth_email(self, login_page_open):
         with allure.step('Ввести в поле емайл некорректные данные'):
-            login_page_open.input_email(email2)
+            login_page_open.input_email('test' + email2)
         with allure.step('Ввести в поле пароль корректные данные'):
             login_page_open.input_password(password0)
         login_page_open.click_submit()
         element = login_page_open.check_wrong_password_message()
+        print(element.text)
         with allure.step(f'Проверить текст сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
-            assert element, f'Нет сообщения: "{self.message.WRONG_PASSWORD_MSG}"'
+            assert element.text == self.message.WRONG_PASSWORD_MSG, f'Нет сообщения: "{self.message.WRONG_PASSWORD_MSG}"'
 
-    @allure.title("Авторизация с пустым емайл")
+    @allure.title("L.8 Авторизация с пустым емайл")
     @pytest.mark.smoke
     def test_login_without_email(self, login_page_open):
         with allure.step('Оставить поле e-mail пустым'):
@@ -103,7 +104,7 @@ class TestLoginPage:
             login_page_open.input_password(password0)
         assert login_page_open.button_login_not_active(), 'Нет проверки на заполнение обязательного поля емайл'
 
-    @allure.title("Авторизация с пустым паролем")
+    @allure.title("L.8 Авторизация с пустым паролем")
     @pytest.mark.smoke
     def test_login_without_password(self, login_page_open):
         with allure.step('Ввести в поле емайл корректные данные'):
@@ -111,7 +112,7 @@ class TestLoginPage:
         login_page_open.input_password('')
         assert login_page_open.button_login_not_active(), 'Нет проверки на заполнение обязательного поля пароль'
 
-    @allure.title("Авторизация с логином заглавными буквами")
+    @allure.title("L.9 Авторизация с логином заглавными буквами")
     @pytest.mark.smoke
     def test_login_caps(self, login_page_open, driver):
         with allure.step('Ввести в поле емайл корректные данные заглавными'):

@@ -12,7 +12,7 @@ class TestPasswordRecoveryPage:
     recovery = PasswordRecoveryConstant
     message = Messages
 
-    @allure.title(f"Проверка текста заголовка '{recovery.RECOVERY_PAGE_TITLE}'")
+    @allure.title(f"R.1 Проверка текста заголовка '{recovery.RECOVERY_PAGE_TITLE}'")
     @pytest.mark.regress
     def test_get_title_recovery(self, recovery_page_open):
         title = recovery_page_open.get_title_recovery().text
@@ -21,19 +21,19 @@ class TestPasswordRecoveryPage:
     @pytest.mark.parametrize('css_property, figma, name', recovery.CHECK_TITLE)
     @pytest.mark.regress
     def test_get_css_property_recovery_title(self, recovery_page_open, css_property, figma, name):
-        allure.dynamic.title(f"Проверка {name} заголовка '{self.recovery.RECOVERY_PAGE_TITLE}'")
+        allure.dynamic.title(f"R.2 Проверка {name} заголовка '{self.recovery.RECOVERY_PAGE_TITLE}'")
         element = recovery_page_open.get_title_recovery()
         mean_css = element.value_of_css_property(css_property)
         assert mean_css == figma, \
             f"Не прошла проверка соответствия {name} заголовка '{self.recovery.RECOVERY_PAGE_TITLE}' макету"
 
-    @allure.title(f"3.4 Проверка некликабельности кнопки '{recovery.RESUME_BUTTON_TEXT}'")
+    @allure.title(f"R.3  Проверка некликабельности кнопки '{recovery.RESUME_BUTTON_TEXT}'")
     @pytest.mark.regress
     def test_check_resume_button_is_not_clickable_without_email(self, recovery_page_open):
         assert recovery_page_open.check_resume_button_is_not_clickable(), \
             f"Кликабельна кнопка '{self.recovery.RESUME_BUTTON_TEXT}' без заполнения поля емайл"
 
-    @allure.title("Проверить сообщение об отправке ссылки восстановления пароля на емайл")
+    @allure.title("R.4 Проверить сообщение об отправке ссылки восстановления пароля на емайл")
     @pytest.mark.regress
     def test_fill_correct_email(self, recovery_page_open):
         with allure.step('Заполнить поле емайл'):
@@ -45,7 +45,7 @@ class TestPasswordRecoveryPage:
         assert text == f'{self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}', \
             f"ОР: {self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}, ФР: {text}"
 
-    @allure.title("3.2, 3.2.1 Восстановить пароль на корректный емайл")
+    @allure.title("R.5 Восстановить пароль на корректный емайл")
     @pytest.mark.regress
     def test_recovery_password_to_fill_correct_email(self, recovery_page_open, driver):
         with allure.step('Заполнить поле емайл'):
@@ -73,7 +73,7 @@ class TestPasswordRecoveryPage:
         with allure.step('Проверка успешного перехода в рабочее пространство'):
             assert link == self.const.WORKSPACE, f'ОР: {self.const.WORKSPACE}, ФР: {link}'
 
-    @allure.title("3.3 Восстановить пароль на некорректный емайл")
+    @allure.title("R.6 Восстановить пароль на некорректный емайл")
     @pytest.mark.regress
     def test_recovery_password_to_fill_incorrect_email(self, recovery_page_open, driver):
         with allure.step('Заполнить поле емайл'):

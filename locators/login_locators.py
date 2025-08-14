@@ -8,6 +8,6 @@ class LoginPageLocators:
     LOGO = (By.CLASS_NAME, 'header__logo')
     EMAIL = (By.XPATH, '//input[@type="email"]')
     PASSWORD = (By.XPATH, '//input[@type="password"]')
-    SUBMIT =(By.XPATH, '//button[@type="submit"]')
-    WRONG_PASSWORD = (By.XPATH, '//span[text()="Некорректный e-mail или пароль."]')
+    SUBMIT = (By.XPATH, '//button[@type="submit"]')
+    ERROR_MSG = (By.CSS_SELECTOR, '.invalid-form span')
     FORGOT_PASSWORD = (By.XPATH, '//span[text()="Забыли пароль?"]')

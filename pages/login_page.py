@@ -31,7 +31,7 @@ class LoginPage(BasePage):
 
     @allure.step(f"Высветилась ошибка: '{message.WRONG_PASSWORD_MSG}'")
     def check_wrong_password_message(self):
-        return self.element_is_visible(self.locator.WRONG_PASSWORD)
+        return self.element_is_visible(self.locator.ERROR_MSG)
 
     @allure.step(f"Видимость подсказки: '{message.FORGOT_PASSWORD_MSG}'")
     def check_forgot_password_message(self):

@@ -8,9 +8,9 @@ Faker.seed()
 
 
 class StatusCode:
-    STATUS_200 = 200
+    STATUS_OK = 200
     STATUS_201 = 201
-    STATUS_204 = 204
+    STATUS_CREATE = 204
     STATUS_400 = 400
     STATUS_404 = 404
 

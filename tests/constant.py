@@ -1,4 +1,5 @@
 import datetime
+from data import email1
 
 
 class Links:
@@ -140,6 +141,10 @@ class MainConstant:
     ]
 
 
+class LendingConstant:
+    pass
+
+
 class PasswordRecoveryConstant:
 
     RECOVERY_PAGE_TITLE = 'Восстановление пароля'
@@ -149,9 +154,6 @@ class PasswordRecoveryConstant:
         ("color", 'rgba(66, 66, 66, 1)', 'цвета шрифта'),
         ("font-family", 'Mulish, sans-serif', 'шрифта')
     ]
-
-
-from data import email1
 
 
 class SignUpConstants:
