@@ -1,0 +1,317 @@
+{
+  "uid" : "fc13cf1bd462ff89",
+  "name" : "H.8 Проверка цвета кнопки 'Регистрация в хедере https://app.dev.pulsewave.ru/auth/login'",
+  "fullName" : "tests.ui_tests.header_test.TestHeader#test_get_css_property_header_auth_signup",
+  "historyId" : "68c6103348099e7722c9b5dfca12f2f6",
+  "time" : {
+    "start" : 1755458964694,
+    "stop" : 1755459025069,
+    "duration" : 60375
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55658022e05a <unknown>\n#1 0x55657fccda70 <unknown>\n#2 0x55657fd1f907 <unknown>\n#3 0x55657fd1fb01 <unknown>\n#4 0x55657fd6dd54 <unknown>\n#5 0x55657fd4540d <unknown>\n#6 0x55657fd6b14f <unknown>\n#7 0x55657fd451b3 <unknown>\n#8 0x55657fd1159b <unknown>\n#9 0x55657fd12971 <unknown>\n#10 0x5565801f322b <unknown>\n#11 0x5565801f6f79 <unknown>\n#12 0x5565801da309 <unknown>\n#13 0x5565801f7b28 <unknown>\n#14 0x5565801bebef <unknown>\n#15 0x55658021b0e8 <unknown>\n#16 0x55658021b2c6 <unknown>\n#17 0x55658022d036 <unknown>\n#18 0x7f56f509caa4 <unknown>\n#19 0x7f56f5129c3c <unknown>",
+  "statusTrace" : "self = <tests.ui_tests.header_test.TestHeader object at 0x7efd36772cc0>\nheader_open = <pages.header.HeaderPage object at 0x7efd3679e7e0>\ncss_property = 'background-color', figma = 'rgba(252, 224, 88, 1)'\nname = 'цвета', url = 'https://app.dev.pulsewave.ru/auth/login'\n\n    @pytest.mark.xfail\n    @pytest.mark.parametrize('url', [link.LOGIN_PAGE, link.PASSWORD_RECOVERY])\n    @pytest.mark.parametrize('css_property, figma, name', const.CHECK_BUTTON)\n    @pytest.mark.regress\n    def test_get_css_property_header_auth_signup(self, header_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"H.8 Проверка {name} кнопки '{self.const.TEXT_SIGNUP} в хедере {url}'\")\n>       element = header_open.get_header_auth_login()\n\ntests/ui_tests/header_test.py:85: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/header.py:23: in get_header_auth_login\n    return self.element_is_visible(self.locator.AUTH_LOGIN)\npages/base_page.py:20: in element_is_visible\n    element = self.element_is_present(locator)\npages/base_page.py:39: in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"a2b5cd7872f233c836cafa3a66744bf6\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7efd34bac9a0>\nmessage = ''\n\n    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = \"\") -> T:\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: \nE       Stacktrace:\nE       #0 0x55658022e05a <unknown>\nE       #1 0x55657fccda70 <unknown>\nE       #2 0x55657fd1f907 <unknown>\nE       #3 0x55657fd1fb01 <unknown>\nE       #4 0x55657fd6dd54 <unknown>\nE       #5 0x55657fd4540d <unknown>\nE       #6 0x55657fd6b14f <unknown>\nE       #7 0x55657fd451b3 <unknown>\nE       #8 0x55657fd1159b <unknown>\nE       #9 0x55657fd12971 <unknown>\nE       #10 0x5565801f322b <unknown>\nE       #11 0x5565801f6f79 <unknown>\nE       #12 0x5565801da309 <unknown>\nE       #13 0x5565801f7b28 <unknown>\nE       #14 0x5565801bebef <unknown>\nE       #15 0x55658021b0e8 <unknown>\nE       #16 0x55658021b2c6 <unknown>\nE       #17 0x55658022d036 <unknown>\nE       #18 0x7f56f509caa4 <unknown>\nE       #19 0x7f56f5129c3c <unknown>\n\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:105: TimeoutException",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1755458901117,
+      "stop" : 1755458901378,
+      "duration" : 261
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "header_open",
+    "time" : {
+      "start" : 1755458901378,
+      "stop" : 1755458964694,
+      "duration" : 63316
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Открыть страницу 'https://app.dev.pulsewave.ru/auth/login'",
+      "time" : {
+        "start" : 1755458901378,
+        "stop" : 1755458964694,
+        "duration" : 63316
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Согласиться с использованием файлов cookies, если высветилось окно",
+        "time" : {
+          "start" : 1755458904413,
+          "stop" : 1755458964693,
+          "duration" : 60280
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Получить кнопку 'Принимаю всё' в сообщении о принятии файлов cookie на Главной странице",
+          "time" : {
+            "start" : 1755458904414,
+            "stop" : 1755458964693,
+            "duration" : 60279
+          },
+          "status" : "broken",
+          "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55658022e05a <unknown>\n#1 0x55657fccda70 <unknown>\n#2 0x55657fd1f907 <unknown>\n#3 0x55657fd1fb01 <unknown>\n#4 0x55657fd6dd54 <unknown>\n#5 0x55657fd4540d <unknown>\n#6 0x55657fd6b14f <unknown>\n#7 0x55657fd451b3 <unknown>\n#8 0x55657fd1159b <unknown>\n#9 0x55657fd12971 <unknown>\n#10 0x5565801f322b <unknown>\n#11 0x5565801f6f79 <unknown>\n#12 0x5565801da309 <unknown>\n#13 0x5565801f7b28 <unknown>\n#14 0x5565801bebef <unknown>\n#15 0x55658021b0e8 <unknown>\n#16 0x55658021b2c6 <unknown>\n#17 0x55658022d036 <unknown>\n#18 0x7f56f509caa4 <unknown>\n#19 0x7f56f5129c3c <unknown>\n\n",
+          "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/footer.py\", line 39, in get_allow_all_cookies\n    button_text = self.element_is_visible(self.locator.ALLOW_ALL_COOKIES)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 20, in element_is_visible\n    element = self.element_is_present(locator)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+          "steps" : [ {
+            "name" : "Проверить видимость элемента",
+            "time" : {
+              "start" : 1755458904414,
+              "stop" : 1755458964693,
+              "duration" : 60279
+            },
+            "status" : "broken",
+            "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55658022e05a <unknown>\n#1 0x55657fccda70 <unknown>\n#2 0x55657fd1f907 <unknown>\n#3 0x55657fd1fb01 <unknown>\n#4 0x55657fd6dd54 <unknown>\n#5 0x55657fd4540d <unknown>\n#6 0x55657fd6b14f <unknown>\n#7 0x55657fd451b3 <unknown>\n#8 0x55657fd1159b <unknown>\n#9 0x55657fd12971 <unknown>\n#10 0x5565801f322b <unknown>\n#11 0x5565801f6f79 <unknown>\n#12 0x5565801da309 <unknown>\n#13 0x5565801f7b28 <unknown>\n#14 0x5565801bebef <unknown>\n#15 0x55658021b0e8 <unknown>\n#16 0x55658021b2c6 <unknown>\n#17 0x55658022d036 <unknown>\n#18 0x7f56f509caa4 <unknown>\n#19 0x7f56f5129c3c <unknown>\n\n",
+            "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 20, in element_is_visible\n    element = self.element_is_present(locator)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+            "steps" : [ {
+              "name" : "Проверить присутствие элемента в DOM",
+              "time" : {
+                "start" : 1755458904414,
+                "stop" : 1755458964692,
+                "duration" : 60278
+              },
+              "status" : "broken",
+              "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55658022e05a <unknown>\n#1 0x55657fccda70 <unknown>\n#2 0x55657fd1f907 <unknown>\n#3 0x55657fd1fb01 <unknown>\n#4 0x55657fd6dd54 <unknown>\n#5 0x55657fd4540d <unknown>\n#6 0x55657fd6b14f <unknown>\n#7 0x55657fd451b3 <unknown>\n#8 0x55657fd1159b <unknown>\n#9 0x55657fd12971 <unknown>\n#10 0x5565801f322b <unknown>\n#11 0x5565801f6f79 <unknown>\n#12 0x5565801da309 <unknown>\n#13 0x5565801f7b28 <unknown>\n#14 0x5565801bebef <unknown>\n#15 0x55658021b0e8 <unknown>\n#16 0x55658021b2c6 <unknown>\n#17 0x55658022d036 <unknown>\n#18 0x7f56f509caa4 <unknown>\n#19 0x7f56f5129c3c <unknown>\n\n",
+              "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ {
+                "name" : "locator",
+                "value" : "('css selector', '.cookies__body .button__small')"
+              } ],
+              "stepsCount" : 0,
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : true,
+              "hasContent" : true
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('css selector', '.cookies__body .button__small')"
+            } ],
+            "stepsCount" : 1,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 2,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "driver",
+          "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"a2b5cd7872f233c836cafa3a66744bf6\")>"
+        } ],
+        "stepsCount" : 3,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1755453542311,
+      "stop" : 1755453542326,
+      "duration" : 15
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_result_folder",
+    "time" : {
+      "start" : 1755453542326,
+      "stop" : 1755453542326,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nselenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55658022e05a <unknown>\n#1 0x55657fccda70 <unknown>\n#2 0x55657fd1f907 <unknown>\n#3 0x55657fd1fb01 <unknown>\n#4 0x55657fd6dd54 <unknown>\n#5 0x55657fd4540d <unknown>\n#6 0x55657fd6b14f <unknown>\n#7 0x55657fd451b3 <unknown>\n#8 0x55657fd1159b <unknown>\n#9 0x55657fd12971 <unknown>\n#10 0x5565801f322b <unknown>\n#11 0x5565801f6f79 <unknown>\n#12 0x5565801da309 <unknown>\n#13 0x5565801f7b28 <unknown>\n#14 0x5565801bebef <unknown>\n#15 0x55658021b0e8 <unknown>\n#16 0x55658021b2c6 <unknown>\n#17 0x55658022d036 <unknown>\n#18 0x7f56f509caa4 <unknown>\n#19 0x7f56f5129c3c <unknown>",
+    "statusTrace" : "self = <tests.ui_tests.header_test.TestHeader object at 0x7efd36772cc0>\nheader_open = <pages.header.HeaderPage object at 0x7efd3679e7e0>\ncss_property = 'background-color', figma = 'rgba(252, 224, 88, 1)'\nname = 'цвета', url = 'https://app.dev.pulsewave.ru/auth/login'\n\n    @pytest.mark.xfail\n    @pytest.mark.parametrize('url', [link.LOGIN_PAGE, link.PASSWORD_RECOVERY])\n    @pytest.mark.parametrize('css_property, figma, name', const.CHECK_BUTTON)\n    @pytest.mark.regress\n    def test_get_css_property_header_auth_signup(self, header_open, css_property, figma, name, url):\n        allure.dynamic.title(f\"H.8 Проверка {name} кнопки '{self.const.TEXT_SIGNUP} в хедере {url}'\")\n>       element = header_open.get_header_auth_login()\n\ntests/ui_tests/header_test.py:85: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \npages/header.py:23: in get_header_auth_login\n    return self.element_is_visible(self.locator.AUTH_LOGIN)\npages/base_page.py:20: in element_is_visible\n    element = self.element_is_present(locator)\npages/base_page.py:39: in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <selenium.webdriver.support.wait.WebDriverWait (session=\"a2b5cd7872f233c836cafa3a66744bf6\")>\nmethod = <function presence_of_element_located.<locals>._predicate at 0x7efd34bac9a0>\nmessage = ''\n\n    def until(self, method: Callable[[D], Union[Literal[False], T]], message: str = \"\") -> T:\n        \"\"\"Calls the method provided with the driver as an argument until the \\\n        return value does not evaluate to ``False``.\n    \n        :param method: callable(WebDriver)\n        :param message: optional message for :exc:`TimeoutException`\n        :returns: the result of the last call to `method`\n        :raises: :exc:`selenium.common.exceptions.TimeoutException` if timeout occurs\n        \"\"\"\n        screen = None\n        stacktrace = None\n    \n        end_time = time.monotonic() + self._timeout\n        while True:\n            try:\n                value = method(self._driver)\n                if value:\n                    return value\n            except self._ignored_exceptions as exc:\n                screen = getattr(exc, \"screen\", None)\n                stacktrace = getattr(exc, \"stacktrace\", None)\n            time.sleep(self._poll)\n            if time.monotonic() > end_time:\n                break\n>       raise TimeoutException(message, screen, stacktrace)\nE       selenium.common.exceptions.TimeoutException: Message: \nE       Stacktrace:\nE       #0 0x55658022e05a <unknown>\nE       #1 0x55657fccda70 <unknown>\nE       #2 0x55657fd1f907 <unknown>\nE       #3 0x55657fd1fb01 <unknown>\nE       #4 0x55657fd6dd54 <unknown>\nE       #5 0x55657fd4540d <unknown>\nE       #6 0x55657fd6b14f <unknown>\nE       #7 0x55657fd451b3 <unknown>\nE       #8 0x55657fd1159b <unknown>\nE       #9 0x55657fd12971 <unknown>\nE       #10 0x5565801f322b <unknown>\nE       #11 0x5565801f6f79 <unknown>\nE       #12 0x5565801da309 <unknown>\nE       #13 0x5565801f7b28 <unknown>\nE       #14 0x5565801bebef <unknown>\nE       #15 0x55658021b0e8 <unknown>\nE       #16 0x55658021b2c6 <unknown>\nE       #17 0x55658022d036 <unknown>\nE       #18 0x7f56f509caa4 <unknown>\nE       #19 0x7f56f5129c3c <unknown>\n\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py:105: TimeoutException",
+    "steps" : [ {
+      "name" : "Проверка видимости кнопки 'Войти' в хэдере",
+      "time" : {
+        "start" : 1755458964694,
+        "stop" : 1755459025068,
+        "duration" : 60374
+      },
+      "status" : "broken",
+      "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55658022e05a <unknown>\n#1 0x55657fccda70 <unknown>\n#2 0x55657fd1f907 <unknown>\n#3 0x55657fd1fb01 <unknown>\n#4 0x55657fd6dd54 <unknown>\n#5 0x55657fd4540d <unknown>\n#6 0x55657fd6b14f <unknown>\n#7 0x55657fd451b3 <unknown>\n#8 0x55657fd1159b <unknown>\n#9 0x55657fd12971 <unknown>\n#10 0x5565801f322b <unknown>\n#11 0x5565801f6f79 <unknown>\n#12 0x5565801da309 <unknown>\n#13 0x5565801f7b28 <unknown>\n#14 0x5565801bebef <unknown>\n#15 0x55658021b0e8 <unknown>\n#16 0x55658021b2c6 <unknown>\n#17 0x55658022d036 <unknown>\n#18 0x7f56f509caa4 <unknown>\n#19 0x7f56f5129c3c <unknown>\n\n",
+      "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/header.py\", line 23, in get_header_auth_login\n    return self.element_is_visible(self.locator.AUTH_LOGIN)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 20, in element_is_visible\n    element = self.element_is_present(locator)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1755458964694,
+          "stop" : 1755459025068,
+          "duration" : 60374
+        },
+        "status" : "broken",
+        "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55658022e05a <unknown>\n#1 0x55657fccda70 <unknown>\n#2 0x55657fd1f907 <unknown>\n#3 0x55657fd1fb01 <unknown>\n#4 0x55657fd6dd54 <unknown>\n#5 0x55657fd4540d <unknown>\n#6 0x55657fd6b14f <unknown>\n#7 0x55657fd451b3 <unknown>\n#8 0x55657fd1159b <unknown>\n#9 0x55657fd12971 <unknown>\n#10 0x5565801f322b <unknown>\n#11 0x5565801f6f79 <unknown>\n#12 0x5565801da309 <unknown>\n#13 0x5565801f7b28 <unknown>\n#14 0x5565801bebef <unknown>\n#15 0x55658021b0e8 <unknown>\n#16 0x55658021b2c6 <unknown>\n#17 0x55658022d036 <unknown>\n#18 0x7f56f509caa4 <unknown>\n#19 0x7f56f5129c3c <unknown>\n\n",
+        "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 20, in element_is_visible\n    element = self.element_is_present(locator)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1755458964694,
+            "stop" : 1755459025068,
+            "duration" : 60374
+          },
+          "status" : "broken",
+          "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55658022e05a <unknown>\n#1 0x55657fccda70 <unknown>\n#2 0x55657fd1f907 <unknown>\n#3 0x55657fd1fb01 <unknown>\n#4 0x55657fd6dd54 <unknown>\n#5 0x55657fd4540d <unknown>\n#6 0x55657fd6b14f <unknown>\n#7 0x55657fd451b3 <unknown>\n#8 0x55657fd1159b <unknown>\n#9 0x55657fd12971 <unknown>\n#10 0x5565801f322b <unknown>\n#11 0x5565801f6f79 <unknown>\n#12 0x5565801da309 <unknown>\n#13 0x5565801f7b28 <unknown>\n#14 0x5565801bebef <unknown>\n#15 0x55658021b0e8 <unknown>\n#16 0x55658021b2c6 <unknown>\n#17 0x55658022d036 <unknown>\n#18 0x7f56f509caa4 <unknown>\n#19 0x7f56f5129c3c <unknown>\n\n",
+          "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//*[text()=\" Войти \"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : true,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//*[text()=\" Войти \"]')"
+        } ],
+        "stepsCount" : 1,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 3,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1755459025149,
+      "stop" : 1755459025231,
+      "duration" : 82
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Хедера"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.ui_tests"
+  }, {
+    "name" : "suite",
+    "value" : "header_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestHeader"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmubgrv54qmi"
+  }, {
+    "name" : "thread",
+    "value" : "2563-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.ui_tests.header_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "css_property",
+    "value" : "'background-color'"
+  }, {
+    "name" : "figma",
+    "value" : "'rgba(252, 224, 88, 1)'"
+  }, {
+    "name" : "name",
+    "value" : "'цвета'"
+  }, {
+    "name" : "url",
+    "value" : "'https://app.dev.pulsewave.ru/auth/login'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ "@pytest.mark.xfail", "regress" ]
+  },
+  "source" : "fc13cf1bd462ff89.json",
+  "parameterValues" : [ "'background-color'", "'rgba(252, 224, 88, 1)'", "'цвета'", "'https://app.dev.pulsewave.ru/auth/login'" ]
+}
