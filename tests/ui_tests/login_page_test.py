@@ -83,7 +83,7 @@ class TestLoginPage:
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
     @allure.title("L.7 Авторизация с некорректным емайл")
-    @pytest.mark.one_test
+    @pytest.mark.smoke
     def test_login_not_auth_email(self, login_page_open):
         with allure.step('Ввести в поле емайл некорректные данные'):
             login_page_open.input_email('test' + email2)
@@ -91,7 +91,6 @@ class TestLoginPage:
             login_page_open.input_password(password0)
         login_page_open.click_submit()
         element = login_page_open.check_wrong_password_message()
-        print(element.text)
         with allure.step(f'Проверить текст сообщения: "{self.message.WRONG_PASSWORD_MSG}"'):
             assert element.text == self.message.WRONG_PASSWORD_MSG, f'Нет сообщения: "{self.message.WRONG_PASSWORD_MSG}"'
 

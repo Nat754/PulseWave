@@ -16,7 +16,7 @@ from tests.constant import Links
 def auth_user(driver):
     page_auth_user = LoginPage(driver)
     driver.get(Links.LOGIN_PAGE)
-    page_auth_user.get_allow_all_cookies().click()
+    # page_auth_user.get_allow_all_cookies().click()
     page_auth_user.input_email(email_auth)
     page_auth_user.input_password(password0)
     page_auth_user.click_submit()
@@ -32,7 +32,7 @@ def accept_all_cookies(driver):
     try:
         page.get_allow_all_cookies().click()
     except TimeoutException:
-        print('На странице нет сообщения о принятии файлов cookies')
+        pass
 
 
 @pytest.fixture()

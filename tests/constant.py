@@ -23,7 +23,7 @@ class Links:
 
 class Messages:
 
-    WRONG_PASSWORD_MSG = 'Некорректный e-mail или пароль.'
+    WRONG_PASSWORD_MSG = 'Некорректный e-mail или пароль'
     FORGOT_PASSWORD_MSG = 'Забыли пароль?'
     PASSWORD_RULES_MSG = 'Пароль должен содержать минимум 8 символов, включая буквы и цифры'
     PULSEWAVE_POLICY_MSG = 'Я согласен получать новости и обновления PulseWave'
