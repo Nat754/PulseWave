@@ -1,0 +1,380 @@
+{
+  "uid" : "5483ae0a45f4f660",
+  "name" : "A.23 POST Подтверждение сброса пароля. Когда пользователь переходит по ссылке     auth/password/reset/confirm/{uid}/{token}",
+  "fullName" : "tests.api_tests.api_test.TestAPI#test_post_auth_users_reset_password_confirm",
+  "historyId" : "7ca9280baff05a7b68119ec812901370",
+  "time" : {
+    "start" : 1755437154490,
+    "stop" : 1755437159286,
+    "duration" : 4796
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1755437154489,
+      "stop" : 1755437154489,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_result_folder",
+    "time" : {
+      "start" : 1755437065411,
+      "stop" : 1755437065411,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1755437065395,
+      "stop" : 1755437065411,
+      "duration" : 16
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя",
+      "time" : {
+        "start" : 1755437154490,
+        "stop" : 1755437155506,
+        "duration" : 1016
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Получить токен активации пользователя на емайл",
+      "time" : {
+        "start" : 1755437155506,
+        "stop" : 1755437158289,
+        "duration" : 2783
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Прочитать сообщение",
+        "time" : {
+          "start" : 1755437155506,
+          "stop" : 1755437158289,
+          "duration" : 2783
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "e_mail",
+          "value" : "'test_stroyrem@mail.ru'"
+        }, {
+          "name" : "passwrd",
+          "value" : "'DUttcyseCyD3W5Tfj1ge'"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "e_mail",
+        "value" : "'test_stroyrem@mail.ru'"
+      }, {
+        "name" : "passwrd",
+        "value" : "'DUttcyseCyD3W5Tfj1ge'"
+      }, {
+        "name" : "trigger",
+        "value" : "'confirm/'"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Expected status 204",
+      "time" : {
+        "start" : 1755437159286,
+        "stop" : 1755437159286,
+        "duration" : 0
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.api_tests"
+  }, {
+    "name" : "suite",
+    "value" : "api_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmubgrv54qmi"
+  }, {
+    "name" : "thread",
+    "value" : "2581-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.api_tests.api_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 57,
+        "unknown" : 0,
+        "total" : 58
+      },
+      "items" : [ {
+        "uid" : "3872cb4f737fa123",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/482//#testresult/3872cb4f737fa123",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755281656892,
+          "stop" : 1755281668294,
+          "duration" : 11402
+        }
+      }, {
+        "uid" : "1d9d84a4a09076b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/237//#testresult/1d9d84a4a09076b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755213322590,
+          "stop" : 1755213325790,
+          "duration" : 3200
+        }
+      }, {
+        "uid" : "ec803dbb570703de",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/481//#testresult/ec803dbb570703de",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755195258004,
+          "stop" : 1755195262067,
+          "duration" : 4063
+        }
+      }, {
+        "uid" : "c514a295efa8d94a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/480//#testresult/c514a295efa8d94a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755108846377,
+          "stop" : 1755108850130,
+          "duration" : 3753
+        }
+      }, {
+        "uid" : "f914221e5d384aa4",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/479//#testresult/f914221e5d384aa4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755022470302,
+          "stop" : 1755022508035,
+          "duration" : 37733
+        }
+      }, {
+        "uid" : "949da963974f4129",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/478//#testresult/949da963974f4129",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754936056049,
+          "stop" : 1754936062599,
+          "duration" : 6550
+        }
+      }, {
+        "uid" : "7050e1d5451c62b1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/477//#testresult/7050e1d5451c62b1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754849541160,
+          "stop" : 1754849546351,
+          "duration" : 5191
+        }
+      }, {
+        "uid" : "e6a14b10e8557e9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/476//#testresult/e6a14b10e8557e9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754763191966,
+          "stop" : 1754763195510,
+          "duration" : 3544
+        }
+      }, {
+        "uid" : "3e09be6406734c83",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/475//#testresult/3e09be6406734c83",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754676766887,
+          "stop" : 1754676777014,
+          "duration" : 10127
+        }
+      }, {
+        "uid" : "9237bb2e5544f101",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/474//#testresult/9237bb2e5544f101",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754590508612,
+          "stop" : 1754590515795,
+          "duration" : 7183
+        }
+      }, {
+        "uid" : "d382904daa7e74d3",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/473//#testresult/d382904daa7e74d3",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754511012801,
+          "stop" : 1754511017765,
+          "duration" : 4964
+        }
+      }, {
+        "uid" : "15624ee9fca28c02",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/473//#testresult/15624ee9fca28c02",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754504099629,
+          "stop" : 1754504118726,
+          "duration" : 19097
+        }
+      }, {
+        "uid" : "5b33362c74d9571b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/472//#testresult/5b33362c74d9571b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754417750487,
+          "stop" : 1754417761281,
+          "duration" : 10794
+        }
+      }, {
+        "uid" : "fa3afd2388afc12c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/471//#testresult/fa3afd2388afc12c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754331290122,
+          "stop" : 1754331298361,
+          "duration" : 8239
+        }
+      }, {
+        "uid" : "ddc4dd78430100a1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/470//#testresult/ddc4dd78430100a1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754244787458,
+          "stop" : 1754244823304,
+          "duration" : 35846
+        }
+      }, {
+        "uid" : "60e8b7e0b3d4f600",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/469//#testresult/60e8b7e0b3d4f600",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754158367328,
+          "stop" : 1754158371153,
+          "duration" : 3825
+        }
+      }, {
+        "uid" : "2253308a1d06f10b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/468//#testresult/2253308a1d06f10b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754072105173,
+          "stop" : 1754072110026,
+          "duration" : 4853
+        }
+      }, {
+        "uid" : "670e7ec92e4f3bf9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/467//#testresult/670e7ec92e4f3bf9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1753985740973,
+          "stop" : 1753985745666,
+          "duration" : 4693
+        }
+      }, {
+        "uid" : "c53cb2352654af6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/466//#testresult/c53cb2352654af6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1753936117489,
+          "stop" : 1753936121919,
+          "duration" : 4430
+        }
+      }, {
+        "uid" : "3396cbb658b55b61",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/465//#testresult/3396cbb658b55b61",
+        "status" : "passed",
+        "time" : {
+          "start" : 1753822519432,
+          "stop" : 1753822526834,
+          "duration" : 7402
+        }
+      } ]
+    },
+    "tags" : [ ]
+  },
+  "source" : "5483ae0a45f4f660.json",
+  "parameterValues" : [ ]
+}
