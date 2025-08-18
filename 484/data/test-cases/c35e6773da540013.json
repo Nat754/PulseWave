@@ -1,0 +1,725 @@
+{
+  "uid" : "c35e6773da540013",
+  "name" : "L.7 Авторизация с некорректным емайл",
+  "fullName" : "tests.ui_tests.login_page_test.TestLoginPage#test_login_not_auth_email",
+  "historyId" : "642357af5d44202a871e2477cad473bd",
+  "time" : {
+    "start" : 1755467681080,
+    "stop" : 1755467682412,
+    "duration" : 1332
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Нет сообщения: \"Некорректный e-mail или пароль.\"\nassert 'Некорректный...il или пароль' == 'Некорректный...l или пароль.'\n  \n  - Некорректный e-mail или пароль.\n  ?                               -\n  + Некорректный e-mail или пароль",
+  "statusTrace" : "self = <tests.ui_tests.login_page_test.TestLoginPage object at 0x7f477abb5820>\nlogin_page_open = <pages.login_page.LoginPage object at 0x7f477abdb140>\n\n    @allure.title(\"L.7 Авторизация с некорректным емайл\")\n    @pytest.mark.one_test\n    def test_login_not_auth_email(self, login_page_open):\n        with allure.step('Ввести в поле емайл некорректные данные'):\n            login_page_open.input_email('test' + email2)\n        with allure.step('Ввести в поле пароль корректные данные'):\n            login_page_open.input_password(password0)\n        login_page_open.click_submit()\n        element = login_page_open.check_wrong_password_message()\n        print(element.text)\n        with allure.step(f'Проверить текст сообщения: \"{self.message.WRONG_PASSWORD_MSG}\"'):\n>           assert element.text == self.message.WRONG_PASSWORD_MSG, f'Нет сообщения: \"{self.message.WRONG_PASSWORD_MSG}\"'\nE           AssertionError: Нет сообщения: \"Некорректный e-mail или пароль.\"\nE           assert 'Некорректный...il или пароль' == 'Некорректный...l или пароль.'\nE             \nE             - Некорректный e-mail или пароль.\nE             ?                               -\nE             + Некорректный e-mail или пароль\n\ntests/ui_tests/login_page_test.py:96: AssertionError",
+  "flaky" : true,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "login_page_open",
+    "time" : {
+      "start" : 1755467617539,
+      "stop" : 1755467681079,
+      "duration" : 63540
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Открыть страницу входа",
+      "time" : {
+        "start" : 1755467617539,
+        "stop" : 1755467681079,
+        "duration" : 63540
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Согласиться с использованием файлов cookies, если высветилось окно",
+        "time" : {
+          "start" : 1755467620810,
+          "stop" : 1755467681079,
+          "duration" : 60269
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Получить кнопку 'Принимаю всё' в сообщении о принятии файлов cookie на Главной странице",
+          "time" : {
+            "start" : 1755467620810,
+            "stop" : 1755467681079,
+            "duration" : 60269
+          },
+          "status" : "broken",
+          "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55c45a1ac05a <unknown>\n#1 0x55c459c4ba70 <unknown>\n#2 0x55c459c9d907 <unknown>\n#3 0x55c459c9db01 <unknown>\n#4 0x55c459cebd54 <unknown>\n#5 0x55c459cc340d <unknown>\n#6 0x55c459ce914f <unknown>\n#7 0x55c459cc31b3 <unknown>\n#8 0x55c459c8f59b <unknown>\n#9 0x55c459c90971 <unknown>\n#10 0x55c45a17122b <unknown>\n#11 0x55c45a174f79 <unknown>\n#12 0x55c45a158309 <unknown>\n#13 0x55c45a175b28 <unknown>\n#14 0x55c45a13cbef <unknown>\n#15 0x55c45a1990e8 <unknown>\n#16 0x55c45a1992c6 <unknown>\n#17 0x55c45a1ab036 <unknown>\n#18 0x7febea29caa4 <unknown>\n#19 0x7febea329c3c <unknown>\n\n",
+          "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/footer.py\", line 39, in get_allow_all_cookies\n    button_text = self.element_is_visible(self.locator.ALLOW_ALL_COOKIES)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 20, in element_is_visible\n    element = self.element_is_present(locator)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+          "steps" : [ {
+            "name" : "Проверить видимость элемента",
+            "time" : {
+              "start" : 1755467620810,
+              "stop" : 1755467681079,
+              "duration" : 60269
+            },
+            "status" : "broken",
+            "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55c45a1ac05a <unknown>\n#1 0x55c459c4ba70 <unknown>\n#2 0x55c459c9d907 <unknown>\n#3 0x55c459c9db01 <unknown>\n#4 0x55c459cebd54 <unknown>\n#5 0x55c459cc340d <unknown>\n#6 0x55c459ce914f <unknown>\n#7 0x55c459cc31b3 <unknown>\n#8 0x55c459c8f59b <unknown>\n#9 0x55c459c90971 <unknown>\n#10 0x55c45a17122b <unknown>\n#11 0x55c45a174f79 <unknown>\n#12 0x55c45a158309 <unknown>\n#13 0x55c45a175b28 <unknown>\n#14 0x55c45a13cbef <unknown>\n#15 0x55c45a1990e8 <unknown>\n#16 0x55c45a1992c6 <unknown>\n#17 0x55c45a1ab036 <unknown>\n#18 0x7febea29caa4 <unknown>\n#19 0x7febea329c3c <unknown>\n\n",
+            "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 20, in element_is_visible\n    element = self.element_is_present(locator)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+            "steps" : [ {
+              "name" : "Проверить присутствие элемента в DOM",
+              "time" : {
+                "start" : 1755467620810,
+                "stop" : 1755467681078,
+                "duration" : 60268
+              },
+              "status" : "broken",
+              "statusMessage" : "selenium.common.exceptions.TimeoutException: Message: \nStacktrace:\n#0 0x55c45a1ac05a <unknown>\n#1 0x55c459c4ba70 <unknown>\n#2 0x55c459c9d907 <unknown>\n#3 0x55c459c9db01 <unknown>\n#4 0x55c459cebd54 <unknown>\n#5 0x55c459cc340d <unknown>\n#6 0x55c459ce914f <unknown>\n#7 0x55c459cc31b3 <unknown>\n#8 0x55c459c8f59b <unknown>\n#9 0x55c459c90971 <unknown>\n#10 0x55c45a17122b <unknown>\n#11 0x55c45a174f79 <unknown>\n#12 0x55c45a158309 <unknown>\n#13 0x55c45a175b28 <unknown>\n#14 0x55c45a13cbef <unknown>\n#15 0x55c45a1990e8 <unknown>\n#16 0x55c45a1992c6 <unknown>\n#17 0x55c45a1ab036 <unknown>\n#18 0x7febea29caa4 <unknown>\n#19 0x7febea329c3c <unknown>\n\n",
+              "statusTrace" : "  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/allure_commons/_allure.py\", line 192, in impl\n    return func(*a, **kw)\n           ^^^^^^^^^^^^^^\n  File \"/home/runner/work/PulseWave/PulseWave/pages/base_page.py\", line 39, in element_is_present\n    return Wait(self.driver, self.timeout).until(es.presence_of_element_located(locator))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/site-packages/selenium/webdriver/support/wait.py\", line 105, in until\n    raise TimeoutException(message, screen, stacktrace)\n",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ {
+                "name" : "locator",
+                "value" : "('css selector', '.cookies__body .button__small')"
+              } ],
+              "stepsCount" : 0,
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : true,
+              "hasContent" : true
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('css selector', '.cookies__body .button__small')"
+            } ],
+            "stepsCount" : 1,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 2,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "driver",
+          "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"174a0fb87a9495766f8b3e90de8008b3\")>"
+        } ],
+        "stepsCount" : 3,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"174a0fb87a9495766f8b3e90de8008b3\")>"
+      } ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "driver",
+    "time" : {
+      "start" : 1755467617272,
+      "stop" : 1755467617539,
+      "duration" : 267
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Нет сообщения: \"Некорректный e-mail или пароль.\"\nassert 'Некорректный...il или пароль' == 'Некорректный...l или пароль.'\n  \n  - Некорректный e-mail или пароль.\n  ?                               -\n  + Некорректный e-mail или пароль",
+    "statusTrace" : "self = <tests.ui_tests.login_page_test.TestLoginPage object at 0x7f477abb5820>\nlogin_page_open = <pages.login_page.LoginPage object at 0x7f477abdb140>\n\n    @allure.title(\"L.7 Авторизация с некорректным емайл\")\n    @pytest.mark.one_test\n    def test_login_not_auth_email(self, login_page_open):\n        with allure.step('Ввести в поле емайл некорректные данные'):\n            login_page_open.input_email('test' + email2)\n        with allure.step('Ввести в поле пароль корректные данные'):\n            login_page_open.input_password(password0)\n        login_page_open.click_submit()\n        element = login_page_open.check_wrong_password_message()\n        print(element.text)\n        with allure.step(f'Проверить текст сообщения: \"{self.message.WRONG_PASSWORD_MSG}\"'):\n>           assert element.text == self.message.WRONG_PASSWORD_MSG, f'Нет сообщения: \"{self.message.WRONG_PASSWORD_MSG}\"'\nE           AssertionError: Нет сообщения: \"Некорректный e-mail или пароль.\"\nE           assert 'Некорректный...il или пароль' == 'Некорректный...l или пароль.'\nE             \nE             - Некорректный e-mail или пароль.\nE             ?                               -\nE             + Некорректный e-mail или пароль\n\ntests/ui_tests/login_page_test.py:96: AssertionError",
+    "steps" : [ {
+      "name" : "Ввести в поле емайл некорректные данные",
+      "time" : {
+        "start" : 1755467681080,
+        "stop" : 1755467681184,
+        "duration" : 104
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1755467681080,
+          "stop" : 1755467681112,
+          "duration" : 32
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1755467681080,
+            "stop" : 1755467681089,
+            "duration" : 9
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//input[@type=\"email\"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1755467681089,
+            "stop" : 1755467681094,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"174a0fb87a9495766f8b3e90de8008b3\", element=\"f.F327E3DCF279A5976BE29C45310D7383.d.01E6DF30B743C54B235829A75D6827DD.e.4\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//input[@type=\"email\"]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Ввести в поле пароль корректные данные",
+      "time" : {
+        "start" : 1755467681184,
+        "stop" : 1755467681250,
+        "duration" : 66
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1755467681184,
+          "stop" : 1755467681208,
+          "duration" : 24
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1755467681185,
+            "stop" : 1755467681193,
+            "duration" : 8
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//input[@type=\"password\"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1755467681193,
+            "stop" : 1755467681197,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"174a0fb87a9495766f8b3e90de8008b3\", element=\"f.F327E3DCF279A5976BE29C45310D7383.d.01E6DF30B743C54B235829A75D6827DD.e.3\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//input[@type=\"password\"]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Нажать кнопку 'Войти'",
+      "time" : {
+        "start" : 1755467681250,
+        "stop" : 1755467681346,
+        "duration" : 96
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить кликабельность элемента",
+        "time" : {
+          "start" : 1755467681251,
+          "stop" : 1755467681292,
+          "duration" : 41
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить видимость элемента",
+          "time" : {
+            "start" : 1755467681251,
+            "stop" : 1755467681275,
+            "duration" : 24
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Проверить присутствие элемента в DOM",
+            "time" : {
+              "start" : 1755467681251,
+              "stop" : 1755467681260,
+              "duration" : 9
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('xpath', '//button[@type=\"submit\"]')"
+            } ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          }, {
+            "name" : "Проскролить до элемента",
+            "time" : {
+              "start" : 1755467681260,
+              "stop" : 1755467681263,
+              "duration" : 3
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "element",
+              "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"174a0fb87a9495766f8b3e90de8008b3\", element=\"f.F327E3DCF279A5976BE29C45310D7383.d.01E6DF30B743C54B235829A75D6827DD.e.8\")>"
+            } ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//button[@type=\"submit\"]')"
+          } ],
+          "stepsCount" : 2,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//button[@type=\"submit\"]')"
+        } ],
+        "stepsCount" : 3,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 4,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Высветилась ошибка: 'Некорректный e-mail или пароль.'",
+      "time" : {
+        "start" : 1755467681346,
+        "stop" : 1755467682395,
+        "duration" : 1049
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1755467681346,
+          "stop" : 1755467682395,
+          "duration" : 1049
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1755467681346,
+            "stop" : 1755467682380,
+            "duration" : 1034
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('css selector', '.invalid-form span')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1755467682380,
+            "stop" : 1755467682384,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"174a0fb87a9495766f8b3e90de8008b3\", element=\"f.F327E3DCF279A5976BE29C45310D7383.d.01E6DF30B743C54B235829A75D6827DD.e.26\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('css selector', '.invalid-form span')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Проверить текст сообщения: \"Некорректный e-mail или пароль.\"",
+      "time" : {
+        "start" : 1755467682405,
+        "stop" : 1755467682411,
+        "duration" : 6
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Нет сообщения: \"Некорректный e-mail или пароль.\"\nassert 'Некорректный...il или пароль' == 'Некорректный...l или пароль.'\n  \n  - Некорректный e-mail или пароль.\n  ?                               -\n  + Некорректный e-mail или пароль\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/tests/ui_tests/login_page_test.py\", line 96, in test_login_not_auth_email\n    assert element.text == self.message.WRONG_PASSWORD_MSG, f'Нет сообщения: \"{self.message.WRONG_PASSWORD_MSG}\"'\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "name" : "Screenshot",
+      "type" : "image/png",
+      "size" : 0
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 18,
+    "attachmentsCount" : 1,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1755467682517,
+      "stop" : 1755467682583,
+      "duration" : 66
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование страницы 'Войти'"
+  }, {
+    "name" : "tag",
+    "value" : "one_test"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.ui_tests"
+  }, {
+    "name" : "suite",
+    "value" : "login_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestLoginPage"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmubgrv54qmi"
+  }, {
+    "name" : "thread",
+    "value" : "2556-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.ui_tests.login_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 58,
+        "unknown" : 0,
+        "total" : 61
+      },
+      "items" : [ {
+        "uid" : "80b3294bdffa3f61",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/239//#testresult/80b3294bdffa3f61",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755470200951,
+          "stop" : 1755470202282,
+          "duration" : 1331
+        }
+      }, {
+        "uid" : "50b9fa1ea69a5220",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/238//#testresult/50b9fa1ea69a5220",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Нет сообщения: \"Некорректный e-mail или пароль.\"\nassert 'Некорректный...il или пароль' == 'Некорректный...l или пароль.'\n  \n  - Некорректный e-mail или пароль.\n  ?                               -\n  + Некорректный e-mail или пароль",
+        "time" : {
+          "start" : 1755459678270,
+          "stop" : 1755459679604,
+          "duration" : 1334
+        }
+      }, {
+        "uid" : "9bbbf8e4f9a60da4",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/483//#testresult/9bbbf8e4f9a60da4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755438710273,
+          "stop" : 1755438711591,
+          "duration" : 1318
+        }
+      }, {
+        "uid" : "1df25b35eb1dbae0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/482//#testresult/1df25b35eb1dbae0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755283230363,
+          "stop" : 1755283231689,
+          "duration" : 1326
+        }
+      }, {
+        "uid" : "f670a7ab2f23767c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/237//#testresult/f670a7ab2f23767c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755214772486,
+          "stop" : 1755214773812,
+          "duration" : 1326
+        }
+      }, {
+        "uid" : "1b7a27a61a1c27b7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/481//#testresult/1b7a27a61a1c27b7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755196735617,
+          "stop" : 1755196736923,
+          "duration" : 1306
+        }
+      }, {
+        "uid" : "8c6d2dd272299b8e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/480//#testresult/8c6d2dd272299b8e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755110311449,
+          "stop" : 1755110312752,
+          "duration" : 1303
+        }
+      }, {
+        "uid" : "e359b307e71bfc92",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/479//#testresult/e359b307e71bfc92",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755023984191,
+          "stop" : 1755023985489,
+          "duration" : 1298
+        }
+      }, {
+        "uid" : "c9de1ffeb9c037ea",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/478//#testresult/c9de1ffeb9c037ea",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754937513937,
+          "stop" : 1754937515233,
+          "duration" : 1296
+        }
+      }, {
+        "uid" : "6d5783231c715989",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/477//#testresult/6d5783231c715989",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754851089797,
+          "stop" : 1754851091081,
+          "duration" : 1284
+        }
+      }, {
+        "uid" : "fcf761f54b8ccee6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/476//#testresult/fcf761f54b8ccee6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754764663758,
+          "stop" : 1754764665040,
+          "duration" : 1282
+        }
+      }, {
+        "uid" : "9afd32af09f73356",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/475//#testresult/9afd32af09f73356",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754678284082,
+          "stop" : 1754678285369,
+          "duration" : 1287
+        }
+      }, {
+        "uid" : "ccc65e1376123a89",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/474//#testresult/ccc65e1376123a89",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754592009093,
+          "stop" : 1754592010373,
+          "duration" : 1280
+        }
+      }, {
+        "uid" : "f297104cf2279f8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/473//#testresult/f297104cf2279f8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754512536691,
+          "stop" : 1754512537984,
+          "duration" : 1293
+        }
+      }, {
+        "uid" : "41cbcb16306ec7a9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/473//#testresult/41cbcb16306ec7a9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754505566449,
+          "stop" : 1754505567748,
+          "duration" : 1299
+        }
+      }, {
+        "uid" : "6b4a5d33575eff8c",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/472//#testresult/6b4a5d33575eff8c",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754419234897,
+          "stop" : 1754419236188,
+          "duration" : 1291
+        }
+      }, {
+        "uid" : "80e6d4e78abe279e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/471//#testresult/80e6d4e78abe279e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754332790573,
+          "stop" : 1754332791880,
+          "duration" : 1307
+        }
+      }, {
+        "uid" : "63a9dbdf6831fb18",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/470//#testresult/63a9dbdf6831fb18",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754246285996,
+          "stop" : 1754246287278,
+          "duration" : 1282
+        }
+      }, {
+        "uid" : "a30f0674cb8c0a53",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/469//#testresult/a30f0674cb8c0a53",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754159814695,
+          "stop" : 1754159816003,
+          "duration" : 1308
+        }
+      }, {
+        "uid" : "7f796b6bece8796e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/468//#testresult/7f796b6bece8796e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1754073667863,
+          "stop" : 1754073669157,
+          "duration" : 1294
+        }
+      } ]
+    },
+    "tags" : [ "one_test" ]
+  },
+  "source" : "c35e6773da540013.json",
+  "parameterValues" : [ ]
+}
