@@ -7,7 +7,6 @@ from tests.constant import Links, Messages, TestData, SignUpConstants
 
 
 @pytest.mark.smoke
-@pytest.mark.one_test
 @allure.epic(f"Тестирование страницы '{SignUpConstants.TEXT_SIGNUP}'")
 class TestSignupPage:
     const = Links
