@@ -6,6 +6,7 @@ from data import email_auth, password0, emailx, password_auth_email
 from tests.constant import Links, Messages, PasswordRecoveryConstant
 
 
+@pytest.mark.smoke
 @allure.epic(f"Тестирование страницы '{PasswordRecoveryConstant.RECOVERY_PAGE_TITLE}'")
 class TestPasswordRecoveryPage:
     const = Links
@@ -28,7 +29,6 @@ class TestPasswordRecoveryPage:
             f"Не прошла проверка соответствия {name} заголовка '{self.recovery.RECOVERY_PAGE_TITLE}' макету"
 
     @allure.title(f"R.3  Проверка некликабельности кнопки '{recovery.RESUME_BUTTON_TEXT}'")
-    @pytest.mark.regress
     def test_check_resume_button_is_not_clickable_without_email(self, recovery_page_open):
         assert recovery_page_open.check_resume_button_is_not_clickable(), \
             f"Кликабельна кнопка '{self.recovery.RESUME_BUTTON_TEXT}' без заполнения поля емайл"
@@ -46,7 +46,6 @@ class TestPasswordRecoveryPage:
             f"ОР: {self.message.EMAIL_WAS_SEND} {email_auth} {self.message.GO_TO_EMAIL}, ФР: {text}"
 
     @allure.title("R.5 Восстановить пароль на корректный емайл")
-    @pytest.mark.regress
     def test_recovery_password_to_fill_correct_email(self, recovery_page_open, driver):
         with allure.step('Заполнить поле емайл'):
             recovery_page_open.fill_email_to_recovery_password(email_auth)
@@ -74,7 +73,6 @@ class TestPasswordRecoveryPage:
             assert link == self.const.WORKSPACE, f'ОР: {self.const.WORKSPACE}, ФР: {link}'
 
     @allure.title("R.6 Восстановить пароль на некорректный емайл")
-    @pytest.mark.regress
     def test_recovery_password_to_fill_incorrect_email(self, recovery_page_open, driver):
         with allure.step('Заполнить поле емайл'):
             recovery_page_open.fill_email_to_recovery_password(emailx)

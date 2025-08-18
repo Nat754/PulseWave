@@ -7,13 +7,13 @@ from tests.constant import Links, FooterConstant, TestData
 
 
 @allure.epic("Тестирование Футера")
+@pytest.mark.regress
 class TestFooter:
     const = FooterConstant()
     link = Links()
     tdata = TestData
 
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
-    @pytest.mark.smoke
     def test_get_all_cookies(self, driver, url):
         allure.dynamic.title(f"F.1 Проверка попапа о принятии файлов cookie на странице {url}")
         with allure.step(f"Открыть страницу '{url}'"):
@@ -32,7 +32,6 @@ class TestFooter:
         except TimeoutException:
             print('На странице нет сообщения о принятии файлов cookies')
 
-    @pytest.mark.smoke
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
     def test_get_footer_link(self, footer_open, driver, url):
         allure.dynamic.title(f"F.2 Проверка отсутствия ссылки на Лицензионное соглашение со страницы '{url}")
@@ -41,7 +40,6 @@ class TestFooter:
 
     @allure.title(f"F.3 Проверка элемента '{const.EMAIL_TEXT}'в хедере")
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
-    @pytest.mark.smoke
     def test_get_footer_email(self, url, footer_open):
         text = footer_open.get_footer_email().text
         assert text == self.const.EMAIL_TEXT, f"email адрес '{text}' неверный"
@@ -50,7 +48,6 @@ class TestFooter:
 
     @allure.title(f"F.4 Проверка года © PulseWave, {const.YEAR_COOPERATION} в футере")
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
-    @pytest.mark.smoke
     def test_get_year_cooperation(self, footer_open, url):
         year = int(footer_open.get_footer_cooperation().text[-4:])
         with allure.step(f"Проверить актуальность года элемента '{self.const.TEXT_COOPERATION}'"):
@@ -59,7 +56,6 @@ class TestFooter:
 
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
     @pytest.mark.parametrize('css_property, figma, name', const.CHECK_TEXT)
-    @pytest.mark.regress
     def test_get_css_property_footer_email(self, footer_open, css_property, figma, name, url):
         allure.dynamic.title(f"F.5 Проверка {name} надписи '{self.const.EMAIL_TEXT}' в футере")
         mean_css = footer_open.get_footer_email().value_of_css_property(css_property)
@@ -69,7 +65,6 @@ class TestFooter:
 
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
     @pytest.mark.parametrize('css_property, figma, name', const.CHECK_TEXT)
-    @pytest.mark.regress
     def test_get_css_property_footer_cooperation(self, footer_open, css_property, figma, name, url):
         allure.dynamic.title(f"F.6 Проверка {name} надписи '{self.const.TEXT_COOPERATION}' в футере")
         mean_css = footer_open.get_footer_cooperation().value_of_css_property(css_property)
@@ -78,20 +73,17 @@ class TestFooter:
                 f"Не прошла проверка соответствия {name} надписи '{self.const.TEXT_COOPERATION}' макету"
 
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
-    @pytest.mark.regress
     def test_get_footer_linkedin(self, footer_open, url):
         allure.dynamic.title(f"F.7 Проверка значка LinkedIn на странице '{url}' в футере")
         assert footer_open.get_footer_linkedin(), f"Нет значка LinkedIn на странице '{url}' в футере"
 
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
-    @pytest.mark.regress
     def test_get_footer_linkedin_is_clickable(self, footer_open, url):
         allure.dynamic.title(f"F.8 Проверка кликабельности значка LinkedIn на странице '{url}' в футере")
         element = footer_open.get_footer_linkedin()
         assert footer_open.element_is_clickable(element), f"Значок LinkedIn некликабельный на странице '{url}' в футере"
 
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
-    @pytest.mark.regress
     def test_get_footer_linkedin_href(self, footer_open, url):
         allure.dynamic.title(f"F.9 Проверка перехода в LinkedIn на странице '{url}' в футере")
         element = footer_open.get_footer_linkedin()

@@ -7,6 +7,7 @@ from tests.constant import Links, Messages, WorkspaceConstant
 from pages.workspace_page import WorkspacePage
 
 
+@pytest.mark.smoke
 @allure.epic(f"Тестирование страницы '{WorkspaceConstant.WORKSPACE_TITLE}'")
 class TestWorkspacePage:
     const = Links()
@@ -14,7 +15,6 @@ class TestWorkspacePage:
     message = Messages()
 
     @allure.title("W.1 Проверка перехода в рабочее пространство авторизованного пользователя")
-    @pytest.mark.regress
     def test_auth_user_redirect_to_workspace(self, auth_user, driver):
         with allure.step('Авторизоваться пользователем'):
             link = driver.current_url
@@ -30,7 +30,6 @@ class TestWorkspacePage:
             assert title == self.wsconst.WORKSPACE_TITLE, 'Неверный заголовок'
 
     @allure.title("W.3 Проверка видимости аватара")
-    @pytest.mark.regress
     def test_avatar_is_visible(self, auth_user, driver):
         page = WorkspacePage(driver)
         with allure.step('Проверить заголовок рабочее пространство'):
@@ -44,7 +43,6 @@ class TestWorkspacePage:
             assert url == self.const.WORKSPACE, 'Авторизованный пользователь не попал в Рабочие пространства'
 
     @allure.title("W.5 Проверка что авторизованный пользователь может выйти из аккаунта")
-    @pytest.mark.regress
     def test_auth_user_logout(self, auth_user, driver):
         page = SignUpPage(driver)
         page.click_button_avatar()
@@ -54,7 +52,6 @@ class TestWorkspacePage:
             assert text == self.message.EXIT_CONFIRM_MSG, 'Авторизованный пользователь не вышел из аккаунта'
 
     @allure.title(f"W.6 Проверка перехода в {wsconst.WORKSPACE_TITLE} по ссылке {message.TO_MAIN_TEXT}")
-    @pytest.mark.regress
     def test_link_to_main(self, auth_user, driver):
         page = SignUpPage(driver)
         page.click_button_avatar()
@@ -73,7 +70,6 @@ class TestWorkspacePage:
             assert title == self.wsconst.MAIN_WORKSPACE_TITLE, 'Не отображается заголовок "Ваши рабочие пространства"'
 
     @allure.title(f"W.8 Проверка невидимости кнопки '{wsconst.READ_ALL_BUTTON_TEXT}' в прочитанных уведомлениях")
-    @pytest.mark.regress
     def test_check_read_all_button_is_not_visible(self, auth_user, driver):
         page = WorkspacePage(driver)
         page.get_notify_button_is_visible().click()
@@ -84,7 +80,6 @@ class TestWorkspacePage:
                                                            f"в прочитанных уведомлениях")
 
     @allure.title("W.9 Проверка возможности изменить цвет переключателя 'Непрочитанные'")
-    @pytest.mark.regress
     def test_check_toggle_read(self, auth_user, driver):
         page = WorkspacePage(driver)
         page.get_notify_button_is_visible().click()
@@ -105,7 +100,6 @@ class TestWorkspacePage:
         assert color in self.wsconst.TOGGLE_COLOR, 'Неверный цвет переключателя уведомлений'
 
     @allure.title("W.11 Проверка видимости уведомлений")
-    @pytest.mark.regress
     def test_check_notifications(self, auth_user, driver):
         page = WorkspacePage(driver)
         page.get_notify_button_is_visible().click()
@@ -117,7 +111,6 @@ class TestWorkspacePage:
         assert notifications, 'Нет сообщений'
 
     @allure.title("W.12 Проверка прочтения уведомлений")
-    @pytest.mark.regress
     def test_check_no_notifications(self, auth_user, driver):
         page = WorkspacePage(driver)
         page.get_notify_button_is_visible().click()

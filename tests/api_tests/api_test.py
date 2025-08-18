@@ -15,6 +15,7 @@ Faker.seed()
 
 
 @allure.epic("Тестирование API")
+@pytest.mark.smoke
 class TestAPI:
     link = Links
     constant = ApiConstant

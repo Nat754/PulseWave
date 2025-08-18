@@ -10,7 +10,7 @@ class TestLendingPage:
     link = Links
 
     @allure.title("M.1 Проверка редиректа с /home на страницу лендинга")
-    @pytest.mark.regress
+    @pytest.mark.smoke
     def test_get_redirect_to_lending(self, driver):
         page = MainPage(driver)
         url = self.link.MAIN_PAGE_HOME

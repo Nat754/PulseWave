@@ -28,7 +28,7 @@ jobs:
 
     - name: Run Pytest
       run: |
-        pytest -s -v --alluredir=allure-results
+        pytest -s -v -m "smoke" --alluredir=allure-results
 
     - name: Get Allure history
       uses: actions/checkout@v4

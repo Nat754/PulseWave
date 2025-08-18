@@ -1,25 +1,25 @@
 import allure
 import pytest
-from pages.header import HeaderPage
 from tests.constant import Links, HeaderConstant, TestData
 
 
 @allure.epic("Тестирование Хедера")
+@pytest.mark.regress
 class TestHeader:
     const = HeaderConstant
     link = Links
     tdata = TestData
 
+    @pytest.mark.smoke
     @allure.title("H.1 Проверка некликабельности логотипа на лендинге")
     @pytest.mark.xfail(reazon='Лого пока кликабельный на лендинге')
-    @pytest.mark.regress
     @pytest.mark.parametrize('url', [link.START_PAGE])
     def test_visibility_logo(self, header_open, url):
         assert header_open.get_header_logo_is_not_clickable(), 'Логотип кликабельный на Главной странице'
 
+    @pytest.mark.smoke
     @pytest.mark.parametrize('url', tdata.PAGES_APP)
     @allure.title("H.2 Проверка редиректа на главную страницу при клике на логотип")
-    @pytest.mark.smoke
     def test_redirect_logo_login(self, header_open, driver, url):
         link = driver.current_url
         header_open.get_header_logo().click()
@@ -30,7 +30,6 @@ class TestHeader:
 
     @pytest.mark.parametrize('url', [link.SIGNUP_PAGE, link.PASSWORD_RECOVERY])
     @allure.title(f"H.3 Проверка текста кнопки '{const.TEXT_LOGIN}'")
-    @pytest.mark.regress
     def test_get_text_header_auth_login(self, header_open, url):
         text = header_open.get_header_auth_login().text
         with allure.step(f"Текст кнопки '{self.const.TEXT_LOGIN}' соответствует макету"):
@@ -38,16 +37,15 @@ class TestHeader:
 
     @pytest.mark.parametrize('url', [link.LOGIN_PAGE, link.PASSWORD_RECOVERY])
     @allure.title(f"H.4 Проверка текста кнопки '{const.TEXT_SIGNUP}'")
-    @pytest.mark.regress
     def test_get_text_header_auth_signup(self, header_open, url):
         text = header_open.get_header_auth_signup().text
         with allure.step(f"+Текст кнопки '{self.const.TEXT_SIGNUP}' соответствует макету"):
             assert text == self.const.TEXT_SIGNUP, \
               f"Текст кнопки '{self.const.TEXT_SIGNUP}' не соответствует макету"
 
+    @pytest.mark.smoke
     @pytest.mark.parametrize('url', [link.START_PAGE, link.SIGNUP_PAGE, link.PASSWORD_RECOVERY])
     @allure.title(f"H.5 Проверка перехода на страницу '{link.LOGIN_PAGE}' по кнопке '{const.TEXT_LOGIN}'")
-    @pytest.mark.smoke
     def test_get_header_auth_login(self, header_open, driver, url):
         link = driver.current_url
         header_open.get_header_auth_login().click()
@@ -68,7 +66,6 @@ class TestHeader:
     @pytest.mark.xfail
     @pytest.mark.parametrize('url', [link.SIGNUP_PAGE, link.PASSWORD_RECOVERY])
     @pytest.mark.parametrize('css_property, figma, name', const.CHECK_BUTTON)
-    @pytest.mark.regress
     def test_get_css_property_header_auth_login(self, header_open, css_property, figma, name, url):
         allure.dynamic.title(f"H.7 Проверка {name} кнопки '{self.const.TEXT_LOGIN}' в хедере {url}")
         element = header_open.get_header_auth_login()
@@ -79,7 +76,6 @@ class TestHeader:
     @pytest.mark.xfail
     @pytest.mark.parametrize('url', [link.LOGIN_PAGE, link.PASSWORD_RECOVERY])
     @pytest.mark.parametrize('css_property, figma, name', const.CHECK_BUTTON)
-    @pytest.mark.regress
     def test_get_css_property_header_auth_signup(self, header_open, css_property, figma, name, url):
         allure.dynamic.title(f"H.8 Проверка {name} кнопки '{self.const.TEXT_SIGNUP} в хедере {url}'")
         element = header_open.get_header_auth_login()

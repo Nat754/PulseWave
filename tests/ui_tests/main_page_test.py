@@ -4,6 +4,7 @@ from tests.constant import Links, MainConstant
 from pages.main_page import MainPage
 
 
+@pytest.mark.smoke
 @allure.epic("Тестирование Главной страницы")
 class TestMainPage:
     const = MainConstant

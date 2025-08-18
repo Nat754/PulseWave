@@ -40,7 +40,7 @@ def footer_open(driver, url):
     with allure.step(f"Открыть страницу '{url}'"):
         page = FooterPage(driver)
         driver.get(url)
-        accept_all_cookies(driver)
+        # accept_all_cookies(driver)
     return page
 
 
@@ -49,7 +49,7 @@ def header_open(driver, url):
     with allure.step(f"Открыть страницу '{url}'"):
         page = HeaderPage(driver)
         driver.get(url)
-        accept_all_cookies(driver)
+        # accept_all_cookies(driver)
     return page
 
 
@@ -58,7 +58,7 @@ def header_open(driver, url):
 def signup_page_open(driver):
     page = SignUpPage(driver)
     driver.get(Links.SIGNUP_PAGE)
-    accept_all_cookies(driver)
+    # accept_all_cookies(driver)
     return page
 
 
@@ -67,7 +67,7 @@ def signup_page_open(driver):
 def login_page_open(driver):
     page = LoginPage(driver)
     driver.get(Links.LOGIN_PAGE)
-    accept_all_cookies(driver)
+    # accept_all_cookies(driver)
     return page
 
 
@@ -84,5 +84,5 @@ def main_page_open(driver):
 def recovery_page_open(driver):
     page = PasswordRecoveryPage(driver)
     driver.get(Links.PASSWORD_RECOVERY)
-    accept_all_cookies(driver)
+    # accept_all_cookies(driver)
     return page
