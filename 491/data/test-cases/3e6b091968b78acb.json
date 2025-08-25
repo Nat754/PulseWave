@@ -1,0 +1,381 @@
+{
+  "uid" : "3e6b091968b78acb",
+  "name" : "H.1 Проверка некликабельности логотипа на лендинге",
+  "fullName" : "tests.ui_tests.header_test.TestHeader#test_visibility_logo",
+  "historyId" : "ee38dc5350e5bf9ba01eb584cbeea512",
+  "time" : {
+    "start" : 1756094074957,
+    "stop" : 1756094074989,
+    "duration" : 32
+  },
+  "status" : "skipped",
+  "statusMessage" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f6565fc8230>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f6565fc8230>> = <pages.header.HeaderPage object at 0x7f6565fc8230>.get_header_logo_is_not_clickable",
+  "statusTrace" : "self = <tests.ui_tests.header_test.TestHeader object at 0x7f6565faacc0>\nheader_open = <pages.header.HeaderPage object at 0x7f6565fc8230>\nurl = 'https://web.dev.pulsewave.ru/'\n\n    @pytest.mark.smoke\n    @allure.title(\"H.1 Проверка некликабельности логотипа на лендинге\")\n    @pytest.mark.xfail(reazon='Лого пока кликабельный на лендинге')\n    @pytest.mark.parametrize('url', [link.START_PAGE])\n    def test_visibility_logo(self, header_open, url):\n>       assert header_open.get_header_logo_is_not_clickable(), 'Логотип кликабельный на Главной странице'\nE       AssertionError: Логотип кликабельный на Главной странице\nE       assert False\nE        +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f6565fc8230>>()\nE        +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f6565fc8230>> = <pages.header.HeaderPage object at 0x7f6565fc8230>.get_header_logo_is_not_clickable\n\ntests/ui_tests/header_test.py:18: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1756094072267,
+      "stop" : 1756094072524,
+      "duration" : 257
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "header_open",
+    "time" : {
+      "start" : 1756094072524,
+      "stop" : 1756094074957,
+      "duration" : 2433
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Открыть страницу 'https://web.dev.pulsewave.ru/'",
+      "time" : {
+        "start" : 1756094072524,
+        "stop" : 1756094074957,
+        "duration" : 2433
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 1,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1756093501664,
+      "stop" : 1756093501679,
+      "duration" : 15
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_result_folder",
+    "time" : {
+      "start" : 1756093501679,
+      "stop" : 1756093501680,
+      "duration" : 1
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "skipped",
+    "statusMessage" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f6565fc8230>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f6565fc8230>> = <pages.header.HeaderPage object at 0x7f6565fc8230>.get_header_logo_is_not_clickable",
+    "statusTrace" : "self = <tests.ui_tests.header_test.TestHeader object at 0x7f6565faacc0>\nheader_open = <pages.header.HeaderPage object at 0x7f6565fc8230>\nurl = 'https://web.dev.pulsewave.ru/'\n\n    @pytest.mark.smoke\n    @allure.title(\"H.1 Проверка некликабельности логотипа на лендинге\")\n    @pytest.mark.xfail(reazon='Лого пока кликабельный на лендинге')\n    @pytest.mark.parametrize('url', [link.START_PAGE])\n    def test_visibility_logo(self, header_open, url):\n>       assert header_open.get_header_logo_is_not_clickable(), 'Логотип кликабельный на Главной странице'\nE       AssertionError: Логотип кликабельный на Главной странице\nE       assert False\nE        +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f6565fc8230>>()\nE        +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f6565fc8230>> = <pages.header.HeaderPage object at 0x7f6565fc8230>.get_header_logo_is_not_clickable\n\ntests/ui_tests/header_test.py:18: AssertionError",
+    "steps" : [ {
+      "name" : "Проверка некликабельности логотипа в хедере",
+      "time" : {
+        "start" : 1756094074957,
+        "stop" : 1756094074989,
+        "duration" : 32
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверка некликабельности видимого элемента",
+        "time" : {
+          "start" : 1756094074958,
+          "stop" : 1756094074989,
+          "duration" : 31
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('class name', 'header__logo')"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "2e7db0b1b215d611",
+      "name" : "Screenshot",
+      "source" : "2e7db0b1b215d611.png",
+      "type" : "image/png",
+      "size" : 276923
+    }, {
+      "uid" : "3a8f406447196a50",
+      "name" : "HTML source",
+      "source" : "3a8f406447196a50.html",
+      "type" : "text/html",
+      "size" : 1508699
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1756094075374,
+      "stop" : 1756094075433,
+      "duration" : 59
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование Хедера"
+  }, {
+    "name" : "tag",
+    "value" : "@pytest.mark.xfail(reazon='Лого пока кликабельный на лендинге')"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "tag",
+    "value" : "regress"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.ui_tests"
+  }, {
+    "name" : "suite",
+    "value" : "header_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestHeader"
+  }, {
+    "name" : "host",
+    "value" : "pkrvmqc4gcfdwos"
+  }, {
+    "name" : "thread",
+    "value" : "2549-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.ui_tests.header_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "url",
+    "value" : "'https://web.dev.pulsewave.ru/'"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "history" : {
+      "statistic" : {
+        "failed" : 0,
+        "broken" : 0,
+        "skipped" : 16,
+        "passed" : 0,
+        "unknown" : 0,
+        "total" : 16
+      },
+      "items" : [ {
+        "uid" : "93735a9f97c8232a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/490//#testresult/93735a9f97c8232a",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f41ff0bcdd0>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f41ff0bcdd0>> = <pages.header.HeaderPage object at 0x7f41ff0bcdd0>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1756061425331,
+          "stop" : 1756061425364,
+          "duration" : 33
+        }
+      }, {
+        "uid" : "d41236623d6ea1bf",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/490//#testresult/d41236623d6ea1bf",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f1e144e20c0>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f1e144e20c0>> = <pages.header.HeaderPage object at 0x7f1e144e20c0>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1756007601749,
+          "stop" : 1756007601778,
+          "duration" : 29
+        }
+      }, {
+        "uid" : "61b88879e561c10",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/489//#testresult/61b88879e561c10",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7fbbe3497e00>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7fbbe3497e00>> = <pages.header.HeaderPage object at 0x7fbbe3497e00>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755920461035,
+          "stop" : 1755920461070,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "41d6203df670d5a2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/488//#testresult/41d6203df670d5a2",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f64efcd9550>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f64efcd9550>> = <pages.header.HeaderPage object at 0x7f64efcd9550>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755834390077,
+          "stop" : 1755834390112,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "1ca04c627fda5c35",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/487//#testresult/1ca04c627fda5c35",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7fe55d361d60>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7fe55d361d60>> = <pages.header.HeaderPage object at 0x7fe55d361d60>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755747972403,
+          "stop" : 1755747972440,
+          "duration" : 37
+        }
+      }, {
+        "uid" : "5029da358daef43e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/486//#testresult/5029da358daef43e",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f25184bc6b0>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f25184bc6b0>> = <pages.header.HeaderPage object at 0x7f25184bc6b0>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755661583768,
+          "stop" : 1755661583807,
+          "duration" : 39
+        }
+      }, {
+        "uid" : "fda531f181fc86be",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/485//#testresult/fda531f181fc86be",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f21d9f634d0>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f21d9f634d0>> = <pages.header.HeaderPage object at 0x7f21d9f634d0>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755575251115,
+          "stop" : 1755575251147,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "8c2ea813b8c880d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/3//#testresult/8c2ea813b8c880d",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f30ee5d4590>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f30ee5d4590>> = <pages.header.HeaderPage object at 0x7f30ee5d4590>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755517875718,
+          "stop" : 1755517875781,
+          "duration" : 63
+        }
+      }, {
+        "uid" : "bf0b27d1525b1b54",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/2//#testresult/bf0b27d1525b1b54",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f013915c2f0>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f013915c2f0>> = <pages.header.HeaderPage object at 0x7f013915c2f0>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755512153667,
+          "stop" : 1755512153702,
+          "duration" : 35
+        }
+      }, {
+        "uid" : "24b1b58bf94186bc",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/1//#testresult/24b1b58bf94186bc",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f62bcdd4fe0>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f62bcdd4fe0>> = <pages.header.HeaderPage object at 0x7f62bcdd4fe0>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755504540354,
+          "stop" : 1755504540424,
+          "duration" : 70
+        }
+      }, {
+        "uid" : "47cef96672b89943",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/239//#testresult/47cef96672b89943",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7fa10eb982f0>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7fa10eb982f0>> = <pages.header.HeaderPage object at 0x7fa10eb982f0>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755495872419,
+          "stop" : 1755495872452,
+          "duration" : 33
+        }
+      }, {
+        "uid" : "2e856fd5690b8e26",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/1//#testresult/2e856fd5690b8e26",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f837dbdd6a0>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f837dbdd6a0>> = <pages.header.HeaderPage object at 0x7f837dbdd6a0>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755500864653,
+          "stop" : 1755500864713,
+          "duration" : 60
+        }
+      }, {
+        "uid" : "269536f01c156080",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/484//#testresult/269536f01c156080",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f477abd8260>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f477abd8260>> = <pages.header.HeaderPage object at 0x7f477abd8260>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755465042578,
+          "stop" : 1755465042608,
+          "duration" : 30
+        }
+      }, {
+        "uid" : "902b26d697d4eacb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/239//#testresult/902b26d697d4eacb",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f049d1df260>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7f049d1df260>> = <pages.header.HeaderPage object at 0x7f049d1df260>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755467571049,
+          "stop" : 1755467571081,
+          "duration" : 32
+        }
+      }, {
+        "uid" : "16fa05a664db4c94",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/238//#testresult/16fa05a664db4c94",
+        "status" : "skipped",
+        "statusDetails" : "XFAIL\n\nAssertionError: Логотип кликабельный на Главной странице\nassert False\n +  where False = <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7efd36796810>>()\n +    where <bound method HeaderPage.get_header_logo_is_not_clickable of <pages.header.HeaderPage object at 0x7efd36796810>> = <pages.header.HeaderPage object at 0x7efd36796810>.get_header_logo_is_not_clickable",
+        "time" : {
+          "start" : 1755457034480,
+          "stop" : 1755457034509,
+          "duration" : 29
+        }
+      } ]
+    },
+    "tags" : [ "@pytest.mark.xfail(reazon='Лого пока кликабельный на лендинге')", "regress", "smoke" ]
+  },
+  "source" : "3e6b091968b78acb.json",
+  "parameterValues" : [ "'https://web.dev.pulsewave.ru/'" ]
+}
