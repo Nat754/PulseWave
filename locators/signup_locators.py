@@ -24,7 +24,7 @@ class SignUpLocators:
     DELETE_PROFILE = (By.XPATH, '//span[text()="Удалить профиль"]')
     CONFIRM_PASSWORD = (By.XPATH, '//input[@type="password"]')
     DELETE_BUTTON = (By.XPATH, '(//button[contains(@class, "modal__btn")])[1]')
-    DELETE_MESSAGE = (By.XPATH, '//p[@class="text"]')
+    DELETE_MESSAGE = (By.CSS_SELECTOR, 'p.text')
     AGREE_RADIO_BUTTON = (By.CSS_SELECTOR, 'for="myCheckbox"')
     AVATAR_LOGOUT = (By.CLASS_NAME, 'avatar__logout')
     LOGOUT_MSG = (By.CLASS_NAME, 'exit-text')
