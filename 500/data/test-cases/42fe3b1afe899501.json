@@ -1,0 +1,363 @@
+{
+  "uid" : "42fe3b1afe899501",
+  "name" : "A.21 POST Подтверждение смены почты пользователя. Токен из ссылки auth/change_email/{token}.",
+  "fullName" : "tests.api_tests.api_test.TestAPI#test_post_auth_change_email_confirm",
+  "historyId" : "bfb75cca0cd3d4da836a91acf40d98d8",
+  "time" : {
+    "start" : 1756869913959,
+    "stop" : 1756869918742,
+    "duration" : 4783
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Unexpected status code. Expected: 204. Actual: 400",
+  "statusTrace" : "self = <tests.api_tests.api_test.TestAPI object at 0x7fa738a51f70>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7fa738a84dd0>\n\n    @allure.title(\"A.21 POST Подтверждение смены почты пользователя. Токен из ссылки auth/change_email/{token}.\")\n    def test_post_auth_change_email_confirm(self, use_api_base):\n        jwt = use_api_base.create_tokens(email1, password0)[0]\n        url = f'{self.link.BASE_URL}auth/change_email_confirm/'\n        token_email = use_api_base.get_token_on_email(email2, password2, 'token=')\n        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"},\n                                 json={\"token\": token_email, \"email\": email2, \"password\": password0})\n>       Assertions.assert_status_code(response, self.code.STATUS_CREATE)\n\ntests/api_tests/api_test.py:206: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nresponse = <Response [400]>, expected_status_code = 204\n\n    @staticmethod\n    def assert_status_code(response: Response, expected_status_code: int):\n        actual_status_code = response.status_code\n        with allure.step(f\"Expected status {expected_status_code}\"):\n>           assert actual_status_code == expected_status_code, \\\n                f\"Unexpected status code. Expected: {expected_status_code}. Actual: {actual_status_code}\"\nE           AssertionError: Unexpected status code. Expected: 204. Actual: 400\n\napi_testing/assertions.py:11: AssertionError",
+  "flaky" : false,
+  "newFailed" : true,
+  "beforeStages" : [ {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1756869913959,
+      "stop" : 1756869913959,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Unexpected status code. Expected: 204. Actual: 400",
+    "statusTrace" : "self = <tests.api_tests.api_test.TestAPI object at 0x7fa738a51f70>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7fa738a84dd0>\n\n    @allure.title(\"A.21 POST Подтверждение смены почты пользователя. Токен из ссылки auth/change_email/{token}.\")\n    def test_post_auth_change_email_confirm(self, use_api_base):\n        jwt = use_api_base.create_tokens(email1, password0)[0]\n        url = f'{self.link.BASE_URL}auth/change_email_confirm/'\n        token_email = use_api_base.get_token_on_email(email2, password2, 'token=')\n        response = requests.post(url, headers={'accept': 'application/json', 'Authorization': f\"{jwt}\"},\n                                 json={\"token\": token_email, \"email\": email2, \"password\": password0})\n>       Assertions.assert_status_code(response, self.code.STATUS_CREATE)\n\ntests/api_tests/api_test.py:206: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nresponse = <Response [400]>, expected_status_code = 204\n\n    @staticmethod\n    def assert_status_code(response: Response, expected_status_code: int):\n        actual_status_code = response.status_code\n        with allure.step(f\"Expected status {expected_status_code}\"):\n>           assert actual_status_code == expected_status_code, \\\n                f\"Unexpected status code. Expected: {expected_status_code}. Actual: {actual_status_code}\"\nE           AssertionError: Unexpected status code. Expected: 204. Actual: 400\n\napi_testing/assertions.py:11: AssertionError",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя",
+      "time" : {
+        "start" : 1756869913959,
+        "stop" : 1756869915005,
+        "duration" : 1046
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Получить ссылку на емайл",
+      "time" : {
+        "start" : 1756869915005,
+        "stop" : 1756869917961,
+        "duration" : 2956
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Прочитать сообщение",
+        "time" : {
+          "start" : 1756869915005,
+          "stop" : 1756869917961,
+          "duration" : 2956
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "e_mail",
+          "value" : "'test_stroyrem@mail.ru'"
+        }, {
+          "name" : "passwrd",
+          "value" : "'DUttcyseCyD3W5Tfj1ge'"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "e_mail",
+        "value" : "'test_stroyrem@mail.ru'"
+      }, {
+        "name" : "passwrd",
+        "value" : "'DUttcyseCyD3W5Tfj1ge'"
+      }, {
+        "name" : "trigger",
+        "value" : "'token='"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Expected status 204",
+      "time" : {
+        "start" : 1756869918741,
+        "stop" : 1756869918741,
+        "duration" : 0
+      },
+      "status" : "failed",
+      "statusMessage" : "AssertionError: Unexpected status code. Expected: 204. Actual: 400\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/assertions.py\", line 11, in assert_status_code\n    assert actual_status_code == expected_status_code, \\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 4,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.api_tests"
+  }, {
+    "name" : "suite",
+    "value" : "api_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "pkrvm7jw40e0xgp"
+  }, {
+    "name" : "thread",
+    "value" : "2548-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.api_tests.api_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 0,
+        "skipped" : 0,
+        "passed" : 84,
+        "unknown" : 0,
+        "total" : 86
+      },
+      "items" : [ {
+        "uid" : "6765234b474d508d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/499//#testresult/6765234b474d508d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756784247444,
+          "stop" : 1756784250734,
+          "duration" : 3290
+        }
+      }, {
+        "uid" : "e64bfaa4cf66cd95",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/498//#testresult/e64bfaa4cf66cd95",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756698647225,
+          "stop" : 1756698651521,
+          "duration" : 4296
+        }
+      }, {
+        "uid" : "ea285dd15130af07",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/497//#testresult/ea285dd15130af07",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756611377506,
+          "stop" : 1756611392793,
+          "duration" : 15287
+        }
+      }, {
+        "uid" : "93fb4d08bf261c9",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/496//#testresult/93fb4d08bf261c9",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756524429757,
+          "stop" : 1756524432787,
+          "duration" : 3030
+        }
+      }, {
+        "uid" : "aed183fbb0401c57",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/495//#testresult/aed183fbb0401c57",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756438405814,
+          "stop" : 1756438410524,
+          "duration" : 4710
+        }
+      }, {
+        "uid" : "bd5410af80dfed01",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/494//#testresult/bd5410af80dfed01",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756352042792,
+          "stop" : 1756352046860,
+          "duration" : 4068
+        }
+      }, {
+        "uid" : "75d9ae8467272e18",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/5//#testresult/75d9ae8467272e18",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756313729515,
+          "stop" : 1756313734021,
+          "duration" : 4506
+        }
+      }, {
+        "uid" : "4986487b3bc9d3c1",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/4//#testresult/4986487b3bc9d3c1",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756312618702,
+          "stop" : 1756312626069,
+          "duration" : 7367
+        }
+      }, {
+        "uid" : "50b5fa4980421ccb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/493//#testresult/50b5fa4980421ccb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756269384782,
+          "stop" : 1756269388322,
+          "duration" : 3540
+        }
+      }, {
+        "uid" : "14b65ba308d34ee5",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/493//#testresult/14b65ba308d34ee5",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756265644651,
+          "stop" : 1756265649327,
+          "duration" : 4676
+        }
+      }, {
+        "uid" : "918ae942e42051ae",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/492//#testresult/918ae942e42051ae",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756179630380,
+          "stop" : 1756179634412,
+          "duration" : 4032
+        }
+      }, {
+        "uid" : "f6a8f79993903873",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/491//#testresult/f6a8f79993903873",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756093573620,
+          "stop" : 1756093587354,
+          "duration" : 13734
+        }
+      }, {
+        "uid" : "dbb49f3b6b7692c8",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/490//#testresult/dbb49f3b6b7692c8",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756060947896,
+          "stop" : 1756060959260,
+          "duration" : 11364
+        }
+      }, {
+        "uid" : "a9550c6f8372c522",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/490//#testresult/a9550c6f8372c522",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756007181755,
+          "stop" : 1756007185245,
+          "duration" : 3490
+        }
+      }, {
+        "uid" : "281ffe8185d66ffe",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/489//#testresult/281ffe8185d66ffe",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755920020963,
+          "stop" : 1755920024629,
+          "duration" : 3666
+        }
+      }, {
+        "uid" : "aee4fd0dee83adf6",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/488//#testresult/aee4fd0dee83adf6",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755833955262,
+          "stop" : 1755833962688,
+          "duration" : 7426
+        }
+      }, {
+        "uid" : "9c50104bd23d30b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/487//#testresult/9c50104bd23d30b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755747524725,
+          "stop" : 1755747528808,
+          "duration" : 4083
+        }
+      }, {
+        "uid" : "579ea498f451591e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/486//#testresult/579ea498f451591e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755661166739,
+          "stop" : 1755661170194,
+          "duration" : 3455
+        }
+      }, {
+        "uid" : "17323fb4309fc3cf",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/485//#testresult/17323fb4309fc3cf",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755574836951,
+          "stop" : 1755574839984,
+          "duration" : 3033
+        }
+      }, {
+        "uid" : "129565db93352c18",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/3//#testresult/129565db93352c18",
+        "status" : "passed",
+        "time" : {
+          "start" : 1755517817928,
+          "stop" : 1755517825110,
+          "duration" : 7182
+        }
+      } ]
+    },
+    "tags" : [ "smoke" ]
+  },
+  "source" : "42fe3b1afe899501.json",
+  "parameterValues" : [ ]
+}
