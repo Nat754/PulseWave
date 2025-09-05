@@ -1,5 +1,60 @@
 {
   "uid" : "4b4757e66a1912dae1a509f688f20b0f",
-  "children" : [ ],
+  "children" : [ {
+    "name" : "Test defects",
+    "children" : [ {
+      "name" : "selenium.common.exceptions.StaleElementReferenceException: Message: stale element reference: stale element not found in the current frame\n  (Session info: chrome=139.0.7258.154); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception\nStacktrace:\n#0 0x56318e87508a <unknown>\n#1 0x56318e314a70 <unknown>\n#2 0x56318e31b6bf <unknown>\n#3 0x56318e31df58 <unknown>\n#4 0x56318e31dfe3 <unknown>\n#5 0x56318e36143a <unknown>\n#6 0x56318e38c3e2 <unknown>\n#7 0x56318e35a49a <unknown>\n#8 0x56318e38c5ae <unknown>\n#9 0x56318e3b214f <unknown>\n#10 0x56318e38c1b3 <unknown>\n#11 0x56318e35859b <unknown>\n#12 0x56318e359971 <unknown>\n#13 0x56318e83a25b <unknown>\n#14 0x56318e83dfa9 <unknown>\n#15 0x56318e821339 <unknown>\n#16 0x56318e83eb58 <unknown>\n#17 0x56318e805c1f <unknown>\n#18 0x56318e862118 <unknown>\n#19 0x56318e8622f6 <unknown>\n#20 0x56318e874066 <unknown>\n#21 0x7fa5bd69caa4 <unknown>\n#22 0x7fa5bd729c3c <unknown>",
+      "children" : [ {
+        "name" : "R.5 Восстановить пароль на корректный емайл",
+        "uid" : "dd0cc4bc59f4f60c",
+        "parentUid" : "794d635f1988325fd0e0660813be33f8",
+        "status" : "broken",
+        "time" : {
+          "start" : 1757105763186,
+          "stop" : 1757105768133,
+          "duration" : 4947
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "794d635f1988325fd0e0660813be33f8"
+    } ],
+    "uid" : "bdbf199525818fae7a8651db9eafe741"
+  }, {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Пользователь не удален\nassert 'Мы используе...ках браузера.' == 'Ваша учетная запись удалена.'\n  \n  - Ваша учетная запись удалена.\n  + Мы используем cookie-файлы, чтобы было удобно пользоваться сайтом. Продолжая пользоваться сайтом, вы соглашаетесь с использованием cookie-файлов. Вы можете запретить их в настройках браузера.",
+      "children" : [ {
+        "name" : "S.1 Регистрация с корректными email и паролем и с согласием на подписку",
+        "uid" : "51f4171c918ae059",
+        "parentUid" : "7aca482feb4d706f1750297ad6f0d9b0",
+        "status" : "failed",
+        "time" : {
+          "start" : 1757105775588,
+          "stop" : 1757105786183,
+          "duration" : 10595
+        },
+        "flaky" : true,
+        "newFailed" : true,
+        "parameters" : [ ]
+      }, {
+        "name" : "S.8 Регистрация с корректными email и паролем без согласия на подписку",
+        "uid" : "f8145547939e381d",
+        "parentUid" : "7aca482feb4d706f1750297ad6f0d9b0",
+        "status" : "failed",
+        "time" : {
+          "start" : 1757105819020,
+          "stop" : 1757105827152,
+          "duration" : 8132
+        },
+        "flaky" : true,
+        "newFailed" : true,
+        "parameters" : [ ]
+      } ],
+      "uid" : "7aca482feb4d706f1750297ad6f0d9b0"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
   "name" : "categories"
 }
