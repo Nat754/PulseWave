@@ -1,0 +1,1424 @@
+{
+  "uid" : "faca304d3b0b8621",
+  "name" : "S.8 Регистрация с корректными email и паролем без согласия на подписку",
+  "fullName" : "tests.ui_tests.signup_page_test.TestSignupPage#test_signup_with_correct_email_and_password",
+  "historyId" : "6128cc8bbc9d7c3bb810cf0428f93b7e",
+  "time" : {
+    "start" : 1757164098847,
+    "stop" : 1757164106844,
+    "duration" : 7997
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: Пользователь не удален\nassert '' == 'Ваша учетная запись удалена.'\n  \n  - Ваша учетная запись удалена.",
+  "statusTrace" : "self = <tests.ui_tests.signup_page_test.TestSignupPage object at 0x7fd3ffac3980>\nsignup_page_open = <pages.signup_page.SignUpPage object at 0x7fd3ffaea300>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"efe2faa1139bb073d1b3484418e60868\")>\n\n    @allure.title(\"S.8 Регистрация с корректными email и паролем без согласия на подписку\")\n    def test_signup_with_correct_email_and_password(self, signup_page_open, driver):\n        with allure.step('Заполнить поле email корректными данными'):\n            signup_page_open.put_data_to_email_field(email1)\n        with allure.step('Заполнить поле пароль сильным паролем'):\n            signup_page_open.put_data_to_password_field(password0)\n        with allure.step('Заполнить поле подтверждение пароля сильным паролем'):\n            signup_page_open.put_data_to_confirm_password_field(password0)\n        signup_page_open.click_button_submit()\n        element = signup_page_open.get_send_invite_message()\n        with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: \"{self.signup.INVITE_MSG}\"'):\n            assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'\n        link = signup_page_open.get_confirm_signup_to_email(email1, password1)\n        driver.get(link)\n        signup_page_open.click_button_submit()\n        page = WorkspacePage(driver)\n        page.loader_is_not_visible()\n        signup_page_open.click_button_avatar()\n        signup_page_open.click_button_settings()\n        signup_page_open.click_delete_profile()\n        signup_page_open.send_field_email()\n        text = signup_page_open.delete_user_profile_confirmation()\n>       assert text == self.signup.DELETE_USER_MSG, \"Пользователь не удален\"\nE       AssertionError: Пользователь не удален\nE       assert '' == 'Ваша учетная запись удалена.'\nE         \nE         - Ваша учетная запись удалена.\n\ntests/ui_tests/signup_page_test.py:161: AssertionError",
+  "flaky" : true,
+  "newFailed" : true,
+  "beforeStages" : [ {
+    "name" : "driver",
+    "time" : {
+      "start" : 1757164095839,
+      "stop" : 1757164096101,
+      "duration" : 262
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_result_folder",
+    "time" : {
+      "start" : 1757162670461,
+      "stop" : 1757162670461,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1757162670447,
+      "stop" : 1757162670461,
+      "duration" : 14
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "signup_page_open",
+    "time" : {
+      "start" : 1757164096101,
+      "stop" : 1757164098847,
+      "duration" : 2746
+    },
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Открыть страницу Регистрации",
+      "time" : {
+        "start" : 1757164096101,
+        "stop" : 1757164098847,
+        "duration" : 2746
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Согласиться с использованием файлов cookies, если высветилось окно",
+        "time" : {
+          "start" : 1757164098755,
+          "stop" : 1757164098846,
+          "duration" : 91
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Получить кнопку 'Принимаю всё' в сообщении о принятии файлов cookie на Главной странице",
+          "time" : {
+            "start" : 1757164098755,
+            "stop" : 1757164098783,
+            "duration" : 28
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Проверить видимость элемента",
+            "time" : {
+              "start" : 1757164098755,
+              "stop" : 1757164098783,
+              "duration" : 28
+            },
+            "status" : "passed",
+            "steps" : [ {
+              "name" : "Проверить присутствие элемента в DOM",
+              "time" : {
+                "start" : 1757164098756,
+                "stop" : 1757164098765,
+                "duration" : 9
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ {
+                "name" : "locator",
+                "value" : "('class name', 'btn-cookies')"
+              } ],
+              "stepsCount" : 0,
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "hasContent" : true
+            }, {
+              "name" : "Проскролить до элемента",
+              "time" : {
+                "start" : 1757164098765,
+                "stop" : 1757164098769,
+                "duration" : 4
+              },
+              "status" : "passed",
+              "steps" : [ ],
+              "attachments" : [ ],
+              "parameters" : [ {
+                "name" : "element",
+                "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.345EE5EF7385205E166C40D4C564888A.e.18\")>"
+              } ],
+              "stepsCount" : 0,
+              "attachmentsCount" : 0,
+              "shouldDisplayMessage" : false,
+              "hasContent" : true
+            } ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('class name', 'btn-cookies')"
+            } ],
+            "stepsCount" : 2,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ ],
+          "stepsCount" : 3,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "driver",
+          "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"efe2faa1139bb073d1b3484418e60868\")>"
+        } ],
+        "stepsCount" : 4,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "driver",
+        "value" : "<selenium.webdriver.chrome.webdriver.WebDriver (session=\"efe2faa1139bb073d1b3484418e60868\")>"
+      } ],
+      "stepsCount" : 5,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 6,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: Пользователь не удален\nassert '' == 'Ваша учетная запись удалена.'\n  \n  - Ваша учетная запись удалена.",
+    "statusTrace" : "self = <tests.ui_tests.signup_page_test.TestSignupPage object at 0x7fd3ffac3980>\nsignup_page_open = <pages.signup_page.SignUpPage object at 0x7fd3ffaea300>\ndriver = <selenium.webdriver.chrome.webdriver.WebDriver (session=\"efe2faa1139bb073d1b3484418e60868\")>\n\n    @allure.title(\"S.8 Регистрация с корректными email и паролем без согласия на подписку\")\n    def test_signup_with_correct_email_and_password(self, signup_page_open, driver):\n        with allure.step('Заполнить поле email корректными данными'):\n            signup_page_open.put_data_to_email_field(email1)\n        with allure.step('Заполнить поле пароль сильным паролем'):\n            signup_page_open.put_data_to_password_field(password0)\n        with allure.step('Заполнить поле подтверждение пароля сильным паролем'):\n            signup_page_open.put_data_to_confirm_password_field(password0)\n        signup_page_open.click_button_submit()\n        element = signup_page_open.get_send_invite_message()\n        with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: \"{self.signup.INVITE_MSG}\"'):\n            assert element.text == self.signup.INVITE_MSG, 'Нет сообщения успеха'\n        link = signup_page_open.get_confirm_signup_to_email(email1, password1)\n        driver.get(link)\n        signup_page_open.click_button_submit()\n        page = WorkspacePage(driver)\n        page.loader_is_not_visible()\n        signup_page_open.click_button_avatar()\n        signup_page_open.click_button_settings()\n        signup_page_open.click_delete_profile()\n        signup_page_open.send_field_email()\n        text = signup_page_open.delete_user_profile_confirmation()\n>       assert text == self.signup.DELETE_USER_MSG, \"Пользователь не удален\"\nE       AssertionError: Пользователь не удален\nE       assert '' == 'Ваша учетная запись удалена.'\nE         \nE         - Ваша учетная запись удалена.\n\ntests/ui_tests/signup_page_test.py:161: AssertionError",
+    "steps" : [ {
+      "name" : "Заполнить поле email корректными данными",
+      "time" : {
+        "start" : 1757164098847,
+        "stop" : 1757164098944,
+        "duration" : 97
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164098847,
+          "stop" : 1757164098876,
+          "duration" : 29
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164098847,
+            "stop" : 1757164098856,
+            "duration" : 9
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('css selector', 'input[type=\"email\"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164098856,
+            "stop" : 1757164098861,
+            "duration" : 5
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.345EE5EF7385205E166C40D4C564888A.e.7\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('css selector', 'input[type=\"email\"]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Заполнить поле пароль сильным паролем",
+      "time" : {
+        "start" : 1757164098944,
+        "stop" : 1757164099012,
+        "duration" : 68
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164098944,
+          "stop" : 1757164098970,
+          "duration" : 26
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164098944,
+            "stop" : 1757164098954,
+            "duration" : 10
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '(//input[@type=\"password\"])[1]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164098954,
+            "stop" : 1757164098957,
+            "duration" : 3
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.345EE5EF7385205E166C40D4C564888A.e.5\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '(//input[@type=\"password\"])[1]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Заполнить поле подтверждение пароля сильным паролем",
+      "time" : {
+        "start" : 1757164099012,
+        "stop" : 1757164099077,
+        "duration" : 65
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164099012,
+          "stop" : 1757164099038,
+          "duration" : 26
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164099013,
+            "stop" : 1757164099022,
+            "duration" : 9
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '(//input[@type=\"password\"])[2]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164099022,
+            "stop" : 1757164099026,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.345EE5EF7385205E166C40D4C564888A.e.6\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '(//input[@type=\"password\"])[2]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Подтвердить изменения'",
+      "time" : {
+        "start" : 1757164099077,
+        "stop" : 1757164099153,
+        "duration" : 76
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164099077,
+          "stop" : 1757164099101,
+          "duration" : 24
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164099077,
+            "stop" : 1757164099086,
+            "duration" : 9
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('css selector', 'button[type=\"submit\"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164099086,
+            "stop" : 1757164099090,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.345EE5EF7385205E166C40D4C564888A.e.13\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('css selector', 'button[type=\"submit\"]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Получено сообщения о подтверждении регистрации",
+      "time" : {
+        "start" : 1757164099153,
+        "stop" : 1757164100201,
+        "duration" : 1048
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164099153,
+          "stop" : 1757164100201,
+          "duration" : 1048
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164099153,
+            "stop" : 1757164100187,
+            "duration" : 1034
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('class name', 'form__texts')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164100187,
+            "stop" : 1757164100191,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.345EE5EF7385205E166C40D4C564888A.e.26\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('class name', 'form__texts')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Получено сообщение необходимости подтвердить регистрацию: \"Регистрация\nМы отправили вам письмо на test_pulsewave0@mail.ru.\nДля подтверждения регистрации и активации учётной записи пройдите по ссылке в письме.\nПисьмо не пришло?\nПроверьте папку Спам и нажмите кнопку «Отправить повторно».\"",
+      "time" : {
+        "start" : 1757164100201,
+        "stop" : 1757164100212,
+        "duration" : 11
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Получить ссылку подтверждения регистрации пользователя на емайл",
+      "time" : {
+        "start" : 1757164100212,
+        "stop" : 1757164102056,
+        "duration" : 1844
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Прочитать сообщение",
+        "time" : {
+          "start" : 1757164100212,
+          "stop" : 1757164102055,
+          "duration" : 1843
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "e_mail",
+          "value" : "'test_pulsewave0@mail.ru'"
+        }, {
+          "name" : "passwrd",
+          "value" : "'5gA8g3cLYJxwPit07iRF'"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "e_mail",
+        "value" : "'test_pulsewave0@mail.ru'"
+      }, {
+        "name" : "passwrd",
+        "value" : "'5gA8g3cLYJxwPit07iRF'"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Подтвердить изменения'",
+      "time" : {
+        "start" : 1757164102337,
+        "stop" : 1757164103487,
+        "duration" : 1150
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164102337,
+          "stop" : 1757164103432,
+          "duration" : 1095
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164102337,
+            "stop" : 1757164103413,
+            "duration" : 1076
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('css selector', 'button[type=\"submit\"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164103413,
+            "stop" : 1757164103417,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.03B5EC60853B56C43B8CE6623ADD64F0.e.35\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('css selector', 'button[type=\"submit\"]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Проверка отсутствия лоадера",
+      "time" : {
+        "start" : 1757164103487,
+        "stop" : 1757164103506,
+        "duration" : 19
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить невидимость, но присутствие элемента в DOM",
+        "time" : {
+          "start" : 1757164103487,
+          "stop" : 1757164103506,
+          "duration" : 19
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('css selector', '.loader .icon')"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Нажать на иконку аватара",
+      "time" : {
+        "start" : 1757164103506,
+        "stop" : 1757164104892,
+        "duration" : 1386
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить присутствие элемента в DOM",
+        "time" : {
+          "start" : 1757164103506,
+          "stop" : 1757164104541,
+          "duration" : 1035
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('class name', 'avatar')"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Переместить курсор мыши к центру элемента, показывая ховер",
+        "time" : {
+          "start" : 1757164104541,
+          "stop" : 1757164104799,
+          "duration" : 258
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "element",
+          "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.03B5EC60853B56C43B8CE6623ADD64F0.e.40\")>"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Проверить кликабельность элемента",
+        "time" : {
+          "start" : 1757164104799,
+          "stop" : 1757164104835,
+          "duration" : 36
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить видимость элемента",
+          "time" : {
+            "start" : 1757164104799,
+            "stop" : 1757164104819,
+            "duration" : 20
+          },
+          "status" : "passed",
+          "steps" : [ {
+            "name" : "Проверить присутствие элемента в DOM",
+            "time" : {
+              "start" : 1757164104799,
+              "stop" : 1757164104805,
+              "duration" : 6
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "locator",
+              "value" : "('class name', 'avatar')"
+            } ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          }, {
+            "name" : "Проскролить до элемента",
+            "time" : {
+              "start" : 1757164104805,
+              "stop" : 1757164104808,
+              "duration" : 3
+            },
+            "status" : "passed",
+            "steps" : [ ],
+            "attachments" : [ ],
+            "parameters" : [ {
+              "name" : "element",
+              "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.03B5EC60853B56C43B8CE6623ADD64F0.e.40\")>"
+            } ],
+            "stepsCount" : 0,
+            "attachmentsCount" : 0,
+            "shouldDisplayMessage" : false,
+            "hasContent" : true
+          } ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('class name', 'avatar')"
+          } ],
+          "stepsCount" : 2,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('class name', 'avatar')"
+        } ],
+        "stepsCount" : 3,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 6,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Перейти в настройки",
+      "time" : {
+        "start" : 1757164104892,
+        "stop" : 1757164105477,
+        "duration" : 585
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164104892,
+          "stop" : 1757164105431,
+          "duration" : 539
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164104892,
+            "stop" : 1757164104903,
+            "duration" : 11
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '(//div[@class=\"nav__item\"])[1]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164104903,
+            "stop" : 1757164104907,
+            "duration" : 4
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.03B5EC60853B56C43B8CE6623ADD64F0.e.43\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '(//div[@class=\"nav__item\"])[1]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Нажать ссылку 'Удалить профиль'",
+      "time" : {
+        "start" : 1757164105477,
+        "stop" : 1757164106082,
+        "duration" : 605
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164105477,
+          "stop" : 1757164106028,
+          "duration" : 551
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164105477,
+            "stop" : 1757164106008,
+            "duration" : 531
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//span[text()=\"Удалить профиль\"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164106009,
+            "stop" : 1757164106016,
+            "duration" : 7
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.03B5EC60853B56C43B8CE6623ADD64F0.e.46\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//span[text()=\"Удалить профиль\"]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 3,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Ввести пароль для подтверждения удаления профиля",
+      "time" : {
+        "start" : 1757164106082,
+        "stop" : 1757164106311,
+        "duration" : 229
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить присутствие элемента в DOM",
+        "time" : {
+          "start" : 1757164106082,
+          "stop" : 1757164106095,
+          "duration" : 13
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//input[@type=\"password\"]')"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Проскролить до элемента",
+        "time" : {
+          "start" : 1757164106095,
+          "stop" : 1757164106099,
+          "duration" : 4
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "element",
+          "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.03B5EC60853B56C43B8CE6623ADD64F0.e.47\")>"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164106099,
+          "stop" : 1757164106143,
+          "duration" : 44
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164106100,
+            "stop" : 1757164106110,
+            "duration" : 10
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//input[@type=\"password\"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164106110,
+            "stop" : 1757164106122,
+            "duration" : 12
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.03B5EC60853B56C43B8CE6623ADD64F0.e.47\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//input[@type=\"password\"]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "Проверить видимость элемента",
+        "time" : {
+          "start" : 1757164106216,
+          "stop" : 1757164106256,
+          "duration" : 40
+        },
+        "status" : "passed",
+        "steps" : [ {
+          "name" : "Проверить присутствие элемента в DOM",
+          "time" : {
+            "start" : 1757164106216,
+            "stop" : 1757164106232,
+            "duration" : 16
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "locator",
+            "value" : "('xpath', '//input[@type=\"password\"]')"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        }, {
+          "name" : "Проскролить до элемента",
+          "time" : {
+            "start" : 1757164106233,
+            "stop" : 1757164106240,
+            "duration" : 7
+          },
+          "status" : "passed",
+          "steps" : [ ],
+          "attachments" : [ ],
+          "parameters" : [ {
+            "name" : "element",
+            "value" : "<selenium.webdriver.remote.webelement.WebElement (session=\"efe2faa1139bb073d1b3484418e60868\", element=\"f.62A79DB73E0D85676AA9CC3A6B0B9975.d.03B5EC60853B56C43B8CE6623ADD64F0.e.47\")>"
+          } ],
+          "stepsCount" : 0,
+          "attachmentsCount" : 0,
+          "shouldDisplayMessage" : false,
+          "hasContent" : true
+        } ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('xpath', '//input[@type=\"password\"]')"
+        } ],
+        "stepsCount" : 2,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 8,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "Получено сообщение об успешном удалении пользователя",
+      "time" : {
+        "start" : 1757164106311,
+        "stop" : 1757164106844,
+        "duration" : 533
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "Проверить присутствие элемента в DOM",
+        "time" : {
+          "start" : 1757164106311,
+          "stop" : 1757164106837,
+          "duration" : 526
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "locator",
+          "value" : "('css selector', '.form p.text')"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ {
+      "uid" : "211da71905527e5",
+      "name" : "Screenshot",
+      "source" : "211da71905527e5.png",
+      "type" : "image/png",
+      "size" : 81100
+    }, {
+      "uid" : "8c91d62e1937b130",
+      "name" : "HTML source",
+      "source" : "8c91d62e1937b130.html",
+      "type" : "text/html",
+      "size" : 96885
+    } ],
+    "parameters" : [ ],
+    "stepsCount" : 55,
+    "attachmentsCount" : 2,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "driver::0",
+    "time" : {
+      "start" : 1757164107026,
+      "stop" : 1757164107095,
+      "duration" : 69
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование страницы 'Регистрация'"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.ui_tests"
+  }, {
+    "name" : "suite",
+    "value" : "signup_page_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestSignupPage"
+  }, {
+    "name" : "host",
+    "value" : "pkrvm7jw40e0xgp"
+  }, {
+    "name" : "thread",
+    "value" : "2531-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.ui_tests.signup_page_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 5,
+        "broken" : 2,
+        "skipped" : 0,
+        "passed" : 87,
+        "unknown" : 0,
+        "total" : 94
+      },
+      "items" : [ {
+        "uid" : "9904d51ddd0b138e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/9904d51ddd0b138e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1757160317660,
+          "stop" : 1757160327793,
+          "duration" : 10133
+        }
+      }, {
+        "uid" : "63f54503795aecd2",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/63f54503795aecd2",
+        "status" : "passed",
+        "time" : {
+          "start" : 1757158255243,
+          "stop" : 1757158263322,
+          "duration" : 8079
+        }
+      }, {
+        "uid" : "ccf5318417d74f52",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/ccf5318417d74f52",
+        "status" : "passed",
+        "time" : {
+          "start" : 1757135638145,
+          "stop" : 1757135653383,
+          "duration" : 15238
+        }
+      }, {
+        "uid" : "7f3e2f4579dc449b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/503//#testresult/7f3e2f4579dc449b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1757130603658,
+          "stop" : 1757130613917,
+          "duration" : 10259
+        }
+      }, {
+        "uid" : "99002226a03788d4",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/502//#testresult/99002226a03788d4",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Пользователь не удален\nassert 'Мы используе...ках браузера.' == 'Ваша учетная запись удалена.'\n  \n  - Ваша учетная запись удалена.\n  + Мы используем cookie-файлы, чтобы было удобно пользоваться сайтом. Продолжая пользоваться сайтом, вы соглашаетесь с использованием cookie-файлов. Вы можете запретить их в настройках браузера.",
+        "time" : {
+          "start" : 1757121266309,
+          "stop" : 1757121280122,
+          "duration" : 13813
+        }
+      }, {
+        "uid" : "470bc6aadcac860b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/6//#testresult/470bc6aadcac860b",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Пользователь не удален\nassert '' == 'Ваша учетная запись удалена.'\n  \n  - Ваша учетная запись удалена.",
+        "time" : {
+          "start" : 1757119566661,
+          "stop" : 1757119576540,
+          "duration" : 9879
+        }
+      }, {
+        "uid" : "f8145547939e381d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/502//#testresult/f8145547939e381d",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Пользователь не удален\nassert 'Мы используе...ках браузера.' == 'Ваша учетная запись удалена.'\n  \n  - Ваша учетная запись удалена.\n  + Мы используем cookie-файлы, чтобы было удобно пользоваться сайтом. Продолжая пользоваться сайтом, вы соглашаетесь с использованием cookie-файлов. Вы можете запретить их в настройках браузера.",
+        "time" : {
+          "start" : 1757105819020,
+          "stop" : 1757105827152,
+          "duration" : 8132
+        }
+      }, {
+        "uid" : "c56e17288eb669d4",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/502//#testresult/c56e17288eb669d4",
+        "status" : "passed",
+        "time" : {
+          "start" : 1757049452853,
+          "stop" : 1757049461982,
+          "duration" : 9129
+        }
+      }, {
+        "uid" : "df8e809a0221a25e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/502//#testresult/df8e809a0221a25e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1757046984719,
+          "stop" : 1757046994777,
+          "duration" : 10058
+        }
+      }, {
+        "uid" : "23eca65cfcc45a96",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/499//#testresult/23eca65cfcc45a96",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756785177458,
+          "stop" : 1756785185865,
+          "duration" : 8407
+        }
+      }, {
+        "uid" : "cb04d338a59baa50",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/498//#testresult/cb04d338a59baa50",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756699615968,
+          "stop" : 1756699624465,
+          "duration" : 8497
+        }
+      }, {
+        "uid" : "9a872ecdc91e0329",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/497//#testresult/9a872ecdc91e0329",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756612362749,
+          "stop" : 1756612406633,
+          "duration" : 43884
+        }
+      }, {
+        "uid" : "54356dd432a44070",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/496//#testresult/54356dd432a44070",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756525312905,
+          "stop" : 1756525321091,
+          "duration" : 8186
+        }
+      }, {
+        "uid" : "a971120026c1f9d",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/495//#testresult/a971120026c1f9d",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756439471699,
+          "stop" : 1756439482894,
+          "duration" : 11195
+        }
+      }, {
+        "uid" : "ba124f14381d0e53",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/494//#testresult/ba124f14381d0e53",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756353003311,
+          "stop" : 1756353012753,
+          "duration" : 9442
+        }
+      }, {
+        "uid" : "2835c24dfde1ef23",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/5//#testresult/2835c24dfde1ef23",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756314800034,
+          "stop" : 1756314809878,
+          "duration" : 9844
+        }
+      }, {
+        "uid" : "85dce420dfd28624",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/4//#testresult/85dce420dfd28624",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756312900625,
+          "stop" : 1756312910921,
+          "duration" : 10296
+        }
+      }, {
+        "uid" : "139f5830c3b0b13e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/493//#testresult/139f5830c3b0b13e",
+        "status" : "failed",
+        "statusDetails" : "AssertionError: Пользователь не удален\nassert '' == 'Ваша учетная запись удалена.'\n  \n  - Ваша учетная запись удалена.",
+        "time" : {
+          "start" : 1756270322209,
+          "stop" : 1756270330339,
+          "duration" : 8130
+        }
+      }, {
+        "uid" : "69b10ceb338dabfc",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/493//#testresult/69b10ceb338dabfc",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756266651555,
+          "stop" : 1756266662272,
+          "duration" : 10717
+        }
+      }, {
+        "uid" : "8b6407ba1bca9267",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/492//#testresult/8b6407ba1bca9267",
+        "status" : "passed",
+        "time" : {
+          "start" : 1756180597144,
+          "stop" : 1756180606382,
+          "duration" : 9238
+        }
+      } ]
+    },
+    "tags" : [ "smoke" ]
+  },
+  "source" : "faca304d3b0b8621.json",
+  "parameterValues" : [ ]
+}
