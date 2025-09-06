@@ -14,17 +14,17 @@ class HeaderPage(BasePage):
     def get_header_logo(self):
         return self.element_is_visible(self.locator.LOGO)
 
-    @allure.step("Проверка некликабельности логотипа в хедере")
-    def get_header_logo_is_not_clickable(self):
-        return self.element_is_not_clickable(self.locator.LOGO)
+    @allure.step("Проверка кликабельности логотипа в хедере")
+    def get_header_logo_is_clickable(self):
+        return self.element_is_clickable(self.locator.LOGO)
 
     @allure.step(f"Проверка видимости кнопки '{const.TEXT_LOGIN}' в хэдере")
     def get_header_auth_login(self):
-        return self.element_is_visible(self.locator.AUTH_LOGIN)
+        return self.elements_are_visible(self.locator.AUTH_LOGIN)[0]
 
     @allure.step(f"Проверка видимости кнопки '{const.TEXT_SIGNUP}' в хэдере")
     def get_header_auth_signup(self):
-        return self.element_is_visible(self.locator.AUTH_SIGNUP)
+        return self.elements_are_visible(self.locator.AUTH_SIGNUP)[-1]
 
     @allure.step(f"Проверка видимости кнопки '{footer.COOKIES_BUTTON}' "
                  f"в сообщении о принятии файлов cookie на Главной странице")

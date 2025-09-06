@@ -142,7 +142,8 @@ class MainConstant:
 
 
 class LendingConstant:
-    pass
+    TEXT_LOGIN = 'Войти'
+    TEXT_AUTH_FREE = 'Бесплатная регистрация'
 
 
 class PasswordRecoveryConstant:
