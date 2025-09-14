@@ -4,12 +4,12 @@ from data import email1
 
 class Links:
 
-    # START_PAGE = 'https://web.dev.pulsewave.ru/'
-    # MAIN_PAGE = 'https://app.dev.pulsewave.ru/'
-    # BASE_URL = "https://api.dev.pulsewave.ru/"
-    START_PAGE = 'https://pulsewave.ru/'
-    MAIN_PAGE = 'https://app.pulsewave.ru/'
-    BASE_URL = 'https://api.pulsewave.ru/'
+    START_PAGE = 'https://web.dev.pulsewave.ru/'
+    MAIN_PAGE = 'https://app.dev.pulsewave.ru/'
+    BASE_URL = "https://api.dev.pulsewave.ru/"
+    # START_PAGE = 'https://pulsewave.ru/'
+    # MAIN_PAGE = 'https://app.pulsewave.ru/'
+    # BASE_URL = 'https://api.pulsewave.ru/'
     MAIN_PAGE_HOME = f'{START_PAGE}home'
     LOGIN_PAGE = f'{MAIN_PAGE}auth/login'
     SIGNUP_PAGE = f'{MAIN_PAGE}auth/signup'
