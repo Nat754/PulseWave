@@ -1,0 +1,77 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: Не произошел переход на главную страницу при клике на лого\nassert 'https://web....ve.ru/?email=' == 'https://web....pulsewave.ru/'\n  \n  - https://web.dev.pulsewave.ru/\n  + https://web.dev.pulsewave.ru/?email=\n  ?                              +++++++",
+      "children" : [ {
+        "name" : "H.2 Проверка редиректа на главную страницу при клике на логотип",
+        "uid" : "96bbba4ee77bdb82",
+        "parentUid" : "e70e2446de6024cb10f181d25bacbc51",
+        "status" : "failed",
+        "time" : {
+          "start" : 1758365369631,
+          "stop" : 1758365371581,
+          "duration" : 1950
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'https://app.dev.pulsewave.ru/auth/password?email='" ]
+      } ],
+      "uid" : "e70e2446de6024cb10f181d25bacbc51"
+    }, {
+      "name" : "AssertionError: Произошел переход на страницу 'https://app.dev.pulsewave.ru/auth/login?email='\nassert 'https://app..../login?email=' == 'https://app....ru/auth/login'\n  \n  - https://app.dev.pulsewave.ru/auth/login\n  + https://app.dev.pulsewave.ru/auth/login?email=\n  ?                                        +++++++",
+      "children" : [ {
+        "name" : "H.5 Проверка перехода на страницу 'https://app.dev.pulsewave.ru/auth/login' по кнопке 'Войти'",
+        "uid" : "a72af2c78d44ccc9",
+        "parentUid" : "b42c6243a2f782784a4e5b143a6fc6b9",
+        "status" : "failed",
+        "time" : {
+          "start" : 1758365396053,
+          "stop" : 1758365396643,
+          "duration" : 590
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'https://app.dev.pulsewave.ru/auth/password?email='" ]
+      } ],
+      "uid" : "b42c6243a2f782784a4e5b143a6fc6b9"
+    }, {
+      "name" : "AssertionError: Произошел переход на страницу 'https://app.dev.pulsewave.ru/auth/signup?email='\nassert 'https://app....signup?email=' == 'https://app....u/auth/signup'\n  \n  - https://app.dev.pulsewave.ru/auth/signup\n  + https://app.dev.pulsewave.ru/auth/signup?email=\n  ?                                         +++++++",
+      "children" : [ {
+        "name" : "H.6 Проверка перехода на страницу 'https://app.dev.pulsewave.ru/auth/signup' по кнопке 'Регистрация'",
+        "uid" : "7fb94224b7ab31b7",
+        "parentUid" : "7a252f7eb3058d5c3ad380d8e03fb662",
+        "status" : "failed",
+        "time" : {
+          "start" : 1758365405379,
+          "stop" : 1758365405973,
+          "duration" : 594
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ "'https://app.dev.pulsewave.ru/auth/password?email='" ]
+      } ],
+      "uid" : "7a252f7eb3058d5c3ad380d8e03fb662"
+    }, {
+      "name" : "AssertionError: Пользователь не удален\nassert '' == 'Ваша учетная запись удалена.'\n  \n  - Ваша учетная запись удалена.",
+      "children" : [ {
+        "name" : "S.1 Регистрация с корректными email и паролем и с согласием на подписку",
+        "uid" : "4bb5417adc36c3a7",
+        "parentUid" : "f39c1354f2087c1dff22bfd1283bc89d",
+        "status" : "failed",
+        "time" : {
+          "start" : 1758365587070,
+          "stop" : 1758365599364,
+          "duration" : 12294
+        },
+        "flaky" : true,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "f39c1354f2087c1dff22bfd1283bc89d"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ],
+  "name" : "categories"
+}
