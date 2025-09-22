@@ -47,14 +47,14 @@ class ApiBase:
                 print(f"Удален файл: {file_to_delete}")
 
     @staticmethod
-    @allure.step('Прочитать сообщение')
-    def read_email(e_mail, passwrd):
-        data_id = [b'']
-        while data_id == [b'']:
-            mail = imaplib.IMAP4_SSL('imap.mail.ru')
-            mail.login(e_mail, passwrd)
-            mail.select('INBOX')
-            result, data_id = mail.search(None, 'UNSEEN')
+    def read_email(my_email, my_password):
+        with allure.step('Прочитать сообщение'):
+            data_id = [b'']
+            while data_id == [b'']:
+                mail = imaplib.IMAP4_SSL('imap.mail.ru')
+                mail.login(my_email, my_password)
+                mail.select('INBOX')
+                result, data_id = mail.search(None, 'UNSEEN')
         message_ids = data_id[0].split()
         result, data_id = mail.fetch(message_ids[-1], '(RFC822)')
         mail.logout()
@@ -62,32 +62,33 @@ class ApiBase:
         for part in msg.walk():
             if part.get_content_maintype() == 'text':
                 msg = base64.b64decode(part.get_payload()).decode()
-        return msg
+        with allure.step('Получить письмо'):
+            return msg
 
-    @allure.step('Получить токен активации пользователя на емайл')
-    def get_tokens_on_email(self, e_mail, passwrd, trigger):
-        msg = self.read_email(e_mail, passwrd)
+    def get_tokens_on_email(self, my_email, my_password, trigger):
+        msg = self.read_email(my_email, my_password)
         first = msg.find(trigger)
         start = first + len(trigger)
         end = msg[start:].find('"')
         link = msg[start:start + end].split('/')
         tokens = {"uid": link[0], "token": link[1]}
-        return tokens
+        with allure.step('Получить token в сообщении'):
+            return tokens
 
-    @allure.step("Получить ссылку на емайл")
-    def get_token_on_email(self, e_mail, passwrd, trigger):
-        msg = self.read_email(e_mail, passwrd)
+    def get_token_on_email(self, my_email, my_password, trigger):
+        msg = self.read_email(my_email, my_password)
         first = msg.find(trigger)
         start = first + len(trigger)
         end = msg[start:].find('"')
         link = msg[start:start + end] if msg[start:start + end][-1] != '/' else msg[start:start + end - 1]
-        return link
+        with allure.step('Получить ссылку в сообщении'):
+            return link
 
     @staticmethod
-    def create_tokens(e_mail, passwrd):
+    def create_tokens(my_email, my_password):
         with allure.step('Получить access токен пользователя'):
             url = f'{Links.BASE_URL}auth/jwt/create/'
-            response = requests.post(url, json={"email": e_mail, "password": passwrd})
+            response = requests.post(url, json={"email": my_email, "password": my_password})
             jwt = f"JWT {response.json()['access']}"
             refresh = f"{response.json()['refresh']}"
             return jwt, refresh

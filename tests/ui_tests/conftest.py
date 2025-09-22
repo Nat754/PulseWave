@@ -6,7 +6,6 @@ from pages.footer import FooterPage
 from pages.header import HeaderPage
 from pages.lending_page import LendingPage
 from pages.login_page import LoginPage
-from pages.main_page import MainPage
 from pages.password_recovery_page import PasswordRecoveryPage
 from pages.signup_page import SignUpPage
 from pages.workspace_page import WorkspacePage
@@ -75,7 +74,7 @@ def login_page_open(driver):
 @pytest.fixture()
 @allure.step("Открыть главную страницу")
 def main_page_open(driver):
-    page = MainPage(driver)
+    page = LendingPage(driver)
     driver.get(Links.START_PAGE)
     return page
 

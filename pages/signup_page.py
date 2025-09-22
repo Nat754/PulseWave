@@ -1,27 +1,23 @@
-import base64
-import email
-import imaplib
 from selenium.webdriver import Keys
 
 from api_testing.api_base import ApiBase
-from data import password0
+from data import password0, email1
 from locators.signup_locators import SignUpLocators
-from pages.base_page import BasePage
+from pages.general_page import GeneralPage
 import allure
 from tests.constant import SignUpConstants
 from tests.constant import Messages, Links
 
 
-class SignUpPage(BasePage):
+class SignUpPage(GeneralPage):
     signup = SignUpConstants()
     locator = SignUpLocators()
     message = Messages()
     const = Links()
 
     @staticmethod
-    @allure.step('Получить ссылку подтверждения регистрации пользователя на емайл')
-    def get_confirm_signup_to_email(e_mail, passwrd):
-        msg = ApiBase.read_email(e_mail, passwrd)
+    def get_confirm_signup_to_email(my_email, my_password):
+        msg = ApiBase.read_email(my_email, my_password)
         first = msg.find(Links.MAIN_PAGE)
         end = msg[first:].find('"')
         link = msg[first:first + end]
@@ -122,3 +118,15 @@ class SignUpPage(BasePage):
     @allure.step("Получить сообщение")
     def get_message_to_exit(self):
         return self.element_is_visible(self.locator.LOGOUT_MSG).text
+
+    @allure.step("Появилось модальное окно")
+    def visibility_modal_window(self):
+        return self.element_is_visible(self.locator.MODAL)
+
+    def auth_user(self):
+        with allure.step('Заполнить поле email'):
+            self.put_data_to_email_field(email1)
+        with allure.step('Ввести пароль'):
+            self.put_data_to_password_field(password0)
+        with allure.step('Подтвердить введенные данные'):
+            self.click_button_submit()

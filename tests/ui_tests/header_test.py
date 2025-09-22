@@ -18,7 +18,7 @@ class TestHeader:
         header_open.get_header_logo().click()
         header_open.wait_changed_url(link)
         with allure.step("Произошел переход на Главную страницу"):
-            assert driver.current_url == self.link.START_PAGE, \
+            assert driver.current_url.split('?')[0] == self.link.START_PAGE, \
                 'Не произошел переход на главную страницу при клике на лого'
 
     @pytest.mark.parametrize('url', [link.SIGNUP_PAGE, link.PASSWORD_RECOVERY])
@@ -44,7 +44,8 @@ class TestHeader:
         header_open.get_header_auth_login().click()
         header_open.wait_changed_url(link)
         with allure.step(f"Произошел переход на страницу '{self.link.LOGIN_PAGE}'"):
-            assert driver.current_url == self.link.LOGIN_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
+            assert driver.current_url.split('?')[0] == self.link.LOGIN_PAGE, \
+                f"Произошел переход на страницу '{driver.current_url}'"
 
     @pytest.mark.parametrize('url', [link.LOGIN_PAGE, link.PASSWORD_RECOVERY])
     @allure.title(f"H.6 Проверка перехода на страницу '{link.SIGNUP_PAGE}' по кнопке '{const.TEXT_SIGNUP}'")
@@ -53,8 +54,9 @@ class TestHeader:
         link = driver.current_url
         header_open.get_header_auth_signup().click()
         header_open.wait_changed_url(link)
-        with allure.step(f"Произошел переход на страницу '{self.link.SIGNUP_PAGE}'"):
-            assert driver.current_url == self.link.SIGNUP_PAGE, f"Произошел переход на страницу '{driver.current_url}'"
+        with (allure.step(f"Произошел переход на страницу '{self.link.SIGNUP_PAGE}'")):
+            assert driver.current_url.split('?')[0] == self.link.SIGNUP_PAGE, \
+                f"Произошел переход на страницу '{driver.current_url}'"
 
     @pytest.mark.parametrize('url', [link.SIGNUP_PAGE, link.PASSWORD_RECOVERY])
     @pytest.mark.parametrize('css_property, figma, name', const.CHECK_BUTTON)

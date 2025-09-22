@@ -1,15 +1,13 @@
 from selenium.webdriver.common.by import By
+from locators.general_locators import GeneralLocators
 
 
-class SignUpLocators:
+class SignUpLocators(GeneralLocators):
 
     TITLE_SIGNUP = (By.TAG_NAME, 'h1')
-    ALLOW_ALL_COOKIES = (By.CSS_SELECTOR, '.cookies__body .button__small')
-    LOGO = (By.CLASS_NAME, 'header__logo')
     PASSWORD_RULES = (By.CSS_SELECTOR, '.invalid-form span')
     PULSEWAVE_POLICY = (By.CLASS_NAME, 'styled-checkbox')
     AGREEMENT_MSG = (By.CLASS_NAME, 'agreement')
-    SUBMIT_BUTTON = (By.CSS_SELECTOR, 'button[type="submit"]')
     TERMS_OF_SERVICE = (By.XPATH, '(//a[@class="agreement__link"])[1]')
     POLICY_SERVICE = (By.XPATH, '(//a[@class="agreement__link"])[2]')
     EMAIL_FIELD = (By.CSS_SELECTOR, 'input[type="email"]')
@@ -28,3 +26,4 @@ class SignUpLocators:
     AGREE_RADIO_BUTTON = (By.CSS_SELECTOR, 'for="myCheckbox"')
     AVATAR_LOGOUT = (By.CLASS_NAME, 'avatar__logout')
     LOGOUT_MSG = (By.CLASS_NAME, 'exit-text')
+    MODAL = (By.ID, 'modal')

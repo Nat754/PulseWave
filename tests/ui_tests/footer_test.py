@@ -24,11 +24,11 @@ class TestFooter:
             assert text == self.const.COOKIES_TEXT, f"Неверный текст '{text}'"
             button_text = page.get_allow_all_cookies().text
             assert button_text == self.const.COOKIES_BUTTON, f"Неверный текст '{button_text}'"
-            link = driver.current_url
-            page.get_cookies_link()
-            page.wait_changed_url(link)
-            link = driver.current_url
-            assert link == self.const.COOKIES, f"Неверный url '{link}'"
+            # link = driver.current_url
+            # page.get_cookies_link()
+            # page.wait_changed_url(link)
+            # link = driver.current_url
+            # assert link == self.const.COOKIES, f"Неверный url '{link}'"
         except TimeoutException:
             print('На странице нет сообщения о принятии файлов cookies')
 

@@ -3,13 +3,12 @@ from data import email1
 
 
 class Links:
-
-    START_PAGE = 'https://web.dev.pulsewave.ru/'
-    MAIN_PAGE = 'https://app.dev.pulsewave.ru/'
-    BASE_URL = "https://api.dev.pulsewave.ru/"
-    # START_PAGE = 'https://pulsewave.ru/'
-    # MAIN_PAGE = 'https://app.pulsewave.ru/'
-    # BASE_URL = 'https://api.pulsewave.ru/'
+    # START_PAGE = 'https://web.dev.pulsewave.ru/'
+    # MAIN_PAGE = 'https://app.dev.pulsewave.ru/'
+    # BASE_URL = "https://api.dev.pulsewave.ru/"
+    START_PAGE = 'https://pulsewave.ru/'
+    MAIN_PAGE = 'https://app.pulsewave.ru/'
+    BASE_URL = 'https://api.pulsewave.ru/'
     MAIN_PAGE_HOME = f'{START_PAGE}home'
     LOGIN_PAGE = f'{MAIN_PAGE}auth/login'
     SIGNUP_PAGE = f'{MAIN_PAGE}auth/signup'
@@ -22,7 +21,6 @@ class Links:
 
 
 class Messages:
-
     WRONG_PASSWORD_MSG = 'Некорректный e-mail или пароль'
     FORGOT_PASSWORD_MSG = 'Забыли пароль?'
     PASSWORD_RULES_MSG = 'Слабый пароль. Пароль должен содержать минимум 8 символов, включая буквы и цифры'
@@ -39,6 +37,8 @@ class Messages:
     NON_EXISTENT_EMAIL = 'Данный электронный адрес не найден'
     EXIT_CONFIRM_MSG = 'Вы уверены, что хотите выйти из учётной записи?\nВы будете перенаправлены на Главный экран'
     TO_MAIN_TEXT = 'На главную'
+    TITLE_ERROR = 'Ошибка'
+    OLD_LINK = 'Эта ссылка устарела.\nВы будете перенаправлены на страницу авторизации.'
 
 
 class TestData:
@@ -56,9 +56,10 @@ class FooterConstant:
     TEXT_COOPERATION = f'© PulseWave, 2023-{YEAR_COOPERATION}'
     EMAIL_TEXT = 'info@pulsewave.ru'
     EMAIL_TEXT_HOVER = 'mailto:info@pulsewave.ru'
-    COOKIES_TEXT = ('Наш сайт использует файлы cookie, чтобы улучшить работу сайта, повысить его эффективность и '
-                    'удобство. Продолжая использовать сайт, вы соглашаетесь на использование файлов cookie')
-    COOKIES_BUTTON = 'Принимаю всё'
+    COOKIES_TEXT = ('Мы используем cookie-файлы, чтобы было удобно пользоваться сайтом. Продолжая '
+                    'пользоваться сайтом, вы соглашаетесь с использованием cookie-файлов. Вы '
+                    'можете запретить их в настройках браузера.')
+    COOKIES_BUTTON = 'OK'
     CHECK_TEXT = [
         ('font-size', '16px', 'размера шрифта'),
         ('color', 'rgba(16, 16, 18, 1)', 'цвета шрифта'),
@@ -68,7 +69,6 @@ class FooterConstant:
 
 
 class HeaderConstant:
-
     TEXT_LOGIN = 'Войти'
     TEXT_SIGNUP = 'Регистрация'
     CHECK_BUTTON = [
@@ -80,7 +80,6 @@ class HeaderConstant:
 
 
 class LoginConstant:
-
     LOGIN_PAGE_TITLE = 'Вход'
     TEXT_LOGIN = 'Войти'
 
@@ -104,7 +103,6 @@ class LoginConstant:
 
 
 class WorkspaceConstant:
-
     WORKSPACE_TITLE = 'Рабочие пространства'
     MAIN_WORKSPACE_TITLE = 'Ваши рабочие пространства'
     READ_ALL_BUTTON_TEXT = 'Отметить все как прочитанные'
@@ -147,7 +145,6 @@ class LendingConstant:
 
 
 class PasswordRecoveryConstant:
-
     RECOVERY_PAGE_TITLE = 'Восстановление пароля'
     RESUME_BUTTON_TEXT = 'Продолжить'
     CHECK_TITLE = [
