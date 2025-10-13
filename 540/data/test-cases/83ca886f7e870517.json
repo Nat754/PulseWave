@@ -1,0 +1,348 @@
+{
+  "uid" : "83ca886f7e870517",
+  "name" : "A.21 POST Подтверждение смены почты пользователя. Токен из ссылки auth/change_email/{token}.",
+  "fullName" : "tests.api_tests.api_test.TestAPI#test_post_auth_change_email_confirm",
+  "historyId" : "bfb75cca0cd3d4da836a91acf40d98d8",
+  "time" : {
+    "start" : 1760327704070,
+    "stop" : 1760346119016,
+    "duration" : 18414946
+  },
+  "status" : "broken",
+  "statusMessage" : "ConnectionResetError: [Errno 104] Connection reset by peer",
+  "statusTrace" : "self = <tests.api_tests.api_test.TestAPI object at 0x7f5ae339de20>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f5ae33f1cd0>\n\n    @allure.title(\"A.21 POST Подтверждение смены почты пользователя. Токен из ссылки auth/change_email/{token}.\")\n    def test_post_auth_change_email_confirm(self, use_api_base):\n        jwt = use_api_base.create_tokens(email1, password0)[0]\n        url = f'{self.link.BASE_URL}auth/change_email_confirm/'\n>       token_email = use_api_base.get_token_on_email(email2, password2, 'token=')\n\ntests/api_tests/api_test.py:203: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \napi_testing/api_base.py:79: in get_token_on_email\n    msg = self.read_email(my_email, my_password)\napi_testing/api_base.py:54: in read_email\n    mail = imaplib.IMAP4_SSL('imap.mail.ru')\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:1315: in __init__\n    IMAP4.__init__(self, host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:205: in __init__\n    self.open(host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:1328: in open\n    IMAP4.open(self, host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:315: in open\n    self.sock = self._create_socket(timeout)\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:1319: in _create_socket\n    return self.ssl_context.wrap_socket(sock,\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/ssl.py:455: in wrap_socket\n    return self.sslsocket_class._create(\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/ssl.py:1041: in _create\n    self.do_handshake()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=2, type=1, proto=6>, block = False\n\n    @_sslcopydoc\n    def do_handshake(self, block=False):\n        self._check_connected()\n        timeout = self.gettimeout()\n        try:\n            if timeout == 0.0 and block:\n                self.settimeout(None)\n>           self._sslobj.do_handshake()\nE           ConnectionResetError: [Errno 104] Connection reset by peer\n\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/ssl.py:1319: ConnectionResetError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "use_api_base",
+    "time" : {
+      "start" : 1760327704070,
+      "stop" : 1760327704070,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "_session_faker",
+    "time" : {
+      "start" : 1760326821367,
+      "stop" : 1760326821382,
+      "duration" : 15
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "clear_allure_result_folder",
+    "time" : {
+      "start" : 1760326821383,
+      "stop" : 1760326821383,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "ConnectionResetError: [Errno 104] Connection reset by peer",
+    "statusTrace" : "self = <tests.api_tests.api_test.TestAPI object at 0x7f5ae339de20>\nuse_api_base = <api_testing.api_base.ApiBase object at 0x7f5ae33f1cd0>\n\n    @allure.title(\"A.21 POST Подтверждение смены почты пользователя. Токен из ссылки auth/change_email/{token}.\")\n    def test_post_auth_change_email_confirm(self, use_api_base):\n        jwt = use_api_base.create_tokens(email1, password0)[0]\n        url = f'{self.link.BASE_URL}auth/change_email_confirm/'\n>       token_email = use_api_base.get_token_on_email(email2, password2, 'token=')\n\ntests/api_tests/api_test.py:203: \n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \napi_testing/api_base.py:79: in get_token_on_email\n    msg = self.read_email(my_email, my_password)\napi_testing/api_base.py:54: in read_email\n    mail = imaplib.IMAP4_SSL('imap.mail.ru')\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:1315: in __init__\n    IMAP4.__init__(self, host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:205: in __init__\n    self.open(host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:1328: in open\n    IMAP4.open(self, host, port, timeout)\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:315: in open\n    self.sock = self._create_socket(timeout)\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py:1319: in _create_socket\n    return self.ssl_context.wrap_socket(sock,\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/ssl.py:455: in wrap_socket\n    return self.sslsocket_class._create(\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/ssl.py:1041: in _create\n    self.do_handshake()\n_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ \n\nself = <ssl.SSLSocket [closed] fd=-1, family=2, type=1, proto=6>, block = False\n\n    @_sslcopydoc\n    def do_handshake(self, block=False):\n        self._check_connected()\n        timeout = self.gettimeout()\n        try:\n            if timeout == 0.0 and block:\n                self.settimeout(None)\n>           self._sslobj.do_handshake()\nE           ConnectionResetError: [Errno 104] Connection reset by peer\n\n/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/ssl.py:1319: ConnectionResetError",
+    "steps" : [ {
+      "name" : "Получить access токен пользователя",
+      "time" : {
+        "start" : 1760327704070,
+        "stop" : 1760327705048,
+        "duration" : 978
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "Прочитать сообщение",
+      "time" : {
+        "start" : 1760327705049,
+        "stop" : 1760346118979,
+        "duration" : 18413930
+      },
+      "status" : "broken",
+      "statusMessage" : "ConnectionResetError: [Errno 104] Connection reset by peer\n",
+      "statusTrace" : "  File \"/home/runner/work/PulseWave/PulseWave/api_testing/api_base.py\", line 54, in read_email\n    mail = imaplib.IMAP4_SSL('imap.mail.ru')\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py\", line 1315, in __init__\n    IMAP4.__init__(self, host, port, timeout)\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py\", line 205, in __init__\n    self.open(host, port, timeout)\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py\", line 1328, in open\n    IMAP4.open(self, host, port, timeout)\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py\", line 315, in open\n    self.sock = self._create_socket(timeout)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/imaplib.py\", line 1319, in _create_socket\n    return self.ssl_context.wrap_socket(sock,\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/ssl.py\", line 455, in wrap_socket\n    return self.sslsocket_class._create(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/ssl.py\", line 1041, in _create\n    self.do_handshake()\n  File \"/opt/hostedtoolcache/Python/3.12.11/x64/lib/python3.12/ssl.py\", line 1319, in do_handshake\n    self._sslobj.do_handshake()\n",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : true,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "epic",
+    "value" : "Тестирование API"
+  }, {
+    "name" : "tag",
+    "value" : "smoke"
+  }, {
+    "name" : "parentSuite",
+    "value" : "tests.api_tests"
+  }, {
+    "name" : "suite",
+    "value" : "api_test"
+  }, {
+    "name" : "subSuite",
+    "value" : "TestAPI"
+  }, {
+    "name" : "host",
+    "value" : "runnervmwhb2z"
+  }, {
+    "name" : "thread",
+    "value" : "2618-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.api_tests.api_test"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "history" : {
+      "statistic" : {
+        "failed" : 2,
+        "broken" : 1,
+        "skipped" : 0,
+        "passed" : 135,
+        "unknown" : 0,
+        "total" : 138
+      },
+      "items" : [ {
+        "uid" : "6d30b63644d0ce10",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/539//#testresult/6d30b63644d0ce10",
+        "status" : "passed",
+        "time" : {
+          "start" : 1760239957145,
+          "stop" : 1760239969652,
+          "duration" : 12507
+        }
+      }, {
+        "uid" : "5c9c20cb4ef61948",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/538//#testresult/5c9c20cb4ef61948",
+        "status" : "passed",
+        "time" : {
+          "start" : 1760153057753,
+          "stop" : 1760153062642,
+          "duration" : 4889
+        }
+      }, {
+        "uid" : "8053715e5c7e4791",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/537//#testresult/8053715e5c7e4791",
+        "status" : "passed",
+        "time" : {
+          "start" : 1760067092026,
+          "stop" : 1760067097134,
+          "duration" : 5108
+        }
+      }, {
+        "uid" : "dbedd5983dab4622",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/536//#testresult/dbedd5983dab4622",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759980675543,
+          "stop" : 1759980681776,
+          "duration" : 6233
+        }
+      }, {
+        "uid" : "d1fbddd98918876b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/535//#testresult/d1fbddd98918876b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759894180096,
+          "stop" : 1759894183791,
+          "duration" : 3695
+        }
+      }, {
+        "uid" : "1d38e47cebb688fb",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/534//#testresult/1d38e47cebb688fb",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759807803647,
+          "stop" : 1759807808119,
+          "duration" : 4472
+        }
+      }, {
+        "uid" : "4501562dacf2d7e0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/533//#testresult/4501562dacf2d7e0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759721569367,
+          "stop" : 1759721580032,
+          "duration" : 10665
+        }
+      }, {
+        "uid" : "f3ddb581bdd6759e",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/532//#testresult/f3ddb581bdd6759e",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759635283793,
+          "stop" : 1759635287137,
+          "duration" : 3344
+        }
+      }, {
+        "uid" : "41fda19447c6ad36",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/531//#testresult/41fda19447c6ad36",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759548104436,
+          "stop" : 1759548107880,
+          "duration" : 3444
+        }
+      }, {
+        "uid" : "1b9b57904736eaed",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/530//#testresult/1b9b57904736eaed",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759490681839,
+          "stop" : 1759490686559,
+          "duration" : 4720
+        }
+      }, {
+        "uid" : "ff3543f3978af799",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/530//#testresult/ff3543f3978af799",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759461981683,
+          "stop" : 1759461998446,
+          "duration" : 16763
+        }
+      }, {
+        "uid" : "b897bb8bc0272437",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/529//#testresult/b897bb8bc0272437",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759375654126,
+          "stop" : 1759375657148,
+          "duration" : 3022
+        }
+      }, {
+        "uid" : "e0011368e3636ae7",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/528//#testresult/e0011368e3636ae7",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759290081345,
+          "stop" : 1759290085598,
+          "duration" : 4253
+        }
+      }, {
+        "uid" : "3f2fb1ae6d9ccdde",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/527//#testresult/3f2fb1ae6d9ccdde",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759261412810,
+          "stop" : 1759261416341,
+          "duration" : 3531
+        }
+      }, {
+        "uid" : "867efda1d69be477",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/527//#testresult/867efda1d69be477",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759203008951,
+          "stop" : 1759203013415,
+          "duration" : 4464
+        }
+      }, {
+        "uid" : "22faeba7ac97ba9b",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/526//#testresult/22faeba7ac97ba9b",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759116962553,
+          "stop" : 1759116967491,
+          "duration" : 4938
+        }
+      }, {
+        "uid" : "204921f45c68405a",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/525//#testresult/204921f45c68405a",
+        "status" : "passed",
+        "time" : {
+          "start" : 1759030621107,
+          "stop" : 1759030626095,
+          "duration" : 4988
+        }
+      }, {
+        "uid" : "74ff6dcc791fb007",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/524//#testresult/74ff6dcc791fb007",
+        "status" : "passed",
+        "time" : {
+          "start" : 1758943596888,
+          "stop" : 1758943600554,
+          "duration" : 3666
+        }
+      }, {
+        "uid" : "e70521a0f40b7bf0",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/523//#testresult/e70521a0f40b7bf0",
+        "status" : "passed",
+        "time" : {
+          "start" : 1758857471184,
+          "stop" : 1758857475058,
+          "duration" : 3874
+        }
+      }, {
+        "uid" : "e377b0ca5fa823ca",
+        "reportUrl" : "https://Nat754.github.io/PulseWave/522//#testresult/e377b0ca5fa823ca",
+        "status" : "passed",
+        "time" : {
+          "start" : 1758771121598,
+          "stop" : 1758771126339,
+          "duration" : 4741
+        }
+      } ]
+    },
+    "tags" : [ "smoke" ]
+  },
+  "source" : "83ca886f7e870517.json",
+  "parameterValues" : [ ]
+}
