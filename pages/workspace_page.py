@@ -48,3 +48,15 @@ class WorkspacePage(BasePage):
     @allure.step("Проверка невидимости кнопки 'Отметить все как прочитанные'")
     def get_read_all_button_is_not_visible(self):
         return self.element_is_not_visible(self.locator.READ_ALL_BUTTON)
+
+    @allure.step("Проверка видимости кнопки 'Рабочие пространства' в шапке")
+    def get_workspace_button_is_visible(self):
+        return self.element_is_visible(self.locator.WORKSPACES_BUTTON)
+
+    @allure.step("Проверка видимости кнопки 'Создать' в шапке")
+    def get_create_button_is_visible(self):
+        return self.element_is_visible(self.locator.CREATE_BUTTON)
+
+    @allure.step("Проверка видимости выпадающего списка рабочих пространств")
+    def get_drop_workspace_is_visible(self):
+        return self.elements_are_present(self.locator.WORKSPACES_DROP)

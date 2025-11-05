@@ -123,3 +123,10 @@ class TestWorkspacePage:
             pass
         text = page.get_no_notifications_is_visible().text
         assert text == self.wsconst.NO_NOTIFICATIONS, 'Не удалось прочитать уведомления'
+
+    @allure.title("W.13 Проверка видимости выпадающего меню Рабочие пространства")
+    def test_get_workspaces(self, auth_user, driver):
+        auth_user.get_workspace_button_is_visible().click()
+        items = auth_user.get_drop_workspace_is_visible()
+        workspaces = [item.text for item in items]
+        assert workspaces, 'Нет рабочих пространств'

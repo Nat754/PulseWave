@@ -23,7 +23,7 @@ def auth_user(driver):
     page_auth_user.check_changed_url_login()
     page = WorkspacePage(driver)
     page.loader_is_not_visible()
-    return page_auth_user
+    return page
 
 
 @allure.step('Согласиться с использованием файлов cookies, если высветилось окно')
