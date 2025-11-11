@@ -1,7 +1,7 @@
 name: PulseWaveAvailability
 on:
     schedule:
-      - cron: '*/15 * * * *'
+      - cron: '*/5 17-18 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,7 +29,7 @@ jobs:
 
     - name: Run Pytest
       run: |
-        pytest -s -v -m -m "availability" --alluredir=allure-results
+        pytest -s -v -m "availability" --alluredir=allure-results
 
     - name: Get Allure history
       uses: actions/checkout@v4
