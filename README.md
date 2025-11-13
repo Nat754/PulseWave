@@ -11,3 +11,5 @@
 
 
 [![Allure Report](https://img.shields.io/badge/Allure%20Report-deployed-green)](https://nat754.github.io/PulseWave/)
+
+[![PulseWaveAvailability](https://github.com/Nat754/PulseWave/actions/workflows/pulsewave_availability.yml/badge.svg)](https://github.com/Nat754/PulseWave/actions/workflows/pulsewave_availability.yml)
