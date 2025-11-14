@@ -28,28 +28,27 @@ jobs:
 
     - name: Run Pytest
       run: |
-        pytest -s -v -m "availability"
-#        pytest -s -v --alluredir=allure-results
-#
-#    - name: Get Allure history
-#      uses: actions/checkout@v4
-#      if: always()
-#      with:
-#        ref: gh-pages
-#        path: gh-pages
-#
-#    - name: Allure Report action
-#      uses: simple-elf/allure-report-action@master
-#      if: always()
-#      with:
-#        allure_results: allure-results
-#        allure_history: allure-history
-#        keep_reports: 20
-#
-#    - name: Commit Allure report
-#      if: always()
-#      uses: peaceiris/actions-gh-pages@v2
-#      env:
-#        PERSONAL_TOKEN: ${{ secrets.MY_TOKEN }}
-#        PUBLISH_BRANCH: gh-pages
-#        PUBLISH_DIR: allure-history
+        pytest -s -v --alluredir=allure-results
+
+    - name: Get Allure history
+      uses: actions/checkout@v4
+      if: always()
+      with:
+        ref: gh-pages
+        path: gh-pages
+
+    - name: Allure Report action
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        allure_history: allure-history
+        keep_reports: 20
+
+    - name: Commit Allure report
+      if: always()
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.MY_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history
