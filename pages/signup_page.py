@@ -1,5 +1,4 @@
 from selenium.webdriver import Keys
-
 from api_testing.api_base import ApiBase
 from data import password0, email1
 from locators.signup_locators import SignUpLocators

@@ -3,12 +3,11 @@ from data import email1
 
 
 class Links:
-    # START_PAGE = 'https://web.dev.pulsewave.ru/'
-    # MAIN_PAGE = 'https://app.dev.pulsewave.ru/'
-    # BASE_URL = "https://api.dev.pulsewave.ru/"
     START_PAGE = 'https://pulsewave.ru/'
-    MAIN_PAGE = 'https://app.pulsewave.ru/'
-    BASE_URL = 'https://api.pulsewave.ru/'
+    # START_PAGE = 'https://web.dev.pulsewave.ru/'
+    MAIN_PAGE = 'https://app.pulsewave.ru/' if START_PAGE == 'https://pulsewave.ru/' \
+        else 'https://app.dev.pulsewave.ru/'
+    BASE_URL = 'https://api.pulsewave.ru/' if START_PAGE == 'https://pulsewave.ru/' else 'https://api.dev.pulsewave.ru/'
     MAIN_PAGE_HOME = f'{START_PAGE}home'
     LOGIN_PAGE = f'{MAIN_PAGE}auth/login'
     SIGNUP_PAGE = f'{MAIN_PAGE}auth/signup'
@@ -18,6 +17,14 @@ class Links:
     PASSWORD_RECOVERY = f'{MAIN_PAGE}auth/password?email='
     MAIL_URL = 'https://mail.ru/'
     LI_URL = 'https://www.linkedin.com/company/pulsewave-team'
+    AVAILABILITY_URLS = [
+        'https://web.dev.pulsewave.ru/',
+        'https://app.dev.pulsewave.ru/',
+        'https://api.dev.pulsewave.ru/api/healthcheck/',
+        'https://pulsewave.ru/',
+        'https://app.pulsewave.ru/',
+        'https://api.pulsewave.ru/api/healthcheck/'
+    ]
 
 
 class Messages:

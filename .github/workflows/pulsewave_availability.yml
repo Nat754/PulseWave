@@ -1,7 +1,7 @@
 name: PulseWaveAvailability
 on:
     schedule:
-      - cron: '*/5 * * * *'
+      - cron: '*/10 * * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,12 +30,3 @@ jobs:
     - name: Run Pytest
       run: |
         pytest -s -v -m "availability"
-
-    - name: Send Telegram Notification on failure
-      if: ${{ failure() }}
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_TO }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-          ❌ *Сервера недоступны* ❌

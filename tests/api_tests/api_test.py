@@ -25,7 +25,7 @@ class TestAPI:
     @allure.title("A.1 GET Проверка доступности API")
     def test_get_api_healthcheck(self):
         url = f'{self.link.BASE_URL}api/healthcheck/'
-        response = requests.get(url, json=self.constant.CREATE_USER)
+        response = requests.get(url)
         Assertions.assert_status_code(response, self.code.STATUS_OK)
 
     @allure.title("A.2 POST Создать пользователя с корректными данными")
