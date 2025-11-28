@@ -20,7 +20,7 @@ class TestAvailability:
         try:
             response = requests.get(url)
             Assertions.assert_status_code(response, self.code.STATUS_OK)
-        except AssertionError:
+        except AssertionError or ConnectionError:
             url1 = f'https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage'
             params = {'chat_id': pulse_chat, 'text': f'❌ *Сервер {url} недоступен* ❌'}
             response = requests.post(url1, data=params)
