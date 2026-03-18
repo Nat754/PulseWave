@@ -18,9 +18,9 @@ class Links:
     MAIL_URL = 'https://mail.ru/'
     LI_URL = 'https://www.linkedin.com/company/pulsewave-team'
     AVAILABILITY_URLS = [
-        'https://web.dev.pulsewave.ru/',
-        'https://app.dev.pulsewave.ru/',
-        'https://api.dev.pulsewave.ru/api/healthcheck/',
+        # 'https://web.dev.pulsewave.ru/',
+        # 'https://app.dev.pulsewave.ru/',
+        # 'https://api.dev.pulsewave.ru/api/healthcheck/',
         'https://pulsewave.ru/',
         'https://app.pulsewave.ru/',
         'https://api.pulsewave.ru/api/healthcheck/'
