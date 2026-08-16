@@ -34,7 +34,7 @@ class TestFooter:
 
     @pytest.mark.parametrize('url', tdata.PAGES_ALL)
     def test_get_footer_link(self, footer_open, driver, url):
-        allure.dynamic.title(f"F.2 Проверка отсутствия ссылки на Лицензионное соглашение со страницы '{url}")
+        allure.dynamic.title(f"F.2 Проверка ссылки на Лицензионное соглашение со страницы '{url}")
         items = [item.text for item in footer_open.get_footer_list()]
         assert items == self.const.FOOTER_LIST, f"Неверный футер на странице '{url}'"
 

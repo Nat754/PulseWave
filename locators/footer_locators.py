@@ -4,9 +4,9 @@ from selenium.webdriver.common.by import By
 class FooterLocators:
 
     LICENSE = (By.XPATH, '(//span[@class="item__text"])[1]')
-    EMAIL = (By.CSS_SELECTOR, 'a .item__text')
+    EMAIL = (By.XPATH, '(//span[@class="item__text"])[3]')
     EMAIL_HOVER = (By. XPATH, '//a[contains(@href, "mailto")]')
-    COOPERATION = (By.XPATH, '(//span[@class="item__text"])[2]')
+    COOPERATION = (By.XPATH, '(//span[@class="item__text"])[4]')
     LICENSE_TITLE = (By.CLASS_NAME, 'privacy__title')
     ALLOW_ALL_COOKIES = (By.CLASS_NAME, 'btn-cookies')
     COOKIES_LINK = (By.CLASS_NAME, 'cookies__link')

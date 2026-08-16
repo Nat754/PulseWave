@@ -4,8 +4,7 @@ from data import password0, email1
 from locators.signup_locators import SignUpLocators
 from pages.general_page import GeneralPage
 import allure
-from tests.constant import SignUpConstants
-from tests.constant import Messages, Links
+from tests.constant import SignUpConstants, Messages, Links
 
 
 class SignUpPage(GeneralPage):
@@ -34,9 +33,17 @@ class SignUpPage(GeneralPage):
     def check_password_rules_message(self):
         return self.element_is_visible(self.locator.PASSWORD_RULES)
 
+    @allure.step(f"Видимость сообщения: '{message.PULSEWAVE_TERMS_MSG}'")
+    def check_pulsewave_terms_message(self):
+        return self.elements_are_visible(self.locator.PULSEWAVE_TERMS)[0]
+
     @allure.step(f"Видимость сообщения: '{message.PULSEWAVE_POLICY_MSG}'")
     def check_pulsewave_policy_message(self):
-        return self.element_is_visible(self.locator.PULSEWAVE_POLICY)
+        return self.elements_are_visible(self.locator.PULSEWAVE_POLICY)[1]
+
+    @allure.step("Согласиться с условиями использования")
+    def check_box_terms(self):
+        return self.find_element_and_click(self.locator.CHECKBOX_TERMS)
 
     @allure.step(f"Видимость сообщения: '{message.AGREEMENT_MSG}'")
     def check_agreement_message(self):
@@ -66,7 +73,11 @@ class SignUpPage(GeneralPage):
         """Put data to confirm password field"""
         return self.element_is_visible(self.locator.CONFIRM_PASSWORD_FIELD).send_keys(data_confirm_password)
 
-    @allure.step(f"Подтвердить изменения'")
+    @allure.step('Проверить что кнопка "Регистрация" неактивна')
+    def chek_button_submit_is_not_clickable(self):
+        return self.element_is_not_clickable(self.locator.SUBMIT_BUTTON)
+
+    @allure.step("Подтвердить изменения")
     def click_button_submit(self):
         return self.element_is_visible(self.locator.SUBMIT_BUTTON).click()
 

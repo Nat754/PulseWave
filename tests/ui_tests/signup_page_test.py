@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 from pages.base_page import BasePage
@@ -23,6 +25,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
+        signup_page_open.check_box_terms()
         signup_page_open.check_pulsewave_policy_message().click()
         signup_page_open.click_button_submit()
         element = signup_page_open.get_send_invite_message()
@@ -31,26 +34,18 @@ class TestSignupPage:
         with allure.step('Перейти по ссылке подтверждения регистрации пользователя на email'):
             link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
-        print(signup_page_open.get_title_modal().text)
-        print(signup_page_open.get_text_modal().text)
-        # assert по тексту добавить
+        assert signup_page_open.get_text_modal().text == self.signup.WELCOME
         signup_page_open.click_button_submit()
 
-        # временное решение - исправляем баг
-        # signup_page_open.put_data_to_email_field(email1)
-        # signup_page_open.put_data_to_password_field(password0)
-        # signup_page_open.click_button_submit()
-        #
+        # удаляем пользователя
         page = WorkspacePage(driver)
         page.loader_is_not_visible()
         signup_page_open.click_button_avatar()
         signup_page_open.click_button_settings()
         signup_page_open.click_delete_profile()
         signup_page_open.send_field_email()
-        # text = signup_page_open.delete_user_profile_confirmation()
-        # assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
-        element = signup_page_open.delete_user_profile_confirmation()
-        print(element)
+        text = signup_page_open.delete_user_profile_confirmation()
+        assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
 
     @allure.title("S.2 Регистрация с корректным email и не совпадающими паролем и подтверждением пароля")
     def test_signup_with_correct_email_and_passwords_not_equal(self, signup_page_open):
@@ -60,6 +55,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля паролем отличным от предыдущего шага'):
             signup_page_open.put_data_to_confirm_password_field(password3)
+        signup_page_open.check_box_terms()
         signup_page_open.click_button_submit()
         element = signup_page_open.get_error_message()
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.PASSWORDS_NOT_EQUAL_MSG}"'):
@@ -73,6 +69,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
+        signup_page_open.check_box_terms()
         signup_page_open.click_button_submit()
         element = signup_page_open.get_error_message()
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.EXISTING_EMAIL}"'):
@@ -101,6 +98,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(' ')
         with allure.step('Заполнить поле подтверждение пароля слабым паролем'):
             signup_page_open.put_data_to_confirm_password_field(' ')
+        signup_page_open.check_box_terms()
         signup_page_open.click_button_submit()
         element = signup_page_open.check_password_rules_message()
         with (allure.step(f'Проверить текст сообщения: "{self.msg.PASSWORD_RULES_MSG}"')):
@@ -143,6 +141,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
+        signup_page_open.check_box_terms()
         signup_page_open.click_button_submit()
         element = signup_page_open.get_error_message()
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.INVALID_EMAIL_MSG}"'):
@@ -156,6 +155,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
+        signup_page_open.check_box_terms()
         signup_page_open.click_button_submit()
         element = signup_page_open.get_send_invite_message()
         with allure.step(f'Получено сообщение необходимости подтвердить регистрацию: "{self.signup.INVITE_MSG}"'):
@@ -163,29 +163,17 @@ class TestSignupPage:
         with allure.step('Перейти по ссылке подтверждения регистрации пользователя на email'):
             link = signup_page_open.get_confirm_signup_to_email(email1, password1)
         driver.get(link)
-        print(signup_page_open.get_title_modal().text)
-        print(signup_page_open.get_text_modal().text)
-
+        assert signup_page_open.get_text_modal().text == self.signup.WELCOME
         signup_page_open.click_button_submit()
-
-        # page = WorkspacePage(driver)
-        # page.loader_is_not_visible()
-        # signup_page_open.click_button_avatar()
-        # signup_page_open.click_button_settings()
-        # signup_page_open.click_delete_profile()
-        # signup_page_open.send_field_email()
-        # text = signup_page_open.delete_user_profile_confirmation()
-        # assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
+        # удаляем пользователя
         page = WorkspacePage(driver)
         page.loader_is_not_visible()
         signup_page_open.click_button_avatar()
         signup_page_open.click_button_settings()
         signup_page_open.click_delete_profile()
         signup_page_open.send_field_email()
-        # text = signup_page_open.delete_user_profile_confirmation()
-        # assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
-        element = signup_page_open.delete_user_profile_confirmation()
-        print(element)
+        text = signup_page_open.delete_user_profile_confirmation()
+        assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
 
     @allure.title("S.9 Регистрация с корректным email и паролем и пустым подтверждением пароля")
     def test_signup_with_correct_email_and_password_without_confirm_password(self, signup_page_open):
@@ -195,6 +183,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Оставить поле подтверждение пароля пустым'):
             signup_page_open.put_data_to_confirm_password_field("")
+            signup_page_open.check_box_terms()
         assert signup_page_open.button_registration_not_active(), \
             'Нет проверки на заполнение обязательного поля подтверждение пароля'
 
@@ -206,6 +195,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field("")
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
+            signup_page_open.check_box_terms()
         assert signup_page_open.button_registration_not_active(), \
             'Нет проверки на заполнение обязательного поля пароль'
 
@@ -217,6 +207,7 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(password0)
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
+            signup_page_open.check_box_terms()
         assert signup_page_open.button_registration_not_active(), \
             'Нет проверки на заполнение обязательного поля пароль'
 
@@ -258,7 +249,7 @@ class TestSignupPage:
     def test_check_redirect_to_policy_service(self, signup_page_open):
         signup_page_open.check_agreement_message()
         url = signup_page_open.check_agreement_message_policy_service()
-        assert url == self.const.PULSEWAVE_PRIVACY, f'Нет перехода на: "{self.const.PULSEWAVE_PRIVACY}"'
+        assert url == self.const.PRIVACY, f'Нет перехода на: "{self.const.PRIVACY}"'
 
     @pytest.mark.skip(reason='Отключили переход на Условия пользования')
     @allure.title(f"S.15 Окно регистрации сообщение '{msg.AGREEMENT_MSG}', проверка корректности перехода по ссылке "
@@ -266,7 +257,7 @@ class TestSignupPage:
     def test_check_redirect_to_terms_of_service(self, signup_page_open):
         signup_page_open.check_agreement_message()
         url = signup_page_open.check_agreement_message_terms_of_service()
-        assert url == self.const.TERMS_OF_SERVICE, f'Нет перехода на: "{self.const.TERMS_OF_SERVICE}"'
+        assert url == self.const.TERMS, f'Нет перехода на: "{self.const.TERMS}"'
 
     @pytest.mark.parametrize('data_password', test_data.WEAK_PASSWORD)
     @allure.title("S.16 Регистрация с корректным email и слабым паролем и подтверждением пароля")
@@ -277,7 +268,19 @@ class TestSignupPage:
             signup_page_open.put_data_to_password_field(data_password)
         with allure.step('Заполнить поле подтверждение пароля слабым паролем'):
             signup_page_open.put_data_to_confirm_password_field(data_password)
+        signup_page_open.check_box_terms()
         signup_page_open.click_button_submit()
         element = signup_page_open.get_error_message()
         with allure.step(f'Получено сообщение об ошибке: "{self.msg.INVALID_PASSWORD_MSG}"'):
             assert element.text == self.msg.INVALID_PASSWORD_MSG, 'Нет сообщения о слабом пароле'
+
+    @allure.title("S.17 Невозможность регистрации с корректными email и паролем без согласия на обработку данных")
+    def test_signup_with_correct_data_and_without_terms(self, signup_page_open, driver):
+        with allure.step('Заполнить поле email корректными данными'):
+            signup_page_open.put_data_to_email_field(email1)
+        with allure.step('Заполнить поле пароль сильным паролем'):
+            signup_page_open.put_data_to_password_field(password0)
+        with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
+            signup_page_open.put_data_to_confirm_password_field(password0)
+        signup_page_open.check_pulsewave_policy_message().click()
+        assert signup_page_open.chek_button_submit_is_not_clickable()

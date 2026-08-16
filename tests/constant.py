@@ -5,22 +5,23 @@ from data import email1
 class Links:
     START_PAGE = 'https://pulsewave.ru/'
     # START_PAGE = 'https://web.dev.pulsewave.ru/'
+    # START_PAGE = 'https://new.front.pulsewave.ru/'
     MAIN_PAGE = 'https://app.pulsewave.ru/' if START_PAGE == 'https://pulsewave.ru/' \
         else 'https://app.dev.pulsewave.ru/'
     BASE_URL = 'https://api.pulsewave.ru/' if START_PAGE == 'https://pulsewave.ru/' else 'https://api.dev.pulsewave.ru/'
     MAIN_PAGE_HOME = f'{START_PAGE}home'
     LOGIN_PAGE = f'{MAIN_PAGE}auth/login'
     SIGNUP_PAGE = f'{MAIN_PAGE}auth/signup'
-    TERMS_OF_SERVICE = f'{MAIN_PAGE}documents/terms-of-service'
+    TERMS = f'{MAIN_PAGE}terms'
     WORKSPACE = f'{MAIN_PAGE}workspaces'
-    PULSEWAVE_PRIVACY = f'{MAIN_PAGE}documents/privacy'
+    PRIVACY = f'{MAIN_PAGE}privacy'
     PASSWORD_RECOVERY = f'{MAIN_PAGE}auth/password?email='
     MAIL_URL = 'https://mail.ru/'
     LI_URL = 'https://www.linkedin.com/company/pulsewave-team'
     AVAILABILITY_URLS = [
-        # 'https://web.dev.pulsewave.ru/',
-        # 'https://app.dev.pulsewave.ru/',
-        # 'https://api.dev.pulsewave.ru/api/healthcheck/',
+        'https://web.dev.pulsewave.ru/',
+        'https://app.dev.pulsewave.ru/',
+        'https://api.dev.pulsewave.ru/api/healthcheck/',
         'https://pulsewave.ru/',
         'https://app.pulsewave.ru/',
         'https://api.pulsewave.ru/api/healthcheck/'
@@ -32,6 +33,8 @@ class Messages:
     FORGOT_PASSWORD_MSG = 'Забыли пароль?'
     PASSWORD_RULES_MSG = 'Слабый пароль. Пароль должен содержать минимум 8 символов, включая буквы и цифры'
     PULSEWAVE_POLICY_MSG = 'Я согласен получать новости и обновления PulseWave'
+    PULSEWAVE_TERMS_MSG = ('Я даю согласие на обработку моих персональных данных в соответствии с Политикой '
+                           'конфиденциальности и принимаю условия Пользовательского соглашения')
     AGREEMENT_MSG = 'Регистрируясь, я соглашаюсь с Условиями пользования и Политикой конфиденциальности'
     INVALID_PASSWORD_MSG = ('Слабый пароль. Пароль должен содержать минимум 8 символов, включая буквы и '
                             'цифры')
@@ -59,6 +62,8 @@ class FooterConstant:
     COOKIES = f'{Links.MAIN_PAGE}documents/cookies'
     LICENSE_TITLE = 'ЛИЦЕНЗИОННЫЙ ДОГОВОР (ОФЕРТА)'
     LICENSE_LINK = 'Условия пользования'
+    TERMS = 'Пользовательское соглашение'
+    PRIVACY = 'Политика конфиденциальности'
     YEAR_COOPERATION = datetime.datetime.now().year
     TEXT_COOPERATION = f'© PulseWave, 2023-{YEAR_COOPERATION}'
     EMAIL_TEXT = 'info@pulsewave.ru'
@@ -72,7 +77,7 @@ class FooterConstant:
         ('color', 'rgba(16, 16, 18, 1)', 'цвета шрифта'),
         ('font-family', 'Mulish, sans-serif', 'шрифта')
     ]
-    FOOTER_LIST = ['info@pulsewave.ru', f'©PulseWave, 2023-{YEAR_COOPERATION}']
+    FOOTER_LIST = ['Пользовательское соглашение', 'Политика конфиденциальности', 'info@pulsewave.ru', f'©PulseWave, 2023-{YEAR_COOPERATION}']
 
 
 class HeaderConstant:
@@ -202,3 +207,4 @@ class SignUpConstants:
 активации учётной записи пройдите по ссылке в письме.\nПисьмо не пришло?\nПроверьте папку Спам и нажмите кнопку \
 «Отправить повторно».'
     DELETE_USER_MSG = 'Ваша учетная запись удалена.'
+    WELCOME = 'Поздравляем!\nРегистрация прошла успешно!'

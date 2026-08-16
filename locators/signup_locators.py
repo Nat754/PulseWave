@@ -6,7 +6,9 @@ class SignUpLocators(GeneralLocators):
 
     TITLE_SIGNUP = (By.TAG_NAME, 'h1')
     PASSWORD_RULES = (By.CSS_SELECTOR, '.invalid-form span')
-    PULSEWAVE_POLICY = (By.CLASS_NAME, 'styled-checkbox')
+    PULSEWAVE_TERMS = (By.CSS_SELECTOR, '.styled-checkbox span')
+    PULSEWAVE_POLICY = (By.CSS_SELECTOR, '.styled-checkbox span')
+    CHECKBOX_TERMS = (By.XPATH, "//input[@type='checkbox']")
     AGREEMENT_MSG = (By.CLASS_NAME, 'agreement')
     TERMS_OF_SERVICE = (By.XPATH, '(//a[@class="agreement__link"])[1]')
     POLICY_SERVICE = (By.XPATH, '(//a[@class="agreement__link"])[2]')

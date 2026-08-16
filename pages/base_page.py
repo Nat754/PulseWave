@@ -10,6 +10,15 @@ class BasePage:
         self.driver = driver
         self.timeout = 60
 
+    @allure.step('Find element')
+    def find_element_and_click(self, locator):
+        """
+        Кликаем на элемент
+        """
+        element = self.element_is_present(locator)
+        self.driver.execute_script("arguments[0].click();", element)
+
+
     @allure.step('Проверить видимость элемента')
     def element_is_visible(self, locator):
         """
