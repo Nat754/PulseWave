@@ -1,5 +1,3 @@
-import time
-
 import allure
 import pytest
 from pages.base_page import BasePage
@@ -172,6 +170,7 @@ class TestSignupPage:
         signup_page_open.click_button_settings()
         signup_page_open.click_delete_profile()
         signup_page_open.send_field_email()
+        page.loader_is_not_visible()
         text = signup_page_open.delete_user_profile_confirmation()
         assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
 
@@ -227,35 +226,30 @@ class TestSignupPage:
             assert element.value_of_css_property('font-family') == self.signup.PULSEWAVE_POLICY_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
-    @pytest.mark.skip(reason='Отключили переход на Условия пользования')
-    @allure.title(f"S.13 Окно регистрации сообщение '{msg.AGREEMENT_MSG}'")
+    @allure.title(f"S.13 Окно регистрации сообщение '{msg.PULSEWAVE_TERMS_MSG}'")
     def test_signup_message_agreement(self, signup_page_open):
-        element = signup_page_open.check_agreement_message()
-        with allure.step(f'Проверить текст сообщения: "{self.msg.AGREEMENT_MSG}"'):
-            assert element.text == self.msg.AGREEMENT_MSG, f'Нет сообщения: "{self.msg.AGREEMENT_MSG}"'
-        with allure.step(f'Проверить цвет шрифта сообщения: "{self.msg.AGREEMENT_MSG}"'):
-            assert element.value_of_css_property('color') == self.signup.AGREEMENT_CSS['color'], \
+        element = signup_page_open.check_pulsewave_terms_message()
+        with allure.step(f'Проверить текст сообщения: "{self.msg.PULSEWAVE_TERMS_MSG}"'):
+            assert element.text == self.msg.PULSEWAVE_TERMS_MSG, f'Нет сообщения: "{self.msg.PULSEWAVE_TERMS_MSG}"'
+        with allure.step(f'Проверить цвет шрифта сообщения: "{self.msg.PULSEWAVE_TERMS_MSG}"'):
+            assert element.value_of_css_property('color') == self.signup.PULSEWAVE_TERMS_CSS['color'], \
                 'Цвет сообщения о неверном пароле не соответствует макету'
-        with allure.step(f'Проверить размер шрифта сообщения: "{self.msg.AGREEMENT_MSG}"'):
-            assert element.value_of_css_property('font-size') == self.signup.AGREEMENT_CSS['font-size'], \
+        with allure.step(f'Проверить размер шрифта сообщения: "{self.msg.PULSEWAVE_TERMS_MSG}"'):
+            assert element.value_of_css_property('font-size') == self.signup.PULSEWAVE_TERMS_CSS['font-size'], \
                 'Размер шрифта сообщения о неверном пароле не соответствует макету'
-        with allure.step(f'Проверить шрифт сообщения: "{self.msg.AGREEMENT_MSG}"'):
-            assert element.value_of_css_property('font-family') == self.signup.AGREEMENT_CSS['font-family'], \
+        with allure.step(f'Проверить шрифт сообщения: "{self.msg.PULSEWAVE_TERMS_MSG}"'):
+            assert element.value_of_css_property('font-family') == self.signup.PULSEWAVE_TERMS_CSS['font-family'], \
                 'Шрифт сообщения о неверном пароле не соответствует макету'
 
-    @pytest.mark.skip(reason='Отключили переход на Условия пользования')
-    @allure.title(f"S.14 Окно регистрации сообщение '{msg.AGREEMENT_MSG}' проверка корректности перехода по ссылке "
-                  f"'{msg.AGREEMENT_MSG[54:83]}'")
+    @allure.title('S.14 Окно регистрации, проверка перехода на страницу "Политика конфеденциальности"')
     def test_check_redirect_to_policy_service(self, signup_page_open):
-        signup_page_open.check_agreement_message()
+        signup_page_open.check_pulsewave_terms_message()
         url = signup_page_open.check_agreement_message_policy_service()
         assert url == self.const.PRIVACY, f'Нет перехода на: "{self.const.PRIVACY}"'
 
-    @pytest.mark.skip(reason='Отключили переход на Условия пользования')
-    @allure.title(f"S.15 Окно регистрации сообщение '{msg.AGREEMENT_MSG}', проверка корректности перехода по ссылке "
-                  f"'{msg.AGREEMENT_MSG[30:51]}'")
+    @allure.title('S.15 Окно регистрации, проверка перехода на страницу "Пользовательское соглашение"')
     def test_check_redirect_to_terms_of_service(self, signup_page_open):
-        signup_page_open.check_agreement_message()
+        signup_page_open.check_pulsewave_terms_message()
         url = signup_page_open.check_agreement_message_terms_of_service()
         assert url == self.const.TERMS, f'Нет перехода на: "{self.const.TERMS}"'
 
@@ -283,4 +277,4 @@ class TestSignupPage:
         with allure.step('Заполнить поле подтверждение пароля сильным паролем'):
             signup_page_open.put_data_to_confirm_password_field(password0)
         signup_page_open.check_pulsewave_policy_message().click()
-        assert signup_page_open.chek_button_submit_is_not_clickable()
+        assert signup_page_open.check_button_submit_is_not_clickable()

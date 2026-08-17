@@ -10,6 +10,6 @@ class FooterLocators:
     LICENSE_TITLE = (By.CLASS_NAME, 'privacy__title')
     ALLOW_ALL_COOKIES = (By.CLASS_NAME, 'btn-cookies')
     COOKIES_LINK = (By.CLASS_NAME, 'cookies__link')
-    COOKIES_TEXT = (By.CSS_SELECTOR, '.cookies .text')
+    COOKIES_TEXT = (By.CSS_SELECTOR, '.cookies p.text')
     LINKEDIN_BUTTON = (By.CLASS_NAME, 'social')
     FOOTER = (By.CSS_SELECTOR, 'span.item__text')

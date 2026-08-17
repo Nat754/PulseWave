@@ -36,13 +36,16 @@ class FooterPage(BasePage):
     @allure.step(f"Получить кнопку '{footer.COOKIES_BUTTON}' "
                  f"в сообщении о принятии файлов cookie на Главной странице")
     def get_allow_all_cookies(self):
-        button_text = self.element_is_visible(self.locator.ALLOW_ALL_COOKIES)
-        return button_text
+        button_ok = self.element_is_visible(self.locator.ALLOW_ALL_COOKIES)
+        return button_ok
 
-    @allure.step("Получить текст сообщения о принятии файлов cookie на Главной странице")
+    @allure.step("Получить сообщение о принятии файлов cookie на Главной странице")
     def get_cookies_text(self):
-        text = self.element_is_visible(self.locator.COOKIES_TEXT).text
-        return text
+        return self.element_is_visible(self.locator.COOKIES_TEXT)
+
+    @allure.step("Получить сообщение о принятии файлов cookie на Главной странице")
+    def check_cookies_text(self):
+        return self.element_is_not_visible(self.locator.COOKIES_TEXT)
 
     @allure.step("Проверка перехода по ссылке для просмотра информации о файлах cookie на Главной странице")
     def get_cookies_link(self):

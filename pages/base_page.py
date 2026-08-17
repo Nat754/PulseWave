@@ -18,6 +18,12 @@ class BasePage:
         element = self.element_is_present(locator)
         self.driver.execute_script("arguments[0].click();", element)
 
+    @allure.step('Проскролить до элемента')
+    def go_to_element(self, element):
+        """
+        Скролит страницу к выбранному элементу так, чтобы элемент стал видимым
+        """
+        self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
     @allure.step('Проверить видимость элемента')
     def element_is_visible(self, locator):
@@ -76,17 +82,14 @@ class BasePage:
         self.element_is_visible(locator)
         return Wait(self.driver, self.timeout).until(es.element_to_be_clickable(locator))
 
-    @allure.step('Проскролить до элемента')
-    def go_to_element(self, element):
-        """
-        Скролит страницу к выбранному элементу так, чтобы элемент стал видимым
-        """
-        self.driver.execute_script("arguments[0].scrollIntoView();", element)
-
     @allure.step('Проверка количества открытых окон в браузере')
     def check_number_of_windows_to_be_equal(self, number):
         """Проверка количества открытых окон в браузере (number)"""
         return Wait(self.driver, self.timeout).until(es.number_of_windows_to_be(number))
+
+    @allure.step('Перейти на новую вкладку')
+    def switch_to_new_window(self):
+        self.driver.switch_to.window(self.driver.window_handles[1])
 
     @allure.step('Переместить курсор мыши к центру элемента, показывая ховер')
     def action_move_to_element(self, element):

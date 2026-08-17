@@ -52,12 +52,16 @@ class SignUpPage(GeneralPage):
     @allure.step(f"Проверка перехода по ссылке: '{message.AGREEMENT_MSG[30:51]}")
     def check_agreement_message_terms_of_service(self):
         self.element_is_visible(self.locator.TERMS_OF_SERVICE).click()
+        self.check_number_of_windows_to_be_equal(2)
+        self.switch_to_new_window()
         url = self.driver.current_url
         return url
 
-    @allure.step(f"Проверка перехода по ссылке: '{message.AGREEMENT_MSG[54:83]}'")
+    @allure.step('Проверка перехода по ссылке "Политикой конфиденциальности"')
     def check_agreement_message_policy_service(self):
         self.element_is_visible(self.locator.POLICY_SERVICE).click()
+        self.check_number_of_windows_to_be_equal(2)
+        self.switch_to_new_window()
         url = self.driver.current_url
         return url
 
@@ -74,7 +78,7 @@ class SignUpPage(GeneralPage):
         return self.element_is_visible(self.locator.CONFIRM_PASSWORD_FIELD).send_keys(data_confirm_password)
 
     @allure.step('Проверить что кнопка "Регистрация" неактивна')
-    def chek_button_submit_is_not_clickable(self):
+    def check_button_submit_is_not_clickable(self):
         return self.element_is_not_clickable(self.locator.SUBMIT_BUTTON)
 
     @allure.step("Подтвердить изменения")
@@ -108,6 +112,8 @@ class SignUpPage(GeneralPage):
         self.go_to_element(self.element_is_present(self.locator.CONFIRM_PASSWORD))
         self.element_is_visible(self.locator.CONFIRM_PASSWORD).send_keys(password0)
         self.element_is_visible(self.locator.CONFIRM_PASSWORD).send_keys(Keys.ENTER)
+        self.element_is_not_visible(self.locator.CONFIRM_PASSWORD)
+
 
     @allure.step("Удалить учетную запись")
     def delete_user_profile(self):

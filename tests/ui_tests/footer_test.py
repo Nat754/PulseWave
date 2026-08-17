@@ -1,3 +1,5 @@
+import time
+
 import allure
 import pytest
 from selenium.common import TimeoutException
@@ -20,15 +22,12 @@ class TestFooter:
             page = FooterPage(driver)
             driver.get(url)
         try:
-            text = page.get_cookies_text()
+            text = page.get_cookies_text().text
             assert text == self.const.COOKIES_TEXT, f"Неверный текст '{text}'"
-            button_text = page.get_allow_all_cookies().text
-            assert button_text == self.const.COOKIES_BUTTON, f"Неверный текст '{button_text}'"
-            # link = driver.current_url
-            # page.get_cookies_link()
-            # page.wait_changed_url(link)
-            # link = driver.current_url
-            # assert link == self.const.COOKIES, f"Неверный url '{link}'"
+            button_ok = page.get_allow_all_cookies().text
+            assert button_ok == self.const.COOKIES_BUTTON, f"Неверный текст '{button_ok}'"
+            page.get_allow_all_cookies().click()
+            assert page.check_cookies_text(), 'Не закрылось сообщение о принятии файлов cookies'
         except TimeoutException:
             print('На странице нет сообщения о принятии файлов cookies')
 

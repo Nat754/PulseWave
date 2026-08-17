@@ -12,9 +12,9 @@ class Links:
     MAIN_PAGE_HOME = f'{START_PAGE}home'
     LOGIN_PAGE = f'{MAIN_PAGE}auth/login'
     SIGNUP_PAGE = f'{MAIN_PAGE}auth/signup'
-    TERMS = f'{MAIN_PAGE}terms'
+    TERMS = f'{START_PAGE}terms/'
     WORKSPACE = f'{MAIN_PAGE}workspaces'
-    PRIVACY = f'{MAIN_PAGE}privacy'
+    PRIVACY = f'{START_PAGE}privacy/'
     PASSWORD_RECOVERY = f'{MAIN_PAGE}auth/password?email='
     MAIL_URL = 'https://mail.ru/'
     LI_URL = 'https://www.linkedin.com/company/pulsewave-team'
@@ -194,7 +194,7 @@ class SignUpConstants:
         'font-family': 'Mulish, sans-serif'
     }
 
-    AGREEMENT_CSS = {
+    PULSEWAVE_TERMS_CSS = {
         'color': 'rgba(66, 66, 66, 1)',
         'font-size': '12px',
         'font-family': 'Mulish, sans-serif'
