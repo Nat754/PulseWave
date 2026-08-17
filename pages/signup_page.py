@@ -121,7 +121,10 @@ class SignUpPage(GeneralPage):
 
     @allure.step("Получено сообщение об успешном удалении пользователя")
     def delete_user_profile_confirmation(self):
-        return self.element_is_present(self.locator.DELETE_MESSAGE).text
+        element = self.element_is_visible(self.locator.DELETE_MESSAGE)
+        return element
+
+
 
     @allure.step(f"Проверка неактивности кнопки '{signup.TEXT_SIGNUP}'")
     def button_registration_not_active(self):

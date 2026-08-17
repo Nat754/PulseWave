@@ -42,7 +42,7 @@ class TestSignupPage:
         signup_page_open.click_button_settings()
         signup_page_open.click_delete_profile()
         signup_page_open.send_field_email()
-        text = signup_page_open.delete_user_profile_confirmation()
+        text = signup_page_open.delete_user_profile_confirmation().text
         assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
 
     @allure.title("S.2 Регистрация с корректным email и не совпадающими паролем и подтверждением пароля")
@@ -171,7 +171,7 @@ class TestSignupPage:
         signup_page_open.click_delete_profile()
         signup_page_open.send_field_email()
         page.loader_is_not_visible()
-        text = signup_page_open.delete_user_profile_confirmation()
+        text = signup_page_open.delete_user_profile_confirmation().text
         assert text == self.signup.DELETE_USER_MSG, "Пользователь не удален"
 
     @allure.title("S.9 Регистрация с корректным email и паролем и пустым подтверждением пароля")
