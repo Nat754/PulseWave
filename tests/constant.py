@@ -21,7 +21,7 @@ class Links:
     AVAILABILITY_URLS = [
         'https://web.dev.pulsewave.ru/',
         'https://app.dev.pulsewave.ru/',
-        'https://api.dev.pulsewave.ru/api/healthcheck/',
+        'https://api.dev.pulsewave.ru/docs/',
         'https://pulsewave.ru/',
         'https://app.pulsewave.ru/',
         'https://api.pulsewave.ru/api/healthcheck/'
